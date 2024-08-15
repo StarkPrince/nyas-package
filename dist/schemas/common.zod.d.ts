@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BillingTypeEnum, CountryEnum, CurrencyEnum, ExtensionStatusEnum } from "../types/enum";
+import { BillingTypeEnum, CountryEnum, CurrencyEnum, ExtensionStatusEnum } from "../enums";
 export declare const idPattern: RegExp;
 export declare const contactDetailZodSchema: z.ZodObject<{
     name: z.ZodString;
@@ -142,17 +142,17 @@ export declare const extensionZodSchema: z.ZodObject<{
     startTime: z.ZodEffects<z.ZodString, string, string>;
     endTime: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
+    fieldEngineer: string;
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    fieldEngineer: string;
     reason: string;
     comments: string;
     startTime: string;
     endTime: string;
 }, {
+    fieldEngineer: string;
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    fieldEngineer: string;
     reason: string;
     comments: string;
     startTime: string;

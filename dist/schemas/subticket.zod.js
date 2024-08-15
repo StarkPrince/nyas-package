@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.subticketStatusZodSchema = void 0;
 const zod_1 = require("zod");
-const enum_1 = require("../types/enum");
+const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 const fieldEngineer_zod_1 = require("./fieldEngineer.zod");
 const validStatusOrder = [
@@ -16,7 +16,7 @@ const validStatusOrder = [
 ];
 exports.subticketStatusZodSchema = zod_1.z
     .object({
-    status: zod_1.z.nativeEnum(enum_1.SubTicketStatusEnum),
+    status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
     createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID"),
 })
     .strip();
@@ -41,6 +41,6 @@ exports.subticketZodSchema = zod_1.z
     .strip();
 exports.subticketUpdateZodSchema = zod_1.z
     .object({
-    status: zod_1.z.nativeEnum(enum_1.SubTicketStatusEnum),
+    status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
 })
     .strip();

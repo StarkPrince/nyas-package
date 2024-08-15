@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.extensionZodSchema = exports.communicationZodSchema = exports.documentZodSchema = exports.siteAddressZodSchema = exports.scheduleZodSchema = exports.billingDetailZodSchema = exports.addressZodSchema = exports.contactDetailZodSchema = exports.idPattern = void 0;
 const zod_1 = require("zod");
-const enum_1 = require("../types/enum");
+const enums_1 = require("../enums");
 exports.idPattern = /^[a-f\d]{24}$/i;
 exports.contactDetailZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"),
@@ -13,17 +13,17 @@ exports.addressZodSchema = zod_1.z.object({
     line1: zod_1.z.string().min(1, "Address line 1 cannot be blank"),
     line2: zod_1.z.string().optional(),
     city: zod_1.z.string().min(1, "City cannot be blank"),
-    country: zod_1.z.nativeEnum(enum_1.CountryEnum),
+    country: zod_1.z.nativeEnum(enums_1.CountryEnum),
 });
 exports.billingDetailZodSchema = zod_1.z
     .object({
-    type: zod_1.z.nativeEnum(enum_1.BillingTypeEnum),
+    type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     additionalRates: zod_1.z.array(zod_1.z.object({
         hours: zod_1.z.number().nonnegative(),
         rate: zod_1.z.number().nonnegative(),
     })),
-    country: zod_1.z.nativeEnum(enum_1.CountryEnum),
-    currency: zod_1.z.nativeEnum(enum_1.CurrencyEnum),
+    country: zod_1.z.nativeEnum(enums_1.CountryEnum),
+    currency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),
     outOfWorkingHoursRate: zod_1.z.number().nonnegative(),
     nightRate: zod_1.z.number().nonnegative(),
 })
@@ -69,8 +69,8 @@ exports.communicationZodSchema = zod_1.z
 exports.extensionZodSchema = zod_1.z
     .object({
     fieldEngineer: zod_1.z.string().regex(exports.idPattern, "Invalid field Engineer ID"),
-    status: zod_1.z.nativeEnum(enum_1.ExtensionStatusEnum),
-    type: zod_1.z.nativeEnum(enum_1.BillingTypeEnum),
+    status: zod_1.z.nativeEnum(enums_1.ExtensionStatusEnum),
+    type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
     startTime: zod_1.z

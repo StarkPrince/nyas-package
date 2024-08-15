@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserRolesEnum, UserStatusEnum } from "../types/enum";
+import { UserRolesEnum, UserStatusEnum } from "../enums";
 
 export const userZodSchema = z
   .object({

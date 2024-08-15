@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SubTicketStatusEnum } from "../types/enum";
+import { SubTicketStatusEnum } from "../enums";
 export declare const subticketStatusZodSchema: z.ZodObject<{
     status: z.ZodNativeEnum<typeof SubTicketStatusEnum>;
     createdBy: z.ZodString;
@@ -29,31 +29,31 @@ export declare const subticketZodSchema: z.ZodObject<{
     fieldEngineer: z.ZodString;
     extensions: z.ZodOptional<z.ZodArray<z.ZodObject<{
         fieldEngineer: z.ZodString;
-        status: z.ZodNativeEnum<typeof import("../types/enum").ExtensionStatusEnum>;
-        type: z.ZodNativeEnum<typeof import("../types/enum").BillingTypeEnum>;
+        status: z.ZodNativeEnum<typeof import("../enums").ExtensionStatusEnum>;
+        type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         reason: z.ZodString;
         comments: z.ZodString;
         startTime: z.ZodEffects<z.ZodString, string, string>;
         endTime: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
-        type: import("../types/enum").BillingTypeEnum;
-        status: import("../types/enum").ExtensionStatusEnum;
         fieldEngineer: string;
+        type: import("../enums").BillingTypeEnum;
+        status: import("../enums").ExtensionStatusEnum;
         reason: string;
         comments: string;
         startTime: string;
         endTime: string;
     }, {
-        type: import("../types/enum").BillingTypeEnum;
-        status: import("../types/enum").ExtensionStatusEnum;
         fieldEngineer: string;
+        type: import("../enums").BillingTypeEnum;
+        status: import("../enums").ExtensionStatusEnum;
         reason: string;
         comments: string;
         startTime: string;
         endTime: string;
     }>, "many">>;
     feUpdates: z.ZodEffects<z.ZodArray<z.ZodObject<{
-        workStatus: z.ZodNativeEnum<typeof import("../types/enum").FieldEngineerWorkStatusEnum>;
+        workStatus: z.ZodNativeEnum<typeof import("../enums").FieldEngineerWorkStatusEnum>;
         location: z.ZodObject<{
             lat: z.ZodNumber;
             long: z.ZodNumber;
@@ -70,28 +70,28 @@ export declare const subticketZodSchema: z.ZodObject<{
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }, {
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }>, "many">, {
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[], {
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[]>;
 }, "strip", z.ZodTypeAny, {
@@ -110,13 +110,13 @@ export declare const subticketZodSchema: z.ZodObject<{
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[];
     extensions?: {
-        type: import("../types/enum").BillingTypeEnum;
-        status: import("../types/enum").ExtensionStatusEnum;
         fieldEngineer: string;
+        type: import("../enums").BillingTypeEnum;
+        status: import("../enums").ExtensionStatusEnum;
         reason: string;
         comments: string;
         startTime: string;
@@ -138,13 +138,13 @@ export declare const subticketZodSchema: z.ZodObject<{
             lat: number;
             long: number;
         };
-        workStatus: import("../types/enum").FieldEngineerWorkStatusEnum;
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[];
     extensions?: {
-        type: import("../types/enum").BillingTypeEnum;
-        status: import("../types/enum").ExtensionStatusEnum;
         fieldEngineer: string;
+        type: import("../enums").BillingTypeEnum;
+        status: import("../enums").ExtensionStatusEnum;
         reason: string;
         comments: string;
         startTime: string;

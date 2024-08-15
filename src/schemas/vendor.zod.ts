@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ContractStatusEnum, CountryEnum } from "../types/enum";
+import { ContractStatusEnum, CountryEnum } from "../enums";
 import {
   addressZodSchema,
   billingDetailZodSchema,

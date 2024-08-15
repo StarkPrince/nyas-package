@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SubTicketStatusEnum } from "../types/enum";
+import { SubTicketStatusEnum } from "../enums";
 import { extensionZodSchema, idPattern } from "./common.zod";
 import { fieldEngineerStatusZodSchema } from "./fieldEngineer.zod";
 

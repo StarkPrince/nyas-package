@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FieldEngineerWorkStatusEnum } from "../types/enum";
+import { FieldEngineerWorkStatusEnum } from "../enums";
 import { addressZodSchema, idPattern } from "./common.zod";
 import { ticketZodSchema } from "./ticket.zod";
 import { userLoginZodSchema, userZodSchema } from "./user.zod";

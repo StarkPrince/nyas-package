@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ChatTypeEnum } from "../types/enum";
+import { ChatTypeEnum } from "../enums";
 import { idPattern } from "./common.zod";
 
 export const notificationZodSchema = z.object({

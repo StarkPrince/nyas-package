@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ContractStatusEnum, CountryEnum } from "../types/enum";
+import { ContractStatusEnum, CountryEnum } from "../enums";
 export declare const vendorZodSchema: z.ZodObject<{
     name: z.ZodString;
     address: z.ZodObject<{
@@ -78,7 +78,7 @@ export declare const vendorZodSchema: z.ZodObject<{
 export declare const vendorContractZodSchema: z.ZodObject<{
     vendorId: z.ZodString;
     billingDetails: z.ZodArray<z.ZodObject<{
-        type: z.ZodNativeEnum<typeof import("../types/enum").BillingTypeEnum>;
+        type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         additionalRates: z.ZodArray<z.ZodObject<{
             hours: z.ZodNumber;
             rate: z.ZodNumber;
@@ -90,27 +90,27 @@ export declare const vendorContractZodSchema: z.ZodObject<{
             rate: number;
         }>, "many">;
         country: z.ZodNativeEnum<typeof CountryEnum>;
-        currency: z.ZodNativeEnum<typeof import("../types/enum").CurrencyEnum>;
+        currency: z.ZodNativeEnum<typeof import("../enums").CurrencyEnum>;
         outOfWorkingHoursRate: z.ZodNumber;
         nightRate: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
             rate: number;
         }[];
-        currency: import("../types/enum").CurrencyEnum;
+        currency: import("../enums").CurrencyEnum;
         outOfWorkingHoursRate: number;
         nightRate: number;
     }, {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
             rate: number;
         }[];
-        currency: import("../types/enum").CurrencyEnum;
+        currency: import("../enums").CurrencyEnum;
         outOfWorkingHoursRate: number;
         nightRate: number;
     }>, "many">;
@@ -129,13 +129,13 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     clientsTheyWorkedFor: [string, ...string[]];
     vendorId: string;
     billingDetails: {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
             rate: number;
         }[];
-        currency: import("../types/enum").CurrencyEnum;
+        currency: import("../enums").CurrencyEnum;
         outOfWorkingHoursRate: number;
         nightRate: number;
     }[];
@@ -150,13 +150,13 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     clientsTheyWorkedFor: [string, ...string[]];
     vendorId: string;
     billingDetails: {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
             rate: number;
         }[];
-        currency: import("../types/enum").CurrencyEnum;
+        currency: import("../enums").CurrencyEnum;
         outOfWorkingHoursRate: number;
         nightRate: number;
     }[];

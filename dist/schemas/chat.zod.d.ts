@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ChatTypeEnum } from "../types/enum";
+import { ChatTypeEnum } from "../enums";
 export declare const notificationZodSchema: z.ZodObject<{
     userId: z.ZodString;
     ticketId: z.ZodString;

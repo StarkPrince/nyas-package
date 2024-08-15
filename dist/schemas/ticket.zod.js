@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = void 0;
 const zod_1 = require("zod");
-const enum_1 = require("../types/enum");
+const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 exports.taskZodSchema = zod_1.z
     .object({
@@ -12,7 +12,7 @@ exports.taskZodSchema = zod_1.z
     taskDescription: zod_1.z.string(),
     tools: zod_1.z.array(zod_1.z.string()),
     difficultyLevel: zod_1.z.number(),
-    status: zod_1.z.nativeEnum(enum_1.TaskStatusEnum),
+    status: zod_1.z.nativeEnum(enums_1.TaskStatusEnum),
 })
     .strip();
 const fieldEngineerContractZodSchema = zod_1.z.object({
@@ -33,7 +33,7 @@ exports.ticketZodSchema = zod_1.z
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     scheduleFieldEngineers: zod_1.z.array(scheduleFieldEngineerZodSchema),
-    status: zod_1.z.nativeEnum(enum_1.TicketStatusEnum),
+    status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum),
     teamMembers: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid team member Id")),
     tasks: zod_1.z.array(exports.taskZodSchema).optional().default([]),
     document: common_zod_1.documentZodSchema.optional(),
@@ -60,7 +60,7 @@ exports.ticketCreationZodSchema = zod_1.z
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     scheduleFieldEngineers: zod_1.z.array(scheduleFieldEngineerCreationZodSchema),
-    status: zod_1.z.nativeEnum(enum_1.TicketStatusEnum).default(enum_1.TicketStatusEnum.DRAFT),
+    status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum).default(enums_1.TicketStatusEnum.DRAFT),
 })
     .strip();
 exports.ticketUpdateZodSchema = zod_1.z

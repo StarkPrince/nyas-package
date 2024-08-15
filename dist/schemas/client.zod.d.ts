@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ContractStatusEnum, CountryEnum, CurrencyEnum } from "../types/enum";
+import { ContractStatusEnum, CountryEnum, CurrencyEnum } from "../enums";
 export declare const clientZodSchema: z.ZodObject<{
     name: z.ZodString;
     address: z.ZodObject<{
@@ -152,7 +152,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         purchaseOrderValue: string;
     }>, z.ZodString]>;
     billingDetails: z.ZodArray<z.ZodUnion<[z.ZodObject<{
-        type: z.ZodNativeEnum<typeof import("../types/enum").BillingTypeEnum>;
+        type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         additionalRates: z.ZodArray<z.ZodObject<{
             hours: z.ZodNumber;
             rate: z.ZodNumber;
@@ -168,7 +168,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         outOfWorkingHoursRate: z.ZodNumber;
         nightRate: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
@@ -178,7 +178,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         outOfWorkingHoursRate: number;
         nightRate: number;
     }, {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
@@ -297,7 +297,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
     country: CountryEnum;
     currency: CurrencyEnum;
     billingDetails: (string | {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;
@@ -369,7 +369,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
     country: CountryEnum;
     currency: CurrencyEnum;
     billingDetails: (string | {
-        type: import("../types/enum").BillingTypeEnum;
+        type: import("../enums").BillingTypeEnum;
         country: CountryEnum;
         additionalRates: {
             hours: number;

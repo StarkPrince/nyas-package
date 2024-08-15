@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerCreationZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
 const zod_1 = require("zod");
-const enum_1 = require("../types/enum");
+const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 const ticket_zod_1 = require("./ticket.zod");
 const user_zod_1 = require("./user.zod");
@@ -46,7 +46,7 @@ exports.fieldEngineerCreationZodSchema = zod_1.z
     .strip();
 exports.fieldEngineerStatusZodSchema = zod_1.z
     .object({
-    workStatus: zod_1.z.nativeEnum(enum_1.FieldEngineerWorkStatusEnum),
+    workStatus: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     location: exports.locationZodSchema,
     timestamp: zod_1.z.string().min(1, "Timestamp cannot be blank"),
 })
@@ -72,6 +72,6 @@ exports.fieldEngineerUpdateLocationZodSchema = zod_1.z
     subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user Id"),
     lat: zod_1.z.number(),
     long: zod_1.z.number(),
-    event: zod_1.z.nativeEnum(enum_1.FieldEngineerWorkStatusEnum),
+    event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
 })
     .strip();

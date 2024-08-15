@@ -4,7 +4,7 @@ import {
   CountryEnum,
   CurrencyEnum,
   ExtensionStatusEnum,
-} from "../types/enum";
+} from "../enums";
 
 export const idPattern = /^[a-f\d]{24}$/i;
 

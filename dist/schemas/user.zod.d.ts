@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserRolesEnum, UserStatusEnum } from "../types/enum";
+import { UserRolesEnum, UserStatusEnum } from "../enums";
 export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     username: z.ZodOptional<z.ZodString>;
     email: z.ZodString;
@@ -24,8 +24,8 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     email: string;
     password: string;
     name: string;
-    status?: UserStatusEnum | undefined;
     image?: string | undefined;
+    status?: UserStatusEnum | undefined;
     phoneNumber?: string | undefined;
     username?: string | undefined;
     role?: UserRolesEnum | undefined;
@@ -44,8 +44,8 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     email: string;
     password: string;
     name: string;
-    status?: UserStatusEnum | undefined;
     image?: string | undefined;
+    status?: UserStatusEnum | undefined;
     phoneNumber?: string | undefined;
     username?: string | undefined;
     role?: UserRolesEnum | undefined;

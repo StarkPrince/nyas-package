@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { TaskStatusEnum, TicketStatusEnum } from "../types/enum";
+import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 import { communicationZodSchema, documentZodSchema } from "./common.zod";
 export declare const taskZodSchema: z.ZodObject<{
     taskName: z.ZodString;
