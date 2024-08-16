@@ -37,16 +37,16 @@ export declare const subticketZodSchema: z.ZodObject<{
         endTime: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
         fieldEngineer: string;
-        type: import("../enums").BillingTypeEnum;
         status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
         reason: string;
         comments: string;
         startTime: string;
         endTime: string;
     }, {
         fieldEngineer: string;
-        type: import("../enums").BillingTypeEnum;
         status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
         reason: string;
         comments: string;
         startTime: string;
@@ -66,57 +66,57 @@ export declare const subticketZodSchema: z.ZodObject<{
         }>;
         timestamp: z.ZodString;
     }, "strip", z.ZodTypeAny, {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }, {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }>, "many">, {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[], {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[]>;
 }, "strip", z.ZodTypeAny, {
     number: string;
     fieldEngineer: string;
+    ticketId: string;
     vendorContractId: string;
     schedule: string;
-    SLA: number;
-    ticketId: string;
     statuses: {
         status: SubTicketStatusEnum;
         createdBy: string;
     }[];
+    SLA: number;
     feUpdates: {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[];
     extensions?: {
         fieldEngineer: string;
-        type: import("../enums").BillingTypeEnum;
         status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
         reason: string;
         comments: string;
         startTime: string;
@@ -125,26 +125,26 @@ export declare const subticketZodSchema: z.ZodObject<{
 }, {
     number: string;
     fieldEngineer: string;
+    ticketId: string;
     vendorContractId: string;
     schedule: string;
-    SLA: number;
-    ticketId: string;
     statuses: {
         status: SubTicketStatusEnum;
         createdBy: string;
     }[];
+    SLA: number;
     feUpdates: {
+        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         location: {
             lat: number;
             long: number;
         };
-        workStatus: import("../enums").FieldEngineerWorkStatusEnum;
         timestamp: string;
     }[];
     extensions?: {
         fieldEngineer: string;
-        type: import("../enums").BillingTypeEnum;
         status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
         reason: string;
         comments: string;
         startTime: string;

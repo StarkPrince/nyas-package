@@ -1,22 +1,22 @@
 import { z } from "zod";
-export declare const userLoginZodSchema: z.ZodObject<{
+export declare const LoginZodSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     password: string;
+    email: string;
 }, {
-    email: string;
     password: string;
+    email: string;
 }>;
-export declare const forgotPasswordZodSchema: z.ZodObject<{
+export declare const ForgotPasswordZodSchema: z.ZodObject<{
     email: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     email: string;
 }, {
     email: string;
 }>;
-export declare const resetPasswordZodSchema: z.ZodObject<{
+export declare const ResetPasswordZodSchema: z.ZodObject<{
     otp: z.ZodString;
     newPassword: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -26,6 +26,6 @@ export declare const resetPasswordZodSchema: z.ZodObject<{
     otp: string;
     newPassword: string;
 }>;
-export type ResetPasswordType = z.infer<typeof resetPasswordZodSchema>;
-export type UserLoginType = z.infer<typeof userLoginZodSchema>;
-export type ForgotPasswordType = z.infer<typeof forgotPasswordZodSchema>;
+export type ResetPasswordType = z.infer<typeof ResetPasswordZodSchema>;
+export type LoginType = z.infer<typeof LoginZodSchema>;
+export type ForgotPasswordType = z.infer<typeof ForgotPasswordZodSchema>;

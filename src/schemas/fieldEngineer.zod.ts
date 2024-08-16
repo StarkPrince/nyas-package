@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { FieldEngineerWorkStatusEnum } from "../enums";
+import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
 import { ticketZodSchema } from "./ticket.zod";
-import { userLoginZodSchema, userZodSchema } from "./user.zod";
+import { userZodSchema } from "./user.zod";
 
 export const locationZodSchema = z.object({
   lat: z.number(),
@@ -81,7 +82,7 @@ export const fieldEngineerUpdateLocationZodSchema = z
   .strip();
 
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;
-export type FieldEngineerLoginType = z.infer<typeof userLoginZodSchema>;
+export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
 export type FieldEngineerGetTicketsType = z.infer<
   typeof fieldEngineerGetTicketsZodSchema
 >;

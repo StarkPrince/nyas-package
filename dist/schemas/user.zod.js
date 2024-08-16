@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userLoginZodSchema = exports.userZodSchema = void 0;
+exports.userZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 exports.userZodSchema = zod_1.z
@@ -22,10 +22,3 @@ exports.userZodSchema = zod_1.z
     message: "At least one of email or phoneNumber must be provided",
     path: ["email", "phoneNumber"],
 });
-exports.userLoginZodSchema = zod_1.z
-    .object({
-    email: zod_1.z.string().min(1, "Email cannot be blank").email(),
-    password: zod_1.z.string().min(1, "Password cannot be blank"),
-    rememberMe: zod_1.z.boolean().optional().default(false),
-})
-    .strip();

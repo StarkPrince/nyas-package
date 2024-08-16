@@ -11,58 +11,44 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     image: z.ZodOptional<z.ZodString>;
     status: z.ZodDefault<z.ZodNativeEnum<typeof UserStatusEnum>>;
 }, "strip", z.ZodTypeAny, {
-    email: string;
-    password: string;
     status: UserStatusEnum;
-    name: string;
-    role: UserRolesEnum;
-    image?: string | undefined;
-    phoneNumber?: string | undefined;
-    username?: string | undefined;
-    about?: string | undefined;
-}, {
-    email: string;
     password: string;
+    email: string;
+    role: UserRolesEnum;
     name: string;
-    image?: string | undefined;
-    status?: UserStatusEnum | undefined;
+    username?: string | undefined;
     phoneNumber?: string | undefined;
+    about?: string | undefined;
+    image?: string | undefined;
+}, {
+    password: string;
+    email: string;
+    name: string;
+    status?: UserStatusEnum | undefined;
     username?: string | undefined;
     role?: UserRolesEnum | undefined;
+    phoneNumber?: string | undefined;
     about?: string | undefined;
+    image?: string | undefined;
 }>, {
-    email: string;
-    password: string;
     status: UserStatusEnum;
-    name: string;
-    role: UserRolesEnum;
-    image?: string | undefined;
-    phoneNumber?: string | undefined;
-    username?: string | undefined;
-    about?: string | undefined;
-}, {
-    email: string;
     password: string;
+    email: string;
+    role: UserRolesEnum;
     name: string;
-    image?: string | undefined;
-    status?: UserStatusEnum | undefined;
+    username?: string | undefined;
     phoneNumber?: string | undefined;
+    about?: string | undefined;
+    image?: string | undefined;
+}, {
+    password: string;
+    email: string;
+    name: string;
+    status?: UserStatusEnum | undefined;
     username?: string | undefined;
     role?: UserRolesEnum | undefined;
+    phoneNumber?: string | undefined;
     about?: string | undefined;
+    image?: string | undefined;
 }>;
-export declare const userLoginZodSchema: z.ZodObject<{
-    email: z.ZodString;
-    password: z.ZodString;
-    rememberMe: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-}, "strip", z.ZodTypeAny, {
-    email: string;
-    password: string;
-    rememberMe: boolean;
-}, {
-    email: string;
-    password: string;
-    rememberMe?: boolean | undefined;
-}>;
-export type UserLoginType = z.infer<typeof userLoginZodSchema>;
 export type UserType = z.infer<typeof userZodSchema>;

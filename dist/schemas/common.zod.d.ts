@@ -7,12 +7,12 @@ export declare const contactDetailZodSchema: z.ZodObject<{
     phoneNumber: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     email: string;
-    name: string;
     phoneNumber: string;
+    name: string;
 }, {
     email: string;
-    name: string;
     phoneNumber: string;
+    name: string;
 }>;
 export declare const addressZodSchema: z.ZodObject<{
     line1: z.ZodString;
@@ -109,26 +109,26 @@ export declare const communicationZodSchema: z.ZodObject<{
         password: z.ZodString;
         notes: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        password: string;
         username: string;
+        password: string;
         notes?: string | undefined;
     }, {
-        password: string;
         username: string;
+        password: string;
         notes?: string | undefined;
     }>;
     communication: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     consumerPortal: {
-        password: string;
         username: string;
+        password: string;
         notes?: string | undefined;
     };
     communication: string[];
 }, {
     consumerPortal: {
-        password: string;
         username: string;
+        password: string;
         notes?: string | undefined;
     };
     communication: string[];
@@ -143,16 +143,16 @@ export declare const extensionZodSchema: z.ZodObject<{
     endTime: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
-    type: BillingTypeEnum;
     status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
     reason: string;
     comments: string;
     startTime: string;
     endTime: string;
 }, {
     fieldEngineer: string;
-    type: BillingTypeEnum;
     status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
     reason: string;
     comments: string;
     startTime: string;

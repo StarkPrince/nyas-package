@@ -30,11 +30,11 @@ declare const fieldEngineerContractZodSchema: z.ZodObject<{
     fieldEngineerId: z.ZodString;
     vendorContractId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    fieldEngineerId: string;
     vendorContractId: string;
+    fieldEngineerId: string;
 }, {
-    fieldEngineerId: string;
     vendorContractId: string;
+    fieldEngineerId: string;
 }>;
 declare const scheduleFieldEngineerZodSchema: z.ZodObject<{
     schedule: z.ZodString;
@@ -42,23 +42,23 @@ declare const scheduleFieldEngineerZodSchema: z.ZodObject<{
         fieldEngineerId: z.ZodString;
         vendorContractId: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }, {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     schedule: string;
     fieldEngineercontracts: {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }[];
 }, {
     schedule: string;
     fieldEngineercontracts?: {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }[] | undefined;
 }>;
 export declare const ticketZodSchema: z.ZodObject<{
@@ -84,23 +84,23 @@ export declare const ticketZodSchema: z.ZodObject<{
             fieldEngineerId: z.ZodString;
             vendorContractId: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         schedule: string;
         fieldEngineercontracts: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[];
     }, {
         schedule: string;
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }>, "many">;
     status: z.ZodNativeEnum<typeof TicketStatusEnum>;
@@ -149,26 +149,26 @@ export declare const ticketZodSchema: z.ZodObject<{
             password: z.ZodString;
             notes: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         }, {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         }>;
         communication: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
     }, {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
@@ -179,6 +179,7 @@ export declare const ticketZodSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     number: string;
     status: TicketStatusEnum;
+    SLA: number;
     chat: string;
     title: string;
     clientContractId: string;
@@ -187,12 +188,11 @@ export declare const ticketZodSchema: z.ZodObject<{
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
-    SLA: number;
     scheduleFieldEngineers: {
         schedule: string;
         fieldEngineercontracts: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[];
     }[];
     teamMembers: string[];
@@ -206,6 +206,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         difficultyLevel: number;
     }[];
     subtickets: string[];
+    createdBy?: string | undefined;
     document?: {
         projectDescription: string;
         MOPs: string;
@@ -213,17 +214,17 @@ export declare const ticketZodSchema: z.ZodObject<{
     } | undefined;
     communications?: {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
     } | undefined;
-    createdBy?: string | undefined;
     updatedBy?: string | undefined;
 }, {
     number: string;
     status: TicketStatusEnum;
+    SLA: number;
     chat: string;
     title: string;
     clientContractId: string;
@@ -232,20 +233,15 @@ export declare const ticketZodSchema: z.ZodObject<{
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
-    SLA: number;
     scheduleFieldEngineers: {
         schedule: string;
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }[];
     teamMembers: string[];
-    document?: {
-        projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
-    } | undefined;
+    createdBy?: string | undefined;
     tasks?: {
         status: TaskStatusEnum;
         startTime: string;
@@ -255,16 +251,20 @@ export declare const ticketZodSchema: z.ZodObject<{
         tools: string[];
         difficultyLevel: number;
     }[] | undefined;
+    document?: {
+        projectDescription: string;
+        MOPs: string;
+        SOWUpload: string;
+    } | undefined;
     communications?: {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
     } | undefined;
     subtickets?: string[] | undefined;
-    createdBy?: string | undefined;
     updatedBy?: string | undefined;
 }>;
 declare const scheduleFieldEngineerCreationZodSchema: z.ZodEffects<z.ZodObject<{
@@ -285,11 +285,11 @@ declare const scheduleFieldEngineerCreationZodSchema: z.ZodEffects<z.ZodObject<{
         fieldEngineerId: z.ZodString;
         vendorContractId: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }, {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     schedule: {
@@ -298,8 +298,8 @@ declare const scheduleFieldEngineerCreationZodSchema: z.ZodEffects<z.ZodObject<{
         endtime: string;
     };
     fieldEngineercontracts: {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }[];
 }, {
     schedule: {
@@ -308,8 +308,8 @@ declare const scheduleFieldEngineerCreationZodSchema: z.ZodEffects<z.ZodObject<{
         endtime: string;
     };
     fieldEngineercontracts?: {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }[] | undefined;
 }>, {
     fieldEngineercontracts: never[];
@@ -325,8 +325,8 @@ declare const scheduleFieldEngineerCreationZodSchema: z.ZodEffects<z.ZodObject<{
         endtime: string;
     };
     fieldEngineercontracts?: {
-        fieldEngineerId: string;
         vendorContractId: string;
+        fieldEngineerId: string;
     }[] | undefined;
 }>;
 export declare const ticketCreationZodSchema: z.ZodObject<{
@@ -363,11 +363,11 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
             fieldEngineerId: z.ZodString;
             vendorContractId: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         schedule: {
@@ -376,8 +376,8 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
             endtime: string;
         };
         fieldEngineercontracts: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[];
     }, {
         schedule: {
@@ -386,8 +386,8 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
             endtime: string;
         };
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }>, {
         fieldEngineercontracts: never[];
@@ -403,14 +403,15 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
             endtime: string;
         };
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }>, "many">;
     status: z.ZodDefault<z.ZodNativeEnum<typeof TicketStatusEnum>>;
 }, "strip", z.ZodTypeAny, {
     number: string;
     status: TicketStatusEnum;
+    SLA: number;
     title: string;
     clientContractId: string;
     site: {
@@ -418,7 +419,6 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
-    SLA: number;
     scheduleFieldEngineers: {
         fieldEngineercontracts: never[];
         schedule: {
@@ -429,6 +429,7 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
     }[];
 }, {
     number: string;
+    SLA: number;
     title: string;
     clientContractId: string;
     site: {
@@ -436,7 +437,6 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
-    SLA: number;
     scheduleFieldEngineers: {
         schedule: {
             day: string;
@@ -444,8 +444,8 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
             endtime: string;
         };
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }[];
     status?: TicketStatusEnum | undefined;
@@ -495,26 +495,26 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
             password: z.ZodString;
             notes: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         }, {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         }>;
         communication: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
     }, {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
@@ -525,36 +525,31 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
             fieldEngineerId: z.ZodString;
             vendorContractId: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }, {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         schedule: string;
         fieldEngineercontracts: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[];
     }, {
         schedule: string;
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    document?: {
-        projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
-    } | undefined;
     scheduleFieldEngineers?: {
         schedule: string;
         fieldEngineercontracts: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[];
     }[] | undefined;
     tasks?: {
@@ -566,25 +561,25 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         tools: string[];
         difficultyLevel: number;
     }[] | undefined;
+    document?: {
+        projectDescription: string;
+        MOPs: string;
+        SOWUpload: string;
+    } | undefined;
     communications?: {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];
     } | undefined;
 }, {
-    document?: {
-        projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
-    } | undefined;
     scheduleFieldEngineers?: {
         schedule: string;
         fieldEngineercontracts?: {
-            fieldEngineerId: string;
             vendorContractId: string;
+            fieldEngineerId: string;
         }[] | undefined;
     }[] | undefined;
     tasks?: {
@@ -596,10 +591,15 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         tools: string[];
         difficultyLevel: number;
     }[] | undefined;
+    document?: {
+        projectDescription: string;
+        MOPs: string;
+        SOWUpload: string;
+    } | undefined;
     communications?: {
         consumerPortal: {
-            password: string;
             username: string;
+            password: string;
             notes?: string | undefined;
         };
         communication: string[];

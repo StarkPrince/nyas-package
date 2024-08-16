@@ -23,14 +23,4 @@ export const userZodSchema = z
     message: "At least one of email or phoneNumber must be provided",
     path: ["email", "phoneNumber"],
   });
-
-export const userLoginZodSchema = z
-  .object({
-    email: z.string().min(1, "Email cannot be blank").email(),
-    password: z.string().min(1, "Password cannot be blank"),
-    rememberMe: z.boolean().optional().default(false),
-  })
-  .strip();
-
-export type UserLoginType = z.infer<typeof userLoginZodSchema>;
 export type UserType = z.infer<typeof userZodSchema>;
