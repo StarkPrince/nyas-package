@@ -1,11 +1,11 @@
-export declare enum ChatTypeEnum {
+export enum ChatTypeEnum {
   TEXT = "text",
   IMAGE = "image",
   DOCUMENT = "document",
   SYSTEM = "system",
 }
 
-export declare enum SubTicketStatusEnum {
+export enum SubTicketStatusEnum {
   DRAFT = "draft",
   ASSIGN_PENDING = "assign-pending",
   FE_PENDING = "fe-pending",
@@ -17,9 +17,12 @@ export declare enum SubTicketStatusEnum {
 }
 
 export const validStatusOrder = [
+  SubTicketStatusEnum.DRAFT,
   SubTicketStatusEnum.ASSIGN_PENDING,
   SubTicketStatusEnum.FE_PENDING,
   SubTicketStatusEnum.APPROVAL_PENDING,
+  SubTicketStatusEnum.CANCELLED,
+  SubTicketStatusEnum.ALLOCATED,
   SubTicketStatusEnum.ONGOING,
   SubTicketStatusEnum.COMPLETED,
 ];

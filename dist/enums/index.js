@@ -1,10 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CurrencyEnum = exports.CountryEnum = exports.ContractStatusEnum = exports.TaskStatusEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.rolePermissions = exports.UserRolesEnum = exports.Permission = exports.TicketStatusEnum = exports.validStatusOrder = void 0;
+exports.CurrencyEnum = exports.CountryEnum = exports.ContractStatusEnum = exports.TaskStatusEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.rolePermissions = exports.UserRolesEnum = exports.Permission = exports.TicketStatusEnum = exports.validStatusOrder = exports.SubTicketStatusEnum = exports.ChatTypeEnum = void 0;
+var ChatTypeEnum;
+(function (ChatTypeEnum) {
+    ChatTypeEnum["TEXT"] = "text";
+    ChatTypeEnum["IMAGE"] = "image";
+    ChatTypeEnum["DOCUMENT"] = "document";
+    ChatTypeEnum["SYSTEM"] = "system";
+})(ChatTypeEnum || (exports.ChatTypeEnum = ChatTypeEnum = {}));
+var SubTicketStatusEnum;
+(function (SubTicketStatusEnum) {
+    SubTicketStatusEnum["DRAFT"] = "draft";
+    SubTicketStatusEnum["ASSIGN_PENDING"] = "assign-pending";
+    SubTicketStatusEnum["FE_PENDING"] = "fe-pending";
+    SubTicketStatusEnum["APPROVAL_PENDING"] = "approval-pending";
+    SubTicketStatusEnum["CANCELLED"] = "cancelled";
+    SubTicketStatusEnum["ALLOCATED"] = "allocated";
+    SubTicketStatusEnum["ONGOING"] = "ongoing";
+    SubTicketStatusEnum["COMPLETED"] = "completed";
+})(SubTicketStatusEnum || (exports.SubTicketStatusEnum = SubTicketStatusEnum = {}));
 exports.validStatusOrder = [
+    SubTicketStatusEnum.DRAFT,
     SubTicketStatusEnum.ASSIGN_PENDING,
     SubTicketStatusEnum.FE_PENDING,
     SubTicketStatusEnum.APPROVAL_PENDING,
+    SubTicketStatusEnum.CANCELLED,
+    SubTicketStatusEnum.ALLOCATED,
     SubTicketStatusEnum.ONGOING,
     SubTicketStatusEnum.COMPLETED,
 ];
