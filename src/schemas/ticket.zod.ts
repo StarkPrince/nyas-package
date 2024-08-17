@@ -20,14 +20,9 @@ export const taskZodSchema = z
   })
   .strip();
 
-const fieldEngineerContractZodSchema = z.object({
-  fieldEngineerId: z.string().regex(idPattern, "Invalid field engineer Id"),
-  vendorContractId: z.string().regex(idPattern, "Invalid vendor contract"),
-});
-
-const scheduleFieldEngineerZodSchema = z.object({
-  schedule: z.string().regex(idPattern, "Invalid schedule Id"),
-  fieldEngineercontracts: z.array(fieldEngineerContractZodSchema).default([]),
+export const assignmentZodSchema = z.object({
+  fieldEngineer: z.string().regex(idPattern, "Invalid field engineer Id"),
+  vendorContract: z.string().regex(idPattern, "Invalid vendor contract"),
 });
 
 export const ticketZodSchema = z
@@ -39,7 +34,7 @@ export const ticketZodSchema = z
     site: siteAddressZodSchema,
     numberOfEngineers: z.number(),
     SLA: z.number(),
-    scheduleFieldEngineers: z.array(scheduleFieldEngineerZodSchema),
+    schedules: z.array(z.string().regex(idPattern, "Invalid schedule Id")),
     status: z.nativeEnum(TicketStatusEnum),
     teamMembers: z.array(z.string().regex(idPattern, "Invalid team member Id")),
     tasks: z.array(taskZodSchema).optional().default([]),
@@ -53,16 +48,6 @@ export const ticketZodSchema = z
   })
   .strip();
 
-const scheduleFieldEngineerCreationZodSchema = z
-  .object({
-    schedule: scheduleZodSchema,
-    fieldEngineercontracts: z.array(fieldEngineerContractZodSchema).default([]),
-  })
-  .transform((data) => ({
-    ...data,
-    fieldEngineercontracts: [],
-  }));
-
 export const ticketCreationZodSchema = z
   .object({
     number: z.string(),
@@ -71,29 +56,27 @@ export const ticketCreationZodSchema = z
     site: siteAddressZodSchema,
     numberOfEngineers: z.number(),
     SLA: z.number(),
-    scheduleFieldEngineers: z.array(scheduleFieldEngineerCreationZodSchema),
+    schedules: z.array(scheduleZodSchema),
     status: z.nativeEnum(TicketStatusEnum).default(TicketStatusEnum.DRAFT),
   })
   .strip();
 
 export const ticketUpdateZodSchema = z
   .object({
-    tasks: z.array(taskZodSchema).optional(),
+    scheduleAssignments: z
+      .array(
+        z.object({
+          schedule: z.string().regex(idPattern, "Invalid schedule Id"),
+          assignments: z.array(assignmentZodSchema),
+        })
+      )
+      .optional(),
     document: documentZodSchema.optional(),
+    tasks: z.array(taskZodSchema).optional(),
     communications: communicationZodSchema.optional(),
-    scheduleFieldEngineers: z.array(scheduleFieldEngineerZodSchema).optional(),
   })
   .strip();
 
-export type ScheduleFieldEngineerCreationType = z.infer<
-  typeof scheduleFieldEngineerCreationZodSchema
->;
-export type ScheduleFieldEngineerType = z.infer<
-  typeof scheduleFieldEngineerZodSchema
->;
-export type FieldEngineerContractType = z.infer<
-  typeof fieldEngineerContractZodSchema
->;
 export type TicketType = z.infer<typeof ticketZodSchema>;
 export type TaskType = z.infer<typeof taskZodSchema>;
 export type DocumentType = z.infer<typeof documentZodSchema>;

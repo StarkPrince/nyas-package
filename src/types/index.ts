@@ -1,4 +1,5 @@
 import { Document } from "mongoose";
+import { assignmentZodSchema } from "../schemas/ticket.zod";
 import {
   ForgotPasswordType,
   ForgotPasswordZodSchema,
@@ -55,9 +56,6 @@ import {
   subticketZodSchema,
 } from "../schemas/subticket.zod";
 import {
-  FieldEngineerContractType,
-  ScheduleFieldEngineerCreationType,
-  ScheduleFieldEngineerType,
   TaskType,
   taskZodSchema,
   ticketCreationZodSchema,
@@ -145,12 +143,6 @@ export interface IPopulatedFieldEngineer
 export interface ITicketChat extends Document, TicketChatType {}
 export interface INotification extends Document, NotificationType {}
 export interface IMessage extends Document, MessageType {}
-export interface IScheduleFieldEngineerCreation
-  extends Document,
-    ScheduleFieldEngineerCreationType {}
-export interface IScheduleFieldEngineer
-  extends Document,
-    ScheduleFieldEngineerType {}
 export interface IAddress extends Document, AddressType {}
 export interface IContactDetail extends Document, ContactDetailType {}
 export interface ISchedule extends Document, ScheduleType {}
@@ -163,9 +155,6 @@ export interface IClientContract extends Document, ClientContractType {}
 export interface IVendor extends Document, VendorType {}
 export interface IVendorContract extends Document, VendorContractType {}
 export interface IFieldEngineerLogin extends Document, FieldEngineerLoginType {}
-export interface IFieldEngineerContract
-  extends Document,
-    FieldEngineerContractType {}
 export interface IFieldEngineerGetTickets
   extends Document,
     FieldEngineerGetTicketsType {}
@@ -193,6 +182,7 @@ declare global {
 export {
   AddressType,
   addressZodSchema,
+  assignmentZodSchema,
   BillingDetailType,
   billingDetailZodSchema,
   ClientContractType,
@@ -207,7 +197,6 @@ export {
   documentZodSchema,
   ExtensionType,
   extensionZodSchema,
-  FieldEngineerContractType,
   fieldEngineerCreationZodSchema,
   FieldEngineerGetSubTicketsType,
   fieldEngineerGetSubTicketsZodSchema,
@@ -229,8 +218,6 @@ export {
   NotificationType,
   ResetPasswordType,
   ResetPasswordZodSchema,
-  ScheduleFieldEngineerCreationType,
-  ScheduleFieldEngineerType,
   ScheduleType,
   scheduleZodSchema,
   SiteAddressType,

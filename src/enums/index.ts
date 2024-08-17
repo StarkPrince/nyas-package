@@ -94,6 +94,18 @@ export enum Permission {
   // notification permissions
   READ_NOTIFICATIONS = "read_notifications",
   VIEW_NOTIFICATIONS = "view_notifications",
+
+  // extension permissions
+  VIEW_EXTENSIONS = "view_extensions",
+  CREATE_EXTENSION = "create_extension",
+  MODIFY_EXTENSION = "modify_extension",
+  DELETE_EXTENSION = "delete_extension",
+
+  // chat messages permissions
+  VIEW_CHAT_MESSAGES = "view_chat_messages",
+  CREATE_CHAT_MESSAGE = "create_chat_message",
+  MODIFY_CHAT_MESSAGE = "modify_chat_message",
+  DELETE_CHAT_MESSAGE = "delete_chat_message",
 }
 
 export enum UserRolesEnum {
@@ -109,6 +121,11 @@ export const rolePermissions = {
     Permission.UPDATE_SUBTICKET_STATUS,
     Permission.ACCEPT_SUBTICKET,
     Permission.CANCEL_SUBTICKET,
+    Permission.CREATE_EXTENSION,
+    Permission.VIEW_CHAT_MESSAGES,
+    Permission.CREATE_CHAT_MESSAGE,
+    Permission.MODIFY_CHAT_MESSAGE,
+    Permission.DELETE_CHAT_MESSAGE,
   ],
   [UserRolesEnum.NOC]: Object.values(Permission).filter(
     (permission) =>
@@ -117,12 +134,14 @@ export const rolePermissions = {
       permission !== Permission.ARCHIVE_TICKETS &&
       permission !== Permission.DELETE_TICKETS &&
       permission !== Permission.ACCEPT_SUBTICKET &&
-      permission !== Permission.UPDATE_SUBTICKET_STATUS
+      permission !== Permission.UPDATE_SUBTICKET_STATUS &&
+      permission !== Permission.CREATE_EXTENSION
   ),
   [UserRolesEnum.MBA]: Object.values(Permission).filter(
     (permission) =>
       permission !== Permission.ACCEPT_SUBTICKET &&
-      permission !== Permission.UPDATE_SUBTICKET_STATUS
+      permission !== Permission.UPDATE_SUBTICKET_STATUS &&
+      permission !== Permission.CREATE_EXTENSION
   ),
 };
 
@@ -140,9 +159,9 @@ export enum UserStatusEnum {
 }
 
 export enum ExtensionStatusEnum {
-  Approved = "approved",
-  Rejected = "rejected",
-  Pending = "pending",
+  APPROVED = "approved",
+  REJECTED = "rejected",
+  PENDING = "pending",
 }
 
 export enum ExtensionTypeEnum {
