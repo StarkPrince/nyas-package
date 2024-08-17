@@ -1,22 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CurrencyEnum = exports.CountryEnum = exports.ContractStatusEnum = exports.TaskStatusEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.rolePermissions = exports.UserRolesEnum = exports.Permission = exports.TicketStatusEnum = exports.validStatusOrder = exports.SubTicketStatusEnum = exports.ChatTypeEnum = void 0;
-var ChatTypeEnum;
-(function (ChatTypeEnum) {
-    ChatTypeEnum["TEXT"] = "text";
-    ChatTypeEnum["IMAGE"] = "image";
-    ChatTypeEnum["DOCUMENT"] = "document";
-})(ChatTypeEnum || (exports.ChatTypeEnum = ChatTypeEnum = {}));
-var SubTicketStatusEnum;
-(function (SubTicketStatusEnum) {
-    SubTicketStatusEnum["ASSIGN_PENDING"] = "assign-pending";
-    SubTicketStatusEnum["FE_PENDING"] = "fe-pending";
-    SubTicketStatusEnum["APPROVAL_PENDING"] = "approval-pending";
-    SubTicketStatusEnum["ONGOING"] = "ongoing";
-    SubTicketStatusEnum["DRAFT"] = "draft";
-    SubTicketStatusEnum["COMPLETED"] = "completed";
-    SubTicketStatusEnum["PENDING"] = "pending";
-})(SubTicketStatusEnum || (exports.SubTicketStatusEnum = SubTicketStatusEnum = {}));
+exports.CurrencyEnum = exports.CountryEnum = exports.ContractStatusEnum = exports.TaskStatusEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.rolePermissions = exports.UserRolesEnum = exports.Permission = exports.TicketStatusEnum = exports.validStatusOrder = void 0;
 exports.validStatusOrder = [
     SubTicketStatusEnum.ASSIGN_PENDING,
     SubTicketStatusEnum.FE_PENDING,

@@ -1,4 +1,9 @@
 import { Model, Schema } from "mongoose";
+import { ScheduleType } from "..";
+export declare const detectScheduleConflict: (schedules: ScheduleType[]) => Array<{
+    schedule1: any;
+    schedule2: any;
+}>;
 export declare const getFieldEngineerSuffix: (index: number) => string;
 export declare const getScheduleDuration: (schedule: any) => number;
 export declare function getReferenceFields(schema: Schema): string[];

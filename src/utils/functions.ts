@@ -1,52 +1,45 @@
 import { Model, Schema } from "mongoose";
-import { IBillingDetail, ISchedule } from "../types";
+import { IBillingDetail, ISchedule, ScheduleType } from "..";
 
-interface Rate {
-  _id: string;
-  hours: number;
-  rate: number;
-}
+export const detectScheduleConflict = (
+  schedules: ScheduleType[]
+): Array<{
+  schedule1: any;
+  schedule2: any;
+}> => {
+  const conflicts: Array<{ schedule1: any; schedule2: any }> = [];
 
-// export const detectScheduleConflict = (
-//   schedules: ScheduleFieldEngineerCreationType[]
-// ): Array<{
-//   schedule1: any;
-//   schedule2: any;
-// }> => {
-//   const conflicts: Array<{ schedule1: any; schedule2: any }> = [];
+  // Extract schedules for easier comparison
 
-//   // Extract schedules for easier comparison
-//   const schedules = scheduleFieldEngineers.map((item) => item.schedule);
+  schedules.sort((a, b) => {
+    if (a.day < b.day) return -1;
+    if (a.day > b.day) return 1;
+    return a.starttime.localeCompare(b.starttime);
+  });
 
-//   schedules.sort((a, b) => {
-//     if (a.day < b.day) return -1;
-//     if (a.day > b.day) return 1;
-//     return a.starttime.localeCompare(b.starttime);
-//   });
+  for (let i = 0; i < schedules.length; i++) {
+    for (let j = i + 1; j < schedules.length; j++) {
+      const schedule1 = schedules[i];
+      const schedule2 = schedules[j];
 
-//   for (let i = 0; i < schedules.length; i++) {
-//     for (let j = i + 1; j < schedules.length; j++) {
-//       const schedule1 = schedules[i];
-//       const schedule2 = schedules[j];
+      if (schedule1.day !== schedule2.day) {
+        break;
+      }
 
-//       if (schedule1.day !== schedule2.day) {
-//         break;
-//       }
+      const start1 = Date.parse(`1970-01-01T${schedule1.starttime}Z`);
+      const end1 = Date.parse(`1970-01-01T${schedule1.endtime}Z`);
+      const start2 = Date.parse(`1970-01-01T${schedule2.starttime}Z`);
+      const end2 = Date.parse(`1970-01-01T${schedule2.endtime}Z`);
 
-//       const start1 = Date.parse(`1970-01-01T${schedule1.starttime}Z`);
-//       const end1 = Date.parse(`1970-01-01T${schedule1.endtime}Z`);
-//       const start2 = Date.parse(`1970-01-01T${schedule2.starttime}Z`);
-//       const end2 = Date.parse(`1970-01-01T${schedule2.endtime}Z`);
+      // Check for overlap
+      if (start1 < end2 && start2 < end1) {
+        conflicts.push({ schedule1, schedule2 });
+      }
+    }
+  }
 
-//       // Check for overlap
-//       if (start1 < end2 && start2 < end1) {
-//         conflicts.push({ schedule1, schedule2 });
-//       }
-//     }
-//   }
-
-//   return conflicts;
-// };
+  return conflicts;
+};
 
 export const getFieldEngineerSuffix = (index: number): string => {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -172,14 +165,14 @@ export function getReferenceFields(schema: Schema): string[] {
 
 export function getIndexedFields(schema: Schema): string[] {
   const indexes = schema.indexes();
-  const indexedFields: string[] = [];
+  const indexedFields: Set<string> = new Set();
 
-  indexes.forEach((index: any) => {
+  indexes.forEach((index) => {
     const fields = Object.keys(index[0]);
-    indexedFields.push(...fields);
+    fields.forEach((field) => indexedFields.add(field));
   });
 
-  return indexedFields;
+  return Array.from(indexedFields);
 }
 
 interface ModelSchemaEntry {
@@ -209,14 +202,12 @@ export async function processReferences(
         const item = data[field][i];
         if (typeof item === "object" && !item._id) {
           await processNestedReferences(item, fieldSchema, models);
-
           const filter: any = {};
           indexedFields.forEach((indexField) => {
             if (item[indexField] !== undefined) {
               filter[indexField] = item[indexField];
             }
           });
-
           try {
             const existingDoc = await model.findOne(filter);
             if (existingDoc) {

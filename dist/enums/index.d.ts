@@ -1,16 +1,18 @@
 export declare enum ChatTypeEnum {
     TEXT = "text",
     IMAGE = "image",
-    DOCUMENT = "document"
+    DOCUMENT = "document",
+    SYSTEM = "system"
 }
 export declare enum SubTicketStatusEnum {
+    DRAFT = "draft",
     ASSIGN_PENDING = "assign-pending",
     FE_PENDING = "fe-pending",
     APPROVAL_PENDING = "approval-pending",
+    CANCELLED = "cancelled",
+    ALLOCATED = "allocated",
     ONGOING = "ongoing",
-    DRAFT = "draft",
-    COMPLETED = "completed",
-    PENDING = "pending"
+    COMPLETED = "completed"
 }
 export declare const validStatusOrder: SubTicketStatusEnum[];
 export declare enum TicketStatusEnum {
