@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Model, Schema } from "mongoose";
 import {
   ForgotPasswordType,
   ForgotPasswordZodSchema,
@@ -74,6 +74,10 @@ import {
   vendorZodSchema,
 } from "../schemas/vendor.zod";
 
+export interface ModelSchemaEntry {
+  model: Model<any>;
+  schema: Schema;
+}
 export interface IConfig {
   awsAccessKeyId: string;
   awsSecretAccessKey: string;

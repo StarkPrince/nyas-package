@@ -1,5 +1,5 @@
-import { Model, Schema } from "mongoose";
-import { IBillingDetail, ISchedule, ScheduleType } from "..";
+import { Schema } from "mongoose";
+import { IBillingDetail, ISchedule, ModelSchemaEntry, ScheduleType } from "..";
 
 export const detectScheduleConflict = (
   schedules: ScheduleType[]
@@ -63,10 +63,10 @@ export const getScheduleDuration = (schedule: any): number => {
   return (end - start) / 1000 / 60;
 };
 
-function calculatePrice(
+export const calculatePrice = (
   timePeriod: ISchedule,
   rateDetails: IBillingDetail
-): number {
+): number => {
   const { additionalRates, outOfWorkingHoursRate, nightRate } = rateDetails;
 
   const startTime = new Date(`${timePeriod.day}T${timePeriod.starttime}`);
@@ -113,22 +113,24 @@ function calculatePrice(
   }
 
   return Math.round(totalPrice * 1000) / 1000;
-}
+};
 
-function isSchemaTypeArray(schemaType: any): schemaType is Schema.Types.Array {
-  return schemaType instanceof Schema.Types.Array;
-}
-
-function isSchemaTypeObjectId(
+export const isSchemaTypeArray = (
   schemaType: any
-): schemaType is Schema.Types.ObjectId {
-  return schemaType instanceof Schema.Types.ObjectId;
-}
+): schemaType is Schema.Types.Array => {
+  return schemaType instanceof Schema.Types.Array;
+};
 
-function isRefField(schemaType: {
+export const isSchemaTypeObjectId = (
+  schemaType: any
+): schemaType is Schema.Types.ObjectId => {
+  return schemaType instanceof Schema.Types.ObjectId;
+};
+
+export const isRefField = (schemaType: {
   options: any;
   caster: { options: any };
-}): boolean {
+}): boolean => {
   // Check if it's a direct ObjectId reference
   if (
     isSchemaTypeObjectId(schemaType) &&
@@ -149,10 +151,10 @@ function isRefField(schemaType: {
   }
 
   return false;
-}
+};
 
 // Utility function to get reference fields from a schema
-export function getReferenceFields(schema: Schema): string[] {
+export const getReferenceFields = (schema: Schema): string[] => {
   const refFields: string[] = [];
   schema.eachPath((path, type) => {
     // @ts-ignore
@@ -161,9 +163,9 @@ export function getReferenceFields(schema: Schema): string[] {
     }
   });
   return refFields;
-}
+};
 
-export function getIndexedFields(schema: Schema): string[] {
+export const getIndexedFields = (schema: Schema): string[] => {
   const indexes = schema.indexes();
   const indexedFields: Set<string> = new Set();
 
@@ -173,19 +175,14 @@ export function getIndexedFields(schema: Schema): string[] {
   });
 
   return Array.from(indexedFields);
-}
+};
 
-interface ModelSchemaEntry {
-  model: Model<any>;
-  schema: Schema;
-}
-
-export async function processReferences(
+export const processReferences = async (
   data: any,
   schema: Schema,
   models: { [key: string]: ModelSchemaEntry },
   userId: string | undefined = undefined
-): Promise<any> {
+): Promise<any> => {
   const referenceFields = getReferenceFields(schema);
 
   for (const field of referenceFields) {
@@ -274,14 +271,14 @@ export async function processReferences(
   }
 
   return data;
-}
+};
 
-async function processNestedReferences(
+export const processNestedReferences = async (
   data: any,
   schema: Schema,
   models: { [key: string]: ModelSchemaEntry },
   userId?: string
-) {
+) => {
   const referenceFields = getReferenceFields(schema);
 
   for (const field of referenceFields) {
@@ -354,4 +351,4 @@ async function processNestedReferences(
       continue;
     }
   }
-}
+};

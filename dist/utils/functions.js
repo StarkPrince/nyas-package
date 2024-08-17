@@ -9,10 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getScheduleDuration = exports.getFieldEngineerSuffix = exports.detectScheduleConflict = void 0;
-exports.getReferenceFields = getReferenceFields;
-exports.getIndexedFields = getIndexedFields;
-exports.processReferences = processReferences;
+exports.processNestedReferences = exports.processReferences = exports.getIndexedFields = exports.getReferenceFields = exports.isRefField = exports.isSchemaTypeObjectId = exports.isSchemaTypeArray = exports.calculatePrice = exports.getScheduleDuration = exports.getFieldEngineerSuffix = exports.detectScheduleConflict = void 0;
 const mongoose_1 = require("mongoose");
 const detectScheduleConflict = (schedules) => {
     const conflicts = [];
@@ -62,7 +59,7 @@ const getScheduleDuration = (schedule) => {
     return (end - start) / 1000 / 60;
 };
 exports.getScheduleDuration = getScheduleDuration;
-function calculatePrice(timePeriod, rateDetails) {
+const calculatePrice = (timePeriod, rateDetails) => {
     const { additionalRates, outOfWorkingHoursRate, nightRate } = rateDetails;
     const startTime = new Date(`${timePeriod.day}T${timePeriod.starttime}`);
     const endTime = new Date(`${timePeriod.day}T${timePeriod.endtime}`);
@@ -98,41 +95,46 @@ function calculatePrice(timePeriod, rateDetails) {
         }
     }
     return Math.round(totalPrice * 1000) / 1000;
-}
-function isSchemaTypeArray(schemaType) {
+};
+exports.calculatePrice = calculatePrice;
+const isSchemaTypeArray = (schemaType) => {
     return schemaType instanceof mongoose_1.Schema.Types.Array;
-}
-function isSchemaTypeObjectId(schemaType) {
+};
+exports.isSchemaTypeArray = isSchemaTypeArray;
+const isSchemaTypeObjectId = (schemaType) => {
     return schemaType instanceof mongoose_1.Schema.Types.ObjectId;
-}
-function isRefField(schemaType) {
+};
+exports.isSchemaTypeObjectId = isSchemaTypeObjectId;
+const isRefField = (schemaType) => {
     // Check if it's a direct ObjectId reference
-    if (isSchemaTypeObjectId(schemaType) &&
+    if ((0, exports.isSchemaTypeObjectId)(schemaType) &&
         schemaType.options &&
         typeof schemaType.options.ref === "string") {
         return true;
     }
     // Check if it's an array of ObjectIds
-    if (isSchemaTypeArray(schemaType) &&
-        isSchemaTypeObjectId(schemaType.caster) &&
+    if ((0, exports.isSchemaTypeArray)(schemaType) &&
+        (0, exports.isSchemaTypeObjectId)(schemaType.caster) &&
         schemaType.caster.options &&
         typeof schemaType.caster.options.ref === "string") {
         return true;
     }
     return false;
-}
+};
+exports.isRefField = isRefField;
 // Utility function to get reference fields from a schema
-function getReferenceFields(schema) {
+const getReferenceFields = (schema) => {
     const refFields = [];
     schema.eachPath((path, type) => {
         // @ts-ignore
-        if (isRefField(type)) {
+        if ((0, exports.isRefField)(type)) {
             refFields.push(path);
         }
     });
     return refFields;
-}
-function getIndexedFields(schema) {
+};
+exports.getReferenceFields = getReferenceFields;
+const getIndexedFields = (schema) => {
     const indexes = schema.indexes();
     const indexedFields = new Set();
     indexes.forEach((index) => {
@@ -140,161 +142,160 @@ function getIndexedFields(schema) {
         fields.forEach((field) => indexedFields.add(field));
     });
     return Array.from(indexedFields);
-}
-function processReferences(data_1, schema_1, models_1) {
-    return __awaiter(this, arguments, void 0, function* (data, schema, models, userId = undefined) {
-        const referenceFields = getReferenceFields(schema);
-        for (const field of referenceFields) {
-            const modelEntry = models[field];
-            if (!modelEntry) {
-                console.error(`No model found for field:1 ${field}`);
-                continue;
-            }
-            const { model, schema: fieldSchema } = modelEntry;
-            if (Array.isArray(data[field])) {
-                const indexedFields = getIndexedFields(fieldSchema);
-                for (let i = 0; i < data[field].length; i++) {
-                    const item = data[field][i];
-                    if (typeof item === "object" && !item._id) {
-                        yield processNestedReferences(item, fieldSchema, models);
-                        const filter = {};
-                        indexedFields.forEach((indexField) => {
-                            if (item[indexField] !== undefined) {
-                                filter[indexField] = item[indexField];
-                            }
-                        });
-                        try {
-                            const existingDoc = yield model.findOne(filter);
-                            if (existingDoc) {
-                                data[field][i] = existingDoc._id;
-                            }
-                            else {
-                                const newDoc = yield model.create(item);
-                                data[field][i] = newDoc._id;
-                            }
+};
+exports.getIndexedFields = getIndexedFields;
+const processReferences = (data_1, schema_1, models_1, ...args_1) => __awaiter(void 0, [data_1, schema_1, models_1, ...args_1], void 0, function* (data, schema, models, userId = undefined) {
+    const referenceFields = (0, exports.getReferenceFields)(schema);
+    for (const field of referenceFields) {
+        const modelEntry = models[field];
+        if (!modelEntry) {
+            console.error(`No model found for field:1 ${field}`);
+            continue;
+        }
+        const { model, schema: fieldSchema } = modelEntry;
+        if (Array.isArray(data[field])) {
+            const indexedFields = (0, exports.getIndexedFields)(fieldSchema);
+            for (let i = 0; i < data[field].length; i++) {
+                const item = data[field][i];
+                if (typeof item === "object" && !item._id) {
+                    yield (0, exports.processNestedReferences)(item, fieldSchema, models);
+                    const filter = {};
+                    indexedFields.forEach((indexField) => {
+                        if (item[indexField] !== undefined) {
+                            filter[indexField] = item[indexField];
                         }
-                        catch (error) {
-                            console.error(`Error processing item in array for field ${field}:`, error);
+                    });
+                    try {
+                        const existingDoc = yield model.findOne(filter);
+                        if (existingDoc) {
+                            data[field][i] = existingDoc._id;
+                        }
+                        else {
+                            const newDoc = yield model.create(item);
+                            data[field][i] = newDoc._id;
                         }
                     }
-                    else if (typeof item === "string") {
-                        continue;
+                    catch (error) {
+                        console.error(`Error processing item in array for field ${field}:`, error);
                     }
                 }
-                const bulkOps = data[field].map((item) => ({
-                    updateOne: {
-                        filter: { _id: item },
-                        update: { $set: { _id: item } },
-                        upsert: true,
-                    },
-                }));
-                try {
-                    yield model.bulkWrite(bulkOps);
-                }
-                catch (error) {
-                    console.error(`Error in bulk operation for field ${field}:`, error);
+                else if (typeof item === "string") {
+                    continue;
                 }
             }
-            else if (typeof data[field] === "object" && data[field] !== null) {
-                yield processNestedReferences(data[field], fieldSchema, models, userId);
-                const indexedFields = getIndexedFields(fieldSchema);
-                const query = {};
-                indexedFields.forEach((indexField) => {
-                    if (data[field][indexField] !== undefined) {
-                        query[indexField] = data[field][indexField];
-                    }
-                });
-                try {
-                    const existingDoc = yield model.findOne(query);
-                    if (existingDoc) {
-                        data[field] = existingDoc._id;
-                    }
-                    else {
-                        const doc = yield model.create(data[field]);
-                        data[field] = doc._id;
-                    }
-                }
-                catch (error) {
-                    console.error(`Error processing document for field ${field}:`, error);
-                }
+            const bulkOps = data[field].map((item) => ({
+                updateOne: {
+                    filter: { _id: item },
+                    update: { $set: { _id: item } },
+                    upsert: true,
+                },
+            }));
+            try {
+                yield model.bulkWrite(bulkOps);
             }
-            else if (typeof data[field] === "string") {
-                continue;
+            catch (error) {
+                console.error(`Error in bulk operation for field ${field}:`, error);
             }
         }
-        if (userId) {
-            data.createdBy = userId;
-        }
-        return data;
-    });
-}
-function processNestedReferences(data, schema, models, userId) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const referenceFields = getReferenceFields(schema);
-        for (const field of referenceFields) {
-            const modelEntry = models[field];
-            if (!modelEntry) {
-                console.error(`No model found for field:2 ${field}`);
-                continue;
-            }
-            const { model, schema: fieldSchema } = modelEntry;
-            if (Array.isArray(data[field])) {
-                const indexedFields = getIndexedFields(fieldSchema);
-                for (let i = 0; i < data[field].length; i++) {
-                    const item = data[field][i];
-                    if (typeof item === "object" && !item._id) {
-                        yield processNestedReferences(item, fieldSchema, models);
-                        const filter = {};
-                        indexedFields.forEach((indexField) => {
-                            if (item[indexField] !== undefined) {
-                                filter[indexField] = item[indexField];
-                            }
-                        });
-                        try {
-                            const existingDoc = yield model.findOne(filter);
-                            if (existingDoc) {
-                                data[field][i] = existingDoc._id;
-                            }
-                            else {
-                                const newDoc = yield model.create(item);
-                                data[field][i] = newDoc._id;
-                            }
-                        }
-                        catch (error) {
-                            console.error(`Error processing item in array for field ${field}:`, error);
-                        }
-                    }
-                    else if (typeof item === "string") {
-                        continue;
-                    }
+        else if (typeof data[field] === "object" && data[field] !== null) {
+            yield (0, exports.processNestedReferences)(data[field], fieldSchema, models, userId);
+            const indexedFields = (0, exports.getIndexedFields)(fieldSchema);
+            const query = {};
+            indexedFields.forEach((indexField) => {
+                if (data[field][indexField] !== undefined) {
+                    query[indexField] = data[field][indexField];
+                }
+            });
+            try {
+                const existingDoc = yield model.findOne(query);
+                if (existingDoc) {
+                    data[field] = existingDoc._id;
+                }
+                else {
+                    const doc = yield model.create(data[field]);
+                    data[field] = doc._id;
                 }
             }
-            else if (typeof data[field] === "object" && data[field] !== null) {
-                yield processNestedReferences(data[field], fieldSchema, models);
-                const indexedFields = getIndexedFields(fieldSchema);
-                const query = {};
-                indexedFields.forEach((indexField) => {
-                    if (data[field][indexField] !== undefined) {
-                        query[indexField] = data[field][indexField];
-                    }
-                });
-                try {
-                    const existingDoc = yield model.findOne(query);
-                    if (existingDoc) {
-                        data[field] = existingDoc._id;
-                    }
-                    else {
-                        const doc = yield model.create(data[field]);
-                        data[field] = doc._id;
-                    }
-                }
-                catch (error) {
-                    console.error(`Error processing document for field ${field}:`, error);
-                }
-            }
-            else if (typeof data[field] === "string") {
-                continue;
+            catch (error) {
+                console.error(`Error processing document for field ${field}:`, error);
             }
         }
-    });
-}
+        else if (typeof data[field] === "string") {
+            continue;
+        }
+    }
+    if (userId) {
+        data.createdBy = userId;
+    }
+    return data;
+});
+exports.processReferences = processReferences;
+const processNestedReferences = (data, schema, models, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const referenceFields = (0, exports.getReferenceFields)(schema);
+    for (const field of referenceFields) {
+        const modelEntry = models[field];
+        if (!modelEntry) {
+            console.error(`No model found for field:2 ${field}`);
+            continue;
+        }
+        const { model, schema: fieldSchema } = modelEntry;
+        if (Array.isArray(data[field])) {
+            const indexedFields = (0, exports.getIndexedFields)(fieldSchema);
+            for (let i = 0; i < data[field].length; i++) {
+                const item = data[field][i];
+                if (typeof item === "object" && !item._id) {
+                    yield (0, exports.processNestedReferences)(item, fieldSchema, models);
+                    const filter = {};
+                    indexedFields.forEach((indexField) => {
+                        if (item[indexField] !== undefined) {
+                            filter[indexField] = item[indexField];
+                        }
+                    });
+                    try {
+                        const existingDoc = yield model.findOne(filter);
+                        if (existingDoc) {
+                            data[field][i] = existingDoc._id;
+                        }
+                        else {
+                            const newDoc = yield model.create(item);
+                            data[field][i] = newDoc._id;
+                        }
+                    }
+                    catch (error) {
+                        console.error(`Error processing item in array for field ${field}:`, error);
+                    }
+                }
+                else if (typeof item === "string") {
+                    continue;
+                }
+            }
+        }
+        else if (typeof data[field] === "object" && data[field] !== null) {
+            yield (0, exports.processNestedReferences)(data[field], fieldSchema, models);
+            const indexedFields = (0, exports.getIndexedFields)(fieldSchema);
+            const query = {};
+            indexedFields.forEach((indexField) => {
+                if (data[field][indexField] !== undefined) {
+                    query[indexField] = data[field][indexField];
+                }
+            });
+            try {
+                const existingDoc = yield model.findOne(query);
+                if (existingDoc) {
+                    data[field] = existingDoc._id;
+                }
+                else {
+                    const doc = yield model.create(data[field]);
+                    data[field] = doc._id;
+                }
+            }
+            catch (error) {
+                console.error(`Error processing document for field ${field}:`, error);
+            }
+        }
+        else if (typeof data[field] === "string") {
+            continue;
+        }
+    }
+});
+exports.processNestedReferences = processNestedReferences;

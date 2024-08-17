@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Model, Schema } from "mongoose";
 import { ForgotPasswordType, ForgotPasswordZodSchema, LoginType, LoginZodSchema, ResetPasswordType, ResetPasswordZodSchema } from "../schemas/auth.zod";
 import { MessageType, NotificationType, TicketChatType } from "../schemas/chat.zod";
 import { ClientContractType, clientContractZodSchema, ClientType, clientZodSchema } from "../schemas/client.zod";
@@ -8,6 +8,10 @@ import { subticketStatusZodSchema, SubTicketType, subticketUpdateZodSchema, subt
 import { assignmentZodSchema, TaskType, taskZodSchema, ticketCreationZodSchema, TicketType, ticketUpdateZodSchema, ticketZodSchema } from "../schemas/ticket.zod";
 import { UserType, userZodSchema } from "../schemas/user.zod";
 import { VendorContractType, vendorContractZodSchema, VendorType, vendorZodSchema } from "../schemas/vendor.zod";
+export interface ModelSchemaEntry {
+    model: Model<any>;
+    schema: Schema;
+}
 export interface IConfig {
     awsAccessKeyId: string;
     awsSecretAccessKey: string;
