@@ -1,9 +1,4 @@
 import { Model, Schema } from "mongoose";
-import { ScheduleFieldEngineerCreationType } from "../schemas/ticket.zod";
-export declare const detectScheduleConflict: (scheduleFieldEngineers: ScheduleFieldEngineerCreationType[]) => Array<{
-    schedule1: any;
-    schedule2: any;
-}>;
 export declare const getFieldEngineerSuffix: (index: number) => string;
 export declare const getScheduleDuration: (schedule: any) => number;
 export declare function getReferenceFields(schema: Schema): string[];

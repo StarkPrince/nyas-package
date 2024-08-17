@@ -9,42 +9,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getScheduleDuration = exports.getFieldEngineerSuffix = exports.detectScheduleConflict = void 0;
+exports.getScheduleDuration = exports.getFieldEngineerSuffix = void 0;
 exports.getReferenceFields = getReferenceFields;
 exports.getIndexedFields = getIndexedFields;
 exports.processReferences = processReferences;
 const mongoose_1 = require("mongoose");
-const detectScheduleConflict = (scheduleFieldEngineers) => {
-    const conflicts = [];
-    // Extract schedules for easier comparison
-    const schedules = scheduleFieldEngineers.map((item) => item.schedule);
-    schedules.sort((a, b) => {
-        if (a.day < b.day)
-            return -1;
-        if (a.day > b.day)
-            return 1;
-        return a.starttime.localeCompare(b.starttime);
-    });
-    for (let i = 0; i < schedules.length; i++) {
-        for (let j = i + 1; j < schedules.length; j++) {
-            const schedule1 = schedules[i];
-            const schedule2 = schedules[j];
-            if (schedule1.day !== schedule2.day) {
-                break;
-            }
-            const start1 = Date.parse(`1970-01-01T${schedule1.starttime}Z`);
-            const end1 = Date.parse(`1970-01-01T${schedule1.endtime}Z`);
-            const start2 = Date.parse(`1970-01-01T${schedule2.starttime}Z`);
-            const end2 = Date.parse(`1970-01-01T${schedule2.endtime}Z`);
-            // Check for overlap
-            if (start1 < end2 && start2 < end1) {
-                conflicts.push({ schedule1, schedule2 });
-            }
-        }
-    }
-    return conflicts;
-};
-exports.detectScheduleConflict = detectScheduleConflict;
+// export const detectScheduleConflict = (
+//   schedules: ScheduleFieldEngineerCreationType[]
+// ): Array<{
+//   schedule1: any;
+//   schedule2: any;
+// }> => {
+//   const conflicts: Array<{ schedule1: any; schedule2: any }> = [];
+//   // Extract schedules for easier comparison
+//   const schedules = scheduleFieldEngineers.map((item) => item.schedule);
+//   schedules.sort((a, b) => {
+//     if (a.day < b.day) return -1;
+//     if (a.day > b.day) return 1;
+//     return a.starttime.localeCompare(b.starttime);
+//   });
+//   for (let i = 0; i < schedules.length; i++) {
+//     for (let j = i + 1; j < schedules.length; j++) {
+//       const schedule1 = schedules[i];
+//       const schedule2 = schedules[j];
+//       if (schedule1.day !== schedule2.day) {
+//         break;
+//       }
+//       const start1 = Date.parse(`1970-01-01T${schedule1.starttime}Z`);
+//       const end1 = Date.parse(`1970-01-01T${schedule1.endtime}Z`);
+//       const start2 = Date.parse(`1970-01-01T${schedule2.starttime}Z`);
+//       const end2 = Date.parse(`1970-01-01T${schedule2.endtime}Z`);
+//       // Check for overlap
+//       if (start1 < end2 && start2 < end1) {
+//         conflicts.push({ schedule1, schedule2 });
+//       }
+//     }
+//   }
+//   return conflicts;
+// };
 const getFieldEngineerSuffix = (index) => {
     const alphabet = "abcdefghijklmnopqrstuvwxyz";
     const base = alphabet.length;

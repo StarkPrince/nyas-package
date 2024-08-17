@@ -7,12 +7,12 @@ export declare const contactDetailZodSchema: z.ZodObject<{
     phoneNumber: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     email: string;
-    phoneNumber: string;
     name: string;
+    phoneNumber: string;
 }, {
     email: string;
-    phoneNumber: string;
     name: string;
+    phoneNumber: string;
 }>;
 export declare const addressZodSchema: z.ZodObject<{
     line1: z.ZodString;
@@ -109,52 +109,55 @@ export declare const communicationZodSchema: z.ZodObject<{
         password: z.ZodString;
         notes: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        username: string;
         password: string;
+        username: string;
         notes?: string | undefined;
     }, {
-        username: string;
         password: string;
+        username: string;
         notes?: string | undefined;
     }>;
     communication: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     consumerPortal: {
-        username: string;
         password: string;
+        username: string;
         notes?: string | undefined;
     };
     communication: string[];
 }, {
     consumerPortal: {
-        username: string;
         password: string;
+        username: string;
         notes?: string | undefined;
     };
     communication: string[];
 }>;
 export declare const extensionZodSchema: z.ZodObject<{
-    fieldEngineer: z.ZodString;
+    subticketId: z.ZodString;
     status: z.ZodNativeEnum<typeof ExtensionStatusEnum>;
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;
     comments: z.ZodString;
+    duration: z.ZodNumber;
     startTime: z.ZodEffects<z.ZodString, string, string>;
     endTime: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
-    fieldEngineer: string;
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    subticketId: string;
     reason: string;
     comments: string;
+    duration: number;
     startTime: string;
     endTime: string;
 }, {
-    fieldEngineer: string;
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    subticketId: string;
     reason: string;
     comments: string;
+    duration: number;
     startTime: string;
     endTime: string;
 }>;

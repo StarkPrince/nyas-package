@@ -68,18 +68,19 @@ exports.communicationZodSchema = zod_1.z
     .strip();
 exports.extensionZodSchema = zod_1.z
     .object({
-    fieldEngineer: zod_1.z.string().regex(exports.idPattern, "Invalid field Engineer ID"),
+    subticketId: zod_1.z.string().regex(exports.idPattern, "Invalid field Engineer ID"),
     status: zod_1.z.nativeEnum(enums_1.ExtensionStatusEnum),
     type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
+    duration: zod_1.z.number().nonnegative(),
     startTime: zod_1.z
         .string()
         .min(1, "Start time cannot be blank")
-        .refine((time) => !isNaN(Date.parse(time)), "Invalid start time format"),
+        .refine((time) => !isNaN(Date.parse(`1970-01-01T${time}Z`)), "Invalid start time format"),
     endTime: zod_1.z
         .string()
         .min(1, "End time cannot be blank")
-        .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
+        .refine((time) => !isNaN(Date.parse(`1970-01-01T${time}Z`)), "Invalid start time format"),
 })
     .strip();

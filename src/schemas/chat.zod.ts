@@ -2,13 +2,13 @@ import { z } from "zod";
 import { ChatTypeEnum } from "../enums";
 import { idPattern } from "./common.zod";
 
-export const notificationZodSchema = z.object({
-  userId: z.string().regex(idPattern, "Invalid userId"),
-  ticketId: z.string().regex(idPattern, "Invalid ticketId"),
-  unreadChatMessages: z.array(
-    z.string().regex(idPattern, "Invalid chatMessageId")
-  ),
-});
+export const notificationZodSchema = z
+  .object({
+    userId: z.string(),
+    chatId: z.string(),
+    unreadChatMessages: z.number(),
+  })
+  .strip();
 
 export const messageZodSchema = z.object({
   ticketId: z.string().regex(idPattern, "Invalid ticketId"),

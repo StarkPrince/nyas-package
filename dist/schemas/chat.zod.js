@@ -4,11 +4,13 @@ exports.ticketChatZodSchema = exports.messageZodSchema = exports.notificationZod
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-exports.notificationZodSchema = zod_1.z.object({
-    userId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid userId"),
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticketId"),
-    unreadChatMessages: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid chatMessageId")),
-});
+exports.notificationZodSchema = zod_1.z
+    .object({
+    userId: zod_1.z.string(),
+    chatId: zod_1.z.string(),
+    unreadChatMessages: zod_1.z.number(),
+})
+    .strip();
 exports.messageZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticketId"),
     userId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid userId"),

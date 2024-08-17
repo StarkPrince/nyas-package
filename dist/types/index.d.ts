@@ -1,12 +1,11 @@
 import { Document } from "mongoose";
 import { ForgotPasswordType, ForgotPasswordZodSchema, LoginType, LoginZodSchema, ResetPasswordType, ResetPasswordZodSchema } from "../schemas/auth.zod";
-import { MessageType, TicketChatType } from "../schemas/chat.zod";
+import { MessageType, NotificationType, TicketChatType } from "../schemas/chat.zod";
 import { ClientContractType, clientContractZodSchema, ClientType, clientZodSchema } from "../schemas/client.zod";
 import { AddressType, addressZodSchema, BillingDetailType, billingDetailZodSchema, CommunicationType, communicationZodSchema, ContactDetailType, contactDetailZodSchema, DocumentType, documentZodSchema, ExtensionType, extensionZodSchema, ScheduleType, scheduleZodSchema, SiteAddressType, siteAddressZodSchema } from "../schemas/common.zod";
 import { fieldEngineerCreationZodSchema, FieldEngineerGetSubTicketsType, fieldEngineerGetSubTicketsZodSchema, FieldEngineerGetTicketsType, fieldEngineerGetTicketsZodSchema, FieldEngineerLoginType, FieldEngineerStatusType, fieldEngineerStatusZodSchema, FieldEngineerType, FieldEngineerUpdateLocationType, fieldEngineerUpdateLocationZodSchema, fieldEngineerZodSchema, locationZodSchema } from "../schemas/fieldEngineer.zod";
-import { NotificationType } from "../schemas/notification.zod";
 import { subticketStatusZodSchema, SubTicketType, subticketUpdateZodSchema, subticketZodSchema } from "../schemas/subticket.zod";
-import { FieldEngineerContractType, ScheduleFieldEngineerCreationType, ScheduleFieldEngineerType, TaskType, taskZodSchema, ticketCreationZodSchema, TicketType, ticketUpdateZodSchema, ticketZodSchema } from "../schemas/ticket.zod";
+import { assignmentZodSchema, TaskType, taskZodSchema, ticketCreationZodSchema, TicketType, ticketUpdateZodSchema, ticketZodSchema } from "../schemas/ticket.zod";
 import { UserType, userZodSchema } from "../schemas/user.zod";
 import { VendorContractType, vendorContractZodSchema, VendorType, vendorZodSchema } from "../schemas/vendor.zod";
 export interface IConfig {
@@ -81,10 +80,6 @@ export interface INotification extends Document, NotificationType {
 }
 export interface IMessage extends Document, MessageType {
 }
-export interface IScheduleFieldEngineerCreation extends Document, ScheduleFieldEngineerCreationType {
-}
-export interface IScheduleFieldEngineer extends Document, ScheduleFieldEngineerType {
-}
 export interface IAddress extends Document, AddressType {
 }
 export interface IContactDetail extends Document, ContactDetailType {
@@ -109,8 +104,6 @@ export interface IVendorContract extends Document, VendorContractType {
 }
 export interface IFieldEngineerLogin extends Document, FieldEngineerLoginType {
 }
-export interface IFieldEngineerContract extends Document, FieldEngineerContractType {
-}
 export interface IFieldEngineerGetTickets extends Document, FieldEngineerGetTicketsType {
 }
 export interface IFieldEngineerGetSubTickets extends Document, FieldEngineerGetSubTicketsType {
@@ -131,4 +124,4 @@ declare global {
         }
     }
 }
-export { AddressType, addressZodSchema, BillingDetailType, billingDetailZodSchema, ClientContractType, clientContractZodSchema, ClientType, clientZodSchema, CommunicationType, communicationZodSchema, ContactDetailType, contactDetailZodSchema, DocumentType, documentZodSchema, ExtensionType, extensionZodSchema, FieldEngineerContractType, fieldEngineerCreationZodSchema, FieldEngineerGetSubTicketsType, fieldEngineerGetSubTicketsZodSchema, FieldEngineerGetTicketsType, fieldEngineerGetTicketsZodSchema, FieldEngineerLoginType, FieldEngineerStatusType, fieldEngineerStatusZodSchema, FieldEngineerType, FieldEngineerUpdateLocationType, fieldEngineerUpdateLocationZodSchema, fieldEngineerZodSchema, ForgotPasswordType, ForgotPasswordZodSchema, locationZodSchema, LoginType, LoginZodSchema, MessageType, NotificationType, ResetPasswordType, ResetPasswordZodSchema, ScheduleFieldEngineerCreationType, ScheduleFieldEngineerType, ScheduleType, scheduleZodSchema, SiteAddressType, siteAddressZodSchema, subticketStatusZodSchema, SubTicketType, subticketUpdateZodSchema, subticketZodSchema, TaskType, taskZodSchema, TicketChatType, ticketCreationZodSchema, TicketType, ticketUpdateZodSchema, ticketZodSchema, UserType, userZodSchema, VendorContractType, vendorContractZodSchema, VendorType, vendorZodSchema, };
+export { AddressType, addressZodSchema, assignmentZodSchema, BillingDetailType, billingDetailZodSchema, ClientContractType, clientContractZodSchema, ClientType, clientZodSchema, CommunicationType, communicationZodSchema, ContactDetailType, contactDetailZodSchema, DocumentType, documentZodSchema, ExtensionType, extensionZodSchema, fieldEngineerCreationZodSchema, FieldEngineerGetSubTicketsType, fieldEngineerGetSubTicketsZodSchema, FieldEngineerGetTicketsType, fieldEngineerGetTicketsZodSchema, FieldEngineerLoginType, FieldEngineerStatusType, fieldEngineerStatusZodSchema, FieldEngineerType, FieldEngineerUpdateLocationType, fieldEngineerUpdateLocationZodSchema, fieldEngineerZodSchema, ForgotPasswordType, ForgotPasswordZodSchema, locationZodSchema, LoginType, LoginZodSchema, MessageType, NotificationType, ResetPasswordType, ResetPasswordZodSchema, ScheduleType, scheduleZodSchema, SiteAddressType, siteAddressZodSchema, subticketStatusZodSchema, SubTicketType, subticketUpdateZodSchema, subticketZodSchema, TaskType, taskZodSchema, TicketChatType, ticketCreationZodSchema, TicketType, ticketUpdateZodSchema, ticketZodSchema, UserType, userZodSchema, VendorContractType, vendorContractZodSchema, VendorType, vendorZodSchema, };

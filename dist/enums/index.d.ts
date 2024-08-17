@@ -65,7 +65,15 @@ export declare enum Permission {
     DELETE_USER = "delete_user",
     CREATE_NOC_USER = "create_noc_user",
     READ_NOTIFICATIONS = "read_notifications",
-    VIEW_NOTIFICATIONS = "view_notifications"
+    VIEW_NOTIFICATIONS = "view_notifications",
+    VIEW_EXTENSIONS = "view_extensions",
+    CREATE_EXTENSION = "create_extension",
+    MODIFY_EXTENSION = "modify_extension",
+    DELETE_EXTENSION = "delete_extension",
+    VIEW_CHAT_MESSAGES = "view_chat_messages",
+    CREATE_CHAT_MESSAGE = "create_chat_message",
+    MODIFY_CHAT_MESSAGE = "modify_chat_message",
+    DELETE_CHAT_MESSAGE = "delete_chat_message"
 }
 export declare enum UserRolesEnum {
     NOC = "noc",
@@ -74,8 +82,8 @@ export declare enum UserRolesEnum {
 }
 export declare const rolePermissions: {
     fieldEngineer: Permission[];
-    noc: (Permission.VIEW_CLIENTS | Permission.CREATE_CLIENT | Permission.MODIFY_CLIENT | Permission.DELETE_CLIENT | Permission.VIEW_CLIENT_CONTRACTS | Permission.CREATE_CLIENT_CONTRACT | Permission.MODIFY_CLIENT_CONTRACT | Permission.DELETE_CLIENT_CONTRACT | Permission.VIEW_VENDORS | Permission.CREATE_VENDOR | Permission.MODIFY_VENDOR | Permission.DELETE_VENDOR | Permission.VIEW_VENDOR_CONTRACTS | Permission.CREATE_VENDOR_CONTRACT | Permission.MODIFY_VENDOR_CONTRACT | Permission.DELETE_VENDOR_CONTRACT | Permission.VIEW_TICKETS | Permission.CREATE_TICKET | Permission.MODIFY_TICKET | Permission.ARCHIVE_TICKET | Permission.DELETE_TICKET | Permission.VIEW_PRICES | Permission.VIEW_SUBTICKETS | Permission.CREATE_SUBTICKET | Permission.MODIFY_SUBTICKET | Permission.CANCEL_SUBTICKET | Permission.VIEW_FIELD_ENGINEERS | Permission.CREATE_FIELD_ENGINEER | Permission.MODIFY_FIELD_ENGINEER | Permission.DELETE_FIELD_ENGINEER | Permission.VIEW_USERS | Permission.CREATE_USER | Permission.MODIFY_USER | Permission.DELETE_USER | Permission.READ_NOTIFICATIONS | Permission.VIEW_NOTIFICATIONS)[];
-    mba: (Permission.VIEW_CLIENTS | Permission.CREATE_CLIENT | Permission.MODIFY_CLIENT | Permission.DELETE_CLIENT | Permission.VIEW_CLIENT_CONTRACTS | Permission.CREATE_CLIENT_CONTRACT | Permission.MODIFY_CLIENT_CONTRACT | Permission.DELETE_CLIENT_CONTRACT | Permission.VIEW_VENDORS | Permission.CREATE_VENDOR | Permission.MODIFY_VENDOR | Permission.DELETE_VENDOR | Permission.VIEW_VENDOR_CONTRACTS | Permission.CREATE_VENDOR_CONTRACT | Permission.MODIFY_VENDOR_CONTRACT | Permission.DELETE_VENDOR_CONTRACT | Permission.VIEW_TICKETS | Permission.CREATE_TICKET | Permission.MODIFY_TICKET | Permission.MODIFY_TICKETS | Permission.ARCHIVE_TICKET | Permission.ARCHIVE_TICKETS | Permission.DELETE_TICKET | Permission.DELETE_TICKETS | Permission.VIEW_PRICES | Permission.VIEW_SUBTICKETS | Permission.CREATE_SUBTICKET | Permission.MODIFY_SUBTICKET | Permission.CANCEL_SUBTICKET | Permission.VIEW_FIELD_ENGINEERS | Permission.CREATE_FIELD_ENGINEER | Permission.MODIFY_FIELD_ENGINEER | Permission.DELETE_FIELD_ENGINEER | Permission.VIEW_USERS | Permission.CREATE_USER | Permission.MODIFY_USER | Permission.DELETE_USER | Permission.CREATE_NOC_USER | Permission.READ_NOTIFICATIONS | Permission.VIEW_NOTIFICATIONS)[];
+    noc: (Permission.VIEW_CLIENTS | Permission.CREATE_CLIENT | Permission.MODIFY_CLIENT | Permission.DELETE_CLIENT | Permission.VIEW_CLIENT_CONTRACTS | Permission.CREATE_CLIENT_CONTRACT | Permission.MODIFY_CLIENT_CONTRACT | Permission.DELETE_CLIENT_CONTRACT | Permission.VIEW_VENDORS | Permission.CREATE_VENDOR | Permission.MODIFY_VENDOR | Permission.DELETE_VENDOR | Permission.VIEW_VENDOR_CONTRACTS | Permission.CREATE_VENDOR_CONTRACT | Permission.MODIFY_VENDOR_CONTRACT | Permission.DELETE_VENDOR_CONTRACT | Permission.VIEW_TICKETS | Permission.CREATE_TICKET | Permission.MODIFY_TICKET | Permission.ARCHIVE_TICKET | Permission.DELETE_TICKET | Permission.VIEW_PRICES | Permission.VIEW_SUBTICKETS | Permission.CREATE_SUBTICKET | Permission.MODIFY_SUBTICKET | Permission.CANCEL_SUBTICKET | Permission.VIEW_FIELD_ENGINEERS | Permission.CREATE_FIELD_ENGINEER | Permission.MODIFY_FIELD_ENGINEER | Permission.DELETE_FIELD_ENGINEER | Permission.VIEW_USERS | Permission.CREATE_USER | Permission.MODIFY_USER | Permission.DELETE_USER | Permission.READ_NOTIFICATIONS | Permission.VIEW_NOTIFICATIONS | Permission.VIEW_EXTENSIONS | Permission.MODIFY_EXTENSION | Permission.DELETE_EXTENSION | Permission.VIEW_CHAT_MESSAGES | Permission.CREATE_CHAT_MESSAGE | Permission.MODIFY_CHAT_MESSAGE | Permission.DELETE_CHAT_MESSAGE)[];
+    mba: (Permission.VIEW_CLIENTS | Permission.CREATE_CLIENT | Permission.MODIFY_CLIENT | Permission.DELETE_CLIENT | Permission.VIEW_CLIENT_CONTRACTS | Permission.CREATE_CLIENT_CONTRACT | Permission.MODIFY_CLIENT_CONTRACT | Permission.DELETE_CLIENT_CONTRACT | Permission.VIEW_VENDORS | Permission.CREATE_VENDOR | Permission.MODIFY_VENDOR | Permission.DELETE_VENDOR | Permission.VIEW_VENDOR_CONTRACTS | Permission.CREATE_VENDOR_CONTRACT | Permission.MODIFY_VENDOR_CONTRACT | Permission.DELETE_VENDOR_CONTRACT | Permission.VIEW_TICKETS | Permission.CREATE_TICKET | Permission.MODIFY_TICKET | Permission.MODIFY_TICKETS | Permission.ARCHIVE_TICKET | Permission.ARCHIVE_TICKETS | Permission.DELETE_TICKET | Permission.DELETE_TICKETS | Permission.VIEW_PRICES | Permission.VIEW_SUBTICKETS | Permission.CREATE_SUBTICKET | Permission.MODIFY_SUBTICKET | Permission.CANCEL_SUBTICKET | Permission.VIEW_FIELD_ENGINEERS | Permission.CREATE_FIELD_ENGINEER | Permission.MODIFY_FIELD_ENGINEER | Permission.DELETE_FIELD_ENGINEER | Permission.VIEW_USERS | Permission.CREATE_USER | Permission.MODIFY_USER | Permission.DELETE_USER | Permission.CREATE_NOC_USER | Permission.READ_NOTIFICATIONS | Permission.VIEW_NOTIFICATIONS | Permission.VIEW_EXTENSIONS | Permission.MODIFY_EXTENSION | Permission.DELETE_EXTENSION | Permission.VIEW_CHAT_MESSAGES | Permission.CREATE_CHAT_MESSAGE | Permission.MODIFY_CHAT_MESSAGE | Permission.DELETE_CHAT_MESSAGE)[];
 };
 export declare enum UpdateTicketEnum {
     AddTasks = "add-tasks",
@@ -89,9 +97,9 @@ export declare enum UserStatusEnum {
     Blocked = "blocked"
 }
 export declare enum ExtensionStatusEnum {
-    Approved = "approved",
-    Rejected = "rejected",
-    Pending = "pending"
+    APPROVED = "approved",
+    REJECTED = "rejected",
+    PENDING = "pending"
 }
 export declare enum ExtensionTypeEnum {
     Extension = "extension",

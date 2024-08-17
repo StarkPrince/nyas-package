@@ -88,6 +88,16 @@ var Permission;
     // notification permissions
     Permission["READ_NOTIFICATIONS"] = "read_notifications";
     Permission["VIEW_NOTIFICATIONS"] = "view_notifications";
+    // extension permissions
+    Permission["VIEW_EXTENSIONS"] = "view_extensions";
+    Permission["CREATE_EXTENSION"] = "create_extension";
+    Permission["MODIFY_EXTENSION"] = "modify_extension";
+    Permission["DELETE_EXTENSION"] = "delete_extension";
+    // chat messages permissions
+    Permission["VIEW_CHAT_MESSAGES"] = "view_chat_messages";
+    Permission["CREATE_CHAT_MESSAGE"] = "create_chat_message";
+    Permission["MODIFY_CHAT_MESSAGE"] = "modify_chat_message";
+    Permission["DELETE_CHAT_MESSAGE"] = "delete_chat_message";
 })(Permission || (exports.Permission = Permission = {}));
 var UserRolesEnum;
 (function (UserRolesEnum) {
@@ -102,15 +112,22 @@ exports.rolePermissions = {
         Permission.UPDATE_SUBTICKET_STATUS,
         Permission.ACCEPT_SUBTICKET,
         Permission.CANCEL_SUBTICKET,
+        Permission.CREATE_EXTENSION,
+        Permission.VIEW_CHAT_MESSAGES,
+        Permission.CREATE_CHAT_MESSAGE,
+        Permission.MODIFY_CHAT_MESSAGE,
+        Permission.DELETE_CHAT_MESSAGE,
     ],
     [UserRolesEnum.NOC]: Object.values(Permission).filter((permission) => permission !== Permission.MODIFY_TICKETS &&
         permission !== Permission.CREATE_NOC_USER &&
         permission !== Permission.ARCHIVE_TICKETS &&
         permission !== Permission.DELETE_TICKETS &&
         permission !== Permission.ACCEPT_SUBTICKET &&
-        permission !== Permission.UPDATE_SUBTICKET_STATUS),
+        permission !== Permission.UPDATE_SUBTICKET_STATUS &&
+        permission !== Permission.CREATE_EXTENSION),
     [UserRolesEnum.MBA]: Object.values(Permission).filter((permission) => permission !== Permission.ACCEPT_SUBTICKET &&
-        permission !== Permission.UPDATE_SUBTICKET_STATUS),
+        permission !== Permission.UPDATE_SUBTICKET_STATUS &&
+        permission !== Permission.CREATE_EXTENSION),
 };
 var UpdateTicketEnum;
 (function (UpdateTicketEnum) {
@@ -127,9 +144,9 @@ var UserStatusEnum;
 })(UserStatusEnum || (exports.UserStatusEnum = UserStatusEnum = {}));
 var ExtensionStatusEnum;
 (function (ExtensionStatusEnum) {
-    ExtensionStatusEnum["Approved"] = "approved";
-    ExtensionStatusEnum["Rejected"] = "rejected";
-    ExtensionStatusEnum["Pending"] = "pending";
+    ExtensionStatusEnum["APPROVED"] = "approved";
+    ExtensionStatusEnum["REJECTED"] = "rejected";
+    ExtensionStatusEnum["PENDING"] = "pending";
 })(ExtensionStatusEnum || (exports.ExtensionStatusEnum = ExtensionStatusEnum = {}));
 var ExtensionTypeEnum;
 (function (ExtensionTypeEnum) {

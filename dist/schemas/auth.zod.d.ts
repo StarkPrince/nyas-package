@@ -3,11 +3,11 @@ export declare const LoginZodSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    password: string;
     email: string;
+    password: string;
 }, {
-    password: string;
     email: string;
+    password: string;
 }>;
 export declare const ForgotPasswordZodSchema: z.ZodObject<{
     email: z.ZodString;

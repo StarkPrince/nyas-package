@@ -2,16 +2,16 @@ import { z } from "zod";
 import { ChatTypeEnum } from "../enums";
 export declare const notificationZodSchema: z.ZodObject<{
     userId: z.ZodString;
-    ticketId: z.ZodString;
-    unreadChatMessages: z.ZodArray<z.ZodString, "many">;
+    chatId: z.ZodString;
+    unreadChatMessages: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    ticketId: string;
     userId: string;
-    unreadChatMessages: string[];
+    chatId: string;
+    unreadChatMessages: number;
 }, {
-    ticketId: string;
     userId: string;
-    unreadChatMessages: string[];
+    chatId: string;
+    unreadChatMessages: number;
 }>;
 export declare const messageZodSchema: z.ZodObject<{
     ticketId: z.ZodString;
@@ -20,14 +20,14 @@ export declare const messageZodSchema: z.ZodObject<{
     data: z.ZodString;
     size: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    ticketId: string;
     userId: string;
+    ticketId: string;
     chatType: ChatTypeEnum;
     data: string;
     size: number | null;
 }, {
-    ticketId: string;
     userId: string;
+    ticketId: string;
     chatType: ChatTypeEnum;
     data: string;
     size: number | null;

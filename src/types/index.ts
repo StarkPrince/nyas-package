@@ -1,5 +1,4 @@
 import { Document } from "mongoose";
-import { assignmentZodSchema } from "../schemas/ticket.zod";
 import {
   ForgotPasswordType,
   ForgotPasswordZodSchema,
@@ -8,7 +7,11 @@ import {
   ResetPasswordType,
   ResetPasswordZodSchema,
 } from "../schemas/auth.zod";
-import { MessageType, TicketChatType } from "../schemas/chat.zod";
+import {
+  MessageType,
+  NotificationType,
+  TicketChatType,
+} from "../schemas/chat.zod";
 import {
   ClientContractType,
   clientContractZodSchema,
@@ -48,7 +51,6 @@ import {
   fieldEngineerZodSchema,
   locationZodSchema,
 } from "../schemas/fieldEngineer.zod";
-import { NotificationType } from "../schemas/notification.zod";
 import {
   subticketStatusZodSchema,
   SubTicketType,
@@ -56,6 +58,7 @@ import {
   subticketZodSchema,
 } from "../schemas/subticket.zod";
 import {
+  assignmentZodSchema,
   TaskType,
   taskZodSchema,
   ticketCreationZodSchema,
