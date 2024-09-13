@@ -64,8 +64,8 @@ export declare const taskZodSchema: z.ZodObject<{
     status: z.ZodNativeEnum<typeof TaskStatusEnum>;
 }, "strip", z.ZodTypeAny, {
     status: TaskStatusEnum;
-    startdatetime: string;
     taskName: string;
+    startdatetime: string;
     enddateime: string;
     taskDescription: string;
     logistics: string[];
@@ -73,8 +73,8 @@ export declare const taskZodSchema: z.ZodObject<{
     relatedMedia: string[];
 }, {
     status: TaskStatusEnum;
-    startdatetime: string;
     taskName: string;
+    startdatetime: string;
     enddateime: string;
     taskDescription: string;
     logistics: string[];
@@ -103,63 +103,63 @@ export declare const ticketZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }, {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }>, {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }, {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }>, {
         city: string | undefined;
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }, {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     }>;
@@ -179,8 +179,8 @@ export declare const ticketZodSchema: z.ZodObject<{
         status: z.ZodNativeEnum<typeof TaskStatusEnum>;
     }, "strip", z.ZodTypeAny, {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -188,8 +188,8 @@ export declare const ticketZodSchema: z.ZodObject<{
         relatedMedia: string[];
     }, {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -246,27 +246,27 @@ export declare const ticketZodSchema: z.ZodObject<{
     number: string;
     SLA: number;
     status: TicketStatusEnum;
-    schedules: string[];
     chat: string;
     title: string;
     clientContractId: string;
     site: {
         city: string | undefined;
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
+    schedules: string[];
     teamMembers: string[];
     tasks: {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -279,8 +279,6 @@ export declare const ticketZodSchema: z.ZodObject<{
         MOPs: string;
         SOWUpload: string;
     } | undefined;
-    createdBy?: string | undefined;
-    updatedBy?: string | undefined;
     communications?: {
         consumerPortal: {
             password: string;
@@ -289,38 +287,38 @@ export declare const ticketZodSchema: z.ZodObject<{
         };
         communication: string[];
     } | undefined;
+    createdBy?: string | undefined;
+    updatedBy?: string | undefined;
 }, {
     number: string;
     SLA: number;
     status: TicketStatusEnum;
-    schedules: string[];
     chat: string;
     title: string;
     clientContractId: string;
     site: {
+        siteDetails: string;
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        siteDetails: string;
-        country: import("../enums").CountryEnum;
-        city: string;
         cageNumber?: string | undefined;
         coloDetails?: string | undefined;
     };
     numberOfEngineers: number;
+    schedules: string[];
     teamMembers: string[];
     document?: {
         projectDescription: string;
         MOPs: string;
         SOWUpload: string;
     } | undefined;
-    createdBy?: string | undefined;
-    updatedBy?: string | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -336,6 +334,8 @@ export declare const ticketZodSchema: z.ZodObject<{
         communication: string[];
     } | undefined;
     subtickets?: string[] | undefined;
+    createdBy?: string | undefined;
+    updatedBy?: string | undefined;
 }>;
 export declare const ticketCreationZodSchema: z.ZodObject<{
     number: z.ZodString;
@@ -359,25 +359,25 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
     number: string;
     SLA: number;
     status: TicketStatusEnum;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
     title: string;
     clientContractId: string;
     site: string;
     numberOfEngineers: number;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
 }, {
     number: string;
     SLA: number;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
     title: string;
     clientContractId: string;
     site: string;
     numberOfEngineers: number;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
     status?: TicketStatusEnum | undefined;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodObject<{
@@ -431,8 +431,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         status: z.ZodNativeEnum<typeof TaskStatusEnum>;
     }, "strip", z.ZodTypeAny, {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -440,8 +440,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         relatedMedia: string[];
     }, {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -487,8 +487,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];
@@ -519,8 +519,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        startdatetime: string;
         taskName: string;
+        startdatetime: string;
         enddateime: string;
         taskDescription: string;
         logistics: string[];

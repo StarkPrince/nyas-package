@@ -18,21 +18,21 @@ export declare const clientZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        country: import("../enums").CountryEnum;
-        city: string;
         line1: string;
         line2?: string | undefined;
     }, {
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        country: import("../enums").CountryEnum;
-        city: string;
         line1: string;
         line2?: string | undefined;
     }>;
@@ -54,12 +54,12 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderValue: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     address: {
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        country: import("../enums").CountryEnum;
-        city: string;
         line1: string;
         line2?: string | undefined;
     };
@@ -78,12 +78,12 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderValue: string;
 }, {
     address: {
+        country: import("../enums").CountryEnum;
+        city: string;
         location: {
             lat: number;
             long: number;
         };
-        country: import("../enums").CountryEnum;
-        city: string;
         line1: string;
         line2?: string | undefined;
     };

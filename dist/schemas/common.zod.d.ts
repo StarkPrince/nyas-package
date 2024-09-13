@@ -30,21 +30,21 @@ export declare const addressZodSchema: z.ZodObject<{
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    country: CountryEnum;
-    city: string;
     line1: string;
     line2?: string | undefined;
 }, {
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    country: CountryEnum;
-    city: string;
     line1: string;
     line2?: string | undefined;
 }>;
@@ -142,63 +142,63 @@ export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
-    city: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
-    city: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>, {
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
-    city: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
-    city: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>, {
     city: string | undefined;
+    siteDetails: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
-    country: CountryEnum;
-    city: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>;
@@ -221,63 +221,63 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }>, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }>, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    reason: string;
-    comments: string;
-    subticketId: string;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    subticketId: string;
+    reason: string;
+    comments: string;
 }>;
 export declare const logisticsZodSchema: z.ZodObject<{
     name: z.ZodString;

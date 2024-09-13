@@ -4,7 +4,6 @@ exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = expo
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-const subticket_zod_1 = require("./subticket.zod");
 const ticket_zod_1 = require("./ticket.zod");
 exports.locationZodSchema = zod_1.z.object({
     lat: zod_1.z.number(),
@@ -29,7 +28,6 @@ exports.fieldEngineerZodSchema = zod_1.z
         .max(5, "Rating cannot be more than 5")
         .default(5),
     loginTokens: zod_1.z.array(zod_1.z.string().min(1, "Token cannot be blank")).optional(),
-    rejectedSubtickets: zod_1.z.array(subticket_zod_1.rejectedSubticketZodSchema),
 })
     .strip();
 exports.feUserCreationZodSchema = zod_1.z.object({

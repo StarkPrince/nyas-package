@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.rejectedSubticketZodSchema = exports.subticketStatusZodSchema = void 0;
+exports.rejectedSubticketZodSchema = exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.subticketStatusZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -25,16 +25,6 @@ exports.subticketStatusZodSchema = zod_1.z
     updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
 })
     .strip();
-exports.rejectedSubticketZodSchema = zod_1.z.object({
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Ticket ID").optional(),
-    number: zod_1.z.string(),
-    schedule: common_zod_1.scheduleZodSchema,
-    SLA: zod_1.z.string(),
-    createdAt: zod_1.z.date(),
-    updatedAt: zod_1.z.date(),
-    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
-    updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
-});
 exports.subticketZodSchema = zod_1.z
     .object({
     ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticket Id"),
@@ -56,3 +46,11 @@ exports.subticketUpdateZodSchema = zod_1.z
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
 })
     .strip();
+exports.rejectedSubticketZodSchema = zod_1.z.object({
+    subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Subticket ID"),
+    reason: zod_1.z.string(),
+    comments: zod_1.z.string(),
+    fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Field Engineer ID"),
+    createdAt: zod_1.z.date(),
+    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID"),
+});

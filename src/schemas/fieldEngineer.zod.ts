@@ -2,7 +2,6 @@ import { z } from "zod";
 import { FieldEngineerWorkStatusEnum } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
-import { rejectedSubticketZodSchema } from "./subticket.zod";
 import { ticketZodSchema } from "./ticket.zod";
 
 export const locationZodSchema = z.object({
@@ -29,7 +28,6 @@ export const fieldEngineerZodSchema = z
       .max(5, "Rating cannot be more than 5")
       .default(5),
     loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
-    rejectedSubtickets: z.array(rejectedSubticketZodSchema),
   })
   .strip();
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { SubTicketStatusEnum } from "../enums";
-import { extensionZodSchema, idPattern, scheduleZodSchema } from "./common.zod";
+import { extensionZodSchema, idPattern } from "./common.zod";
 import { fieldEngineerStatusZodSchema } from "./fieldEngineer.zod";
 
 const validStatusOrder = [
@@ -25,17 +25,6 @@ export const subticketStatusZodSchema = z
   })
   .strip();
 
-export const rejectedSubticketZodSchema = z.object({
-  ticketId: z.string().regex(idPattern, "Invalid Ticket ID").optional(),
-  number: z.string(),
-  schedule: scheduleZodSchema,
-  SLA: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  createdBy: z.string().regex(idPattern, "Invalid User ID").optional(),
-  updatedBy: z.string().regex(idPattern, "Invalid User ID").optional(),
-});
-
 export const subticketZodSchema = z
   .object({
     ticketId: z.string().regex(idPattern, "Invalid ticket Id"),
@@ -58,6 +47,15 @@ export const subticketUpdateZodSchema = z
     status: z.nativeEnum(SubTicketStatusEnum),
   })
   .strip();
+
+export const rejectedSubticketZodSchema = z.object({
+  subticketId: z.string().regex(idPattern, "Invalid Subticket ID"),
+  reason: z.string(),
+  comments: z.string(),
+  fieldEngineer: z.string().regex(idPattern, "Invalid Field Engineer ID"),
+  createdAt: z.date(),
+  createdBy: z.string().regex(idPattern, "Invalid User ID"),
+});
 
 export type SubTicketType = z.infer<typeof subticketZodSchema>;
 export type SubTicketStatusType = z.infer<typeof subticketStatusZodSchema>;
