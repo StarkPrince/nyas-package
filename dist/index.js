@@ -19,3 +19,4 @@ __exportStar(require("./enums"), exports);
 __exportStar(require("./types"), exports);
 __exportStar(require("./utils"), exports);
 // some other file
+// cross-env msg="adding some files" npm run build
