@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { BillingTypeEnum, CountryEnum, CurrencyEnum, ExtensionStatusEnum } from "../enums";
+import { BillingTypeEnum, CountryEnum, CurrencyEnum, ExtensionStatusEnum, LogisticsEnum } from "../enums";
 export declare const idPattern: RegExp;
 export declare const contactDetailZodSchema: z.ZodObject<{
     name: z.ZodString;
@@ -19,20 +19,38 @@ export declare const addressZodSchema: z.ZodObject<{
     line2: z.ZodOptional<z.ZodString>;
     city: z.ZodString;
     country: z.ZodNativeEnum<typeof CountryEnum>;
+    location: z.ZodObject<{
+        lat: z.ZodNumber;
+        long: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        lat: number;
+        long: number;
+    }, {
+        lat: number;
+        long: number;
+    }>;
 }, "strip", z.ZodTypeAny, {
-    line1: string;
-    city: string;
+    location: {
+        lat: number;
+        long: number;
+    };
     country: CountryEnum;
+    city: string;
+    line1: string;
     line2?: string | undefined;
 }, {
-    line1: string;
-    city: string;
+    location: {
+        lat: number;
+        long: number;
+    };
     country: CountryEnum;
+    city: string;
+    line1: string;
     line2?: string | undefined;
 }>;
-export declare const billingDetailZodSchema: z.ZodObject<{
+export declare const billingDetailZodSchema: z.ZodEffects<z.ZodObject<{
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
-    additionalRates: z.ZodArray<z.ZodObject<{
+    additionalRates: z.ZodOptional<z.ZodArray<z.ZodObject<{
         hours: z.ZodNumber;
         rate: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
@@ -41,131 +59,266 @@ export declare const billingDetailZodSchema: z.ZodObject<{
     }, {
         hours: number;
         rate: number;
-    }>, "many">;
+    }>, "many">>;
+    dailyRate: z.ZodOptional<z.ZodNumber>;
     country: z.ZodNativeEnum<typeof CountryEnum>;
     currency: z.ZodNativeEnum<typeof CurrencyEnum>;
     outOfWorkingHoursRate: z.ZodNumber;
     nightRate: z.ZodNumber;
+    applicableSites: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     country: CountryEnum;
-    additionalRates: {
-        hours: number;
-        rate: number;
-    }[];
     currency: CurrencyEnum;
     outOfWorkingHoursRate: number;
     nightRate: number;
+    applicableSites: string[];
+    additionalRates?: {
+        hours: number;
+        rate: number;
+    }[] | undefined;
+    dailyRate?: number | undefined;
 }, {
     type: BillingTypeEnum;
     country: CountryEnum;
-    additionalRates: {
-        hours: number;
-        rate: number;
-    }[];
     currency: CurrencyEnum;
     outOfWorkingHoursRate: number;
     nightRate: number;
+    applicableSites: string[];
+    additionalRates?: {
+        hours: number;
+        rate: number;
+    }[] | undefined;
+    dailyRate?: number | undefined;
+}>, {
+    type: BillingTypeEnum;
+    country: CountryEnum;
+    currency: CurrencyEnum;
+    outOfWorkingHoursRate: number;
+    nightRate: number;
+    applicableSites: string[];
+    additionalRates?: {
+        hours: number;
+        rate: number;
+    }[] | undefined;
+    dailyRate?: number | undefined;
+}, {
+    type: BillingTypeEnum;
+    country: CountryEnum;
+    currency: CurrencyEnum;
+    outOfWorkingHoursRate: number;
+    nightRate: number;
+    applicableSites: string[];
+    additionalRates?: {
+        hours: number;
+        rate: number;
+    }[] | undefined;
+    dailyRate?: number | undefined;
 }>;
 export declare const scheduleZodSchema: z.ZodObject<{
-    day: z.ZodString;
-    starttime: z.ZodEffects<z.ZodString, string, string>;
-    endtime: z.ZodEffects<z.ZodString, string, string>;
+    startdatetime: z.ZodEffects<z.ZodString, string, string>;
+    enddatetime: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
-    day: string;
-    starttime: string;
-    endtime: string;
+    startdatetime: string;
+    enddatetime: string;
 }, {
-    day: string;
-    starttime: string;
-    endtime: string;
+    startdatetime: string;
+    enddatetime: string;
 }>;
-export declare const siteAddressZodSchema: z.ZodObject<{
+export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
+    siteDetails: z.ZodString;
     cageNumber: z.ZodOptional<z.ZodString>;
     coloDetails: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}, {
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}>;
-export declare const documentZodSchema: z.ZodObject<{
-    projectDescription: z.ZodString;
-    MOPs: z.ZodString;
-    SOWUpload: z.ZodString;
-}, "strip", z.ZodTypeAny, {
-    projectDescription: string;
-    MOPs: string;
-    SOWUpload: string;
-}, {
-    projectDescription: string;
-    MOPs: string;
-    SOWUpload: string;
-}>;
-export declare const communicationZodSchema: z.ZodObject<{
-    consumerPortal: z.ZodObject<{
-        username: z.ZodString;
-        password: z.ZodString;
-        notes: z.ZodOptional<z.ZodString>;
+    country: z.ZodNativeEnum<typeof CountryEnum>;
+    city: z.ZodString;
+    location: z.ZodObject<{
+        lat: z.ZodNumber;
+        long: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        password: string;
-        username: string;
-        notes?: string | undefined;
+        lat: number;
+        long: number;
     }, {
-        password: string;
-        username: string;
-        notes?: string | undefined;
+        lat: number;
+        long: number;
     }>;
-    communication: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
-    consumerPortal: {
-        password: string;
-        username: string;
-        notes?: string | undefined;
+    location: {
+        lat: number;
+        long: number;
     };
-    communication: string[];
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
 }, {
-    consumerPortal: {
-        password: string;
-        username: string;
-        notes?: string | undefined;
+    location: {
+        lat: number;
+        long: number;
     };
-    communication: string[];
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}>, {
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}, {
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}>, {
+    city: string | undefined;
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    country: CountryEnum;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}, {
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    country: CountryEnum;
+    city: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
 }>;
-export declare const extensionZodSchema: z.ZodObject<{
+export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     subticketId: z.ZodString;
     status: z.ZodNativeEnum<typeof ExtensionStatusEnum>;
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;
     comments: z.ZodString;
-    duration: z.ZodNumber;
-    startTime: z.ZodEffects<z.ZodString, string, string>;
-    endTime: z.ZodEffects<z.ZodString, string, string>;
+    schedules: z.ZodArray<z.ZodObject<{
+        startdatetime: z.ZodEffects<z.ZodString, string, string>;
+        enddatetime: z.ZodEffects<z.ZodString, string, string>;
+    }, "strip", z.ZodTypeAny, {
+        startdatetime: string;
+        enddatetime: string;
+    }, {
+        startdatetime: string;
+        enddatetime: string;
+    }>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    subticketId: string;
     reason: string;
     comments: string;
-    duration: number;
-    startTime: string;
-    endTime: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    subticketId: string;
     reason: string;
     comments: string;
-    duration: number;
-    startTime: string;
-    endTime: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
+}>, {
+    type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    reason: string;
+    comments: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
+}, {
+    type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    reason: string;
+    comments: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
+}>, {
+    type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    reason: string;
+    comments: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
+}, {
+    type: BillingTypeEnum;
+    status: ExtensionStatusEnum;
+    reason: string;
+    comments: string;
+    subticketId: string;
+    schedules: {
+        startdatetime: string;
+        enddatetime: string;
+    }[];
+}>;
+export declare const logisticsZodSchema: z.ZodObject<{
+    name: z.ZodString;
+    description: z.ZodString;
+    imageUrl: z.ZodString;
+    type: z.ZodNativeEnum<typeof LogisticsEnum>;
+}, "strip", z.ZodTypeAny, {
+    type: LogisticsEnum;
+    name: string;
+    description: string;
+    imageUrl: string;
+}, {
+    type: LogisticsEnum;
+    name: string;
+    description: string;
+    imageUrl: string;
+}>;
+export declare const taskTemplateZodSchema: z.ZodObject<{
+    taskName: z.ZodString;
+    taskDescription: z.ZodString;
+    logistics: z.ZodArray<z.ZodString, "many">;
+    difficultyLevel: z.ZodNumber;
+    relatedMedia: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    taskName: string;
+    taskDescription: string;
+    logistics: string[];
+    difficultyLevel: number;
+    relatedMedia: string[];
+}, {
+    taskName: string;
+    taskDescription: string;
+    logistics: string[];
+    difficultyLevel: number;
+    relatedMedia: string[];
 }>;
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;
 export type ScheduleType = z.infer<typeof scheduleZodSchema>;
 export type BillingDetailType = z.infer<typeof billingDetailZodSchema>;
 export type SiteAddressType = z.infer<typeof siteAddressZodSchema>;
-export type DocumentType = z.infer<typeof documentZodSchema>;
-export type CommunicationType = z.infer<typeof communicationZodSchema>;
 export type ExtensionType = z.infer<typeof extensionZodSchema>;
+export type LogisticsType = z.infer<typeof logisticsZodSchema>;
+export type TaskTemplateType = z.infer<typeof taskTemplateZodSchema>;

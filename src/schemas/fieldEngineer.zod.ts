@@ -2,8 +2,8 @@ import { z } from "zod";
 import { FieldEngineerWorkStatusEnum } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
+import { rejectedSubticketZodSchema } from "./subticket.zod";
 import { ticketZodSchema } from "./ticket.zod";
-import { userZodSchema } from "./user.zod";
 
 export const locationZodSchema = z.object({
   lat: z.number(),
@@ -23,25 +23,45 @@ export const fieldEngineerZodSchema = z
       .default([]),
     address: addressZodSchema,
     yearsOfExperience: z.number().default(0),
-    rating: z.number().default(5),
+    rating: z
+      .number()
+      .min(1, "Rating cannot be less than 1")
+      .max(5, "Rating cannot be more than 5")
+      .default(5),
     loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
+    rejectedSubtickets: z.array(rejectedSubticketZodSchema),
   })
   .strip();
 
+export const feUserCreationZodSchema = z.object({
+  name: z.string().min(1, "Name cannot be blank"),
+  email: z.string().email("Invalid email address"),
+  phoneNumber: z.string().min(1, "Phone number cannot be blank"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters long")
+    .optional(),
+});
+
 export const fieldEngineerCreationZodSchema = z
   .object({
-    user: userZodSchema,
+    user: feUserCreationZodSchema,
     vendorContracts: z
       .array(z.string().regex(idPattern, "Invalid vendor ID"))
-      .default([]),
+      .optional(),
     location: locationZodSchema.optional(),
-    tickets: z.array(ticketZodSchema).default([]),
+    tickets: z.array(ticketZodSchema).optional().default([]),
     subtickets: z
       .array(z.string().regex(idPattern, "Invalid subticket Id"))
+      .optional()
       .default([]),
     address: addressZodSchema,
-    yearsOfExperience: z.number().default(0),
-    rating: z.number().default(5),
+    yearsOfExperience: z.number().optional().default(0),
+    rating: z
+      .number()
+      .min(1, "Rating cannot be less than 1")
+      .max(5, "Rating cannot be more than 5")
+      .default(5),
     loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
   })
   .strip();
@@ -50,9 +70,14 @@ export const fieldEngineerStatusZodSchema = z
   .object({
     workStatus: z.nativeEnum(FieldEngineerWorkStatusEnum),
     location: locationZodSchema,
-    timestamp: z.string().min(1, "Timestamp cannot be blank"),
   })
   .strip();
+
+export const cancelSubticketZodSchema = z.object({
+  subticketId: z.string().regex(idPattern, "Invalid subticket ID"),
+  reason: z.string().min(1, "Reason cannot be blank"),
+  comments: z.string().min(1, "Comments cannot be blank"),
+});
 
 export const fieldEngineerGetTicketsZodSchema = z
   .object({
@@ -75,12 +100,20 @@ export const fieldEngineerGetSubTicketsZodSchema = z
 export const fieldEngineerUpdateLocationZodSchema = z
   .object({
     subticketId: z.string().regex(idPattern, "Invalid user Id"),
-    lat: z.number(),
-    long: z.number(),
+    location: locationZodSchema,
     event: z.nativeEnum(FieldEngineerWorkStatusEnum),
   })
   .strip();
 
+export const checkedInZodSchema = z.object({
+  location: locationZodSchema,
+  subticketId: z.string().regex(idPattern, "Invalid user Id"),
+});
+
+export type FieldEngineerCreationType = z.infer<
+  typeof fieldEngineerCreationZodSchema
+>;
+export type LocationType = z.infer<typeof locationZodSchema>;
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;
 export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
 export type FieldEngineerGetTicketsType = z.infer<

@@ -18,29 +18,19 @@ exports.vendorZodSchema = zod_1.z
 exports.vendorContractZodSchema = zod_1.z
     .object({
     vendorId: zod_1.z.string().regex(idPattern),
+    contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
+    uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema),
     contractStartDate: zod_1.z.string().min(1, "Contract start date cannot be blank"),
     onBoardingDate: zod_1.z.string().min(1, "Onboarding date cannot be blank"),
-    applicableSites: zod_1.z
-        .array(zod_1.z.string())
-        .nonempty()
-        .min(1, "At least one applicable site must be specified"),
     signedContractCopy: zod_1.z
         .string()
         .min(1, "Signed contract copy cannot be blank"),
     clientContracts: zod_1.z.array(zod_1.z.string().regex(idPattern)).optional(),
-    countriesTheyServe: zod_1.z
-        .array(zod_1.z.string())
-        .nonempty()
-        .min(1, "At least one country must be specified"),
-    clientsTheyWorkedFor: zod_1.z
-        .array(zod_1.z.string())
-        .nonempty()
-        .min(1, "At least one client must be specified"),
     status: zod_1.z
         .nativeEnum(enums_1.ContractStatusEnum)
         .optional()
-        .default(enums_1.ContractStatusEnum.Upcoming),
+        .default(enums_1.ContractStatusEnum.UPCOMING),
     fieldEngineers: zod_1.z.array(zod_1.z.string()),
 })
     .strip();

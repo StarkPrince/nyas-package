@@ -11,8 +11,6 @@ export const notificationZodSchema = z
   .strip();
 
 export const messageZodSchema = z.object({
-  ticketId: z.string().regex(idPattern, "Invalid ticketId"),
-  userId: z.string().regex(idPattern, "Invalid userId"),
   chatType: z.nativeEnum(ChatTypeEnum),
   data: z.string(),
   size: z.number().nullable(),

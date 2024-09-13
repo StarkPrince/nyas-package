@@ -1,20 +1,17 @@
 import { Schema } from "mongoose";
-import { IBillingDetail, ISchedule, ModelSchemaEntry, ScheduleType } from "..";
+import { ModelSchemaEntry, ScheduleType } from "..";
 
 export const detectScheduleConflict = (
   schedules: ScheduleType[]
 ): Array<{
-  schedule1: any;
-  schedule2: any;
+  schedule1: ScheduleType;
+  schedule2: ScheduleType;
 }> => {
-  const conflicts: Array<{ schedule1: any; schedule2: any }> = [];
-
-  // Extract schedules for easier comparison
+  const conflicts: Array<{ schedule1: ScheduleType; schedule2: ScheduleType }> =
+    [];
 
   schedules.sort((a, b) => {
-    if (a.day < b.day) return -1;
-    if (a.day > b.day) return 1;
-    return a.starttime.localeCompare(b.starttime);
+    return a.startdatetime.localeCompare(b.startdatetime);
   });
 
   for (let i = 0; i < schedules.length; i++) {
@@ -22,16 +19,11 @@ export const detectScheduleConflict = (
       const schedule1 = schedules[i];
       const schedule2 = schedules[j];
 
-      if (schedule1.day !== schedule2.day) {
-        break;
-      }
+      const start1 = Date.parse(schedule1.startdatetime);
+      const end1 = Date.parse(schedule1.enddatetime);
+      const start2 = Date.parse(schedule2.startdatetime);
+      const end2 = Date.parse(schedule2.enddatetime);
 
-      const start1 = Date.parse(`1970-01-01T${schedule1.starttime}Z`);
-      const end1 = Date.parse(`1970-01-01T${schedule1.endtime}Z`);
-      const start2 = Date.parse(`1970-01-01T${schedule2.starttime}Z`);
-      const end2 = Date.parse(`1970-01-01T${schedule2.endtime}Z`);
-
-      // Check for overlap
       if (start1 < end2 && start2 < end1) {
         conflicts.push({ schedule1, schedule2 });
       }
@@ -56,63 +48,31 @@ export const getFieldEngineerSuffix = (index: number): string => {
   return suffix;
 };
 
-export const getScheduleDuration = (schedule: any): number => {
-  const start = Date.parse(`1970-01-01T${schedule.starttime}Z`);
-  const end = Date.parse(`1970-01-01T${schedule.endtime}Z`);
+export const getScheduleDuration = (schedule: ScheduleType): number => {
+  const start = Date.parse(schedule.startdatetime);
+  const end = Date.parse(schedule.enddatetime);
 
   return (end - start) / 1000 / 60;
 };
 
-export const calculatePrice = (
-  timePeriod: ISchedule,
-  rateDetails: IBillingDetail
-): number => {
-  const { additionalRates, outOfWorkingHoursRate, nightRate } = rateDetails;
+export const capitalizeWords = (str: string) => {
+  return str.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 
-  const startTime = new Date(`${timePeriod.day}T${timePeriod.starttime}`);
-  const endTime = new Date(`${timePeriod.day}T${timePeriod.endtime}`);
-
-  const getHour = (date: Date) => date.getHours() + date.getMinutes() / 60;
-
-  let totalHours = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
-
-  // Initialize the total price
-  let totalPrice = 0;
-
-  for (const rate of additionalRates) {
-    const hours = Math.min(totalHours, rate.hours);
-    totalPrice += hours * rate.rate;
-    totalHours -= hours;
-
-    if (totalHours <= 0) {
-      return Math.round(totalPrice * 1000) / 1000;
-    }
-  }
-
-  const nightStart = 22; // 10 PM
-  const nightEnd = 5; // 5 AM
-  const dayEnd = 24; // Midnight
-
-  while (totalHours > 0) {
-    const startHour = getHour(startTime);
-    const endHour = getHour(endTime);
-
-    if (
-      (startHour >= nightStart && startHour < dayEnd) ||
-      endHour <= nightEnd
-    ) {
-      const nightHours = Math.min(totalHours, endHour - startHour);
-      totalPrice += nightHours * nightRate;
-      totalHours -= nightHours;
-    } else {
-      // Apply out of working hours rate
-      const outOfWorkingHours = Math.min(totalHours, endHour - startHour);
-      totalPrice += outOfWorkingHours * outOfWorkingHoursRate;
-      totalHours -= outOfWorkingHours;
-    }
-  }
-
-  return Math.round(totalPrice * 1000) / 1000;
+// Utility function to create an HTML email template
+export const createHtmlTemplate = (
+  title: string,
+  userName: string,
+  body: string,
+  linkText: string,
+  linkUrl: string
+) => {
+  return `
+    <h1>${title}</h1>
+    <p>Hello ${userName},</p>
+    <p>${body}</p>
+    <a href="${linkUrl}">${linkText}</a>
+  `;
 };
 
 export const isSchemaTypeArray = (
@@ -131,7 +91,6 @@ export const isRefField = (schemaType: {
   options: any;
   caster: { options: any };
 }): boolean => {
-  // Check if it's a direct ObjectId reference
   if (
     isSchemaTypeObjectId(schemaType) &&
     schemaType.options &&
@@ -139,8 +98,6 @@ export const isRefField = (schemaType: {
   ) {
     return true;
   }
-
-  // Check if it's an array of ObjectIds
   if (
     isSchemaTypeArray(schemaType) &&
     isSchemaTypeObjectId(schemaType.caster) &&
@@ -149,7 +106,6 @@ export const isRefField = (schemaType: {
   ) {
     return true;
   }
-
   return false;
 };
 
@@ -157,8 +113,7 @@ export const isRefField = (schemaType: {
 export const getReferenceFields = (schema: Schema): string[] => {
   const refFields: string[] = [];
   schema.eachPath((path, type) => {
-    // @ts-ignore
-    if (isRefField(type)) {
+    if (isRefField(type as any)) {
       refFields.push(path);
     }
   });
@@ -188,11 +143,14 @@ export const processReferences = async (
   for (const field of referenceFields) {
     const modelEntry = models[field];
     if (!modelEntry) {
-      console.error(`No model found for field:1 ${field}`);
+      console.error(`No model found for field: ${field}`);
       continue;
     }
     const { model, schema: fieldSchema } = modelEntry;
-
+    if (!model || !fieldSchema) {
+      console.error(`No model or schema found for field: ${field}`); // !handle this error
+      continue;
+    }
     if (Array.isArray(data[field])) {
       const indexedFields = getIndexedFields(fieldSchema);
       for (let i = 0; i < data[field].length; i++) {

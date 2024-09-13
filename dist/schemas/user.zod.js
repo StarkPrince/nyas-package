@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userZodSchema = void 0;
+exports.userLoginZodSchema = exports.userUpdateZodSchema = exports.userZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 exports.userZodSchema = zod_1.z
@@ -15,10 +15,21 @@ exports.userZodSchema = zod_1.z
     name: zod_1.z.string().min(1, "Name cannot be blank"),
     about: zod_1.z.string().optional(),
     image: zod_1.z.string().optional(),
-    status: zod_1.z.nativeEnum(enums_1.UserStatusEnum).default(enums_1.UserStatusEnum.Active),
+    status: zod_1.z.nativeEnum(enums_1.UserStatusEnum).default(enums_1.UserStatusEnum.ACTIVE),
 })
     .strip()
     .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",
     path: ["email", "phoneNumber"],
+});
+exports.userUpdateZodSchema = zod_1.z
+    .object({
+    name: zod_1.z.string().optional(),
+    about: zod_1.z.string().optional(),
+    image: zod_1.z.string().optional(),
+})
+    .strip();
+exports.userLoginZodSchema = zod_1.z.object({
+    email: zod_1.z.string().email().min(1, "Email cannot be blank"),
+    password: zod_1.z.string().min(1, "Password cannot be blank"),
 });

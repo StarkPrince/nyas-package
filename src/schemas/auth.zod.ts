@@ -21,6 +21,7 @@ export const ResetPasswordZodSchema = z
     newPassword: z
       .string()
       .min(6, { message: "New password must be at least 6 characters long." }),
+    email: z.string().email({ message: "Invalid email address." }),
   })
   .strip();
 

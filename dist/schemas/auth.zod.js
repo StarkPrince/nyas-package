@@ -21,5 +21,6 @@ exports.ResetPasswordZodSchema = zod_1.z
     newPassword: zod_1.z
         .string()
         .min(6, { message: "New password must be at least 6 characters long." }),
+    email: zod_1.z.string().email({ message: "Invalid email address." }),
 })
     .strip();

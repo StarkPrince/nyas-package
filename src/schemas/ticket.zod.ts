@@ -1,29 +1,51 @@
 import { z } from "zod";
 import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 import {
-  communicationZodSchema,
-  documentZodSchema,
   idPattern,
   scheduleZodSchema,
   siteAddressZodSchema,
 } from "./common.zod";
 
-export const taskZodSchema = z
-  .object({
-    taskName: z.string(),
-    startTime: z.string(),
-    endTime: z.string(),
-    taskDescription: z.string(),
-    tools: z.array(z.string()),
-    difficultyLevel: z.number(),
-    status: z.nativeEnum(TaskStatusEnum),
-  })
-  .strip();
-
 export const assignmentZodSchema = z.object({
   fieldEngineer: z.string().regex(idPattern, "Invalid field engineer Id"),
   vendorContract: z.string().regex(idPattern, "Invalid vendor contract"),
 });
+
+export const communicationZodSchema = z
+  .object({
+    consumerPortal: z.object({
+      username: z.string().min(1, "Username cannot be blank"),
+      password: z.string().min(1, "Password cannot be blank"),
+      notes: z.string().optional(),
+    }),
+    communication: z.array(
+      z.string().min(1, "Communication detail cannot be blank")
+    ),
+  })
+  .strip();
+
+export const documentZodSchema = z
+  .object({
+    projectDescription: z
+      .string()
+      .min(1, "Project description cannot be blank"),
+    MOPs: z.string().min(1, "MOPs cannot be blank"),
+    SOWUpload: z.string().min(1, "SOW Upload cannot be blank"),
+  })
+  .strip();
+
+export const taskZodSchema = z
+  .object({
+    taskName: z.string(),
+    startdatetime: z.string(),
+    enddateime: z.string(),
+    taskDescription: z.string(),
+    logistics: z.array(z.string()),
+    difficultyLevel: z.number().min(1).max(5),
+    relatedMedia: z.array(z.string()),
+    status: z.nativeEnum(TaskStatusEnum),
+  })
+  .strip();
 
 export const ticketZodSchema = z
   .object({
@@ -53,7 +75,7 @@ export const ticketCreationZodSchema = z
     number: z.string(),
     title: z.string(),
     clientContractId: z.string().regex(idPattern, "Invalid contract Id"),
-    site: siteAddressZodSchema,
+    site: z.string().regex(idPattern, "Invalid site Id"),
     numberOfEngineers: z.number(),
     SLA: z.number(),
     schedules: z.array(scheduleZodSchema),
@@ -63,6 +85,7 @@ export const ticketCreationZodSchema = z
 
 export const ticketUpdateZodSchema = z
   .object({
+    ticketId: z.string().regex(idPattern, "Invalid ticket Id"),
     scheduleAssignments: z
       .array(
         z.object({
@@ -78,6 +101,9 @@ export const ticketUpdateZodSchema = z
   .strip();
 
 export type TicketType = z.infer<typeof ticketZodSchema>;
-export type TaskType = z.infer<typeof taskZodSchema>;
+export type AssignmentType = z.infer<typeof assignmentZodSchema>;
+export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;
+export type TicketUpdateType = z.infer<typeof ticketUpdateZodSchema>;
 export type DocumentType = z.infer<typeof documentZodSchema>;
+export type TaskType = z.infer<typeof taskZodSchema>;
 export type CommunicationType = z.infer<typeof communicationZodSchema>;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { SubTicketStatusEnum } from "../enums";
-import { extensionZodSchema, idPattern } from "./common.zod";
+import { extensionZodSchema, idPattern, scheduleZodSchema } from "./common.zod";
 import { fieldEngineerStatusZodSchema } from "./fieldEngineer.zod";
 
 const validStatusOrder = [
@@ -16,9 +16,25 @@ const validStatusOrder = [
 export const subticketStatusZodSchema = z
   .object({
     status: z.nativeEnum(SubTicketStatusEnum),
-    createdBy: z.string().regex(idPattern, "Invalid User ID"),
+    reason: z.string().optional(),
+    comments: z.string().optional(),
+    createdAt: z.date().optional(),
+    updatedAt: z.date().optional(),
+    createdBy: z.string().regex(idPattern, "Invalid User ID").optional(),
+    updatedBy: z.string().regex(idPattern, "Invalid User ID").optional(),
   })
   .strip();
+
+export const rejectedSubticketZodSchema = z.object({
+  ticketId: z.string().regex(idPattern, "Invalid Ticket ID").optional(),
+  number: z.string(),
+  schedule: scheduleZodSchema,
+  SLA: z.string(),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  createdBy: z.string().regex(idPattern, "Invalid User ID").optional(),
+  updatedBy: z.string().regex(idPattern, "Invalid User ID").optional(),
+});
 
 export const subticketZodSchema = z
   .object({
@@ -28,22 +44,12 @@ export const subticketZodSchema = z
     schedule: z.string().regex(idPattern, "Invalid Schedule ID"),
     statuses: z.array(subticketStatusZodSchema),
     SLA: z.number(),
-    fieldEngineer: z.string().regex(idPattern, "Invalid Field Engineer ID"),
+    fieldEngineer: z
+      .string()
+      .regex(idPattern, "Invalid Field Engineer ID")
+      .optional(),
     extensions: z.array(extensionZodSchema).optional(),
-    feUpdates: z.array(fieldEngineerStatusZodSchema).refine(
-      (updates) => {
-        const checkinCount = updates.filter(
-          (update) => update.workStatus === "checkin"
-        ).length;
-        const checkoutCount = updates.filter(
-          (update) => update.workStatus === "checkout"
-        ).length;
-        return checkinCount <= 1 && checkoutCount <= 1;
-      },
-      {
-        message: "There can only be one checkin and one checkout event.",
-      }
-    ),
+    feUpdates: z.array(fieldEngineerStatusZodSchema).optional(),
   })
   .strip();
 
@@ -54,3 +60,5 @@ export const subticketUpdateZodSchema = z
   .strip();
 
 export type SubTicketType = z.infer<typeof subticketZodSchema>;
+export type SubTicketStatusType = z.infer<typeof subticketStatusZodSchema>;
+export type RejectedSubticketType = z.infer<typeof rejectedSubticketZodSchema>;

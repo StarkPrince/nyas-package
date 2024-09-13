@@ -19,10 +19,13 @@ export declare const ForgotPasswordZodSchema: z.ZodObject<{
 export declare const ResetPasswordZodSchema: z.ZodObject<{
     otp: z.ZodString;
     newPassword: z.ZodString;
+    email: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    email: string;
     otp: string;
     newPassword: string;
 }, {
+    email: string;
     otp: string;
     newPassword: string;
 }>;

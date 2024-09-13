@@ -24,29 +24,19 @@ export const vendorZodSchema = z
 export const vendorContractZodSchema = z
   .object({
     vendorId: z.string().regex(idPattern),
+    contractNumber: z.string().min(1, "Contract name cannot be blank"),
+    uploadedFiles: z.array(z.string()).optional(),
     billingDetails: z.array(billingDetailZodSchema),
     contractStartDate: z.string().min(1, "Contract start date cannot be blank"),
     onBoardingDate: z.string().min(1, "Onboarding date cannot be blank"),
-    applicableSites: z
-      .array(z.string())
-      .nonempty()
-      .min(1, "At least one applicable site must be specified"),
     signedContractCopy: z
       .string()
       .min(1, "Signed contract copy cannot be blank"),
     clientContracts: z.array(z.string().regex(idPattern)).optional(),
-    countriesTheyServe: z
-      .array(z.string())
-      .nonempty()
-      .min(1, "At least one country must be specified"),
-    clientsTheyWorkedFor: z
-      .array(z.string())
-      .nonempty()
-      .min(1, "At least one client must be specified"),
     status: z
       .nativeEnum(ContractStatusEnum)
       .optional()
-      .default(ContractStatusEnum.Upcoming),
+      .default(ContractStatusEnum.UPCOMING),
     fieldEngineers: z.array(z.string()),
   })
   .strip();

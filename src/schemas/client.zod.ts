@@ -1,13 +1,11 @@
 import { z } from "zod";
-import { ContractStatusEnum, CountryEnum, CurrencyEnum } from "../enums";
+import { ContractStatusEnum } from "../enums";
 import {
   addressZodSchema,
   billingDetailZodSchema,
   contactDetailZodSchema,
   idPattern,
-  siteAddressZodSchema,
 } from "./common.zod";
-import { vendorZodSchema } from "./vendor.zod";
 
 export const clientZodSchema = z
   .object({
@@ -24,48 +22,29 @@ export const clientZodSchema = z
 
 export const clientContractZodSchema = z
   .object({
-    clientId: z.union([
-      clientZodSchema,
-      z.string().regex(idPattern, "Invalid client Id"),
-    ]),
-    billingDetails: z.array(
-      z.union([
-        billingDetailZodSchema,
-        z.string().regex(idPattern, "Invalid billing Id"),
-      ])
-    ),
-    applicableSites: z.array(
-      z.union([
-        siteAddressZodSchema,
-        z.string().regex(idPattern, "Invalid site Id"),
-      ])
-    ),
+    clientId: z.string().regex(idPattern, "Invalid client Id"),
+    contractNumber: z.string().min(1, "Contract name cannot be blank"),
+    billingDetails: z.array(billingDetailZodSchema),
     signedContractCopy: z
       .string()
       .min(1, "Signed contract copy cannot be blank"),
+    uploadedFiles: z.array(z.string()).optional(),
     vendorContracts: z
-      .array(
-        z.union([
-          vendorZodSchema,
-          z.string().regex(idPattern, "Invalid vendor Id"),
-        ])
-      )
+      .array(z.string().regex(idPattern, "Invalid vendor Id"))
       .optional(),
-    contactStartDate: z
+    contractStartDate: z
       .string()
       .min(1, "Contact start date cannot be blank")
       .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
     status: z
       .nativeEnum(ContractStatusEnum)
       .optional()
-      .default(ContractStatusEnum.Upcoming),
+      .default(ContractStatusEnum.UPCOMING),
     onBoardingDate: z
       .string()
       .min(1, "Onboarding date cannot be blank")
       .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-    country: z.nativeEnum(CountryEnum),
     pointOfContact: z.array(contactDetailZodSchema).nonempty(),
-    currency: z.nativeEnum(CurrencyEnum),
   })
   .strip();
 

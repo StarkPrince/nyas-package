@@ -1,78 +1,57 @@
 import { Document, Model, Schema } from "mongoose";
 import {
-  ForgotPasswordType,
-  ForgotPasswordZodSchema,
-  LoginType,
-  LoginZodSchema,
-  ResetPasswordType,
-  ResetPasswordZodSchema,
-} from "../schemas/auth.zod";
-import {
   MessageType,
   NotificationType,
   TicketChatType,
 } from "../schemas/chat.zod";
-import {
-  ClientContractType,
-  clientContractZodSchema,
-  ClientType,
-  clientZodSchema,
-} from "../schemas/client.zod";
+import { ClientContractType, ClientType } from "../schemas/client.zod";
 import {
   AddressType,
-  addressZodSchema,
   BillingDetailType,
-  billingDetailZodSchema,
-  CommunicationType,
-  communicationZodSchema,
   ContactDetailType,
-  contactDetailZodSchema,
-  DocumentType,
-  documentZodSchema,
   ExtensionType,
-  extensionZodSchema,
   ScheduleType,
-  scheduleZodSchema,
   SiteAddressType,
-  siteAddressZodSchema,
+  TaskTemplateType,
 } from "../schemas/common.zod";
 import {
-  fieldEngineerCreationZodSchema,
-  FieldEngineerGetSubTicketsType,
-  fieldEngineerGetSubTicketsZodSchema,
-  FieldEngineerGetTicketsType,
-  fieldEngineerGetTicketsZodSchema,
-  FieldEngineerLoginType,
   FieldEngineerStatusType,
-  fieldEngineerStatusZodSchema,
   FieldEngineerType,
-  FieldEngineerUpdateLocationType,
-  fieldEngineerUpdateLocationZodSchema,
-  fieldEngineerZodSchema,
-  locationZodSchema,
 } from "../schemas/fieldEngineer.zod";
+import { SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
 import {
-  subticketStatusZodSchema,
-  SubTicketType,
-  subticketUpdateZodSchema,
-  subticketZodSchema,
-} from "../schemas/subticket.zod";
-import {
-  assignmentZodSchema,
+  CommunicationType,
+  DocumentType,
   TaskType,
-  taskZodSchema,
-  ticketCreationZodSchema,
   TicketType,
-  ticketUpdateZodSchema,
-  ticketZodSchema,
 } from "../schemas/ticket.zod";
-import { UserType, userZodSchema } from "../schemas/user.zod";
-import {
-  VendorContractType,
-  vendorContractZodSchema,
-  VendorType,
-  vendorZodSchema,
-} from "../schemas/vendor.zod";
+import { UserType } from "../schemas/user.zod";
+import { VendorContractType, VendorType } from "../schemas/vendor.zod";
+export * from "../schemas/auth.zod";
+export * from "../schemas/chat.zod";
+export * from "../schemas/client.zod";
+export * from "../schemas/common.zod";
+export * from "../schemas/fieldEngineer.zod";
+export * from "../schemas/subticket.zod";
+export * from "../schemas/ticket.zod";
+export * from "../schemas/user.zod";
+export * from "../schemas/vendor.zod";
+export interface PaginationOptions {
+  page: number;
+  limit: number;
+  populateFields?: string[];
+}
+export interface PaginatedResults<T> {
+  next?: {
+    page: number;
+    limit: number;
+  };
+  previous?: {
+    page: number;
+    limit: number;
+  };
+  data: T[];
+}
 
 export interface ModelSchemaEntry {
   model: Model<any>;
@@ -106,74 +85,129 @@ export interface IConfig {
   templateId: string;
   authKey: string;
   sender: string;
-}
-export interface IUserCreationError {
-  error: string;
+  no_of_devices: number;
 }
 
-export interface ILoginSuccess {
-  user: any;
-  auth: boolean;
+export interface ICreatedUpdatedWithUser {
+  createdAt: Date;
+  updatedAt: Date;
+  createdBy?: string;
+  updatedBy?: string;
 }
 
-export interface ILoginError {
-  error: string;
+export interface ICreatedUpdated {
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-export interface IForgotPasswordSuccess {
-  message: string;
+export interface ITaskTemplate
+  extends Document,
+    TaskTemplateType,
+    ICreatedUpdatedWithUser {}
+
+//client Interfaces
+export interface IClient
+  extends Document,
+    ClientType,
+    ICreatedUpdatedWithUser {}
+
+export interface IClientContract
+  extends Document,
+    ClientContractType,
+    ICreatedUpdatedWithUser {}
+
+//common Interfaces
+export interface IAddress
+  extends Document,
+    AddressType,
+    ICreatedUpdatedWithUser {}
+export interface IBillingDetail
+  extends Document,
+    BillingDetailType,
+    ICreatedUpdated {}
+export interface ICommunication
+  extends Document,
+    CommunicationType,
+    ICreatedUpdated {}
+export interface IContactDetail
+  extends Document,
+    ContactDetailType,
+    ICreatedUpdatedWithUser {}
+export interface IDocument
+  extends Document,
+    DocumentType,
+    ICreatedUpdatedWithUser {}
+export interface IExtension
+  extends Document,
+    ExtensionType,
+    ICreatedUpdatedWithUser {}
+export interface ISchedule extends Document, ScheduleType {}
+export interface ISiteAddress
+  extends Document,
+    SiteAddressType,
+    ICreatedUpdatedWithUser {}
+
+export interface IMessage extends Document, MessageType, ICreatedUpdated {
+  chatId: string;
+  userId: string;
+}
+export interface IMedia extends Document {
+  fileName: string;
+  fileUrl: string;
+  folder: string;
+  countries: string[];
+  client: string;
+  categories: string[];
+  uploadedAt: Date;
 }
 
-export interface IForgotPasswordError {
-  error: string;
+export interface ISubTicketStatus extends Document, SubTicketStatusType {}
+export interface ISubTicket
+  extends Document,
+    SubTicketType,
+    ICreatedUpdatedWithUser {
+  status: ISubTicketStatus;
 }
 
-export interface IResetPasswordSuccess {
-  message: string;
-}
-
-export interface IResetPasswordError {
-  error: string;
-}
-
-export interface IExtension extends Document, ExtensionType {}
-export interface ISubTicket extends Document, SubTicketType {}
-export interface ITask extends Document, TaskType {}
-export interface ITicket extends Document, TicketType {}
-export interface IUser extends Document, UserType {}
-export interface IFieldEngineer extends Document, FieldEngineerType {}
+export interface ITask extends Document, TaskType, ICreatedUpdated {}
+export interface ITicket
+  extends Document,
+    TicketType,
+    ICreatedUpdatedWithUser {}
+export interface IUser extends Document, UserType, ICreatedUpdated {}
+export interface IFieldEngineer
+  extends Document,
+    FieldEngineerType,
+    ICreatedUpdatedWithUser {}
 export interface IPopulatedFieldEngineer
   extends Document,
     Omit<FieldEngineerType, "subtickets"> {
   subtickets: ISubTicket[];
 }
-export interface ITicketChat extends Document, TicketChatType {}
-export interface INotification extends Document, NotificationType {}
-export interface IMessage extends Document, MessageType {}
-export interface IAddress extends Document, AddressType {}
-export interface IContactDetail extends Document, ContactDetailType {}
-export interface ISchedule extends Document, ScheduleType {}
-export interface IBillingDetail extends Document, BillingDetailType {}
-export interface ISiteAddress extends Document, SiteAddressType {}
-export interface IDocument extends Document, DocumentType {}
-export interface ICommunication extends Document, CommunicationType {}
-export interface IClient extends Document, ClientType {}
-export interface IClientContract extends Document, ClientContractType {}
-export interface IVendor extends Document, VendorType {}
-export interface IVendorContract extends Document, VendorContractType {}
-export interface IFieldEngineerLogin extends Document, FieldEngineerLoginType {}
-export interface IFieldEngineerGetTickets
+export interface ITicketChat
   extends Document,
-    FieldEngineerGetTicketsType {}
-export interface IFieldEngineerGetSubTickets
+    TicketChatType,
+    ICreatedUpdated {}
+export interface INotification
   extends Document,
-    FieldEngineerGetSubTicketsType {}
-export interface IFieldEngineerUpdateLocation
+    NotificationType,
+    ICreatedUpdated {}
+export interface IVendor
   extends Document,
-    FieldEngineerUpdateLocationType {}
+    VendorType,
+    ICreatedUpdatedWithUser {}
+export interface IVendorContract
+  extends Document,
+    VendorContractType,
+    ICreatedUpdatedWithUser {}
+export interface IBillingDetail
+  extends Document,
+    BillingDetailType,
+    ICreatedUpdatedWithUser {}
 export interface IFieldEngineerStatus
   extends Document,
-    FieldEngineerStatusType {}
+    FieldEngineerStatusType,
+    ICreatedUpdatedWithUser {}
 
 declare global {
   namespace Express {
@@ -182,68 +216,9 @@ declare global {
       userRole?: string;
       permissions?: string[];
       body?: { updatedBy?: string };
+      ipAddress: string | null;
     }
   }
 }
 
-export {
-  AddressType,
-  addressZodSchema,
-  assignmentZodSchema,
-  BillingDetailType,
-  billingDetailZodSchema,
-  ClientContractType,
-  clientContractZodSchema,
-  ClientType,
-  clientZodSchema,
-  CommunicationType,
-  communicationZodSchema,
-  ContactDetailType,
-  contactDetailZodSchema,
-  DocumentType,
-  documentZodSchema,
-  ExtensionType,
-  extensionZodSchema,
-  fieldEngineerCreationZodSchema,
-  FieldEngineerGetSubTicketsType,
-  fieldEngineerGetSubTicketsZodSchema,
-  FieldEngineerGetTicketsType,
-  fieldEngineerGetTicketsZodSchema,
-  FieldEngineerLoginType,
-  FieldEngineerStatusType,
-  fieldEngineerStatusZodSchema,
-  FieldEngineerType,
-  FieldEngineerUpdateLocationType,
-  fieldEngineerUpdateLocationZodSchema,
-  fieldEngineerZodSchema,
-  ForgotPasswordType,
-  ForgotPasswordZodSchema,
-  locationZodSchema,
-  LoginType,
-  LoginZodSchema,
-  MessageType,
-  NotificationType,
-  ResetPasswordType,
-  ResetPasswordZodSchema,
-  ScheduleType,
-  scheduleZodSchema,
-  SiteAddressType,
-  siteAddressZodSchema,
-  subticketStatusZodSchema,
-  SubTicketType,
-  subticketUpdateZodSchema,
-  subticketZodSchema,
-  TaskType,
-  taskZodSchema,
-  TicketChatType,
-  ticketCreationZodSchema,
-  TicketType,
-  ticketUpdateZodSchema,
-  ticketZodSchema,
-  UserType,
-  userZodSchema,
-  VendorContractType,
-  vendorContractZodSchema,
-  VendorType,
-  vendorZodSchema,
-};
+export * from "../schemas/chat.zod";

@@ -14,20 +14,14 @@ export declare const notificationZodSchema: z.ZodObject<{
     unreadChatMessages: number;
 }>;
 export declare const messageZodSchema: z.ZodObject<{
-    ticketId: z.ZodString;
-    userId: z.ZodString;
     chatType: z.ZodNativeEnum<typeof ChatTypeEnum>;
     data: z.ZodString;
     size: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    userId: string;
-    ticketId: string;
     chatType: ChatTypeEnum;
     data: string;
     size: number | null;
 }, {
-    userId: string;
-    ticketId: string;
     chatType: ChatTypeEnum;
     data: string;
     size: number | null;

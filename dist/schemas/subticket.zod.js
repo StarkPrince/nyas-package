@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.subticketStatusZodSchema = void 0;
+exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.rejectedSubticketZodSchema = exports.subticketStatusZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -17,9 +17,24 @@ const validStatusOrder = [
 exports.subticketStatusZodSchema = zod_1.z
     .object({
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
-    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID"),
+    reason: zod_1.z.string().optional(),
+    comments: zod_1.z.string().optional(),
+    createdAt: zod_1.z.date().optional(),
+    updatedAt: zod_1.z.date().optional(),
+    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
+    updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
 })
     .strip();
+exports.rejectedSubticketZodSchema = zod_1.z.object({
+    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Ticket ID").optional(),
+    number: zod_1.z.string(),
+    schedule: common_zod_1.scheduleZodSchema,
+    SLA: zod_1.z.string(),
+    createdAt: zod_1.z.date(),
+    updatedAt: zod_1.z.date(),
+    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
+    updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
+});
 exports.subticketZodSchema = zod_1.z
     .object({
     ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticket Id"),
@@ -28,15 +43,12 @@ exports.subticketZodSchema = zod_1.z
     schedule: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Schedule ID"),
     statuses: zod_1.z.array(exports.subticketStatusZodSchema),
     SLA: zod_1.z.number(),
-    fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Field Engineer ID"),
+    fieldEngineer: zod_1.z
+        .string()
+        .regex(common_zod_1.idPattern, "Invalid Field Engineer ID")
+        .optional(),
     extensions: zod_1.z.array(common_zod_1.extensionZodSchema).optional(),
-    feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).refine((updates) => {
-        const checkinCount = updates.filter((update) => update.workStatus === "checkin").length;
-        const checkoutCount = updates.filter((update) => update.workStatus === "checkout").length;
-        return checkinCount <= 1 && checkoutCount <= 1;
-    }, {
-        message: "There can only be one checkin and one checkout event.",
-    }),
+    feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).optional(),
 })
     .strip();
 exports.subticketUpdateZodSchema = zod_1.z

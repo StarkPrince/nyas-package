@@ -1,24 +1,44 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.assignmentZodSchema = exports.taskZodSchema = void 0;
+exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.documentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-exports.taskZodSchema = zod_1.z
-    .object({
-    taskName: zod_1.z.string(),
-    startTime: zod_1.z.string(),
-    endTime: zod_1.z.string(),
-    taskDescription: zod_1.z.string(),
-    tools: zod_1.z.array(zod_1.z.string()),
-    difficultyLevel: zod_1.z.number(),
-    status: zod_1.z.nativeEnum(enums_1.TaskStatusEnum),
-})
-    .strip();
 exports.assignmentZodSchema = zod_1.z.object({
     fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid field engineer Id"),
     vendorContract: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor contract"),
 });
+exports.communicationZodSchema = zod_1.z
+    .object({
+    consumerPortal: zod_1.z.object({
+        username: zod_1.z.string().min(1, "Username cannot be blank"),
+        password: zod_1.z.string().min(1, "Password cannot be blank"),
+        notes: zod_1.z.string().optional(),
+    }),
+    communication: zod_1.z.array(zod_1.z.string().min(1, "Communication detail cannot be blank")),
+})
+    .strip();
+exports.documentZodSchema = zod_1.z
+    .object({
+    projectDescription: zod_1.z
+        .string()
+        .min(1, "Project description cannot be blank"),
+    MOPs: zod_1.z.string().min(1, "MOPs cannot be blank"),
+    SOWUpload: zod_1.z.string().min(1, "SOW Upload cannot be blank"),
+})
+    .strip();
+exports.taskZodSchema = zod_1.z
+    .object({
+    taskName: zod_1.z.string(),
+    startdatetime: zod_1.z.string(),
+    enddateime: zod_1.z.string(),
+    taskDescription: zod_1.z.string(),
+    logistics: zod_1.z.array(zod_1.z.string()),
+    difficultyLevel: zod_1.z.number().min(1).max(5),
+    relatedMedia: zod_1.z.array(zod_1.z.string()),
+    status: zod_1.z.nativeEnum(enums_1.TaskStatusEnum),
+})
+    .strip();
 exports.ticketZodSchema = zod_1.z
     .object({
     number: zod_1.z.string(),
@@ -32,8 +52,8 @@ exports.ticketZodSchema = zod_1.z
     status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum),
     teamMembers: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid team member Id")),
     tasks: zod_1.z.array(exports.taskZodSchema).optional().default([]),
-    document: common_zod_1.documentZodSchema.optional(),
-    communications: common_zod_1.communicationZodSchema.optional(),
+    document: exports.documentZodSchema.optional(),
+    communications: exports.communicationZodSchema.optional(),
     subtickets: zod_1.z
         .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid subticket Id"))
         .default([]),
@@ -46,7 +66,7 @@ exports.ticketCreationZodSchema = zod_1.z
     number: zod_1.z.string(),
     title: zod_1.z.string(),
     clientContractId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid contract Id"),
-    site: common_zod_1.siteAddressZodSchema,
+    site: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid site Id"),
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
@@ -55,14 +75,15 @@ exports.ticketCreationZodSchema = zod_1.z
     .strip();
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
+    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticket Id"),
     scheduleAssignments: zod_1.z
         .array(zod_1.z.object({
         schedule: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid schedule Id"),
         assignments: zod_1.z.array(exports.assignmentZodSchema),
     }))
         .optional(),
-    document: common_zod_1.documentZodSchema.optional(),
+    document: exports.documentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),
-    communications: common_zod_1.communicationZodSchema.optional(),
+    communications: exports.communicationZodSchema.optional(),
 })
     .strip();

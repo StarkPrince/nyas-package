@@ -17,8 +17,8 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     name: string;
     role: UserRolesEnum;
     image?: string | undefined;
-    phoneNumber?: string | undefined;
     username?: string | undefined;
+    phoneNumber?: string | undefined;
     about?: string | undefined;
 }, {
     email: string;
@@ -26,8 +26,8 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     name: string;
     image?: string | undefined;
     status?: UserStatusEnum | undefined;
-    phoneNumber?: string | undefined;
     username?: string | undefined;
+    phoneNumber?: string | undefined;
     role?: UserRolesEnum | undefined;
     about?: string | undefined;
 }>, {
@@ -37,8 +37,8 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     name: string;
     role: UserRolesEnum;
     image?: string | undefined;
-    phoneNumber?: string | undefined;
     username?: string | undefined;
+    phoneNumber?: string | undefined;
     about?: string | undefined;
 }, {
     email: string;
@@ -46,9 +46,32 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     name: string;
     image?: string | undefined;
     status?: UserStatusEnum | undefined;
-    phoneNumber?: string | undefined;
     username?: string | undefined;
+    phoneNumber?: string | undefined;
     role?: UserRolesEnum | undefined;
     about?: string | undefined;
+}>;
+export declare const userUpdateZodSchema: z.ZodObject<{
+    name: z.ZodOptional<z.ZodString>;
+    about: z.ZodOptional<z.ZodString>;
+    image: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    image?: string | undefined;
+    name?: string | undefined;
+    about?: string | undefined;
+}, {
+    image?: string | undefined;
+    name?: string | undefined;
+    about?: string | undefined;
+}>;
+export declare const userLoginZodSchema: z.ZodObject<{
+    email: z.ZodString;
+    password: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    email: string;
+    password: string;
+}, {
+    email: string;
+    password: string;
 }>;
 export type UserType = z.infer<typeof userZodSchema>;

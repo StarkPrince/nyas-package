@@ -1,12 +1,13 @@
 import { Schema } from "mongoose";
-import { IBillingDetail, ISchedule, ModelSchemaEntry, ScheduleType } from "..";
+import { ModelSchemaEntry, ScheduleType } from "..";
 export declare const detectScheduleConflict: (schedules: ScheduleType[]) => Array<{
-    schedule1: any;
-    schedule2: any;
+    schedule1: ScheduleType;
+    schedule2: ScheduleType;
 }>;
 export declare const getFieldEngineerSuffix: (index: number) => string;
-export declare const getScheduleDuration: (schedule: any) => number;
-export declare const calculatePrice: (timePeriod: ISchedule, rateDetails: IBillingDetail) => number;
+export declare const getScheduleDuration: (schedule: ScheduleType) => number;
+export declare const capitalizeWords: (str: string) => string;
+export declare const createHtmlTemplate: (title: string, userName: string, body: string, linkText: string, linkUrl: string) => string;
 export declare const isSchemaTypeArray: (schemaType: any) => schemaType is Schema.Types.Array;
 export declare const isSchemaTypeObjectId: (schemaType: any) => schemaType is Schema.Types.ObjectId;
 export declare const isRefField: (schemaType: {

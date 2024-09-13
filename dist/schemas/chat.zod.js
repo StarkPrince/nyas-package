@@ -12,8 +12,6 @@ exports.notificationZodSchema = zod_1.z
 })
     .strip();
 exports.messageZodSchema = zod_1.z.object({
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticketId"),
-    userId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid userId"),
     chatType: zod_1.z.nativeEnum(enums_1.ChatTypeEnum),
     data: zod_1.z.string(),
     size: zod_1.z.number().nullable(),

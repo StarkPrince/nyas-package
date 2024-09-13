@@ -4,23 +4,27 @@
     "type": "git",
     "url": "https://github.com/starkprince/nyas-package"
   },
-  "version": "1.0.8",
+  "version": "1.1.11",
   "description": "A package including Zod schemas, enums, and interfaces for NYAS Application.",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc && npm run commit-and-publish",
+    "commit-and-publish": "cross-env msg=\"${msg:-some changes}\" && git add . && git commit -m \"%msg%\" && npm publish"
   },
   "keywords": [],
   "author": "Prince Raj",
   "license": "ISC",
   "dependencies": {
+    "@starkprince/nyas": "^1.1.2",
     "@types/express": "^4.17.21",
+    "csv-parser": "^3.0.0",
     "express": "^4.19.2",
     "mongoose": "^8.5.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "typescript": "^5.5.4"
   },
   "publishConfig": {
