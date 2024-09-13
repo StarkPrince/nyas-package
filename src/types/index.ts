@@ -18,7 +18,11 @@ import {
   FieldEngineerStatusType,
   FieldEngineerType,
 } from "../schemas/fieldEngineer.zod";
-import { SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
+import {
+  RejectedSubticketType,
+  SubTicketStatusType,
+  SubTicketType,
+} from "../schemas/subticket.zod";
 import {
   CommunicationType,
   DocumentType,
@@ -168,6 +172,11 @@ export interface ISubTicket
     ICreatedUpdatedWithUser {
   status: ISubTicketStatus;
 }
+
+export interface IRejectedSubticket
+  extends Document,
+    RejectedSubticketType,
+    ICreatedUpdatedWithUser {}
 
 export interface ITask extends Document, TaskType, ICreatedUpdated {}
 export interface ITicket

@@ -51,6 +51,4 @@ exports.rejectedSubticketZodSchema = zod_1.z.object({
     reason: zod_1.z.string(),
     comments: zod_1.z.string(),
     fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Field Engineer ID"),
-    createdAt: zod_1.z.date(),
-    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID"),
 });

@@ -53,8 +53,6 @@ export const rejectedSubticketZodSchema = z.object({
   reason: z.string(),
   comments: z.string(),
   fieldEngineer: z.string().regex(idPattern, "Invalid Field Engineer ID"),
-  createdAt: z.date(),
-  createdBy: z.string().regex(idPattern, "Invalid User ID"),
 });
 
 export type SubTicketType = z.infer<typeof subticketZodSchema>;

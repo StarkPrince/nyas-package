@@ -240,22 +240,16 @@ export declare const rejectedSubticketZodSchema: z.ZodObject<{
     reason: z.ZodString;
     comments: z.ZodString;
     fieldEngineer: z.ZodString;
-    createdAt: z.ZodDate;
-    createdBy: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
-    createdBy: string;
     subticketId: string;
     reason: string;
     comments: string;
-    createdAt: Date;
 }, {
     fieldEngineer: string;
-    createdBy: string;
     subticketId: string;
     reason: string;
     comments: string;
-    createdAt: Date;
 }>;
 export type SubTicketType = z.infer<typeof subticketZodSchema>;
 export type SubTicketStatusType = z.infer<typeof subticketStatusZodSchema>;
