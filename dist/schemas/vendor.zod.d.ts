@@ -36,7 +36,7 @@ export declare const vendorZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     }>;
-    contactDetails: z.ZodArray<z.ZodObject<{
+    pointOfContact: z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         email: z.ZodString;
         phoneNumber: z.ZodString;
@@ -64,7 +64,7 @@ export declare const vendorZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     name: string;
-    contactDetails: [{
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;
@@ -88,7 +88,7 @@ export declare const vendorZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     name: string;
-    contactDetails: [{
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;

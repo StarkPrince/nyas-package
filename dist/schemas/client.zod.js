@@ -8,7 +8,7 @@ exports.clientZodSchema = zod_1.z
     .object({
     name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
     address: common_zod_1.addressZodSchema,
-    contactDetails: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
     clientContracts: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid contract Id")),
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),

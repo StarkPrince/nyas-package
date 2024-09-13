@@ -9,7 +9,7 @@ exports.vendorZodSchema = zod_1.z
     .object({
     name: zod_1.z.string().min(1, "Name cannot be blank"),
     address: common_zod_1.addressZodSchema,
-    contactDetails: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
     vendorContracts: zod_1.z.array(zod_1.z.string().regex(idPattern)).optional(),
     countriesTheyServe: zod_1.z.array(zod_1.z.nativeEnum(enums_1.CountryEnum)),
     clientsTheyWorkedFor: zod_1.z.array(zod_1.z.string().regex(idPattern, "Client Id not valid")),

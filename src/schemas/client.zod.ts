@@ -11,7 +11,7 @@ export const clientZodSchema = z
   .object({
     name: z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
     address: addressZodSchema,
-    contactDetails: z.array(contactDetailZodSchema).nonempty(),
+    pointOfContact: z.array(contactDetailZodSchema).nonempty(),
     clientContracts: z.array(
       z.string().regex(idPattern, "Invalid contract Id")
     ),

@@ -12,7 +12,7 @@ export const vendorZodSchema = z
   .object({
     name: z.string().min(1, "Name cannot be blank"),
     address: addressZodSchema,
-    contactDetails: z.array(contactDetailZodSchema).nonempty(),
+    pointOfContact: z.array(contactDetailZodSchema).nonempty(),
     vendorContracts: z.array(z.string().regex(idPattern)).optional(),
     countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
     clientsTheyWorkedFor: z.array(

@@ -36,7 +36,7 @@ export declare const clientZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     }>;
-    contactDetails: z.ZodArray<z.ZodObject<{
+    pointOfContact: z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         email: z.ZodString;
         phoneNumber: z.ZodString;
@@ -64,7 +64,7 @@ export declare const clientZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     name: string;
-    contactDetails: [{
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;
@@ -88,7 +88,7 @@ export declare const clientZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     name: string;
-    contactDetails: [{
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;
@@ -193,6 +193,15 @@ export declare const clientContractZodSchema: z.ZodObject<{
     }>, "atleastone">;
 }, "strip", z.ZodTypeAny, {
     status: ContractStatusEnum;
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     clientId: string;
     contractNumber: string;
     billingDetails: {
@@ -212,18 +221,18 @@ export declare const clientContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    pointOfContact: [{
-        email: string;
-        name: string;
-        phoneNumber: string;
-    }, ...{
-        email: string;
-        name: string;
-        phoneNumber: string;
-    }[]];
     vendorContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
 }, {
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     clientId: string;
     contractNumber: string;
     billingDetails: {
@@ -243,15 +252,6 @@ export declare const clientContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    pointOfContact: [{
-        email: string;
-        name: string;
-        phoneNumber: string;
-    }, ...{
-        email: string;
-        name: string;
-        phoneNumber: string;
-    }[]];
     status?: ContractStatusEnum | undefined;
     vendorContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
