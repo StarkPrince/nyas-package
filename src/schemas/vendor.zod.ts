@@ -27,8 +27,18 @@ export const vendorContractZodSchema = z
     contractNumber: z.string().min(1, "Contract name cannot be blank"),
     uploadedFiles: z.array(z.string()).optional(),
     billingDetails: z.array(billingDetailZodSchema),
-    contractStartDate: z.string().min(1, "Contract start date cannot be blank"),
-    onBoardingDate: z.string().min(1, "Onboarding date cannot be blank"),
+    expiryDate: z
+      .string()
+      .min(1, "Expiry date cannot be blank")
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    contractStartDate: z
+      .string()
+      .min(1, "Contract start date cannot be blank")
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    onBoardingDate: z
+      .string()
+      .min(1, "Onboarding date cannot be blank")
+      .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
     signedContractCopy: z
       .string()
       .min(1, "Signed contract copy cannot be blank"),

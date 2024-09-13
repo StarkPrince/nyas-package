@@ -23,6 +23,10 @@ exports.clientContractZodSchema = zod_1.z
         .string()
         .min(1, "Signed contract copy cannot be blank"),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
+    expiryDate: zod_1.z
+        .string()
+        .min(1, "Expiry date cannot be blank")
+        .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
     vendorContracts: zod_1.z
         .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor Id"))
         .optional(),

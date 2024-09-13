@@ -21,8 +21,18 @@ exports.vendorContractZodSchema = zod_1.z
     contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema),
-    contractStartDate: zod_1.z.string().min(1, "Contract start date cannot be blank"),
-    onBoardingDate: zod_1.z.string().min(1, "Onboarding date cannot be blank"),
+    expiryDate: zod_1.z
+        .string()
+        .min(1, "Expiry date cannot be blank")
+        .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    contractStartDate: zod_1.z
+        .string()
+        .min(1, "Contract start date cannot be blank")
+        .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+    onBoardingDate: zod_1.z
+        .string()
+        .min(1, "Onboarding date cannot be blank")
+        .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
     signedContractCopy: zod_1.z
         .string()
         .min(1, "Signed contract copy cannot be blank"),

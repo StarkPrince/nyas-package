@@ -173,6 +173,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
     }>, "many">;
     signedContractCopy: z.ZodString;
     uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    expiryDate: z.ZodEffects<z.ZodString, string, string>;
     vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     contractStartDate: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
@@ -208,6 +209,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         dailyRate?: number | undefined;
     }[];
     signedContractCopy: string;
+    expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
     pointOfContact: [{
@@ -238,6 +240,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         dailyRate?: number | undefined;
     }[];
     signedContractCopy: string;
+    expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
     pointOfContact: [{
