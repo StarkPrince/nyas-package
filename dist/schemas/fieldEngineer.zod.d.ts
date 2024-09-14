@@ -317,8 +317,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     }>;
     yearsOfExperience: z.ZodDefault<z.ZodNumber>;
     rating: z.ZodDefault<z.ZodNumber>;
-    loginTokens: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    devices: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodString, "many">>>;
 }, "strip", z.ZodTypeAny, {
     subtickets: string[];
     user: string;
@@ -387,8 +385,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         lat: number;
         long: number;
     } | undefined;
-    loginTokens?: string[] | undefined;
-    devices?: string[] | undefined;
 }, {
     user: string;
     address: {
@@ -457,8 +453,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     }[] | undefined;
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
-    loginTokens?: string[] | undefined;
-    devices?: string[] | undefined;
 }>;
 export declare const feUserCreationZodSchema: z.ZodObject<{
     name: z.ZodString;
@@ -797,7 +791,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
     }>;
     yearsOfExperience: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
     rating: z.ZodDefault<z.ZodNumber>;
-    loginTokens: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     subtickets: string[];
     user: {
@@ -871,7 +864,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         long: number;
     } | undefined;
     vendorContracts?: string[] | undefined;
-    loginTokens?: string[] | undefined;
 }, {
     user: {
         email: string;
@@ -945,7 +937,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
     }[] | undefined;
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
-    loginTokens?: string[] | undefined;
 }>;
 export declare const fieldEngineerStatusZodSchema: z.ZodObject<{
     workStatus: z.ZodNativeEnum<typeof FieldEngineerWorkStatusEnum>;

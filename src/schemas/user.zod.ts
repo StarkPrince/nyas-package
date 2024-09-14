@@ -17,6 +17,10 @@ export const userZodSchema = z
     about: z.string().optional(),
     image: z.string().optional(),
     status: z.nativeEnum(UserStatusEnum).default(UserStatusEnum.ACTIVE),
+    devices: z
+      .array(z.string().min(1, "Device cannot be blank"))
+      .default([])
+      .optional(),
   })
   .strip()
   .refine((data) => data.email || data.phoneNumber, {

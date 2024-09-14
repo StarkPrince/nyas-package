@@ -27,11 +27,6 @@ export const fieldEngineerZodSchema = z
       .min(1, "Rating cannot be less than 1")
       .max(5, "Rating cannot be more than 5")
       .default(5),
-    loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
-    devices: z
-      .array(z.string().min(1, "Device cannot be blank"))
-      .default([])
-      .optional(),
   })
   .strip();
 
@@ -64,7 +59,6 @@ export const fieldEngineerCreationZodSchema = z
       .min(1, "Rating cannot be less than 1")
       .max(5, "Rating cannot be more than 5")
       .default(5),
-    loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
   })
   .strip();
 

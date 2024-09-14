@@ -10,6 +10,7 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     about: z.ZodOptional<z.ZodString>;
     image: z.ZodOptional<z.ZodString>;
     status: z.ZodDefault<z.ZodNativeEnum<typeof UserStatusEnum>>;
+    devices: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodString, "many">>>;
 }, "strip", z.ZodTypeAny, {
     email: string;
     password: string;
@@ -20,6 +21,7 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     username?: string | undefined;
     phoneNumber?: string | undefined;
     about?: string | undefined;
+    devices?: string[] | undefined;
 }, {
     email: string;
     password: string;
@@ -30,6 +32,7 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     phoneNumber?: string | undefined;
     role?: UserRolesEnum | undefined;
     about?: string | undefined;
+    devices?: string[] | undefined;
 }>, {
     email: string;
     password: string;
@@ -40,6 +43,7 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     username?: string | undefined;
     phoneNumber?: string | undefined;
     about?: string | undefined;
+    devices?: string[] | undefined;
 }, {
     email: string;
     password: string;
@@ -50,6 +54,7 @@ export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     phoneNumber?: string | undefined;
     role?: UserRolesEnum | undefined;
     about?: string | undefined;
+    devices?: string[] | undefined;
 }>;
 export declare const userUpdateZodSchema: z.ZodObject<{
     name: z.ZodOptional<z.ZodString>;

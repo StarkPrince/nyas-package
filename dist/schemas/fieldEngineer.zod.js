@@ -27,11 +27,6 @@ exports.fieldEngineerZodSchema = zod_1.z
         .min(1, "Rating cannot be less than 1")
         .max(5, "Rating cannot be more than 5")
         .default(5),
-    loginTokens: zod_1.z.array(zod_1.z.string().min(1, "Token cannot be blank")).optional(),
-    devices: zod_1.z
-        .array(zod_1.z.string().min(1, "Device cannot be blank"))
-        .default([])
-        .optional(),
 })
     .strip();
 exports.feUserCreationZodSchema = zod_1.z.object({
@@ -62,7 +57,6 @@ exports.fieldEngineerCreationZodSchema = zod_1.z
         .min(1, "Rating cannot be less than 1")
         .max(5, "Rating cannot be more than 5")
         .default(5),
-    loginTokens: zod_1.z.array(zod_1.z.string().min(1, "Token cannot be blank")).optional(),
 })
     .strip();
 exports.fieldEngineerStatusZodSchema = zod_1.z
