@@ -147,6 +147,9 @@ export const rolePermissions = {
     Permission.CHECK_IN,
     Permission.CHECK_OUT,
     Permission.VIEW_LOGISTICS,
+    Permission.READ_NOTIFICATIONS,
+    Permission.VIEW_EXTENSIONS,
+    Permission.VIEW_NOTIFICATIONS,
   ],
   [UserRolesEnum.NOC]: Object.values(Permission).filter(
     (permission) =>
