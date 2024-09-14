@@ -10,6 +10,11 @@ export enum ChatTypeEnum {
   SYSTEM = "system",
 }
 
+export enum ReadStatusEnum {
+  READ = "read",
+  UNREAD = "unread",
+}
+
 export enum TicketStatusEnum {
   DRAFT = "draft",
   ASSIGN_PENDING = "assign-pending",

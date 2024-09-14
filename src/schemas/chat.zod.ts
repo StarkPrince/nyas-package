@@ -1,12 +1,12 @@
 import { z } from "zod";
-import { ChatTypeEnum } from "../enums";
+import { ChatTypeEnum, ReadStatusEnum } from "../enums";
 import { idPattern } from "./common.zod";
 
 export const notificationZodSchema = z
   .object({
     userId: z.string(),
-    chatId: z.string(),
-    unreadChatMessages: z.number(),
+    messageId: z.string(),
+    status: z.nativeEnum(ReadStatusEnum),
   })
   .strip();
 

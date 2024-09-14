@@ -8,6 +8,10 @@ export declare enum ChatTypeEnum {
     DOCUMENT = "document",
     SYSTEM = "system"
 }
+export declare enum ReadStatusEnum {
+    READ = "read",
+    UNREAD = "unread"
+}
 export declare enum TicketStatusEnum {
     DRAFT = "draft",
     ASSIGN_PENDING = "assign-pending",

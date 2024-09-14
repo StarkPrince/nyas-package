@@ -7,8 +7,8 @@ const common_zod_1 = require("./common.zod");
 exports.notificationZodSchema = zod_1.z
     .object({
     userId: zod_1.z.string(),
-    chatId: zod_1.z.string(),
-    unreadChatMessages: zod_1.z.number(),
+    messageId: zod_1.z.string(),
+    status: zod_1.z.nativeEnum(enums_1.ReadStatusEnum),
 })
     .strip();
 exports.messageZodSchema = zod_1.z.object({
