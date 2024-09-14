@@ -28,6 +28,10 @@ export const fieldEngineerZodSchema = z
       .max(5, "Rating cannot be more than 5")
       .default(5),
     loginTokens: z.array(z.string().min(1, "Token cannot be blank")).optional(),
+    devices: z
+      .array(z.string().min(1, "Device cannot be blank"))
+      .default([])
+      .optional(),
   })
   .strip();
 

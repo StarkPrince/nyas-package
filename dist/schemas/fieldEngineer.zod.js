@@ -28,6 +28,10 @@ exports.fieldEngineerZodSchema = zod_1.z
         .max(5, "Rating cannot be more than 5")
         .default(5),
     loginTokens: zod_1.z.array(zod_1.z.string().min(1, "Token cannot be blank")).optional(),
+    devices: zod_1.z
+        .array(zod_1.z.string().min(1, "Device cannot be blank"))
+        .default([])
+        .optional(),
 })
     .strip();
 exports.feUserCreationZodSchema = zod_1.z.object({

@@ -318,6 +318,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     yearsOfExperience: z.ZodDefault<z.ZodNumber>;
     rating: z.ZodDefault<z.ZodNumber>;
     loginTokens: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    devices: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodString, "many">>>;
 }, "strip", z.ZodTypeAny, {
     subtickets: string[];
     user: string;
@@ -387,6 +388,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         long: number;
     } | undefined;
     loginTokens?: string[] | undefined;
+    devices?: string[] | undefined;
 }, {
     user: string;
     address: {
@@ -456,6 +458,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
     loginTokens?: string[] | undefined;
+    devices?: string[] | undefined;
 }>;
 export declare const feUserCreationZodSchema: z.ZodObject<{
     name: z.ZodString;
