@@ -21,6 +21,7 @@ exports.vendorContractZodSchema = zod_1.z
     contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
     expiryDate: zod_1.z
         .string()
         .min(1, "Expiry date cannot be blank")

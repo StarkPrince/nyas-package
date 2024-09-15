@@ -172,6 +172,19 @@ export declare const vendorContractZodSchema: z.ZodObject<{
         }[] | undefined;
         dailyRate?: number | undefined;
     }>, "many">;
+    pointOfContact: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        email: z.ZodString;
+        phoneNumber: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }>, "atleastone">;
     expiryDate: z.ZodEffects<z.ZodString, string, string>;
     contractStartDate: z.ZodEffects<z.ZodString, string, string>;
     onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
@@ -181,6 +194,15 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     fieldEngineers: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     status: ContractStatusEnum;
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     contractNumber: string;
     billingDetails: {
         type: import("../enums").BillingTypeEnum;
@@ -204,6 +226,15 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     clientContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
 }, {
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     contractNumber: string;
     billingDetails: {
         type: import("../enums").BillingTypeEnum;

@@ -27,6 +27,7 @@ export const vendorContractZodSchema = z
     contractNumber: z.string().min(1, "Contract name cannot be blank"),
     uploadedFiles: z.array(z.string()).optional(),
     billingDetails: z.array(billingDetailZodSchema),
+    pointOfContact: z.array(contactDetailZodSchema).nonempty(),
     expiryDate: z
       .string()
       .min(1, "Expiry date cannot be blank")
