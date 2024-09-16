@@ -22,9 +22,12 @@ export const clientZodSchema = z
 
 export const clientContractZodSchema = z
   .object({
+    billingDetails: z.array(z.union([z.string(), billingDetailZodSchema])),
+    pointOfContact: z
+      .array(z.union([z.string(), contactDetailZodSchema]))
+      .nonempty(),
     clientId: z.string().regex(idPattern, "Invalid client Id"),
     contractNumber: z.string().min(1, "Contract name cannot be blank"),
-    billingDetails: z.array(billingDetailZodSchema),
     signedContractCopy: z
       .string()
       .min(1, "Signed contract copy cannot be blank"),
@@ -48,7 +51,6 @@ export const clientContractZodSchema = z
       .string()
       .min(1, "Onboarding date cannot be blank")
       .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-    pointOfContact: z.array(contactDetailZodSchema).nonempty(),
   })
   .strip();
 

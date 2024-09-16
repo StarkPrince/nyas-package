@@ -16,9 +16,12 @@ exports.clientZodSchema = zod_1.z
     .strip();
 exports.clientContractZodSchema = zod_1.z
     .object({
+    billingDetails: zod_1.z.array(zod_1.z.union([zod_1.z.string(), common_zod_1.billingDetailZodSchema])),
+    pointOfContact: zod_1.z
+        .array(zod_1.z.union([zod_1.z.string(), common_zod_1.contactDetailZodSchema]))
+        .nonempty(),
     clientId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid client Id"),
     contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
-    billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema),
     signedContractCopy: zod_1.z
         .string()
         .min(1, "Signed contract copy cannot be blank"),
@@ -42,6 +45,5 @@ exports.clientContractZodSchema = zod_1.z
         .string()
         .min(1, "Onboarding date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
 })
     .strip();

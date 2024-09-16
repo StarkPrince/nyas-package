@@ -102,9 +102,7 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderValue: string;
 }>;
 export declare const clientContractZodSchema: z.ZodObject<{
-    clientId: z.ZodString;
-    contractNumber: z.ZodString;
-    billingDetails: z.ZodArray<z.ZodEffects<z.ZodObject<{
+    billingDetails: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodObject<{
         type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         additionalRates: z.ZodOptional<z.ZodArray<z.ZodObject<{
             hours: z.ZodNumber;
@@ -170,15 +168,8 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    }>, "many">;
-    signedContractCopy: z.ZodString;
-    uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    expiryDate: z.ZodEffects<z.ZodString, string, string>;
-    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    contractStartDate: z.ZodEffects<z.ZodString, string, string>;
-    status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
-    onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
-    pointOfContact: z.ZodArray<z.ZodObject<{
+    }>]>, "many">;
+    pointOfContact: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
         name: z.ZodString;
         email: z.ZodString;
         phoneNumber: z.ZodString;
@@ -190,21 +181,28 @@ export declare const clientContractZodSchema: z.ZodObject<{
         email: string;
         name: string;
         phoneNumber: string;
-    }>, "atleastone">;
+    }>]>, "atleastone">;
+    clientId: z.ZodString;
+    contractNumber: z.ZodString;
+    signedContractCopy: z.ZodString;
+    uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    expiryDate: z.ZodEffects<z.ZodString, string, string>;
+    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    contractStartDate: z.ZodEffects<z.ZodString, string, string>;
+    status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
+    onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     status: ContractStatusEnum;
-    pointOfContact: [{
+    pointOfContact: [string | {
         email: string;
         name: string;
         phoneNumber: string;
-    }, ...{
+    }, ...(string | {
         email: string;
         name: string;
         phoneNumber: string;
-    }[]];
-    clientId: string;
-    contractNumber: string;
-    billingDetails: {
+    })[]];
+    billingDetails: (string | {
         type: import("../enums").BillingTypeEnum;
         country: import("../enums").CountryEnum;
         currency: import("../enums").CurrencyEnum;
@@ -216,7 +214,9 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    }[];
+    })[];
+    clientId: string;
+    contractNumber: string;
     signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;
@@ -224,18 +224,16 @@ export declare const clientContractZodSchema: z.ZodObject<{
     vendorContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
 }, {
-    pointOfContact: [{
+    pointOfContact: [string | {
         email: string;
         name: string;
         phoneNumber: string;
-    }, ...{
+    }, ...(string | {
         email: string;
         name: string;
         phoneNumber: string;
-    }[]];
-    clientId: string;
-    contractNumber: string;
-    billingDetails: {
+    })[]];
+    billingDetails: (string | {
         type: import("../enums").BillingTypeEnum;
         country: import("../enums").CountryEnum;
         currency: import("../enums").CurrencyEnum;
@@ -247,7 +245,9 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    }[];
+    })[];
+    clientId: string;
+    contractNumber: string;
     signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;
