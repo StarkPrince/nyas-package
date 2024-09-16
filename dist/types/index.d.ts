@@ -84,7 +84,7 @@ export interface IClientContract extends Document, ClientContractType, ICreatedU
 }
 export interface IAddress extends Document, AddressType, ICreatedUpdatedWithUser {
 }
-export interface IBillingDetail extends Document, BillingDetailType, ICreatedUpdated {
+export interface IBillingDetail extends Document, BillingDetailType, ICreatedUpdatedWithUser {
 }
 export interface ICommunication extends Document, CommunicationType, ICreatedUpdated {
 }

@@ -128,7 +128,7 @@ export interface IAddress
 export interface IBillingDetail
   extends Document,
     BillingDetailType,
-    ICreatedUpdated {}
+    ICreatedUpdatedWithUser {}
 export interface ICommunication
   extends Document,
     CommunicationType,
