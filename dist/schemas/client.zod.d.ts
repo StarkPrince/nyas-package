@@ -49,7 +49,7 @@ export declare const clientZodSchema: z.ZodObject<{
         name: string;
         phoneNumber: string;
     }>, "atleastone">;
-    clientContracts: z.ZodArray<z.ZodString, "many">;
+    clientContracts: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     purchaseOrderNumber: z.ZodString;
     purchaseOrderValue: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -119,7 +119,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         currency: z.ZodNativeEnum<typeof import("../enums").CurrencyEnum>;
         outOfWorkingHoursRate: z.ZodNumber;
         nightRate: z.ZodNumber;
-        applicableSites: z.ZodArray<z.ZodString, "many">;
+        applicableSites: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: import("../enums").BillingTypeEnum;
         country: import("../enums").CountryEnum;
@@ -182,12 +182,12 @@ export declare const clientContractZodSchema: z.ZodObject<{
         name: string;
         phoneNumber: string;
     }>]>, "atleastone">;
-    clientId: z.ZodString;
+    clientId: z.ZodEffects<z.ZodString, string, string>;
     contractNumber: z.ZodString;
     signedContractCopy: z.ZodString;
     uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     expiryDate: z.ZodEffects<z.ZodString, string, string>;
-    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     contractStartDate: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
     onBoardingDate: z.ZodEffects<z.ZodString, string, string>;

@@ -11,14 +11,20 @@ exports.locationZodSchema = zod_1.z.object({
 });
 exports.fieldEngineerZodSchema = zod_1.z
     .object({
-    user: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user ID"),
+    user: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    }),
     vendorContracts: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor ID"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contact Id",
+    }))
         .default([]),
     location: exports.locationZodSchema.optional(),
     tickets: zod_1.z.array(ticket_zod_1.ticketZodSchema).default([]),
     subtickets: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid subticket Id"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }))
         .default([]),
     address: common_zod_1.addressZodSchema,
     yearsOfExperience: zod_1.z.number().default(0),
@@ -88,12 +94,16 @@ exports.fieldEngineerGetSubTicketsZodSchema = zod_1.z
     .strip();
 exports.fieldEngineerUpdateLocationZodSchema = zod_1.z
     .object({
-    subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user Id"),
+    subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }),
     location: exports.locationZodSchema,
     event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
 })
     .strip();
 exports.checkedInZodSchema = zod_1.z.object({
     location: exports.locationZodSchema,
-    subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user Id"),
+    subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }),
 });

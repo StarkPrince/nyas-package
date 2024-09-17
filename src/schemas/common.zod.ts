@@ -41,7 +41,11 @@ export const billingDetailZodSchema = z
     currency: z.nativeEnum(CurrencyEnum),
     outOfWorkingHoursRate: z.number().nonnegative(),
     nightRate: z.number().nonnegative(),
-    applicableSites: z.array(z.string().regex(idPattern, "Invalid site Id")),
+    applicableSites: z.array(
+      z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid site Id",
+      })
+    ),
   })
   .strip()
   .refine(
@@ -101,7 +105,9 @@ export const siteAddressZodSchema = z
 
 export const extensionZodSchema = z
   .object({
-    subticketId: z.string().regex(idPattern, "Invalid field Engineer ID"),
+    subticketId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid subticket Id",
+    }),
     status: z.nativeEnum(ExtensionStatusEnum),
     type: z.nativeEnum(BillingTypeEnum),
     reason: z.string().min(1, "Reason cannot be blank"),

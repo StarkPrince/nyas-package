@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { ChatTypeEnum, ReadStatusEnum } from "../enums";
 export declare const notificationZodSchema: z.ZodObject<{
-    userId: z.ZodString;
-    messageId: z.ZodString;
+    userId: z.ZodEffects<z.ZodString, string, string>;
+    messageId: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodNativeEnum<typeof ReadStatusEnum>;
 }, "strip", z.ZodTypeAny, {
     status: ReadStatusEnum;
@@ -27,9 +27,9 @@ export declare const messageZodSchema: z.ZodObject<{
     size: number | null;
 }>;
 export declare const ticketChatZodSchema: z.ZodObject<{
-    ticketId: z.ZodString;
-    participants: z.ZodArray<z.ZodString, "many">;
-    chatMessages: z.ZodArray<z.ZodString, "many">;
+    ticketId: z.ZodEffects<z.ZodString, string, string>;
+    participants: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+    chatMessages: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     ticketId: string;
     participants: string[];

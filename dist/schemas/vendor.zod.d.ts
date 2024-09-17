@@ -122,7 +122,7 @@ export declare const vendorContractZodSchema: z.ZodObject<{
         currency: z.ZodNativeEnum<typeof import("../enums").CurrencyEnum>;
         outOfWorkingHoursRate: z.ZodNumber;
         nightRate: z.ZodNumber;
-        applicableSites: z.ZodArray<z.ZodString, "many">;
+        applicableSites: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     }, "strip", z.ZodTypeAny, {
         type: import("../enums").BillingTypeEnum;
         country: CountryEnum;

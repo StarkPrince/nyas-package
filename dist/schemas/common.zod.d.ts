@@ -65,7 +65,7 @@ export declare const billingDetailZodSchema: z.ZodEffects<z.ZodObject<{
     currency: z.ZodNativeEnum<typeof CurrencyEnum>;
     outOfWorkingHoursRate: z.ZodNumber;
     nightRate: z.ZodNumber;
-    applicableSites: z.ZodArray<z.ZodString, "many">;
+    applicableSites: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     country: CountryEnum;
@@ -203,7 +203,7 @@ export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject
     coloDetails?: string | undefined;
 }>;
 export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
-    subticketId: z.ZodString;
+    subticketId: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodNativeEnum<typeof ExtensionStatusEnum>;
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;

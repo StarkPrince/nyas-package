@@ -58,7 +58,7 @@ export declare const subticketZodSchema: z.ZodObject<{
     SLA: z.ZodNumber;
     fieldEngineer: z.ZodOptional<z.ZodString>;
     extensions: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodEffects<z.ZodObject<{
-        subticketId: z.ZodString;
+        subticketId: z.ZodEffects<z.ZodString, string, string>;
         status: z.ZodNativeEnum<typeof import("../enums").ExtensionStatusEnum>;
         type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         reason: z.ZodString;

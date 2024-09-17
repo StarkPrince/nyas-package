@@ -31,7 +31,9 @@ exports.billingDetailZodSchema = zod_1.z
     currency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),
     outOfWorkingHoursRate: zod_1.z.number().nonnegative(),
     nightRate: zod_1.z.number().nonnegative(),
-    applicableSites: zod_1.z.array(zod_1.z.string().regex(exports.idPattern, "Invalid site Id")),
+    applicableSites: zod_1.z.array(zod_1.z.string().refine((id) => exports.idPattern.test(id), {
+        message: "Invalid site Id",
+    })),
 })
     .strip()
     .refine((data) => (data.type === enums_1.BillingTypeEnum.HOURLY && !!data.additionalRates) ||
@@ -78,7 +80,9 @@ exports.siteAddressZodSchema = zod_1.z
 });
 exports.extensionZodSchema = zod_1.z
     .object({
-    subticketId: zod_1.z.string().regex(exports.idPattern, "Invalid field Engineer ID"),
+    subticketId: zod_1.z.string().refine((id) => exports.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }),
     status: zod_1.z.nativeEnum(enums_1.ExtensionStatusEnum),
     type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),

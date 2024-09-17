@@ -9,7 +9,9 @@ exports.clientZodSchema = zod_1.z
     name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
     address: common_zod_1.addressZodSchema,
     pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
-    clientContracts: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid contract Id")),
+    clientContracts: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid contract Id",
+    })),
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),
 })
@@ -20,7 +22,9 @@ exports.clientContractZodSchema = zod_1.z
     pointOfContact: zod_1.z
         .array(zod_1.z.union([zod_1.z.string(), common_zod_1.contactDetailZodSchema]))
         .nonempty(),
-    clientId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid client Id"),
+    clientId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid client Id",
+    }),
     contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
     signedContractCopy: zod_1.z
         .string()
@@ -31,7 +35,9 @@ exports.clientContractZodSchema = zod_1.z
         .min(1, "Expiry date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
     vendorContracts: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor Id"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    }))
         .optional(),
     contractStartDate: zod_1.z
         .string()

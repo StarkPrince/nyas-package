@@ -11,14 +11,24 @@ export const locationZodSchema = z.object({
 
 export const fieldEngineerZodSchema = z
   .object({
-    user: z.string().regex(idPattern, "Invalid user ID"),
+    user: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    }),
     vendorContracts: z
-      .array(z.string().regex(idPattern, "Invalid vendor ID"))
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid vendor contact Id",
+        })
+      )
       .default([]),
     location: locationZodSchema.optional(),
     tickets: z.array(ticketZodSchema).default([]),
     subtickets: z
-      .array(z.string().regex(idPattern, "Invalid subticket Id"))
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid subticket Id",
+        })
+      )
       .default([]),
     address: addressZodSchema,
     yearsOfExperience: z.number().default(0),
@@ -95,7 +105,9 @@ export const fieldEngineerGetSubTicketsZodSchema = z
 
 export const fieldEngineerUpdateLocationZodSchema = z
   .object({
-    subticketId: z.string().regex(idPattern, "Invalid user Id"),
+    subticketId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid subticket Id",
+    }),
     location: locationZodSchema,
     event: z.nativeEnum(FieldEngineerWorkStatusEnum),
   })
@@ -103,7 +115,9 @@ export const fieldEngineerUpdateLocationZodSchema = z
 
 export const checkedInZodSchema = z.object({
   location: locationZodSchema,
-  subticketId: z.string().regex(idPattern, "Invalid user Id"),
+  subticketId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid subticket Id",
+  }),
 });
 
 export type FieldEngineerCreationType = z.infer<

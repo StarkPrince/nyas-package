@@ -6,8 +6,12 @@ const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 exports.notificationZodSchema = zod_1.z
     .object({
-    userId: zod_1.z.string(),
-    messageId: zod_1.z.string(),
+    userId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    }),
+    messageId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid message Id",
+    }),
     status: zod_1.z.nativeEnum(enums_1.ReadStatusEnum),
 })
     .strip();
@@ -17,7 +21,13 @@ exports.messageZodSchema = zod_1.z.object({
     size: zod_1.z.number().nullable(),
 });
 exports.ticketChatZodSchema = zod_1.z.object({
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticketId"),
-    participants: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid userId")),
-    chatMessages: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid chatMessageId")),
+    ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid ticket Id",
+    }),
+    participants: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid participant Id",
+    })),
+    chatMessages: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid chat Id",
+    })),
 });

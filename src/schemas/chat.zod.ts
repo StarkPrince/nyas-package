@@ -4,8 +4,12 @@ import { idPattern } from "./common.zod";
 
 export const notificationZodSchema = z
   .object({
-    userId: z.string(),
-    messageId: z.string(),
+    userId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    }),
+    messageId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid message Id",
+    }),
     status: z.nativeEnum(ReadStatusEnum),
   })
   .strip();
@@ -17,9 +21,19 @@ export const messageZodSchema = z.object({
 });
 
 export const ticketChatZodSchema = z.object({
-  ticketId: z.string().regex(idPattern, "Invalid ticketId"),
-  participants: z.array(z.string().regex(idPattern, "Invalid userId")),
-  chatMessages: z.array(z.string().regex(idPattern, "Invalid chatMessageId")),
+  ticketId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid ticket Id",
+  }),
+  participants: z.array(
+    z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid participant Id",
+    })
+  ),
+  chatMessages: z.array(
+    z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid chat Id",
+    })
+  ),
 });
 
 export type NotificationType = z.infer<typeof notificationZodSchema>;

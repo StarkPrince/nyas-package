@@ -12,8 +12,8 @@ export declare const locationZodSchema: z.ZodObject<{
     long: number;
 }>;
 export declare const fieldEngineerZodSchema: z.ZodObject<{
-    user: z.ZodString;
-    vendorContracts: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    user: z.ZodEffects<z.ZodString, string, string>;
+    vendorContracts: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     location: z.ZodOptional<z.ZodObject<{
         lat: z.ZodNumber;
         long: z.ZodNumber;
@@ -280,7 +280,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
     }>, "many">>;
-    subtickets: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    subtickets: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodOptional<z.ZodString>;
@@ -991,7 +991,7 @@ export declare const fieldEngineerGetSubTicketsZodSchema: z.ZodObject<{
     input_date: string;
 }>;
 export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
-    subticketId: z.ZodString;
+    subticketId: z.ZodEffects<z.ZodString, string, string>;
     location: z.ZodObject<{
         lat: z.ZodNumber;
         long: z.ZodNumber;
@@ -1029,7 +1029,7 @@ export declare const checkedInZodSchema: z.ZodObject<{
         lat: number;
         long: number;
     }>;
-    subticketId: z.ZodString;
+    subticketId: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     location: {
         lat: number;
