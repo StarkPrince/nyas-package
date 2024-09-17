@@ -1,16 +1,16 @@
 import { z } from "zod";
 import { UserRolesEnum, UserStatusEnum } from "../enums";
 
+const passwordPattern =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/;
+
 export const userZodSchema = z
   .object({
     username: z.string().optional(),
     email: z.string().email().min(1, "Email cannot be blank"),
-    password: z
-      .string()
-      .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/,
-        "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character such as @#$!%*?& and must be 8-32 characters long"
-      ),
+    password: z.string().refine((id) => passwordPattern.test(id), {
+      message: "Invalid vendor contract Id",
+    }),
     role: z.nativeEnum(UserRolesEnum).default(UserRolesEnum.FIELD_ENGINEER),
     phoneNumber: z.string().optional(),
     name: z.string().min(1, "Name cannot be blank"),

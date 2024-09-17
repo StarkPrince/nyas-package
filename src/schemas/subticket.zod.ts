@@ -20,22 +20,40 @@ export const subticketStatusZodSchema = z
     comments: z.string().optional(),
     createdAt: z.date().optional(),
     updatedAt: z.date().optional(),
-    createdBy: z.string().regex(idPattern, "Invalid User ID").optional(),
-    updatedBy: z.string().regex(idPattern, "Invalid User ID").optional(),
+    createdBy: z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid user Id",
+      })
+      .optional(),
+    updatedBy: z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid user Id",
+      })
+      .optional(),
   })
   .strip();
 
 export const subticketZodSchema = z
   .object({
-    ticketId: z.string().regex(idPattern, "Invalid ticket Id"),
+    ticketId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid ticket Id",
+    }),
     number: z.string(),
-    vendorContractId: z.string().regex(idPattern, "Invalid Vendor Contract ID"),
-    schedule: z.string().regex(idPattern, "Invalid Schedule ID"),
+    vendorContractId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid vendor contract Id",
+    }),
+    schedule: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid schedule Id",
+    }),
     statuses: z.array(subticketStatusZodSchema),
     SLA: z.number(),
     fieldEngineer: z
       .string()
-      .regex(idPattern, "Invalid Field Engineer ID")
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+      })
       .optional(),
     extensions: z.array(extensionZodSchema).optional(),
     feUpdates: z.array(fieldEngineerStatusZodSchema).optional(),
@@ -49,10 +67,14 @@ export const subticketUpdateZodSchema = z
   .strip();
 
 export const rejectedSubticketZodSchema = z.object({
-  subticketId: z.string().regex(idPattern, "Invalid Subticket ID"),
+  subticketId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid subticket Id",
+  }),
   reason: z.string(),
   comments: z.string(),
-  fieldEngineer: z.string().regex(idPattern, "Invalid Field Engineer ID"),
+  fieldEngineer: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid fieldEngineer Id",
+  }),
 });
 
 export type SubTicketType = z.infer<typeof subticketZodSchema>;

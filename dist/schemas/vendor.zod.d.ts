@@ -49,9 +49,9 @@ export declare const vendorZodSchema: z.ZodObject<{
         name: string;
         phoneNumber: string;
     }>, "atleastone">;
-    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     countriesTheyServe: z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "many">;
-    clientsTheyWorkedFor: z.ZodArray<z.ZodString, "many">;
+    clientsTheyWorkedFor: z.ZodArray<z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>, "many">;
 }, "strip", z.ZodTypeAny, {
     address: {
         country: CountryEnum;
@@ -74,7 +74,7 @@ export declare const vendorZodSchema: z.ZodObject<{
         phoneNumber: string;
     }[]];
     countriesTheyServe: CountryEnum[];
-    clientsTheyWorkedFor: string[];
+    clientsTheyWorkedFor: (string | undefined)[];
     vendorContracts?: string[] | undefined;
 }, {
     address: {
@@ -98,11 +98,11 @@ export declare const vendorZodSchema: z.ZodObject<{
         phoneNumber: string;
     }[]];
     countriesTheyServe: CountryEnum[];
-    clientsTheyWorkedFor: string[];
+    clientsTheyWorkedFor: (string | undefined)[];
     vendorContracts?: string[] | undefined;
 }>;
 export declare const vendorContractZodSchema: z.ZodObject<{
-    vendorId: z.ZodString;
+    vendorId: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     contractNumber: z.ZodString;
     uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     billingDetails: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodObject<{
@@ -189,7 +189,7 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     contractStartDate: z.ZodEffects<z.ZodString, string, string>;
     onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
     signedContractCopy: z.ZodString;
-    clientContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    clientContracts: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
     fieldEngineers: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
@@ -221,10 +221,10 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    vendorId: string;
     fieldEngineers: string[];
     clientContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
+    vendorId?: string | undefined;
 }, {
     pointOfContact: [string | {
         email: string;
@@ -253,11 +253,11 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    vendorId: string;
     fieldEngineers: string[];
     status?: ContractStatusEnum | undefined;
     clientContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
+    vendorId?: string | undefined;
 }>;
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;

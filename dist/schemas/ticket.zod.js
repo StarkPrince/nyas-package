@@ -5,8 +5,12 @@ const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 exports.assignmentZodSchema = zod_1.z.object({
-    fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid field engineer Id"),
-    vendorContract: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor contract"),
+    fieldEngineer: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid field Engineer Id",
+    }),
+    vendorContract: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    }),
 });
 exports.communicationZodSchema = zod_1.z
     .object({
@@ -42,31 +46,55 @@ exports.taskZodSchema = zod_1.z
 exports.ticketZodSchema = zod_1.z
     .object({
     number: zod_1.z.string(),
-    chat: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid chat Id"),
+    chat: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid chat Id",
+    }),
     title: zod_1.z.string(),
-    clientContractId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid contract Id"),
+    clientContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid client contract Id",
+    }),
     site: common_zod_1.siteAddressZodSchema,
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
-    schedules: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid schedule Id")),
+    schedules: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid schedule Id",
+    })),
     status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum),
-    teamMembers: zod_1.z.array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid team member Id")),
+    teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })),
     tasks: zod_1.z.array(exports.taskZodSchema).optional().default([]),
     document: exports.documentZodSchema.optional(),
     communications: exports.communicationZodSchema.optional(),
     subtickets: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid subticket Id"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }))
         .default([]),
-    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user Id").optional(),
-    updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid user Id").optional(),
+    createdBy: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })
+        .optional(),
+    updatedBy: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })
+        .optional(),
 })
     .strip();
 exports.ticketCreationZodSchema = zod_1.z
     .object({
     number: zod_1.z.string(),
     title: zod_1.z.string(),
-    clientContractId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid contract Id"),
-    site: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid site Id"),
+    clientContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid client contract Id",
+    }),
+    site: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid site Id",
+    }),
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
@@ -75,10 +103,14 @@ exports.ticketCreationZodSchema = zod_1.z
     .strip();
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticket Id"),
+    ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid ticket Id",
+    }),
     scheduleAssignments: zod_1.z
         .array(zod_1.z.object({
-        schedule: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid schedule Id"),
+        schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+            message: "Invalid vendor contract Id",
+        }),
         assignments: zod_1.z.array(exports.assignmentZodSchema),
     }))
         .optional(),

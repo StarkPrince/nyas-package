@@ -3,7 +3,7 @@ import { UserRolesEnum, UserStatusEnum } from "../enums";
 export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     username: z.ZodOptional<z.ZodString>;
     email: z.ZodString;
-    password: z.ZodString;
+    password: z.ZodEffects<z.ZodString, string, string>;
     role: z.ZodDefault<z.ZodNativeEnum<typeof UserRolesEnum>>;
     phoneNumber: z.ZodOptional<z.ZodString>;
     name: z.ZodString;

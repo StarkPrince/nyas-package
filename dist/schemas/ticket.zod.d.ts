@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 export declare const assignmentZodSchema: z.ZodObject<{
-    fieldEngineer: z.ZodString;
-    vendorContract: z.ZodString;
+    fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
+    vendorContract: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
     vendorContract: string;
@@ -83,9 +83,9 @@ export declare const taskZodSchema: z.ZodObject<{
 }>;
 export declare const ticketZodSchema: z.ZodObject<{
     number: z.ZodString;
-    chat: z.ZodString;
+    chat: z.ZodEffects<z.ZodString, string, string>;
     title: z.ZodString;
-    clientContractId: z.ZodString;
+    clientContractId: z.ZodEffects<z.ZodString, string, string>;
     site: z.ZodEffects<z.ZodEffects<z.ZodObject<{
         siteDetails: z.ZodString;
         cageNumber: z.ZodOptional<z.ZodString>;
@@ -165,9 +165,9 @@ export declare const ticketZodSchema: z.ZodObject<{
     }>;
     numberOfEngineers: z.ZodNumber;
     SLA: z.ZodNumber;
-    schedules: z.ZodArray<z.ZodString, "many">;
+    schedules: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     status: z.ZodNativeEnum<typeof TicketStatusEnum>;
-    teamMembers: z.ZodArray<z.ZodString, "many">;
+    teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodObject<{
         taskName: z.ZodString;
         startdatetime: z.ZodString;
@@ -239,9 +239,9 @@ export declare const ticketZodSchema: z.ZodObject<{
         };
         communication: string[];
     }>>;
-    subtickets: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
-    createdBy: z.ZodOptional<z.ZodString>;
-    updatedBy: z.ZodOptional<z.ZodString>;
+    subtickets: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
+    createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
 }, "strip", z.ZodTypeAny, {
     number: string;
     SLA: number;
@@ -340,8 +340,8 @@ export declare const ticketZodSchema: z.ZodObject<{
 export declare const ticketCreationZodSchema: z.ZodObject<{
     number: z.ZodString;
     title: z.ZodString;
-    clientContractId: z.ZodString;
-    site: z.ZodString;
+    clientContractId: z.ZodEffects<z.ZodString, string, string>;
+    site: z.ZodEffects<z.ZodString, string, string>;
     numberOfEngineers: z.ZodNumber;
     SLA: z.ZodNumber;
     schedules: z.ZodArray<z.ZodObject<{
@@ -381,12 +381,12 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
     status?: TicketStatusEnum | undefined;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodObject<{
-    ticketId: z.ZodString;
+    ticketId: z.ZodEffects<z.ZodString, string, string>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        schedule: z.ZodString;
+        schedule: z.ZodEffects<z.ZodString, string, string>;
         assignments: z.ZodArray<z.ZodObject<{
-            fieldEngineer: z.ZodString;
-            vendorContract: z.ZodString;
+            fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
+            vendorContract: z.ZodEffects<z.ZodString, string, string>;
         }, "strip", z.ZodTypeAny, {
             fieldEngineer: string;
             vendorContract: string;

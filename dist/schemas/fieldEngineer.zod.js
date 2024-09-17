@@ -48,12 +48,16 @@ exports.fieldEngineerCreationZodSchema = zod_1.z
     .object({
     user: exports.feUserCreationZodSchema,
     vendorContracts: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid vendor ID"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    }))
         .optional(),
     location: exports.locationZodSchema.optional(),
     tickets: zod_1.z.array(ticket_zod_1.ticketZodSchema).optional().default([]),
     subtickets: zod_1.z
-        .array(zod_1.z.string().regex(common_zod_1.idPattern, "Invalid subticket Id"))
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }))
         .optional()
         .default([]),
     address: common_zod_1.addressZodSchema,
@@ -72,7 +76,9 @@ exports.fieldEngineerStatusZodSchema = zod_1.z
 })
     .strip();
 exports.cancelSubticketZodSchema = zod_1.z.object({
-    subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid subticket ID"),
+    subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
 });

@@ -54,12 +54,20 @@ export const fieldEngineerCreationZodSchema = z
   .object({
     user: feUserCreationZodSchema,
     vendorContracts: z
-      .array(z.string().regex(idPattern, "Invalid vendor ID"))
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid vendor contract Id",
+        })
+      )
       .optional(),
     location: locationZodSchema.optional(),
     tickets: z.array(ticketZodSchema).optional().default([]),
     subtickets: z
-      .array(z.string().regex(idPattern, "Invalid subticket Id"))
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid subticket Id",
+        })
+      )
       .optional()
       .default([]),
     address: addressZodSchema,
@@ -80,7 +88,9 @@ export const fieldEngineerStatusZodSchema = z
   .strip();
 
 export const cancelSubticketZodSchema = z.object({
-  subticketId: z.string().regex(idPattern, "Invalid subticket ID"),
+  subticketId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid subticket Id",
+  }),
   reason: z.string().min(1, "Reason cannot be blank"),
   comments: z.string().min(1, "Comments cannot be blank"),
 });

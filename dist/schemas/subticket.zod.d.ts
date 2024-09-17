@@ -6,8 +6,8 @@ export declare const subticketStatusZodSchema: z.ZodObject<{
     comments: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodDate>;
     updatedAt: z.ZodOptional<z.ZodDate>;
-    createdBy: z.ZodOptional<z.ZodString>;
-    updatedBy: z.ZodOptional<z.ZodString>;
+    createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
 }, "strip", z.ZodTypeAny, {
     status: SubTicketStatusEnum;
     createdBy?: string | undefined;
@@ -26,18 +26,18 @@ export declare const subticketStatusZodSchema: z.ZodObject<{
     updatedAt?: Date | undefined;
 }>;
 export declare const subticketZodSchema: z.ZodObject<{
-    ticketId: z.ZodString;
+    ticketId: z.ZodEffects<z.ZodString, string, string>;
     number: z.ZodString;
-    vendorContractId: z.ZodString;
-    schedule: z.ZodString;
+    vendorContractId: z.ZodEffects<z.ZodString, string, string>;
+    schedule: z.ZodEffects<z.ZodString, string, string>;
     statuses: z.ZodArray<z.ZodObject<{
         status: z.ZodNativeEnum<typeof SubTicketStatusEnum>;
         reason: z.ZodOptional<z.ZodString>;
         comments: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodOptional<z.ZodDate>;
         updatedAt: z.ZodOptional<z.ZodDate>;
-        createdBy: z.ZodOptional<z.ZodString>;
-        updatedBy: z.ZodOptional<z.ZodString>;
+        createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+        updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
         status: SubTicketStatusEnum;
         createdBy?: string | undefined;
@@ -56,7 +56,7 @@ export declare const subticketZodSchema: z.ZodObject<{
         updatedAt?: Date | undefined;
     }>, "many">;
     SLA: z.ZodNumber;
-    fieldEngineer: z.ZodOptional<z.ZodString>;
+    fieldEngineer: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     extensions: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodEffects<z.ZodObject<{
         subticketId: z.ZodEffects<z.ZodString, string, string>;
         status: z.ZodNativeEnum<typeof import("../enums").ExtensionStatusEnum>;
@@ -236,10 +236,10 @@ export declare const subticketUpdateZodSchema: z.ZodObject<{
     status: SubTicketStatusEnum;
 }>;
 export declare const rejectedSubticketZodSchema: z.ZodObject<{
-    subticketId: z.ZodString;
+    subticketId: z.ZodEffects<z.ZodString, string, string>;
     reason: z.ZodString;
     comments: z.ZodString;
-    fieldEngineer: z.ZodString;
+    fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
     subticketId: string;

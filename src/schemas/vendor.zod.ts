@@ -13,17 +13,33 @@ export const vendorZodSchema = z
     name: z.string().min(1, "Name cannot be blank"),
     address: addressZodSchema,
     pointOfContact: z.array(contactDetailZodSchema).nonempty(),
-    vendorContracts: z.array(z.string().regex(idPattern)).optional(),
+    vendorContracts: z
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid vendor contract Id",
+        })
+      )
+      .optional(),
     countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
     clientsTheyWorkedFor: z.array(
-      z.string().regex(idPattern, "Client Id not valid")
+      z
+        .string()
+        .refine((id) => idPattern.test(id), {
+          message: "Invalid client Id",
+        })
+        .optional()
     ),
   })
   .strip();
 
 export const vendorContractZodSchema = z
   .object({
-    vendorId: z.string().regex(idPattern),
+    vendorId: z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid vendor Id",
+      })
+      .optional(),
     contractNumber: z.string().min(1, "Contract name cannot be blank"),
     uploadedFiles: z.array(z.string()).optional(),
     billingDetails: z.array(z.union([z.string(), billingDetailZodSchema])),
@@ -45,7 +61,13 @@ export const vendorContractZodSchema = z
     signedContractCopy: z
       .string()
       .min(1, "Signed contract copy cannot be blank"),
-    clientContracts: z.array(z.string().regex(idPattern)).optional(),
+    clientContracts: z
+      .array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid client contract Id",
+        })
+      )
+      .optional(),
     status: z
       .nativeEnum(ContractStatusEnum)
       .optional()

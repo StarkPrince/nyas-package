@@ -21,21 +21,39 @@ exports.subticketStatusZodSchema = zod_1.z
     comments: zod_1.z.string().optional(),
     createdAt: zod_1.z.date().optional(),
     updatedAt: zod_1.z.date().optional(),
-    createdBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
-    updatedBy: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid User ID").optional(),
+    createdBy: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })
+        .optional(),
+    updatedBy: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })
+        .optional(),
 })
     .strip();
 exports.subticketZodSchema = zod_1.z
     .object({
-    ticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid ticket Id"),
+    ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid ticket Id",
+    }),
     number: zod_1.z.string(),
-    vendorContractId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Vendor Contract ID"),
-    schedule: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Schedule ID"),
+    vendorContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    }),
+    schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid schedule Id",
+    }),
     statuses: zod_1.z.array(exports.subticketStatusZodSchema),
     SLA: zod_1.z.number(),
     fieldEngineer: zod_1.z
         .string()
-        .regex(common_zod_1.idPattern, "Invalid Field Engineer ID")
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    })
         .optional(),
     extensions: zod_1.z.array(common_zod_1.extensionZodSchema).optional(),
     feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).optional(),
@@ -47,8 +65,12 @@ exports.subticketUpdateZodSchema = zod_1.z
 })
     .strip();
 exports.rejectedSubticketZodSchema = zod_1.z.object({
-    subticketId: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Subticket ID"),
+    subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid subticket Id",
+    }),
     reason: zod_1.z.string(),
     comments: zod_1.z.string(),
-    fieldEngineer: zod_1.z.string().regex(common_zod_1.idPattern, "Invalid Field Engineer ID"),
+    fieldEngineer: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid fieldEngineer Id",
+    }),
 });
