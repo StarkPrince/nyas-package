@@ -37,41 +37,16 @@ export const fieldEngineerZodSchema = z.object({
     .default(5),
 });
 
-export const feUserCreationZodSchema = z.object({
-  name: z.string().min(1, "Name cannot be blank"),
-  email: z.string().email("Invalid email address"),
-  phoneNumber: z.string().min(1, "Phone number cannot be blank"),
-  password: z
-    .string()
-    .min(8, "Password must be at least 8 characters long")
-    .optional(),
-});
-
 export const fieldEngineerCreationZodSchema = z.object({
-  user: feUserCreationZodSchema,
-  vendorContracts: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "Invalid vendor contract Id",
-      })
-    )
-    .optional(),
-  tickets: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "invalid ticket Id",
-      })
-    )
-    .optional()
-    .default([]),
-  subtickets: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "Invalid subticket Id",
-      })
-    )
-    .optional()
-    .default([]),
+  user: z.object({
+    name: z.string().min(1, "Name cannot be blank"),
+    email: z.string().email("Invalid email address"),
+    phoneNumber: z.string().min(1, "Phone number cannot be blank"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters long")
+      .optional(),
+  }),
   address: addressZodSchema,
   yearsOfExperience: z.number().optional().default(0),
   rating: z

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerCreationZodSchema = exports.feUserCreationZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
+exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerCreationZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -32,34 +32,16 @@ exports.fieldEngineerZodSchema = zod_1.z.object({
         .max(5, "Rating cannot be more than 5")
         .default(5),
 });
-exports.feUserCreationZodSchema = zod_1.z.object({
-    name: zod_1.z.string().min(1, "Name cannot be blank"),
-    email: zod_1.z.string().email("Invalid email address"),
-    phoneNumber: zod_1.z.string().min(1, "Phone number cannot be blank"),
-    password: zod_1.z
-        .string()
-        .min(8, "Password must be at least 8 characters long")
-        .optional(),
-});
 exports.fieldEngineerCreationZodSchema = zod_1.z.object({
-    user: exports.feUserCreationZodSchema,
-    vendorContracts: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid vendor contract Id",
-    }))
-        .optional(),
-    tickets: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "invalid ticket Id",
-    }))
-        .optional()
-        .default([]),
-    subtickets: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid subticket Id",
-    }))
-        .optional()
-        .default([]),
+    user: zod_1.z.object({
+        name: zod_1.z.string().min(1, "Name cannot be blank"),
+        email: zod_1.z.string().email("Invalid email address"),
+        phoneNumber: zod_1.z.string().min(1, "Phone number cannot be blank"),
+        password: zod_1.z
+            .string()
+            .min(8, "Password must be at least 8 characters long")
+            .optional(),
+    }),
     address: common_zod_1.addressZodSchema,
     yearsOfExperience: zod_1.z.number().optional().default(0),
     rating: zod_1.z

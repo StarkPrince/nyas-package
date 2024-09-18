@@ -436,22 +436,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
 }>;
-export declare const feUserCreationZodSchema: z.ZodObject<{
-    name: z.ZodString;
-    email: z.ZodString;
-    phoneNumber: z.ZodString;
-    password: z.ZodOptional<z.ZodString>;
-}, "strip", z.ZodTypeAny, {
-    email: string;
-    name: string;
-    phoneNumber: string;
-    password?: string | undefined;
-}, {
-    email: string;
-    name: string;
-    phoneNumber: string;
-    password?: string | undefined;
-}>;
 export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
     user: z.ZodObject<{
         name: z.ZodString;
@@ -469,9 +453,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         phoneNumber: string;
         password?: string | undefined;
     }>;
-    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
-    tickets: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>>;
-    subtickets: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>>;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodOptional<z.ZodString>;
@@ -509,14 +490,12 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
     yearsOfExperience: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
     rating: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    subtickets: string[];
     user: {
         email: string;
         name: string;
         phoneNumber: string;
         password?: string | undefined;
     };
-    tickets: string[];
     address: {
         country: import("../enums").CountryEnum;
         city: string;
@@ -529,7 +508,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
     };
     yearsOfExperience: number;
     rating: number;
-    vendorContracts?: string[] | undefined;
 }, {
     user: {
         email: string;
@@ -547,9 +525,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     };
-    subtickets?: string[] | undefined;
-    vendorContracts?: string[] | undefined;
-    tickets?: string[] | undefined;
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
 }>;
