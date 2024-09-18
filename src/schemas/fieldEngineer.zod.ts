@@ -20,7 +20,6 @@ export const fieldEngineerZodSchema = z.object({
       })
     )
     .default([]),
-  location: locationZodSchema.optional(),
   tickets: z.array(ticketZodSchema).default([]),
   subtickets: z
     .array(
@@ -57,8 +56,14 @@ export const fieldEngineerCreationZodSchema = z.object({
       })
     )
     .optional(),
-  location: locationZodSchema.optional(),
-  tickets: z.array(ticketZodSchema).optional().default([]),
+  tickets: z
+    .array(
+      z.string().refine((id) => idPattern.test(id), {
+        message: "invalid ticket Id",
+      })
+    )
+    .optional()
+    .default([]),
   subtickets: z
     .array(
       z.string().refine((id) => idPattern.test(id), {

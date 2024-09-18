@@ -18,7 +18,6 @@ exports.fieldEngineerZodSchema = zod_1.z.object({
         message: "Invalid vendor contact Id",
     }))
         .default([]),
-    location: exports.locationZodSchema.optional(),
     tickets: zod_1.z.array(ticket_zod_1.ticketZodSchema).default([]),
     subtickets: zod_1.z
         .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
@@ -49,8 +48,12 @@ exports.fieldEngineerCreationZodSchema = zod_1.z.object({
         message: "Invalid vendor contract Id",
     }))
         .optional(),
-    location: exports.locationZodSchema.optional(),
-    tickets: zod_1.z.array(ticket_zod_1.ticketZodSchema).optional().default([]),
+    tickets: zod_1.z
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "invalid ticket Id",
+    }))
+        .optional()
+        .default([]),
     subtickets: zod_1.z
         .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
