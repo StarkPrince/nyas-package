@@ -9,8 +9,7 @@ exports.locationZodSchema = zod_1.z.object({
     lat: zod_1.z.number(),
     long: zod_1.z.number(),
 });
-exports.fieldEngineerZodSchema = zod_1.z
-    .object({
+exports.fieldEngineerZodSchema = zod_1.z.object({
     user: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid user Id",
     }),
@@ -33,8 +32,7 @@ exports.fieldEngineerZodSchema = zod_1.z
         .min(1, "Rating cannot be less than 1")
         .max(5, "Rating cannot be more than 5")
         .default(5),
-})
-    .strip();
+});
 exports.feUserCreationZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"),
     email: zod_1.z.string().email("Invalid email address"),
@@ -44,8 +42,7 @@ exports.feUserCreationZodSchema = zod_1.z.object({
         .min(8, "Password must be at least 8 characters long")
         .optional(),
 });
-exports.fieldEngineerCreationZodSchema = zod_1.z
-    .object({
+exports.fieldEngineerCreationZodSchema = zod_1.z.object({
     user: exports.feUserCreationZodSchema,
     vendorContracts: zod_1.z
         .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
@@ -67,14 +64,11 @@ exports.fieldEngineerCreationZodSchema = zod_1.z
         .min(1, "Rating cannot be less than 1")
         .max(5, "Rating cannot be more than 5")
         .default(5),
-})
-    .strip();
-exports.fieldEngineerStatusZodSchema = zod_1.z
-    .object({
+});
+exports.fieldEngineerStatusZodSchema = zod_1.z.object({
     workStatus: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     location: exports.locationZodSchema,
-})
-    .strip();
+});
 exports.cancelSubticketZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
@@ -82,31 +76,25 @@ exports.cancelSubticketZodSchema = zod_1.z.object({
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
 });
-exports.fieldEngineerGetTicketsZodSchema = zod_1.z
-    .object({
+exports.fieldEngineerGetTicketsZodSchema = zod_1.z.object({
     input_date: zod_1.z
         .string()
         .min(1, "Input date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-})
-    .strip();
-exports.fieldEngineerGetSubTicketsZodSchema = zod_1.z
-    .object({
+});
+exports.fieldEngineerGetSubTicketsZodSchema = zod_1.z.object({
     input_date: zod_1.z
         .string()
         .min(1, "Input date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-})
-    .strip();
-exports.fieldEngineerUpdateLocationZodSchema = zod_1.z
-    .object({
+});
+exports.fieldEngineerUpdateLocationZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
     }),
     location: exports.locationZodSchema,
     event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
-})
-    .strip();
+});
 exports.checkedInZodSchema = zod_1.z.object({
     location: exports.locationZodSchema,
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

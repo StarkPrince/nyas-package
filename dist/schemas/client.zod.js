@@ -4,8 +4,7 @@ exports.clientContractZodSchema = exports.clientZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-exports.clientZodSchema = zod_1.z
-    .object({
+exports.clientZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
     address: common_zod_1.addressZodSchema,
     pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
@@ -14,10 +13,8 @@ exports.clientZodSchema = zod_1.z
     })),
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),
-})
-    .strip();
-exports.clientContractZodSchema = zod_1.z
-    .object({
+});
+exports.clientContractZodSchema = zod_1.z.object({
     billingDetails: zod_1.z.array(zod_1.z.union([zod_1.z.string(), common_zod_1.billingDetailZodSchema])),
     pointOfContact: zod_1.z
         .array(zod_1.z.union([zod_1.z.string(), common_zod_1.contactDetailZodSchema]))
@@ -26,9 +23,7 @@ exports.clientContractZodSchema = zod_1.z
         message: "Invalid client Id",
     }),
     contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
-    signedContractCopy: zod_1.z
-        .string()
-        .min(1, "Signed contract copy cannot be blank"),
+    signedContractCopy: zod_1.z.string().min(1, "Signed contract copy cannot be blank"),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     expiryDate: zod_1.z
         .string()
@@ -51,5 +46,4 @@ exports.clientContractZodSchema = zod_1.z
         .string()
         .min(1, "Onboarding date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-})
-    .strip();
+});

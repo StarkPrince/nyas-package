@@ -47,7 +47,6 @@ export const billingDetailZodSchema = z
       })
     ),
   })
-  .strip()
   .refine(
     (data) =>
       (data.type === BillingTypeEnum.HOURLY && !!data.additionalRates) ||
@@ -59,18 +58,16 @@ export const billingDetailZodSchema = z
     }
   );
 
-export const scheduleZodSchema = z
-  .object({
-    startdatetime: z
-      .string()
-      .min(1, "Start time cannot be blank")
-      .refine((time) => !isNaN(Date.parse(time)), "Invalid start time format"),
-    enddatetime: z
-      .string()
-      .min(1, "End time cannot be blank")
-      .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
-  })
-  .strip();
+export const scheduleZodSchema = z.object({
+  startdatetime: z
+    .string()
+    .min(1, "Start time cannot be blank")
+    .refine((time) => !isNaN(Date.parse(time)), "Invalid start time format"),
+  enddatetime: z
+    .string()
+    .min(1, "End time cannot be blank")
+    .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
+});
 
 export const siteAddressZodSchema = z
   .object({
@@ -154,15 +151,13 @@ export const logisticsZodSchema = z.object({
   type: z.nativeEnum(LogisticsEnum),
 });
 
-export const taskTemplateZodSchema = z
-  .object({
-    taskName: z.string(),
-    taskDescription: z.string(),
-    logistics: z.array(z.string()),
-    difficultyLevel: z.number().min(1).max(5),
-    relatedMedia: z.array(z.string()),
-  })
-  .strip();
+export const taskTemplateZodSchema = z.object({
+  taskName: z.string(),
+  taskDescription: z.string(),
+  logistics: z.array(z.string()),
+  difficultyLevel: z.number().min(1).max(5),
+  relatedMedia: z.array(z.string()),
+});
 
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;

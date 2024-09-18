@@ -12,27 +12,20 @@ exports.assignmentZodSchema = zod_1.z.object({
         message: "Invalid vendor contract Id",
     }),
 });
-exports.communicationZodSchema = zod_1.z
-    .object({
+exports.communicationZodSchema = zod_1.z.object({
     consumerPortal: zod_1.z.object({
         username: zod_1.z.string().min(1, "Username cannot be blank"),
         password: zod_1.z.string().min(1, "Password cannot be blank"),
         notes: zod_1.z.string().optional(),
     }),
     communication: zod_1.z.array(zod_1.z.string().min(1, "Communication detail cannot be blank")),
-})
-    .strip();
-exports.documentZodSchema = zod_1.z
-    .object({
-    projectDescription: zod_1.z
-        .string()
-        .min(1, "Project description cannot be blank"),
+});
+exports.documentZodSchema = zod_1.z.object({
+    projectDescription: zod_1.z.string().min(1, "Project description cannot be blank"),
     MOPs: zod_1.z.string().min(1, "MOPs cannot be blank"),
     SOWUpload: zod_1.z.string().min(1, "SOW Upload cannot be blank"),
-})
-    .strip();
-exports.taskZodSchema = zod_1.z
-    .object({
+});
+exports.taskZodSchema = zod_1.z.object({
     taskName: zod_1.z.string(),
     startdatetime: zod_1.z.string(),
     enddateime: zod_1.z.string(),
@@ -41,10 +34,8 @@ exports.taskZodSchema = zod_1.z
     difficultyLevel: zod_1.z.number().min(1).max(5),
     relatedMedia: zod_1.z.array(zod_1.z.string()),
     status: zod_1.z.nativeEnum(enums_1.TaskStatusEnum),
-})
-    .strip();
-exports.ticketZodSchema = zod_1.z
-    .object({
+});
+exports.ticketZodSchema = zod_1.z.object({
     number: zod_1.z.string(),
     chat: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid chat Id",
@@ -83,10 +74,8 @@ exports.ticketZodSchema = zod_1.z
         message: "Invalid user Id",
     })
         .optional(),
-})
-    .strip();
-exports.ticketCreationZodSchema = zod_1.z
-    .object({
+});
+exports.ticketCreationZodSchema = zod_1.z.object({
     number: zod_1.z.string(),
     title: zod_1.z.string(),
     clientContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
@@ -99,10 +88,8 @@ exports.ticketCreationZodSchema = zod_1.z
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
     status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum).default(enums_1.TicketStatusEnum.DRAFT),
-})
-    .strip();
-exports.ticketUpdateZodSchema = zod_1.z
-    .object({
+});
+exports.ticketUpdateZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid ticket Id",
     }),
@@ -117,5 +104,4 @@ exports.ticketUpdateZodSchema = zod_1.z
     document: exports.documentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),
     communications: exports.communicationZodSchema.optional(),
-})
-    .strip();
+});

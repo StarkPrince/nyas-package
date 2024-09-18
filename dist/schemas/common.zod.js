@@ -35,14 +35,12 @@ exports.billingDetailZodSchema = zod_1.z
         message: "Invalid site Id",
     })),
 })
-    .strip()
     .refine((data) => (data.type === enums_1.BillingTypeEnum.HOURLY && !!data.additionalRates) ||
     (data.type === enums_1.BillingTypeEnum.DAILY && data.dailyRate !== undefined), {
     message: "If billing type is 'hourly', 'additionalRates' is required. If billing type is 'daily', 'dailyRate' is required.",
     path: ["type"], // Error is shown at the 'type' field
 });
-exports.scheduleZodSchema = zod_1.z
-    .object({
+exports.scheduleZodSchema = zod_1.z.object({
     startdatetime: zod_1.z
         .string()
         .min(1, "Start time cannot be blank")
@@ -51,8 +49,7 @@ exports.scheduleZodSchema = zod_1.z
         .string()
         .min(1, "End time cannot be blank")
         .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
-})
-    .strip();
+});
 exports.siteAddressZodSchema = zod_1.z
     .object({
     siteDetails: zod_1.z.string().min(1, "Site details cannot be blank"),
@@ -120,12 +117,10 @@ exports.logisticsZodSchema = zod_1.z.object({
     imageUrl: zod_1.z.string().min(1, "Image URL cannot be blank"),
     type: zod_1.z.nativeEnum(enums_1.LogisticsEnum),
 });
-exports.taskTemplateZodSchema = zod_1.z
-    .object({
+exports.taskTemplateZodSchema = zod_1.z.object({
     taskName: zod_1.z.string(),
     taskDescription: zod_1.z.string(),
     logistics: zod_1.z.array(zod_1.z.string()),
     difficultyLevel: zod_1.z.number().min(1).max(5),
     relatedMedia: zod_1.z.array(zod_1.z.string()),
-})
-    .strip();
+});

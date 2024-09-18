@@ -4,8 +4,7 @@ exports.ticketChatZodSchema = exports.messageZodSchema = exports.notificationZod
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-exports.notificationZodSchema = zod_1.z
-    .object({
+exports.notificationZodSchema = zod_1.z.object({
     userId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid user Id",
     }),
@@ -13,8 +12,7 @@ exports.notificationZodSchema = zod_1.z
         message: "Invalid message Id",
     }),
     status: zod_1.z.nativeEnum(enums_1.ReadStatusEnum),
-})
-    .strip();
+});
 exports.messageZodSchema = zod_1.z.object({
     chatType: zod_1.z.nativeEnum(enums_1.ChatTypeEnum),
     data: zod_1.z.string(),

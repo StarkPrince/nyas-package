@@ -5,8 +5,7 @@ const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 const idPattern = /^[a-f\d]{24}$/i;
-exports.vendorZodSchema = zod_1.z
-    .object({
+exports.vendorZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"),
     address: common_zod_1.addressZodSchema,
     pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
@@ -22,10 +21,8 @@ exports.vendorZodSchema = zod_1.z
         message: "Invalid client Id",
     })
         .optional()),
-})
-    .strip();
-exports.vendorContractZodSchema = zod_1.z
-    .object({
+});
+exports.vendorContractZodSchema = zod_1.z.object({
     vendorId: zod_1.z
         .string()
         .refine((id) => idPattern.test(id), {
@@ -50,9 +47,7 @@ exports.vendorContractZodSchema = zod_1.z
         .string()
         .min(1, "Onboarding date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-    signedContractCopy: zod_1.z
-        .string()
-        .min(1, "Signed contract copy cannot be blank"),
+    signedContractCopy: zod_1.z.string().min(1, "Signed contract copy cannot be blank"),
     clientContracts: zod_1.z
         .array(zod_1.z.string().refine((id) => idPattern.test(id), {
         message: "Invalid client contract Id",
@@ -63,5 +58,4 @@ exports.vendorContractZodSchema = zod_1.z
         .optional()
         .default(enums_1.ContractStatusEnum.UPCOMING),
     fieldEngineers: zod_1.z.array(zod_1.z.string()),
-})
-    .strip();
+});

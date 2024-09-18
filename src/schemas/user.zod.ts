@@ -22,19 +22,16 @@ export const userZodSchema = z
       .default([])
       .optional(),
   })
-  .strip()
   .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",
     path: ["email", "phoneNumber"],
   });
 
-export const userUpdateZodSchema = z
-  .object({
-    name: z.string().optional(),
-    about: z.string().optional(),
-    image: z.string().optional(),
-  })
-  .strip();
+export const userUpdateZodSchema = z.object({
+  name: z.string().optional(),
+  about: z.string().optional(),
+  image: z.string().optional(),
+});
 
 export const userLoginZodSchema = z.object({
   email: z.string().email().min(1, "Email cannot be blank"),

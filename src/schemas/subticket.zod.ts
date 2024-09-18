@@ -13,58 +13,52 @@ const validStatusOrder = [
   "pending",
 ] as const;
 
-export const subticketStatusZodSchema = z
-  .object({
-    status: z.nativeEnum(SubTicketStatusEnum),
-    reason: z.string().optional(),
-    comments: z.string().optional(),
-    createdAt: z.date().optional(),
-    updatedAt: z.date().optional(),
-    createdBy: z
-      .string()
-      .refine((id) => idPattern.test(id), {
-        message: "Invalid user Id",
-      })
-      .optional(),
-    updatedBy: z
-      .string()
-      .refine((id) => idPattern.test(id), {
-        message: "Invalid user Id",
-      })
-      .optional(),
-  })
-  .strip();
+export const subticketStatusZodSchema = z.object({
+  status: z.nativeEnum(SubTicketStatusEnum),
+  reason: z.string().optional(),
+  comments: z.string().optional(),
+  createdAt: z.date().optional(),
+  updatedAt: z.date().optional(),
+  createdBy: z
+    .string()
+    .refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    })
+    .optional(),
+  updatedBy: z
+    .string()
+    .refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    })
+    .optional(),
+});
 
-export const subticketZodSchema = z
-  .object({
-    ticketId: z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid ticket Id",
-    }),
-    number: z.string(),
-    vendorContractId: z.string().refine((id) => idPattern.test(id), {
+export const subticketZodSchema = z.object({
+  ticketId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid ticket Id",
+  }),
+  number: z.string(),
+  vendorContractId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid vendor contract Id",
+  }),
+  schedule: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid schedule Id",
+  }),
+  statuses: z.array(subticketStatusZodSchema),
+  SLA: z.number(),
+  fieldEngineer: z
+    .string()
+    .refine((id) => idPattern.test(id), {
       message: "Invalid vendor contract Id",
-    }),
-    schedule: z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid schedule Id",
-    }),
-    statuses: z.array(subticketStatusZodSchema),
-    SLA: z.number(),
-    fieldEngineer: z
-      .string()
-      .refine((id) => idPattern.test(id), {
-        message: "Invalid vendor contract Id",
-      })
-      .optional(),
-    extensions: z.array(extensionZodSchema).optional(),
-    feUpdates: z.array(fieldEngineerStatusZodSchema).optional(),
-  })
-  .strip();
+    })
+    .optional(),
+  extensions: z.array(extensionZodSchema).optional(),
+  feUpdates: z.array(fieldEngineerStatusZodSchema).optional(),
+});
 
-export const subticketUpdateZodSchema = z
-  .object({
-    status: z.nativeEnum(SubTicketStatusEnum),
-  })
-  .strip();
+export const subticketUpdateZodSchema = z.object({
+  status: z.nativeEnum(SubTicketStatusEnum),
+});
 
 export const rejectedSubticketZodSchema = z.object({
   subticketId: z.string().refine((id) => idPattern.test(id), {

@@ -14,8 +14,7 @@ const validStatusOrder = [
     "completed",
     "pending",
 ];
-exports.subticketStatusZodSchema = zod_1.z
-    .object({
+exports.subticketStatusZodSchema = zod_1.z.object({
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
     reason: zod_1.z.string().optional(),
     comments: zod_1.z.string().optional(),
@@ -33,10 +32,8 @@ exports.subticketStatusZodSchema = zod_1.z
         message: "Invalid user Id",
     })
         .optional(),
-})
-    .strip();
-exports.subticketZodSchema = zod_1.z
-    .object({
+});
+exports.subticketZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid ticket Id",
     }),
@@ -57,13 +54,10 @@ exports.subticketZodSchema = zod_1.z
         .optional(),
     extensions: zod_1.z.array(common_zod_1.extensionZodSchema).optional(),
     feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).optional(),
-})
-    .strip();
-exports.subticketUpdateZodSchema = zod_1.z
-    .object({
+});
+exports.subticketUpdateZodSchema = zod_1.z.object({
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
-})
-    .strip();
+});
 exports.rejectedSubticketZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",

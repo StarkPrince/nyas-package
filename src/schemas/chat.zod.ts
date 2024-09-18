@@ -2,17 +2,15 @@ import { z } from "zod";
 import { ChatTypeEnum, ReadStatusEnum } from "../enums";
 import { idPattern } from "./common.zod";
 
-export const notificationZodSchema = z
-  .object({
-    userId: z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid user Id",
-    }),
-    messageId: z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid message Id",
-    }),
-    status: z.nativeEnum(ReadStatusEnum),
-  })
-  .strip();
+export const notificationZodSchema = z.object({
+  userId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid user Id",
+  }),
+  messageId: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid message Id",
+  }),
+  status: z.nativeEnum(ReadStatusEnum),
+});
 
 export const messageZodSchema = z.object({
   chatType: z.nativeEnum(ChatTypeEnum),
