@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerCreationZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
+exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerRegisterZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -32,7 +32,7 @@ exports.fieldEngineerZodSchema = zod_1.z.object({
         .max(5, "Rating cannot be more than 5")
         .default(5),
 });
-exports.fieldEngineerCreationZodSchema = zod_1.z.object({
+exports.fieldEngineerRegisterZodSchema = zod_1.z.object({
     user: zod_1.z.object({
         name: zod_1.z.string().min(1, "Name cannot be blank"),
         email: zod_1.z.string().email("Invalid email address"),
@@ -42,13 +42,16 @@ exports.fieldEngineerCreationZodSchema = zod_1.z.object({
             .min(8, "Password must be at least 8 characters long")
             .optional(),
     }),
-    address: common_zod_1.addressZodSchema,
-    yearsOfExperience: zod_1.z.number().optional().default(0),
-    rating: zod_1.z
-        .number()
-        .min(1, "Rating cannot be less than 1")
-        .max(5, "Rating cannot be more than 5")
-        .default(5),
+    address: zod_1.z.object({
+        line1: zod_1.z.string().min(1, "Address line 1 cannot be blank"),
+        line2: zod_1.z.string().optional(),
+        city: zod_1.z.string().min(1, "City cannot be blank"),
+        country: zod_1.z.nativeEnum(enums_1.CountryEnum),
+        location: zod_1.z.object({
+            lat: zod_1.z.number(),
+            long: zod_1.z.number(),
+        }),
+    }),
 });
 exports.fieldEngineerStatusZodSchema = zod_1.z.object({
     workStatus: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FieldEngineerWorkStatusEnum } from "../enums";
+import { CountryEnum, FieldEngineerWorkStatusEnum } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
 import { ticketZodSchema } from "./ticket.zod";
@@ -37,7 +37,7 @@ export const fieldEngineerZodSchema = z.object({
     .default(5),
 });
 
-export const fieldEngineerCreationZodSchema = z.object({
+export const fieldEngineerRegisterZodSchema = z.object({
   user: z.object({
     name: z.string().min(1, "Name cannot be blank"),
     email: z.string().email("Invalid email address"),
@@ -47,13 +47,16 @@ export const fieldEngineerCreationZodSchema = z.object({
       .min(8, "Password must be at least 8 characters long")
       .optional(),
   }),
-  address: addressZodSchema,
-  yearsOfExperience: z.number().optional().default(0),
-  rating: z
-    .number()
-    .min(1, "Rating cannot be less than 1")
-    .max(5, "Rating cannot be more than 5")
-    .default(5),
+  address: z.object({
+    line1: z.string().min(1, "Address line 1 cannot be blank"),
+    line2: z.string().optional(),
+    city: z.string().min(1, "City cannot be blank"),
+    country: z.nativeEnum(CountryEnum),
+    location: z.object({
+      lat: z.number(),
+      long: z.number(),
+    }),
+  }),
 });
 
 export const fieldEngineerStatusZodSchema = z.object({
@@ -98,8 +101,8 @@ export const checkedInZodSchema = z.object({
   }),
 });
 
-export type FieldEngineerCreationType = z.infer<
-  typeof fieldEngineerCreationZodSchema
+export type fieldEngineerRegisterType = z.infer<
+  typeof fieldEngineerRegisterZodSchema
 >;
 export type LocationType = z.infer<typeof locationZodSchema>;
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;

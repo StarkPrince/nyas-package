@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FieldEngineerWorkStatusEnum } from "../enums";
+import { CountryEnum, FieldEngineerWorkStatusEnum } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 export declare const locationZodSchema: z.ZodObject<{
     lat: z.ZodNumber;
@@ -23,7 +23,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             siteDetails: z.ZodString;
             cageNumber: z.ZodOptional<z.ZodString>;
             coloDetails: z.ZodOptional<z.ZodString>;
-            country: z.ZodNativeEnum<typeof import("../enums").CountryEnum>;
+            country: z.ZodNativeEnum<typeof CountryEnum>;
             city: z.ZodString;
             location: z.ZodObject<{
                 lat: z.ZodNumber;
@@ -37,7 +37,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             }>;
         }, "strip", z.ZodTypeAny, {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -47,7 +47,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             coloDetails?: string | undefined;
         }, {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -57,7 +57,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             coloDetails?: string | undefined;
         }>, {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -67,7 +67,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             coloDetails?: string | undefined;
         }, {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -78,7 +78,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         }>, {
             city: string | undefined;
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             location: {
                 lat: number;
                 long: number;
@@ -87,7 +87,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             coloDetails?: string | undefined;
         }, {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -185,7 +185,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         site: {
             city: string | undefined;
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             location: {
                 lat: number;
                 long: number;
@@ -231,7 +231,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         clientContractId: string;
         site: {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -275,7 +275,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodOptional<z.ZodString>;
         city: z.ZodString;
-        country: z.ZodNativeEnum<typeof import("../enums").CountryEnum>;
+        country: z.ZodNativeEnum<typeof CountryEnum>;
         location: z.ZodObject<{
             lat: z.ZodNumber;
             long: z.ZodNumber;
@@ -287,7 +287,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -296,7 +296,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     }, {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -321,7 +321,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         site: {
             city: string | undefined;
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             location: {
                 lat: number;
                 long: number;
@@ -360,7 +360,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         updatedBy?: string | undefined;
     }[];
     address: {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -374,7 +374,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
 }, {
     user: string;
     address: {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -394,7 +394,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         clientContractId: string;
         site: {
             siteDetails: string;
-            country: import("../enums").CountryEnum;
+            country: CountryEnum;
             city: string;
             location: {
                 lat: number;
@@ -436,7 +436,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
 }>;
-export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
+export declare const fieldEngineerRegisterZodSchema: z.ZodObject<{
     user: z.ZodObject<{
         name: z.ZodString;
         email: z.ZodString;
@@ -457,7 +457,7 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodOptional<z.ZodString>;
         city: z.ZodString;
-        country: z.ZodNativeEnum<typeof import("../enums").CountryEnum>;
+        country: z.ZodNativeEnum<typeof CountryEnum>;
         location: z.ZodObject<{
             lat: z.ZodNumber;
             long: z.ZodNumber;
@@ -469,7 +469,7 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -478,7 +478,7 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     }, {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -487,8 +487,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     }>;
-    yearsOfExperience: z.ZodDefault<z.ZodOptional<z.ZodNumber>>;
-    rating: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     user: {
         email: string;
@@ -497,7 +495,7 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         password?: string | undefined;
     };
     address: {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -506,8 +504,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     };
-    yearsOfExperience: number;
-    rating: number;
 }, {
     user: {
         email: string;
@@ -516,7 +512,7 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         password?: string | undefined;
     };
     address: {
-        country: import("../enums").CountryEnum;
+        country: CountryEnum;
         city: string;
         location: {
             lat: number;
@@ -525,8 +521,6 @@ export declare const fieldEngineerCreationZodSchema: z.ZodObject<{
         line1: string;
         line2?: string | undefined;
     };
-    yearsOfExperience?: number | undefined;
-    rating?: number | undefined;
 }>;
 export declare const fieldEngineerStatusZodSchema: z.ZodObject<{
     workStatus: z.ZodNativeEnum<typeof FieldEngineerWorkStatusEnum>;
@@ -633,7 +627,7 @@ export declare const checkedInZodSchema: z.ZodObject<{
     };
     subticketId: string;
 }>;
-export type FieldEngineerCreationType = z.infer<typeof fieldEngineerCreationZodSchema>;
+export type fieldEngineerRegisterType = z.infer<typeof fieldEngineerRegisterZodSchema>;
 export type LocationType = z.infer<typeof locationZodSchema>;
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;
 export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
