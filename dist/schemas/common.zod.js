@@ -84,12 +84,12 @@ exports.extensionZodSchema = zod_1.z
     type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
-    schedules: exports.scheduleZodSchema,
+    schedule: exports.scheduleZodSchema,
 })
     .refine((data) => {
     if (data.type === enums_1.BillingTypeEnum.HOURLY) {
-        const startdatetime = new Date(data.schedules.startdatetime).getTime();
-        const enddatetime = new Date(data.schedules.enddatetime).getTime();
+        const startdatetime = new Date(data.schedule.startdatetime).getTime();
+        const enddatetime = new Date(data.schedule.enddatetime).getTime();
         const duration = enddatetime - startdatetime;
         return duration <= 3600000 && duration > 0;
     }

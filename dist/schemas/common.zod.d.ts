@@ -208,7 +208,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;
     comments: z.ZodString;
-    schedules: z.ZodObject<{
+    schedule: z.ZodObject<{
         startdatetime: z.ZodEffects<z.ZodString, string, string>;
         enddatetime: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
@@ -221,7 +221,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    schedules: {
+    schedule: {
         startdatetime: string;
         enddatetime: string;
     };
@@ -231,7 +231,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    schedules: {
+    schedule: {
         startdatetime: string;
         enddatetime: string;
     };
@@ -241,7 +241,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
 }>, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    schedules: {
+    schedule: {
         startdatetime: string;
         enddatetime: string;
     };
@@ -251,7 +251,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
 }, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
-    schedules: {
+    schedule: {
         startdatetime: string;
         enddatetime: string;
     };
