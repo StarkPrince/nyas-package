@@ -202,13 +202,13 @@ export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>;
-export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
+export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodNativeEnum<typeof ExtensionStatusEnum>;
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;
     comments: z.ZodString;
-    schedules: z.ZodArray<z.ZodObject<{
+    schedules: z.ZodObject<{
         startdatetime: z.ZodEffects<z.ZodString, string, string>;
         enddatetime: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
@@ -217,14 +217,14 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     }, {
         startdatetime: string;
         enddatetime: string;
-    }>, "many">;
+    }>;
 }, "strip", z.ZodTypeAny, {
     type: BillingTypeEnum;
     status: ExtensionStatusEnum;
     schedules: {
         startdatetime: string;
         enddatetime: string;
-    }[];
+    };
     subticketId: string;
     reason: string;
     comments: string;
@@ -234,7 +234,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     schedules: {
         startdatetime: string;
         enddatetime: string;
-    }[];
+    };
     subticketId: string;
     reason: string;
     comments: string;
@@ -244,7 +244,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     schedules: {
         startdatetime: string;
         enddatetime: string;
-    }[];
+    };
     subticketId: string;
     reason: string;
     comments: string;
@@ -254,27 +254,7 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
     schedules: {
         startdatetime: string;
         enddatetime: string;
-    }[];
-    subticketId: string;
-    reason: string;
-    comments: string;
-}>, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
-    subticketId: string;
-    reason: string;
-    comments: string;
-}, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
+    };
     subticketId: string;
     reason: string;
     comments: string;

@@ -109,38 +109,21 @@ export const extensionZodSchema = z
     type: z.nativeEnum(BillingTypeEnum),
     reason: z.string().min(1, "Reason cannot be blank"),
     comments: z.string().min(1, "Comments cannot be blank"),
-    schedules: z
-      .array(scheduleZodSchema)
-      .min(1, "At least one schedule is required"),
+    schedules: scheduleZodSchema,
   })
   .refine(
     (data) => {
       if (data.type === BillingTypeEnum.HOURLY) {
-        // Check each schedule to ensure it's within 1 hour
-        return data.schedules.every((schedule, index) => {
-          const start = new Date(schedule.startdatetime).getTime();
-          const end = new Date(schedule.enddatetime).getTime();
-          const duration = end - start;
-
-          return duration <= 3600000 && duration > 0; // Return true if within 1 hour
-        });
+        const startdatetime = new Date(data.schedules.startdatetime).getTime();
+        const enddatetime = new Date(data.schedules.enddatetime).getTime();
+        const duration = enddatetime - startdatetime;
+        return duration <= 3600000 && duration > 0;
       }
       return true;
     },
     {
       message: "Each schedule in HOURLY type must not exceed 1 hour",
       path: ["schedules"], // Referring to the schedules array
-    }
-  )
-  .refine(
-    (data) => {
-      if (data.type === BillingTypeEnum.DAILY) {
-        return data.schedules.length === 1;
-      }
-      return true;
-    },
-    {
-      message: "Only one schedule is allowed for DAILY type",
     }
   );
 

@@ -84,32 +84,19 @@ exports.extensionZodSchema = zod_1.z
     type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
-    schedules: zod_1.z
-        .array(exports.scheduleZodSchema)
-        .min(1, "At least one schedule is required"),
+    schedules: exports.scheduleZodSchema,
 })
     .refine((data) => {
     if (data.type === enums_1.BillingTypeEnum.HOURLY) {
-        // Check each schedule to ensure it's within 1 hour
-        return data.schedules.every((schedule, index) => {
-            const start = new Date(schedule.startdatetime).getTime();
-            const end = new Date(schedule.enddatetime).getTime();
-            const duration = end - start;
-            return duration <= 3600000 && duration > 0; // Return true if within 1 hour
-        });
+        const startdatetime = new Date(data.schedules.startdatetime).getTime();
+        const enddatetime = new Date(data.schedules.enddatetime).getTime();
+        const duration = enddatetime - startdatetime;
+        return duration <= 3600000 && duration > 0;
     }
     return true;
 }, {
     message: "Each schedule in HOURLY type must not exceed 1 hour",
     path: ["schedules"], // Referring to the schedules array
-})
-    .refine((data) => {
-    if (data.type === enums_1.BillingTypeEnum.DAILY) {
-        return data.schedules.length === 1;
-    }
-    return true;
-}, {
-    message: "Only one schedule is allowed for DAILY type",
 });
 exports.logisticsZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"),
