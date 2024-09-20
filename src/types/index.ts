@@ -226,6 +226,7 @@ declare global {
       permissions?: string[];
       body?: { updatedBy?: string };
       ipAddress: string | null;
+      clientTimezone: string;
     }
   }
 }

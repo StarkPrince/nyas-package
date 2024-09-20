@@ -151,6 +151,7 @@ declare global {
                 updatedBy?: string;
             };
             ipAddress: string | null;
+            clientTimezone: string;
         }
     }
 }
