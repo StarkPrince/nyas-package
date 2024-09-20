@@ -93,16 +93,11 @@ export const ticketZodSchema = z.object({
 export const ticketCreationZodSchema = z.object({
   number: z.string(),
   title: z.string(),
-  clientContractId: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid client contract Id",
-  }),
-  site: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid site Id",
-  }),
+  clientContractId: z.string(),
+  site: z.string(),
   numberOfEngineers: z.number(),
   SLA: z.number(),
   schedules: z.array(scheduleZodSchema),
-  status: z.nativeEnum(TicketStatusEnum).default(TicketStatusEnum.DRAFT),
 });
 
 export const ticketUpdateZodSchema = z.object({

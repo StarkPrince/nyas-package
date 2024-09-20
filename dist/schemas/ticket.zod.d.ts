@@ -340,8 +340,8 @@ export declare const ticketZodSchema: z.ZodObject<{
 export declare const ticketCreationZodSchema: z.ZodObject<{
     number: z.ZodString;
     title: z.ZodString;
-    clientContractId: z.ZodEffects<z.ZodString, string, string>;
-    site: z.ZodEffects<z.ZodString, string, string>;
+    clientContractId: z.ZodString;
+    site: z.ZodString;
     numberOfEngineers: z.ZodNumber;
     SLA: z.ZodNumber;
     schedules: z.ZodArray<z.ZodObject<{
@@ -354,11 +354,9 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     }>, "many">;
-    status: z.ZodDefault<z.ZodNativeEnum<typeof TicketStatusEnum>>;
 }, "strip", z.ZodTypeAny, {
     number: string;
     SLA: number;
-    status: TicketStatusEnum;
     title: string;
     clientContractId: string;
     site: string;
@@ -378,7 +376,6 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     }[];
-    status?: TicketStatusEnum | undefined;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;

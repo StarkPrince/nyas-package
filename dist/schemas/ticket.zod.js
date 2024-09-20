@@ -78,16 +78,11 @@ exports.ticketZodSchema = zod_1.z.object({
 exports.ticketCreationZodSchema = zod_1.z.object({
     number: zod_1.z.string(),
     title: zod_1.z.string(),
-    clientContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid client contract Id",
-    }),
-    site: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid site Id",
-    }),
+    clientContractId: zod_1.z.string(),
+    site: zod_1.z.string(),
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
-    status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum).default(enums_1.TicketStatusEnum.DRAFT),
 });
 exports.ticketUpdateZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
