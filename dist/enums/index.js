@@ -101,6 +101,7 @@ var FieldEngineerWorkStatusEnum;
     FieldEngineerWorkStatusEnum["BREAK_START"] = "break-start";
     FieldEngineerWorkStatusEnum["BREAK_END"] = "break-end";
     FieldEngineerWorkStatusEnum["CHECKED_OUT"] = "checkedOut";
+    FieldEngineerWorkStatusEnum["HOURLY_UPDATE"] = "hourly-update";
 })(FieldEngineerWorkStatusEnum || (exports.FieldEngineerWorkStatusEnum = FieldEngineerWorkStatusEnum = {}));
 var LogisticsEnum;
 (function (LogisticsEnum) {

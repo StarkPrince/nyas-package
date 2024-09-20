@@ -64,7 +64,8 @@ export declare enum FieldEngineerWorkStatusEnum {
     CHECKED_IN = "checkedIn",
     BREAK_START = "break-start",
     BREAK_END = "break-end",
-    CHECKED_OUT = "checkedOut"
+    CHECKED_OUT = "checkedOut",
+    HOURLY_UPDATE = "hourly-update"
 }
 export declare enum LogisticsEnum {
     TOOL = "tool",

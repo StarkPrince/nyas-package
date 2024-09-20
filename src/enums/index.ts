@@ -85,6 +85,7 @@ export enum FieldEngineerWorkStatusEnum {
   BREAK_START = "break-start",
   BREAK_END = "break-end",
   CHECKED_OUT = "checkedOut",
+  HOURLY_UPDATE = "hourly-update",
 }
 
 export enum LogisticsEnum {
