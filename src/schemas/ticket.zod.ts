@@ -35,7 +35,7 @@ export const documentZodSchema = z.object({
 export const taskZodSchema = z.object({
   taskName: z.string(),
   startdatetime: z.string(),
-  enddateime: z.string(),
+  enddatetime: z.string(),
   taskDescription: z.string(),
   logistics: z.array(z.string()),
   difficultyLevel: z.number().min(1).max(5),

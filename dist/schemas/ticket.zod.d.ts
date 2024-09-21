@@ -56,7 +56,7 @@ export declare const documentZodSchema: z.ZodObject<{
 export declare const taskZodSchema: z.ZodObject<{
     taskName: z.ZodString;
     startdatetime: z.ZodString;
-    enddateime: z.ZodString;
+    enddatetime: z.ZodString;
     taskDescription: z.ZodString;
     logistics: z.ZodArray<z.ZodString, "many">;
     difficultyLevel: z.ZodNumber;
@@ -66,7 +66,7 @@ export declare const taskZodSchema: z.ZodObject<{
     status: TaskStatusEnum;
     taskName: string;
     startdatetime: string;
-    enddateime: string;
+    enddatetime: string;
     taskDescription: string;
     logistics: string[];
     difficultyLevel: number;
@@ -75,7 +75,7 @@ export declare const taskZodSchema: z.ZodObject<{
     status: TaskStatusEnum;
     taskName: string;
     startdatetime: string;
-    enddateime: string;
+    enddatetime: string;
     taskDescription: string;
     logistics: string[];
     difficultyLevel: number;
@@ -171,7 +171,7 @@ export declare const ticketZodSchema: z.ZodObject<{
     tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodObject<{
         taskName: z.ZodString;
         startdatetime: z.ZodString;
-        enddateime: z.ZodString;
+        enddatetime: z.ZodString;
         taskDescription: z.ZodString;
         logistics: z.ZodArray<z.ZodString, "many">;
         difficultyLevel: z.ZodNumber;
@@ -181,7 +181,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -190,7 +190,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -267,7 +267,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -319,7 +319,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -420,7 +420,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
     tasks: z.ZodOptional<z.ZodArray<z.ZodObject<{
         taskName: z.ZodString;
         startdatetime: z.ZodString;
-        enddateime: z.ZodString;
+        enddatetime: z.ZodString;
         taskDescription: z.ZodString;
         logistics: z.ZodArray<z.ZodString, "many">;
         difficultyLevel: z.ZodNumber;
@@ -430,7 +430,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -439,7 +439,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -486,7 +486,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -518,7 +518,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         status: TaskStatusEnum;
         taskName: string;
         startdatetime: string;
-        enddateime: string;
+        enddatetime: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;

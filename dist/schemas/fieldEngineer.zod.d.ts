@@ -104,7 +104,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodObject<{
             taskName: z.ZodString;
             startdatetime: z.ZodString;
-            enddateime: z.ZodString;
+            enddatetime: z.ZodString;
             taskDescription: z.ZodString;
             logistics: z.ZodArray<z.ZodString, "many">;
             difficultyLevel: z.ZodNumber;
@@ -114,7 +114,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;
@@ -123,7 +123,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;
@@ -200,7 +200,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;
@@ -252,7 +252,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;
@@ -336,7 +336,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;
@@ -415,7 +415,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             status: import("../enums").TaskStatusEnum;
             taskName: string;
             startdatetime: string;
-            enddateime: string;
+            enddatetime: string;
             taskDescription: string;
             logistics: string[];
             difficultyLevel: number;

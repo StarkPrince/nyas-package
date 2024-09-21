@@ -28,7 +28,7 @@ exports.documentZodSchema = zod_1.z.object({
 exports.taskZodSchema = zod_1.z.object({
     taskName: zod_1.z.string(),
     startdatetime: zod_1.z.string(),
-    enddateime: zod_1.z.string(),
+    enddatetime: zod_1.z.string(),
     taskDescription: zod_1.z.string(),
     logistics: zod_1.z.array(zod_1.z.string()),
     difficultyLevel: zod_1.z.number().min(1).max(5),
