@@ -156,12 +156,13 @@ export interface IMessage extends Document, MessageType, ICreatedUpdated {
   userId: string;
 }
 export interface IMedia extends Document {
+  countries: string[];
+  categories: string[];
+  _id: string;
   fileName: string;
   fileUrl: string;
   folder: string;
-  countries: string[];
-  client: string;
-  categories: string[];
+  size: number;
   uploadedAt: Date;
 }
 
