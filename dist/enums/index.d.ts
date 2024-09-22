@@ -31,7 +31,9 @@ export declare enum SubTicketStatusEnum {
     ONGOING = "chat-enabled",
     STARTED = "checkedIn",
     COMPLETED = "checkedOut",
-    CANCELLED = "cancelled"
+    CANCELLED = "cancelled",
+    AUTO_CHECKOUT = "auto-checkedOut",// New Status
+    LATE_CHECKOUT = "late-checkedOut"
 }
 export declare const validSubticketStatusOrder: SubTicketStatusEnum[];
 export declare enum S3FolderEnum {

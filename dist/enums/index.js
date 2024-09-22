@@ -53,6 +53,8 @@ var SubTicketStatusEnum;
     SubTicketStatusEnum["STARTED"] = "checkedIn";
     SubTicketStatusEnum["COMPLETED"] = "checkedOut";
     SubTicketStatusEnum["CANCELLED"] = "cancelled";
+    SubTicketStatusEnum["AUTO_CHECKOUT"] = "auto-checkedOut";
+    SubTicketStatusEnum["LATE_CHECKOUT"] = "late-checkedOut";
 })(SubTicketStatusEnum || (exports.SubTicketStatusEnum = SubTicketStatusEnum = {}));
 exports.validSubticketStatusOrder = [
     SubTicketStatusEnum.ASSIGN_PENDING,

@@ -36,6 +36,8 @@ export enum SubTicketStatusEnum {
   STARTED = "checkedIn",
   COMPLETED = "checkedOut",
   CANCELLED = "cancelled",
+  AUTO_CHECKOUT = "auto-checkedOut", // New Status
+  LATE_CHECKOUT = "late-checkedOut", // New Status
 }
 
 export const validSubticketStatusOrder = [
