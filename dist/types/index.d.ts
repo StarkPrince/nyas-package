@@ -102,6 +102,14 @@ export interface IMessage extends Document, MessageType, ICreatedUpdated {
     chatId: string;
     userId: string;
 }
+export interface ErrorResponse {
+    success: false;
+    error: {
+        code: string;
+        message: string;
+        details?: any;
+    };
+}
 export interface IMedia extends Document {
     countries: string[];
     categories: string[];
