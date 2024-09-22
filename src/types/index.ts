@@ -25,8 +25,8 @@ import {
 } from "../schemas/subticket.zod";
 import {
   CommunicationType,
-  DocumentType,
   TaskType,
+  TicketDocumentType,
   TicketType,
 } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
@@ -137,9 +137,9 @@ export interface IContactDetail
   extends Document,
     ContactDetailType,
     ICreatedUpdatedWithUser {}
-export interface IDocument
+export interface ITicketDocument
   extends Document,
-    DocumentType,
+    TicketDocumentType,
     ICreatedUpdatedWithUser {}
 export interface IExtension
   extends Document,

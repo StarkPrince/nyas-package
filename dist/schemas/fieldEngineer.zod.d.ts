@@ -131,16 +131,19 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         }>, "many">>>;
         document: z.ZodOptional<z.ZodObject<{
             projectDescription: z.ZodString;
-            MOPs: z.ZodString;
-            SOWUpload: z.ZodString;
+            mopDescription: z.ZodString;
+            MOP: z.ZodArray<z.ZodString, "many">;
+            SOW: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         }, {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         }>>;
         communications: z.ZodOptional<z.ZodObject<{
             consumerPortal: z.ZodObject<{
@@ -208,9 +211,10 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         }[];
         subtickets: string[];
         document?: {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         } | undefined;
         communications?: {
             consumerPortal: {
@@ -244,9 +248,10 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         schedules: string[];
         teamMembers: string[];
         document?: {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         } | undefined;
         tasks?: {
             status: import("../enums").TaskStatusEnum;
@@ -344,9 +349,10 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         }[];
         subtickets: string[];
         document?: {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         } | undefined;
         communications?: {
             consumerPortal: {
@@ -407,9 +413,10 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         schedules: string[];
         teamMembers: string[];
         document?: {
+            MOP: string[];
             projectDescription: string;
-            MOPs: string;
-            SOWUpload: string;
+            mopDescription: string;
+            SOW: string[];
         } | undefined;
         tasks?: {
             status: import("../enums").TaskStatusEnum;

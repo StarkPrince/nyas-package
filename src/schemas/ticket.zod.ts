@@ -26,10 +26,11 @@ export const communicationZodSchema = z.object({
   ),
 });
 
-export const documentZodSchema = z.object({
+export const ticketDocumentZodSchema = z.object({
   projectDescription: z.string().min(1, "Project description cannot be blank"),
-  MOPs: z.string().min(1, "MOPs cannot be blank"),
-  SOWUpload: z.string().min(1, "SOW Upload cannot be blank"),
+  mopDescription: z.string().min(1, "MOP description cannot be blank"),
+  MOP: z.array(z.string().min(1, "MOPs cannot be blank")),
+  SOW: z.array(z.string().min(1, "MOPs cannot be blank")),
 });
 
 export const taskZodSchema = z.object({
@@ -67,7 +68,7 @@ export const ticketZodSchema = z.object({
     })
   ),
   tasks: z.array(taskZodSchema).optional().default([]),
-  document: documentZodSchema.optional(),
+  document: ticketDocumentZodSchema.optional(),
   communications: communicationZodSchema.optional(),
   subtickets: z
     .array(
@@ -114,7 +115,7 @@ export const ticketUpdateZodSchema = z.object({
       })
     )
     .optional(),
-  document: documentZodSchema.optional(),
+  document: ticketDocumentZodSchema.optional(),
   tasks: z.array(taskZodSchema).optional(),
   communications: communicationZodSchema.optional(),
 });
@@ -123,6 +124,6 @@ export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
 export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;
 export type TicketUpdateType = z.infer<typeof ticketUpdateZodSchema>;
-export type DocumentType = z.infer<typeof documentZodSchema>;
+export type TicketDocumentType = z.infer<typeof ticketDocumentZodSchema>;
 export type TaskType = z.infer<typeof taskZodSchema>;
 export type CommunicationType = z.infer<typeof communicationZodSchema>;

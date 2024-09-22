@@ -40,18 +40,21 @@ export declare const communicationZodSchema: z.ZodObject<{
     };
     communication: string[];
 }>;
-export declare const documentZodSchema: z.ZodObject<{
+export declare const ticketDocumentZodSchema: z.ZodObject<{
     projectDescription: z.ZodString;
-    MOPs: z.ZodString;
-    SOWUpload: z.ZodString;
+    mopDescription: z.ZodString;
+    MOP: z.ZodArray<z.ZodString, "many">;
+    SOW: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
+    MOP: string[];
     projectDescription: string;
-    MOPs: string;
-    SOWUpload: string;
+    mopDescription: string;
+    SOW: string[];
 }, {
+    MOP: string[];
     projectDescription: string;
-    MOPs: string;
-    SOWUpload: string;
+    mopDescription: string;
+    SOW: string[];
 }>;
 export declare const taskZodSchema: z.ZodObject<{
     taskName: z.ZodString;
@@ -198,16 +201,19 @@ export declare const ticketZodSchema: z.ZodObject<{
     }>, "many">>>;
     document: z.ZodOptional<z.ZodObject<{
         projectDescription: z.ZodString;
-        MOPs: z.ZodString;
-        SOWUpload: z.ZodString;
+        mopDescription: z.ZodString;
+        MOP: z.ZodArray<z.ZodString, "many">;
+        SOW: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     }, {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     }>>;
     communications: z.ZodOptional<z.ZodObject<{
         consumerPortal: z.ZodObject<{
@@ -275,9 +281,10 @@ export declare const ticketZodSchema: z.ZodObject<{
     }[];
     subtickets: string[];
     document?: {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     } | undefined;
     communications?: {
         consumerPortal: {
@@ -311,9 +318,10 @@ export declare const ticketZodSchema: z.ZodObject<{
     schedules: string[];
     teamMembers: string[];
     document?: {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
@@ -406,16 +414,19 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
     }>, "many">>;
     document: z.ZodOptional<z.ZodObject<{
         projectDescription: z.ZodString;
-        MOPs: z.ZodString;
-        SOWUpload: z.ZodString;
+        mopDescription: z.ZodString;
+        MOP: z.ZodArray<z.ZodString, "many">;
+        SOW: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     }, {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     }>>;
     tasks: z.ZodOptional<z.ZodArray<z.ZodObject<{
         taskName: z.ZodString;
@@ -478,9 +489,10 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     ticketId: string;
     document?: {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
@@ -510,9 +522,10 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
 }, {
     ticketId: string;
     document?: {
+        MOP: string[];
         projectDescription: string;
-        MOPs: string;
-        SOWUpload: string;
+        mopDescription: string;
+        SOW: string[];
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
@@ -544,6 +557,6 @@ export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
 export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;
 export type TicketUpdateType = z.infer<typeof ticketUpdateZodSchema>;
-export type DocumentType = z.infer<typeof documentZodSchema>;
+export type TicketDocumentType = z.infer<typeof ticketDocumentZodSchema>;
 export type TaskType = z.infer<typeof taskZodSchema>;
 export type CommunicationType = z.infer<typeof communicationZodSchema>;

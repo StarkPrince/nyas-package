@@ -4,7 +4,7 @@ import { ClientContractType, ClientType } from "../schemas/client.zod";
 import { AddressType, BillingDetailType, ContactDetailType, ExtensionType, ScheduleType, SiteAddressType, TaskTemplateType } from "../schemas/common.zod";
 import { FieldEngineerStatusType, FieldEngineerType } from "../schemas/fieldEngineer.zod";
 import { RejectedSubticketType, SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
-import { CommunicationType, DocumentType, TaskType, TicketType } from "../schemas/ticket.zod";
+import { CommunicationType, TaskType, TicketDocumentType, TicketType } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import { VendorContractType, VendorType } from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
@@ -90,7 +90,7 @@ export interface ICommunication extends Document, CommunicationType, ICreatedUpd
 }
 export interface IContactDetail extends Document, ContactDetailType, ICreatedUpdatedWithUser {
 }
-export interface IDocument extends Document, DocumentType, ICreatedUpdatedWithUser {
+export interface ITicketDocument extends Document, TicketDocumentType, ICreatedUpdatedWithUser {
 }
 export interface IExtension extends Document, ExtensionType, ICreatedUpdatedWithUser {
 }

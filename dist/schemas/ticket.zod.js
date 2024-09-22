@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.documentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
+exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -20,10 +20,11 @@ exports.communicationZodSchema = zod_1.z.object({
     }),
     communication: zod_1.z.array(zod_1.z.string().min(1, "Communication detail cannot be blank")),
 });
-exports.documentZodSchema = zod_1.z.object({
+exports.ticketDocumentZodSchema = zod_1.z.object({
     projectDescription: zod_1.z.string().min(1, "Project description cannot be blank"),
-    MOPs: zod_1.z.string().min(1, "MOPs cannot be blank"),
-    SOWUpload: zod_1.z.string().min(1, "SOW Upload cannot be blank"),
+    mopDescription: zod_1.z.string().min(1, "MOP description cannot be blank"),
+    MOP: zod_1.z.array(zod_1.z.string().min(1, "MOPs cannot be blank")),
+    SOW: zod_1.z.array(zod_1.z.string().min(1, "MOPs cannot be blank")),
 });
 exports.taskZodSchema = zod_1.z.object({
     taskName: zod_1.z.string(),
@@ -55,7 +56,7 @@ exports.ticketZodSchema = zod_1.z.object({
         message: "Invalid user Id",
     })),
     tasks: zod_1.z.array(exports.taskZodSchema).optional().default([]),
-    document: exports.documentZodSchema.optional(),
+    document: exports.ticketDocumentZodSchema.optional(),
     communications: exports.communicationZodSchema.optional(),
     subtickets: zod_1.z
         .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
@@ -96,7 +97,7 @@ exports.ticketUpdateZodSchema = zod_1.z.object({
         assignments: zod_1.z.array(exports.assignmentZodSchema),
     }))
         .optional(),
-    document: exports.documentZodSchema.optional(),
+    document: exports.ticketDocumentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),
     communications: exports.communicationZodSchema.optional(),
 });
