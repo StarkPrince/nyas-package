@@ -5,6 +5,7 @@ export const LoginZodSchema = z.object({
   password: z
     .string()
     .min(6, { message: "Password must be at least 6 characters long." }),
+  serverAuthCode: z.string().optional(),
 });
 
 export const ForgotPasswordZodSchema = z.object({

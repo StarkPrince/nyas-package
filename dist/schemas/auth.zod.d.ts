@@ -2,12 +2,15 @@ import { z } from "zod";
 export declare const LoginZodSchema: z.ZodObject<{
     email: z.ZodString;
     password: z.ZodString;
+    serverAuthCode: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     email: string;
     password: string;
+    serverAuthCode?: string | undefined;
 }, {
     email: string;
     password: string;
+    serverAuthCode?: string | undefined;
 }>;
 export declare const ForgotPasswordZodSchema: z.ZodObject<{
     email: z.ZodString;
