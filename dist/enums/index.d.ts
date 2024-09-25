@@ -29,13 +29,15 @@ export declare enum SubTicketStatusEnum {
     APPROVAL_PENDING = "accepted",
     ALLOCATED = "approved",
     ONGOING = "chat-enabled",
-    STARTED = "checkedIn",
-    COMPLETED = "checkedOut",
-    CANCELLED = "cancelled",
-    AUTO_CHECKOUT = "auto-checkedOut",// New Status
-    LATE_CHECKOUT = "late-checkedOut"
+    STARTED_EARLY = "checkedIn-early",
+    STARTED_ONTIME = "checkedIn-ontime",
+    STARTED_LATE = "checkedIn-late",
+    AUTO_CHECKOUT = "checkedOut-auto",
+    COMPLETED_EARLY = "checkedOut-early",
+    COMPLETED_ONTIME = "checkedOut-ontime",
+    COMPLETED_LATE = "checkedOut-late",
+    CANCELLED = "cancelled"
 }
-export declare const validSubticketStatusOrder: SubTicketStatusEnum[];
 export declare enum S3FolderEnum {
     PROFILE_IMAGES = "ProfileImages",
     CHAT_DOCUMENTS = "ChatDocuments",
