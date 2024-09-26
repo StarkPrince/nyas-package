@@ -56,6 +56,9 @@ exports.fieldEngineerRegisterZodSchema = zod_1.z.object({
 exports.fieldEngineerStatusZodSchema = zod_1.z.object({
     workStatus: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     location: exports.locationZodSchema,
+    checkType: zod_1.z.nativeEnum(enums_1.PunctualityEnum),
+    approved: zod_1.z.boolean().optional().default(true),
+    message: zod_1.z.string().optional(),
 });
 exports.cancelSubticketZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

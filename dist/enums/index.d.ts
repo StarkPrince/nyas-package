@@ -23,19 +23,19 @@ export declare enum TicketStatusEnum {
     ARCHIVED = "archived",
     CANCELLED = "cancelled"
 }
+export declare enum PunctualityEnum {
+    EARLY = "early",
+    ON_TIME = "on-time",
+    LATE = "late"
+}
 export declare enum SubTicketStatusEnum {
     ASSIGN_PENDING = "draft",
     FE_PENDING = "assigned",
     APPROVAL_PENDING = "accepted",
     ALLOCATED = "approved",
     ONGOING = "chat-enabled",
-    STARTED_EARLY = "checkedIn-early",
-    STARTED_ONTIME = "checkedIn-ontime",
-    STARTED_LATE = "checkedIn-late",
-    AUTO_CHECKOUT = "checkedOut-auto",
-    COMPLETED_EARLY = "checkedOut-early",
-    COMPLETED_ONTIME = "checkedOut-ontime",
-    COMPLETED_LATE = "checkedOut-late",
+    STARTED = "checkedIn",
+    COMPLETED = "checkedOut",
     CANCELLED = "cancelled"
 }
 export declare enum S3FolderEnum {

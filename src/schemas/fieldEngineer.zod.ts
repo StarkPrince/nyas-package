@@ -1,5 +1,9 @@
 import { z } from "zod";
-import { CountryEnum, FieldEngineerWorkStatusEnum } from "../enums";
+import {
+  CountryEnum,
+  FieldEngineerWorkStatusEnum,
+  PunctualityEnum,
+} from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
 import { ticketZodSchema } from "./ticket.zod";
@@ -62,6 +66,9 @@ export const fieldEngineerRegisterZodSchema = z.object({
 export const fieldEngineerStatusZodSchema = z.object({
   workStatus: z.nativeEnum(FieldEngineerWorkStatusEnum),
   location: locationZodSchema,
+  checkType: z.nativeEnum(PunctualityEnum),
+  approved: z.boolean().optional().default(true),
+  message: z.string().optional(),
 });
 
 export const cancelSubticketZodSchema = z.object({

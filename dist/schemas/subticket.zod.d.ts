@@ -126,18 +126,27 @@ export declare const subticketZodSchema: z.ZodObject<{
             lat: number;
             long: number;
         }>;
+        checkType: z.ZodNativeEnum<typeof import("../enums").PunctualityEnum>;
+        approved: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        message: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
+        approved: boolean;
         location: {
             lat: number;
             long: number;
         };
         workStatus: import("../enums").FieldEngineerWorkStatusEnum;
+        checkType: import("../enums").PunctualityEnum;
+        message?: string | undefined;
     }, {
         location: {
             lat: number;
             long: number;
         };
         workStatus: import("../enums").FieldEngineerWorkStatusEnum;
+        checkType: import("../enums").PunctualityEnum;
+        approved?: boolean | undefined;
+        message?: string | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     number: string;
@@ -167,11 +176,14 @@ export declare const subticketZodSchema: z.ZodObject<{
         comments: string;
     }[] | undefined;
     feUpdates?: {
+        approved: boolean;
         location: {
             lat: number;
             long: number;
         };
         workStatus: import("../enums").FieldEngineerWorkStatusEnum;
+        checkType: import("../enums").PunctualityEnum;
+        message?: string | undefined;
     }[] | undefined;
 }, {
     number: string;
@@ -206,6 +218,9 @@ export declare const subticketZodSchema: z.ZodObject<{
             long: number;
         };
         workStatus: import("../enums").FieldEngineerWorkStatusEnum;
+        checkType: import("../enums").PunctualityEnum;
+        approved?: boolean | undefined;
+        message?: string | undefined;
     }[] | undefined;
 }>;
 export declare const subticketUpdateZodSchema: z.ZodObject<{

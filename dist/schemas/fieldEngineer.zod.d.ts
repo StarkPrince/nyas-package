@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CountryEnum, FieldEngineerWorkStatusEnum } from "../enums";
+import { CountryEnum, FieldEngineerWorkStatusEnum, PunctualityEnum } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 export declare const locationZodSchema: z.ZodObject<{
     lat: z.ZodNumber;
@@ -541,18 +541,27 @@ export declare const fieldEngineerStatusZodSchema: z.ZodObject<{
         lat: number;
         long: number;
     }>;
+    checkType: z.ZodNativeEnum<typeof PunctualityEnum>;
+    approved: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+    message: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    approved: boolean;
     location: {
         lat: number;
         long: number;
     };
     workStatus: FieldEngineerWorkStatusEnum;
+    checkType: PunctualityEnum;
+    message?: string | undefined;
 }, {
     location: {
         lat: number;
         long: number;
     };
     workStatus: FieldEngineerWorkStatusEnum;
+    checkType: PunctualityEnum;
+    approved?: boolean | undefined;
+    message?: string | undefined;
 }>;
 export declare const cancelSubticketZodSchema: z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;

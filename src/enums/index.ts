@@ -27,19 +27,20 @@ export enum TicketStatusEnum {
   CANCELLED = "cancelled",
 }
 
+export enum PunctualityEnum {
+  EARLY = "early",
+  ON_TIME = "on-time",
+  LATE = "late",
+}
+
 export enum SubTicketStatusEnum {
   ASSIGN_PENDING = "draft",
   FE_PENDING = "assigned",
   APPROVAL_PENDING = "accepted",
   ALLOCATED = "approved",
   ONGOING = "chat-enabled",
-  STARTED_EARLY = "checkedIn-early",
-  STARTED_ONTIME = "checkedIn-ontime",
-  STARTED_LATE = "checkedIn-late",
-  AUTO_CHECKOUT = "checkedOut-auto",
-  COMPLETED_EARLY = "checkedOut-early",
-  COMPLETED_ONTIME = "checkedOut-ontime",
-  COMPLETED_LATE = "checkedOut-late",
+  STARTED = "checkedIn",
+  COMPLETED = "checkedOut",
   CANCELLED = "cancelled",
 }
 
