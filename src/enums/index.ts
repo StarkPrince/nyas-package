@@ -31,6 +31,7 @@ export enum PunctualityEnum {
   EARLY = "early",
   ON_TIME = "on-time",
   LATE = "late",
+  AUTO = "auto",
 }
 
 export enum SubTicketStatusEnum {

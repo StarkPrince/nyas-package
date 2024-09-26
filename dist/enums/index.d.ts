@@ -26,7 +26,8 @@ export declare enum TicketStatusEnum {
 export declare enum PunctualityEnum {
     EARLY = "early",
     ON_TIME = "on-time",
-    LATE = "late"
+    LATE = "late",
+    AUTO = "auto"
 }
 export declare enum SubTicketStatusEnum {
     ASSIGN_PENDING = "draft",

@@ -48,6 +48,7 @@ var PunctualityEnum;
     PunctualityEnum["EARLY"] = "early";
     PunctualityEnum["ON_TIME"] = "on-time";
     PunctualityEnum["LATE"] = "late";
+    PunctualityEnum["AUTO"] = "auto";
 })(PunctualityEnum || (exports.PunctualityEnum = PunctualityEnum = {}));
 var SubTicketStatusEnum;
 (function (SubTicketStatusEnum) {

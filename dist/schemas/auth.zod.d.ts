@@ -1,15 +1,23 @@
 import { z } from "zod";
-export declare const LoginZodSchema: z.ZodObject<{
-    email: z.ZodString;
-    password: z.ZodString;
+export declare const LoginZodSchema: z.ZodEffects<z.ZodObject<{
+    email: z.ZodOptional<z.ZodString>;
+    password: z.ZodOptional<z.ZodString>;
     serverAuthCode: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    email: string;
-    password: string;
+    email?: string | undefined;
+    password?: string | undefined;
     serverAuthCode?: string | undefined;
 }, {
-    email: string;
-    password: string;
+    email?: string | undefined;
+    password?: string | undefined;
+    serverAuthCode?: string | undefined;
+}>, {
+    email?: string | undefined;
+    password?: string | undefined;
+    serverAuthCode?: string | undefined;
+}, {
+    email?: string | undefined;
+    password?: string | undefined;
     serverAuthCode?: string | undefined;
 }>;
 export declare const ForgotPasswordZodSchema: z.ZodObject<{
