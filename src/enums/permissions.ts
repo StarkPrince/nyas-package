@@ -117,6 +117,8 @@ export enum Permission {
   // Checkin/Checkout
   CHECK_IN = "check.in",
   CHECK_OUT = "check.out",
+
+  VIEW_EMERGENCY_CONTACT = "view.emergency.contact",
 }
 
 export enum UserRolesEnum {

@@ -99,6 +99,7 @@ export const fieldEngineerUpdateLocationZodSchema = z.object({
   }),
   location: locationZodSchema,
   event: z.nativeEnum(FieldEngineerWorkStatusEnum),
+  message: z.string().optional(),
 });
 
 export const checkedInZodSchema = z.object({

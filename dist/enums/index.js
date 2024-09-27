@@ -99,6 +99,8 @@ var FieldEngineerWorkStatusEnum;
     FieldEngineerWorkStatusEnum["BREAK_END"] = "break-end";
     FieldEngineerWorkStatusEnum["CHECKED_OUT"] = "checkedOut";
     FieldEngineerWorkStatusEnum["HOURLY_UPDATE"] = "hourly-update";
+    FieldEngineerWorkStatusEnum["HOURS_BEFORE_24"] = "24HoursBefore";
+    FieldEngineerWorkStatusEnum["HOURS_BEFORE_4"] = "4HoursBefore";
 })(FieldEngineerWorkStatusEnum || (exports.FieldEngineerWorkStatusEnum = FieldEngineerWorkStatusEnum = {}));
 var LogisticsEnum;
 (function (LogisticsEnum) {

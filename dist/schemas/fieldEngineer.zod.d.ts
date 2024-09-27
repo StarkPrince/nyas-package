@@ -603,6 +603,7 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
         long: number;
     }>;
     event: z.ZodNativeEnum<typeof FieldEngineerWorkStatusEnum>;
+    message: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     location: {
         lat: number;
@@ -610,6 +611,7 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
     };
     subticketId: string;
     event: FieldEngineerWorkStatusEnum;
+    message?: string | undefined;
 }, {
     location: {
         lat: number;
@@ -617,6 +619,7 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
     };
     subticketId: string;
     event: FieldEngineerWorkStatusEnum;
+    message?: string | undefined;
 }>;
 export declare const checkedInZodSchema: z.ZodObject<{
     location: z.ZodObject<{

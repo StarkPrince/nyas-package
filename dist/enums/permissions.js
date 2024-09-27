@@ -101,6 +101,7 @@ var Permission;
     // Checkin/Checkout
     Permission["CHECK_IN"] = "check.in";
     Permission["CHECK_OUT"] = "check.out";
+    Permission["VIEW_EMERGENCY_CONTACT"] = "view.emergency.contact";
 })(Permission || (exports.Permission = Permission = {}));
 var UserRolesEnum;
 (function (UserRolesEnum) {

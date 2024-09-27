@@ -85,6 +85,7 @@ exports.fieldEngineerUpdateLocationZodSchema = zod_1.z.object({
     }),
     location: exports.locationZodSchema,
     event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
+    message: zod_1.z.string().optional(),
 });
 exports.checkedInZodSchema = zod_1.z.object({
     location: exports.locationZodSchema,
