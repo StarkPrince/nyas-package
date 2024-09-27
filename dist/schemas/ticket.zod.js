@@ -11,6 +11,11 @@ exports.assignmentZodSchema = zod_1.z.object({
     vendorContract: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid vendor contract Id",
     }),
+    tasks: zod_1.z
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid task Id",
+    }))
+        .min(1, "At least one task is required"),
 });
 exports.communicationZodSchema = zod_1.z.object({
     consumerPortal: zod_1.z.object({

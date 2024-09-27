@@ -3,12 +3,15 @@ import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 export declare const assignmentZodSchema: z.ZodObject<{
     fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
     vendorContract: z.ZodEffects<z.ZodString, string, string>;
+    tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
     vendorContract: string;
+    tasks: string[];
 }, {
     fieldEngineer: string;
     vendorContract: string;
+    tasks: string[];
 }>;
 export declare const communicationZodSchema: z.ZodObject<{
     consumerPortal: z.ZodObject<{
@@ -252,6 +255,16 @@ export declare const ticketZodSchema: z.ZodObject<{
     number: string;
     SLA: number;
     status: TicketStatusEnum;
+    tasks: {
+        status: TaskStatusEnum;
+        taskName: string;
+        startdatetime: string;
+        enddatetime: string;
+        taskDescription: string;
+        logistics: string[];
+        difficultyLevel: number;
+        relatedMedia: string[];
+    }[];
     chat: string;
     title: string;
     clientContractId: string;
@@ -269,16 +282,6 @@ export declare const ticketZodSchema: z.ZodObject<{
     numberOfEngineers: number;
     schedules: string[];
     teamMembers: string[];
-    tasks: {
-        status: TaskStatusEnum;
-        taskName: string;
-        startdatetime: string;
-        enddatetime: string;
-        taskDescription: string;
-        logistics: string[];
-        difficultyLevel: number;
-        relatedMedia: string[];
-    }[];
     subtickets: string[];
     document?: {
         MOP: string[];
@@ -392,24 +395,29 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         assignments: z.ZodArray<z.ZodObject<{
             fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
             vendorContract: z.ZodEffects<z.ZodString, string, string>;
+            tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
         }, "strip", z.ZodTypeAny, {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }, {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         schedule: string;
         assignments: {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }[];
     }, {
         schedule: string;
         assignments: {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }[];
     }>, "many">>;
     document: z.ZodOptional<z.ZodObject<{
@@ -517,6 +525,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         assignments: {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }[];
     }[] | undefined;
 }, {
@@ -550,6 +559,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         assignments: {
             fieldEngineer: string;
             vendorContract: string;
+            tasks: string[];
         }[];
     }[] | undefined;
 }>;

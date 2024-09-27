@@ -8,8 +8,10 @@ export declare const subticketStatusZodSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodDate>;
     createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString, "many">>>;
 }, "strip", z.ZodTypeAny, {
     status: SubTicketStatusEnum;
+    tasks: string[];
     createdBy?: string | undefined;
     updatedBy?: string | undefined;
     reason?: string | undefined;
@@ -18,6 +20,7 @@ export declare const subticketStatusZodSchema: z.ZodObject<{
     updatedAt?: Date | undefined;
 }, {
     status: SubTicketStatusEnum;
+    tasks?: string[] | undefined;
     createdBy?: string | undefined;
     updatedBy?: string | undefined;
     reason?: string | undefined;
@@ -38,8 +41,10 @@ export declare const subticketZodSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodDate>;
         createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
         updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+        tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString, "many">>>;
     }, "strip", z.ZodTypeAny, {
         status: SubTicketStatusEnum;
+        tasks: string[];
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
         reason?: string | undefined;
@@ -48,6 +53,7 @@ export declare const subticketZodSchema: z.ZodObject<{
         updatedAt?: Date | undefined;
     }, {
         status: SubTicketStatusEnum;
+        tasks?: string[] | undefined;
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
         reason?: string | undefined;
@@ -156,6 +162,7 @@ export declare const subticketZodSchema: z.ZodObject<{
     vendorContractId: string;
     statuses: {
         status: SubTicketStatusEnum;
+        tasks: string[];
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
         reason?: string | undefined;
@@ -193,6 +200,7 @@ export declare const subticketZodSchema: z.ZodObject<{
     vendorContractId: string;
     statuses: {
         status: SubTicketStatusEnum;
+        tasks?: string[] | undefined;
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
         reason?: string | undefined;

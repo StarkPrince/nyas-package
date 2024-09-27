@@ -13,6 +13,13 @@ export const assignmentZodSchema = z.object({
   vendorContract: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid vendor contract Id",
   }),
+  tasks: z
+    .array(
+      z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid task Id",
+      })
+    )
+    .min(1, "At least one task is required"),
 });
 
 export const communicationZodSchema = z.object({

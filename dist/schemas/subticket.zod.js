@@ -32,6 +32,7 @@ exports.subticketStatusZodSchema = zod_1.z.object({
         message: "Invalid user Id",
     })
         .optional(),
+    tasks: zod_1.z.array(zod_1.z.string()).optional().default([]),
 });
 exports.subticketZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

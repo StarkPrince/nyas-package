@@ -182,6 +182,16 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         number: string;
         SLA: number;
         status: import("../enums").TicketStatusEnum;
+        tasks: {
+            status: import("../enums").TaskStatusEnum;
+            taskName: string;
+            startdatetime: string;
+            enddatetime: string;
+            taskDescription: string;
+            logistics: string[];
+            difficultyLevel: number;
+            relatedMedia: string[];
+        }[];
         chat: string;
         title: string;
         clientContractId: string;
@@ -199,16 +209,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         numberOfEngineers: number;
         schedules: string[];
         teamMembers: string[];
-        tasks: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
-            startdatetime: string;
-            enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }[];
         subtickets: string[];
         document?: {
             MOP: string[];
@@ -320,6 +320,16 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         number: string;
         SLA: number;
         status: import("../enums").TicketStatusEnum;
+        tasks: {
+            status: import("../enums").TaskStatusEnum;
+            taskName: string;
+            startdatetime: string;
+            enddatetime: string;
+            taskDescription: string;
+            logistics: string[];
+            difficultyLevel: number;
+            relatedMedia: string[];
+        }[];
         chat: string;
         title: string;
         clientContractId: string;
@@ -337,16 +347,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         numberOfEngineers: number;
         schedules: string[];
         teamMembers: string[];
-        tasks: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
-            startdatetime: string;
-            enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }[];
         subtickets: string[];
         document?: {
             MOP: string[];
