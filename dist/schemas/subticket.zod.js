@@ -32,7 +32,6 @@ exports.subticketStatusZodSchema = zod_1.z.object({
         message: "Invalid user Id",
     })
         .optional(),
-    tasks: zod_1.z.array(zod_1.z.string()).optional().default([]),
 });
 exports.subticketZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
@@ -55,6 +54,7 @@ exports.subticketZodSchema = zod_1.z.object({
         .optional(),
     extensions: zod_1.z.array(common_zod_1.extensionZodSchema).optional(),
     feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).optional(),
+    tasks: zod_1.z.array(zod_1.z.string()).optional().default([]),
 });
 exports.subticketUpdateZodSchema = zod_1.z.object({
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),

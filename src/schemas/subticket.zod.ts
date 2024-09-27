@@ -31,7 +31,6 @@ export const subticketStatusZodSchema = z.object({
       message: "Invalid user Id",
     })
     .optional(),
-  tasks: z.array(z.string()).optional().default([]),
 });
 
 export const subticketZodSchema = z.object({
@@ -55,6 +54,7 @@ export const subticketZodSchema = z.object({
     .optional(),
   extensions: z.array(extensionZodSchema).optional(),
   feUpdates: z.array(fieldEngineerStatusZodSchema).optional(),
+  tasks: z.array(z.string()).optional().default([]),
 });
 
 export const subticketUpdateZodSchema = z.object({
