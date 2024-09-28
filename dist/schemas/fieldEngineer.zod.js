@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkedInZodSchema = exports.fieldEngineerUpdateLocationZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.fieldEngineerGetTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerRegisterZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
+exports.fieldEngineerWorkStatusZodSchema = exports.fieldEngineerGetSubTicketsZodSchema = exports.cancelSubticketZodSchema = exports.fieldEngineerStatusZodSchema = exports.fieldEngineerRegisterZodSchema = exports.fieldEngineerZodSchema = exports.locationZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -56,10 +56,11 @@ exports.fieldEngineerRegisterZodSchema = zod_1.z.object({
 exports.fieldEngineerStatusZodSchema = zod_1.z.object({
     workStatus: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     location: exports.locationZodSchema,
-    checkType: zod_1.z.nativeEnum(enums_1.PunctualityEnum),
+    checkType: zod_1.z.nativeEnum(enums_1.PunctualityEnum).default(enums_1.PunctualityEnum.AUTO),
     approved: zod_1.z.boolean().optional().default(true),
     message: zod_1.z.string().optional(),
 });
+//* view if to fix this
 exports.cancelSubticketZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
@@ -67,29 +68,18 @@ exports.cancelSubticketZodSchema = zod_1.z.object({
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),
 });
-exports.fieldEngineerGetTicketsZodSchema = zod_1.z.object({
-    input_date: zod_1.z
-        .string()
-        .min(1, "Input date cannot be blank")
-        .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-});
 exports.fieldEngineerGetSubTicketsZodSchema = zod_1.z.object({
     input_date: zod_1.z
         .string()
         .min(1, "Input date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
-exports.fieldEngineerUpdateLocationZodSchema = zod_1.z.object({
+exports.fieldEngineerWorkStatusZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
     }),
     location: exports.locationZodSchema,
     event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     message: zod_1.z.string().optional(),
-});
-exports.checkedInZodSchema = zod_1.z.object({
-    location: exports.locationZodSchema,
-    subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid subticket Id",
-    }),
+    timestamp: zod_1.z.string().optional(),
 });

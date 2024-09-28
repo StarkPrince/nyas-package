@@ -119,6 +119,13 @@ export enum Permission {
   CHECK_OUT = "check.out",
 
   VIEW_EMERGENCY_CONTACT = "view.emergency.contact",
+
+  DELETE_DEVICE_TOKEN = "delete.device.token",
+  VIEW_DEVICE_TOKEN = "view.device.token",
+  CREATE_DEVICE_TOKEN = "create.device.token",
+  MODIFY_DEVICE_TOKEN = "modify.device.token",
+
+  LOGOUT = "logout",
 }
 
 export enum UserRolesEnum {
@@ -152,6 +159,12 @@ export const rolePermissions = {
     Permission.READ_NOTIFICATIONS,
     Permission.VIEW_EXTENSIONS,
     Permission.VIEW_NOTIFICATIONS,
+    Permission.VIEW_EMERGENCY_CONTACT,
+    Permission.MODIFY_DEVICE_TOKEN,
+    Permission.VIEW_DEVICE_TOKEN,
+    Permission.CREATE_DEVICE_TOKEN,
+    Permission.DELETE_DEVICE_TOKEN,
+    Permission.LOGOUT,
   ],
   [UserRolesEnum.NOC]: Object.values(Permission).filter(
     (permission) =>

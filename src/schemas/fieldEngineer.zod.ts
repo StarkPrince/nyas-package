@@ -66,24 +66,18 @@ export const fieldEngineerRegisterZodSchema = z.object({
 export const fieldEngineerStatusZodSchema = z.object({
   workStatus: z.nativeEnum(FieldEngineerWorkStatusEnum),
   location: locationZodSchema,
-  checkType: z.nativeEnum(PunctualityEnum),
+  checkType: z.nativeEnum(PunctualityEnum).default(PunctualityEnum.AUTO),
   approved: z.boolean().optional().default(true),
   message: z.string().optional(),
 });
 
+//* view if to fix this
 export const cancelSubticketZodSchema = z.object({
   subticketId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid subticket Id",
   }),
   reason: z.string().min(1, "Reason cannot be blank"),
   comments: z.string().min(1, "Comments cannot be blank"),
-});
-
-export const fieldEngineerGetTicketsZodSchema = z.object({
-  input_date: z
-    .string()
-    .min(1, "Input date cannot be blank")
-    .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
 
 export const fieldEngineerGetSubTicketsZodSchema = z.object({
@@ -93,20 +87,14 @@ export const fieldEngineerGetSubTicketsZodSchema = z.object({
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
 
-export const fieldEngineerUpdateLocationZodSchema = z.object({
+export const fieldEngineerWorkStatusZodSchema = z.object({
   subticketId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid subticket Id",
   }),
   location: locationZodSchema,
   event: z.nativeEnum(FieldEngineerWorkStatusEnum),
   message: z.string().optional(),
-});
-
-export const checkedInZodSchema = z.object({
-  location: locationZodSchema,
-  subticketId: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid subticket Id",
-  }),
+  timestamp: z.string().optional(),
 });
 
 export type fieldEngineerRegisterType = z.infer<
@@ -115,14 +103,11 @@ export type fieldEngineerRegisterType = z.infer<
 export type LocationType = z.infer<typeof locationZodSchema>;
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;
 export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
-export type FieldEngineerGetTicketsType = z.infer<
-  typeof fieldEngineerGetTicketsZodSchema
->;
 export type FieldEngineerGetSubTicketsType = z.infer<
   typeof fieldEngineerGetSubTicketsZodSchema
 >;
 export type FieldEngineerUpdateLocationType = z.infer<
-  typeof fieldEngineerUpdateLocationZodSchema
+  typeof fieldEngineerWorkStatusZodSchema
 >;
 export type FieldEngineerStatusType = z.infer<
   typeof fieldEngineerStatusZodSchema

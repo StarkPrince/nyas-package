@@ -541,7 +541,7 @@ export declare const fieldEngineerStatusZodSchema: z.ZodObject<{
         lat: number;
         long: number;
     }>;
-    checkType: z.ZodNativeEnum<typeof PunctualityEnum>;
+    checkType: z.ZodDefault<z.ZodNativeEnum<typeof PunctualityEnum>>;
     approved: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     message: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -559,9 +559,9 @@ export declare const fieldEngineerStatusZodSchema: z.ZodObject<{
         long: number;
     };
     workStatus: FieldEngineerWorkStatusEnum;
-    checkType: PunctualityEnum;
     approved?: boolean | undefined;
     message?: string | undefined;
+    checkType?: PunctualityEnum | undefined;
 }>;
 export declare const cancelSubticketZodSchema: z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
@@ -576,13 +576,6 @@ export declare const cancelSubticketZodSchema: z.ZodObject<{
     reason: string;
     comments: string;
 }>;
-export declare const fieldEngineerGetTicketsZodSchema: z.ZodObject<{
-    input_date: z.ZodEffects<z.ZodString, string, string>;
-}, "strip", z.ZodTypeAny, {
-    input_date: string;
-}, {
-    input_date: string;
-}>;
 export declare const fieldEngineerGetSubTicketsZodSchema: z.ZodObject<{
     input_date: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
@@ -590,7 +583,7 @@ export declare const fieldEngineerGetSubTicketsZodSchema: z.ZodObject<{
 }, {
     input_date: string;
 }>;
-export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
+export declare const fieldEngineerWorkStatusZodSchema: z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
     location: z.ZodObject<{
         lat: z.ZodNumber;
@@ -604,6 +597,7 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
     }>;
     event: z.ZodNativeEnum<typeof FieldEngineerWorkStatusEnum>;
     message: z.ZodOptional<z.ZodString>;
+    timestamp: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     location: {
         lat: number;
@@ -612,6 +606,7 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
     subticketId: string;
     event: FieldEngineerWorkStatusEnum;
     message?: string | undefined;
+    timestamp?: string | undefined;
 }, {
     location: {
         lat: number;
@@ -620,37 +615,12 @@ export declare const fieldEngineerUpdateLocationZodSchema: z.ZodObject<{
     subticketId: string;
     event: FieldEngineerWorkStatusEnum;
     message?: string | undefined;
-}>;
-export declare const checkedInZodSchema: z.ZodObject<{
-    location: z.ZodObject<{
-        lat: z.ZodNumber;
-        long: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        lat: number;
-        long: number;
-    }, {
-        lat: number;
-        long: number;
-    }>;
-    subticketId: z.ZodEffects<z.ZodString, string, string>;
-}, "strip", z.ZodTypeAny, {
-    location: {
-        lat: number;
-        long: number;
-    };
-    subticketId: string;
-}, {
-    location: {
-        lat: number;
-        long: number;
-    };
-    subticketId: string;
+    timestamp?: string | undefined;
 }>;
 export type fieldEngineerRegisterType = z.infer<typeof fieldEngineerRegisterZodSchema>;
 export type LocationType = z.infer<typeof locationZodSchema>;
 export type FieldEngineerType = z.infer<typeof fieldEngineerZodSchema>;
 export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
-export type FieldEngineerGetTicketsType = z.infer<typeof fieldEngineerGetTicketsZodSchema>;
 export type FieldEngineerGetSubTicketsType = z.infer<typeof fieldEngineerGetSubTicketsZodSchema>;
-export type FieldEngineerUpdateLocationType = z.infer<typeof fieldEngineerUpdateLocationZodSchema>;
+export type FieldEngineerUpdateLocationType = z.infer<typeof fieldEngineerWorkStatusZodSchema>;
 export type FieldEngineerStatusType = z.infer<typeof fieldEngineerStatusZodSchema>;

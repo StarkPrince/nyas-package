@@ -102,6 +102,11 @@ var Permission;
     Permission["CHECK_IN"] = "check.in";
     Permission["CHECK_OUT"] = "check.out";
     Permission["VIEW_EMERGENCY_CONTACT"] = "view.emergency.contact";
+    Permission["DELETE_DEVICE_TOKEN"] = "delete.device.token";
+    Permission["VIEW_DEVICE_TOKEN"] = "view.device.token";
+    Permission["CREATE_DEVICE_TOKEN"] = "create.device.token";
+    Permission["MODIFY_DEVICE_TOKEN"] = "modify.device.token";
+    Permission["LOGOUT"] = "logout";
 })(Permission || (exports.Permission = Permission = {}));
 var UserRolesEnum;
 (function (UserRolesEnum) {
@@ -134,6 +139,12 @@ exports.rolePermissions = {
         Permission.READ_NOTIFICATIONS,
         Permission.VIEW_EXTENSIONS,
         Permission.VIEW_NOTIFICATIONS,
+        Permission.VIEW_EMERGENCY_CONTACT,
+        Permission.MODIFY_DEVICE_TOKEN,
+        Permission.VIEW_DEVICE_TOKEN,
+        Permission.CREATE_DEVICE_TOKEN,
+        Permission.DELETE_DEVICE_TOKEN,
+        Permission.LOGOUT,
     ],
     [UserRolesEnum.NOC]: Object.values(Permission).filter((permission) => permission !== Permission.MODIFY_TICKETS &&
         permission !== Permission.CREATE_NOC_USER &&
