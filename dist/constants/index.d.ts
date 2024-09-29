@@ -40,6 +40,7 @@ export declare const ERROR_MESSAGES: {
     SUBTICKET_NOT_ACCEPTED: string;
     SUBTICKET_NOT_PENDING_FOR_APPROVAL: string;
     SUBTICKET_NOT_APPROVED: string;
+    SUBTICKET_COMPLETED: string;
 };
 export declare const STATUS_CODES: {
     CONTINUE: number;
@@ -98,6 +99,7 @@ export declare const STATUS_CODES: {
     NOT_ACCEPTED: number;
     NOT_PENDING_FOR_APPROVAL: number;
     NOT_APPROVED: number;
+    COMPLETED: number;
 };
 export declare const redisKeys: {
     refreshToken: (userId: string) => string;

@@ -42,6 +42,7 @@ export const ERROR_MESSAGES = {
   SUBTICKET_NOT_ACCEPTED: "Subticket is not accepted.",
   SUBTICKET_NOT_PENDING_FOR_APPROVAL: "Subticket is not pending for approval.",
   SUBTICKET_NOT_APPROVED: "Subticket is not approved.",
+  SUBTICKET_COMPLETED: "Subticket is completed.",
 };
 
 export const STATUS_CODES = {
@@ -111,6 +112,7 @@ export const STATUS_CODES = {
   NOT_ACCEPTED: 409,
   NOT_PENDING_FOR_APPROVAL: 409,
   NOT_APPROVED: 409,
+  COMPLETED: 409,
 };
 
 export const redisKeys = {
