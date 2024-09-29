@@ -583,7 +583,7 @@ export declare const fieldEngineerGetSubTicketsZodSchema: z.ZodObject<{
 }, {
     input_date: string;
 }>;
-export declare const fieldEngineerWorkStatusZodSchema: z.ZodObject<{
+export declare const fieldEngineerWorkStatusZodSchema: z.ZodEffects<z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
     location: z.ZodObject<{
         lat: z.ZodNumber;
@@ -599,6 +599,24 @@ export declare const fieldEngineerWorkStatusZodSchema: z.ZodObject<{
     message: z.ZodOptional<z.ZodString>;
     timestamp: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    location: {
+        lat: number;
+        long: number;
+    };
+    subticketId: string;
+    event: FieldEngineerWorkStatusEnum;
+    message?: string | undefined;
+    timestamp?: string | undefined;
+}, {
+    location: {
+        lat: number;
+        long: number;
+    };
+    subticketId: string;
+    event: FieldEngineerWorkStatusEnum;
+    message?: string | undefined;
+    timestamp?: string | undefined;
+}>, {
     location: {
         lat: number;
         long: number;

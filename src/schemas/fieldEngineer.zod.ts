@@ -87,15 +87,28 @@ export const fieldEngineerGetSubTicketsZodSchema = z.object({
     .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
 
-export const fieldEngineerWorkStatusZodSchema = z.object({
-  subticketId: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid subticket Id",
-  }),
-  location: locationZodSchema,
-  event: z.nativeEnum(FieldEngineerWorkStatusEnum),
-  message: z.string().optional(),
-  timestamp: z.string().optional(),
-});
+export const fieldEngineerWorkStatusZodSchema = z
+  .object({
+    subticketId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid subticket Id",
+    }),
+    location: locationZodSchema,
+    event: z.nativeEnum(FieldEngineerWorkStatusEnum),
+    message: z.string().optional(),
+    timestamp: z.string().optional(),
+  })
+  .refine(
+    (data) => {
+      // if even is checkedOut then timestamp is required
+      if (data.event === FieldEngineerWorkStatusEnum.CHECKED_OUT) {
+        return !!data.timestamp;
+      }
+      return true;
+    },
+    {
+      message: "Timestamp is required for checkedOut event",
+    }
+  );
 
 export type fieldEngineerRegisterType = z.infer<
   typeof fieldEngineerRegisterZodSchema

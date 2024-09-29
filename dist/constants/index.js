@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.messages = exports.redisKeys = exports.constants = void 0;
-exports.constants = {
+exports.messages = exports.redisKeys = exports.STATUS_CODES = exports.ERROR_MESSAGES = void 0;
+exports.ERROR_MESSAGES = {
     INVALID_CREDENTIALS_MESSAGE: "Invalid credentials provided.",
     SERVER_ERROR_MESSAGE: "Internal server error occurred.",
     NOT_FOUND_MESSAGE: "Resource not found.",
@@ -31,6 +31,81 @@ exports.constants = {
     SUBTICKET_NOT_FOUND_MESSAGE: "Subticket not found.",
     TICKET_NOT_ASSIGNED_MESSAGE: "Ticket not assigned to given Field Engineer.",
     SUBTICKET_NOT_ASSIGNED_MESSAGE: "Subticket not assigned to given Field Engineer.",
+    USER_NOT_FOUND: "User not found.",
+    SUBTICKET_NOT_FOUND: "Subticket not found.",
+    FIELD_ENGINEER_NOT_FOUND: "Field Engineer not found.",
+    SUBTICKET_NOT_ONGOING: "Subticket is not ongoing.",
+    SUBTICKET_NOT_CHECKED_IN: "Subticket is not checked in.",
+    SUBTICKET_ALREADY_CHECKED_OUT: "Subticket is already checked out.",
+    SUBTICKET_ALREADY_CHECKED_IN: "Subticket is already checked in.",
+    LOGIN_FAILED: "Login failed.",
+    SUBTICKET_CANCELLED: "Subticket is cancelled.",
+    SUBTICKET_NOT_ACCEPTED: "Subticket is not accepted.",
+    SUBTICKET_NOT_PENDING_FOR_APPROVAL: "Subticket is not pending for approval.",
+    SUBTICKET_NOT_APPROVED: "Subticket is not approved.",
+};
+exports.STATUS_CODES = {
+    // 1xx Informational responses
+    CONTINUE: 100,
+    SWITCHING_PROTOCOLS: 101,
+    PROCESSING: 102,
+    // 2xx Success
+    OK: 200,
+    CREATED: 201,
+    ACCEPTED: 202,
+    NON_AUTHORITATIVE_INFORMATION: 203,
+    NO_CONTENT: 204,
+    RESET_CONTENT: 205,
+    PARTIAL_CONTENT: 206,
+    // 3xx Redirection
+    MULTIPLE_CHOICES: 300,
+    MOVED_PERMANENTLY: 301,
+    FOUND: 302,
+    SEE_OTHER: 303,
+    NOT_MODIFIED: 304,
+    USE_PROXY: 305,
+    TEMPORARY_REDIRECT: 307,
+    PERMANENT_REDIRECT: 308,
+    // 4xClient errors
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    PAYMENT_REQUIRED: 402,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+    METHOD_NOT_ALLOWED: 405,
+    NOT_ACCEPTABLE: 406,
+    PROXY_AUTHENTICATION_REQUIRED: 407,
+    REQUEST_TIMEOUT: 408,
+    CONFLICT: 409,
+    GONE: 410,
+    LENGTH_REQUIRED: 411,
+    PRECONDITION_FAILED: 412,
+    PAYLOAD_TOO_LARGE: 413,
+    URI_TOO_LONG: 414,
+    UNSUPPORTED_MEDIA_TYPE: 415,
+    RANGE_NOT_SATISFIABLE: 416,
+    EXPECTATION_FAILED: 417,
+    IM_A_TEAPOT: 418, // Fun Easter egg HTTP status code
+    // 5xx Server errors
+    INTERNAL_SERVER_ERROR: 500,
+    NOT_IMPLEMENTED: 501,
+    BAD_GATEWAY: 502,
+    SERVICE_UNAVAILABLE: 503,
+    GATEWAY_TIMEOUT: 504,
+    HTTP_VERSION_NOT_SUPPORTED: 505,
+    VARIANT_ALSO_NEGOTIATES: 506,
+    INSUFFICIENT_STORAGE: 507,
+    LOOP_DETECTED: 508,
+    NOT_EXTENDED: 510,
+    NETWORK_AUTHENTICATION_REQUIRED: 511,
+    NOT_ONGOING: 409,
+    NOT_CHECKED_IN: 412,
+    ALREADY_CHECKED_IN: 409,
+    ALREADY_CHECKED_OUT: 409,
+    CANCELLED: 409,
+    NOT_ACCEPTED: 409,
+    NOT_PENDING_FOR_APPROVAL: 409,
+    NOT_APPROVED: 409,
 };
 exports.redisKeys = {
     refreshToken: (userId) => `refreshToken:${userId}`,

@@ -74,7 +74,8 @@ exports.fieldEngineerGetSubTicketsZodSchema = zod_1.z.object({
         .min(1, "Input date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
-exports.fieldEngineerWorkStatusZodSchema = zod_1.z.object({
+exports.fieldEngineerWorkStatusZodSchema = zod_1.z
+    .object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid subticket Id",
     }),
@@ -82,4 +83,13 @@ exports.fieldEngineerWorkStatusZodSchema = zod_1.z.object({
     event: zod_1.z.nativeEnum(enums_1.FieldEngineerWorkStatusEnum),
     message: zod_1.z.string().optional(),
     timestamp: zod_1.z.string().optional(),
+})
+    .refine((data) => {
+    // if even is checkedOut then timestamp is required
+    if (data.event === enums_1.FieldEngineerWorkStatusEnum.CHECKED_OUT) {
+        return !!data.timestamp;
+    }
+    return true;
+}, {
+    message: "Timestamp is required for checkedOut event",
 });
