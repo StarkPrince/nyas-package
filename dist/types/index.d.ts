@@ -105,7 +105,7 @@ export interface IMessage extends Document, MessageType, ICreatedUpdated {
 export interface ErrorResponse {
     success: false;
     error: {
-        code: string;
+        code: number;
         message: string;
         details?: any;
     };
