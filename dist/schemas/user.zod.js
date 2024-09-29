@@ -21,6 +21,7 @@ exports.userZodSchema = zod_1.z
         .array(zod_1.z.string().min(1, "Device cannot be blank"))
         .default([])
         .optional(),
+    timezone: zod_1.z.enum(enums_1.Timezones).default("Etc/GMT"),
 })
     .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",

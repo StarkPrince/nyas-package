@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { UserRolesEnum, UserStatusEnum } from "../enums";
+import { Timezones, UserRolesEnum, UserStatusEnum } from "../enums";
 
 const passwordPattern =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/;
@@ -21,6 +21,7 @@ export const userZodSchema = z
       .array(z.string().min(1, "Device cannot be blank"))
       .default([])
       .optional(),
+    timezone: z.enum(Timezones).default("Etc/GMT"),
   })
   .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",

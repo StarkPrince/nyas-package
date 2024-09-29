@@ -2,6 +2,7 @@ export * from "./cities";
 export * from "./countries";
 export * from "./currencies";
 export * from "./permissions";
+export * from "./timezoneEnums";
 
 export enum ChatTypeEnum {
   TEXT = "text",

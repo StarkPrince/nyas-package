@@ -19,6 +19,7 @@ __exportStar(require("./cities"), exports);
 __exportStar(require("./countries"), exports);
 __exportStar(require("./currencies"), exports);
 __exportStar(require("./permissions"), exports);
+__exportStar(require("./timezoneEnums"), exports);
 var ChatTypeEnum;
 (function (ChatTypeEnum) {
     ChatTypeEnum["TEXT"] = "text";
