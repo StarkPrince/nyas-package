@@ -87,6 +87,7 @@ var ExtensionStatusEnum;
     ExtensionStatusEnum["APPROVED"] = "approved";
     ExtensionStatusEnum["REJECTED"] = "rejected";
     ExtensionStatusEnum["PENDING"] = "pending";
+    ExtensionStatusEnum["CONSOLIDATED"] = "consolidated";
 })(ExtensionStatusEnum || (exports.ExtensionStatusEnum = ExtensionStatusEnum = {}));
 var BillingTypeEnum;
 (function (BillingTypeEnum) {

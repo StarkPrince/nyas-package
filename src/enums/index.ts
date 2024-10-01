@@ -70,6 +70,7 @@ export enum ExtensionStatusEnum {
   APPROVED = "approved",
   REJECTED = "rejected",
   PENDING = "pending",
+  CONSOLIDATED = "consolidated",
 }
 
 export enum BillingTypeEnum {

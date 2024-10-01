@@ -60,7 +60,8 @@ export declare enum UserStatusEnum {
 export declare enum ExtensionStatusEnum {
     APPROVED = "approved",
     REJECTED = "rejected",
-    PENDING = "pending"
+    PENDING = "pending",
+    CONSOLIDATED = "consolidated"
 }
 export declare enum BillingTypeEnum {
     HOURLY = "hourly",
