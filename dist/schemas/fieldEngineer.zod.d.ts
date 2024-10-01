@@ -181,7 +181,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         number: string;
         SLA: number;
-        status: import("../enums").TicketStatusEnum;
         tasks: {
             status: import("../enums").TaskStatusEnum;
             taskName: string;
@@ -192,6 +191,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             difficultyLevel: number;
             relatedMedia: string[];
         }[];
+        status: import("../enums").TicketStatusEnum;
         chat: string;
         title: string;
         clientContractId: string;
@@ -319,7 +319,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     tickets: {
         number: string;
         SLA: number;
-        status: import("../enums").TicketStatusEnum;
         tasks: {
             status: import("../enums").TaskStatusEnum;
             taskName: string;
@@ -330,6 +329,7 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             difficultyLevel: number;
             relatedMedia: string[];
         }[];
+        status: import("../enums").TicketStatusEnum;
         chat: string;
         title: string;
         clientContractId: string;

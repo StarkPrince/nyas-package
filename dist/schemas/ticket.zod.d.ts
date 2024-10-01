@@ -6,12 +6,12 @@ export declare const assignmentZodSchema: z.ZodObject<{
     tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     fieldEngineer: string;
-    vendorContract: string;
     tasks: string[];
+    vendorContract: string;
 }, {
     fieldEngineer: string;
-    vendorContract: string;
     tasks: string[];
+    vendorContract: string;
 }>;
 export declare const communicationZodSchema: z.ZodObject<{
     consumerPortal: z.ZodObject<{
@@ -254,7 +254,6 @@ export declare const ticketZodSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     number: string;
     SLA: number;
-    status: TicketStatusEnum;
     tasks: {
         status: TaskStatusEnum;
         taskName: string;
@@ -265,6 +264,7 @@ export declare const ticketZodSchema: z.ZodObject<{
         difficultyLevel: number;
         relatedMedia: string[];
     }[];
+    status: TicketStatusEnum;
     chat: string;
     title: string;
     clientContractId: string;
@@ -398,26 +398,26 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
             tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
         }, "strip", z.ZodTypeAny, {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }, {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         schedule: string;
         assignments: {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }[];
     }, {
         schedule: string;
         assignments: {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }[];
     }>, "many">>;
     document: z.ZodOptional<z.ZodObject<{
@@ -524,8 +524,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         schedule: string;
         assignments: {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }[];
     }[] | undefined;
 }, {
@@ -558,8 +558,8 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         schedule: string;
         assignments: {
             fieldEngineer: string;
-            vendorContract: string;
             tasks: string[];
+            vendorContract: string;
         }[];
     }[] | undefined;
 }>;

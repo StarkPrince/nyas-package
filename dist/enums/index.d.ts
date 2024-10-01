@@ -27,7 +27,7 @@ export declare enum TicketStatusEnum {
 export declare enum PunctualityEnum {
     EARLY = "early",
     ON_TIME = "on-time",
-    LATE = "late",
+    DELAYED = "delayed",
     AUTO = "auto"
 }
 export declare enum SubTicketStatusEnum {
@@ -47,21 +47,22 @@ export declare enum S3FolderEnum {
     CONTRACT_DOCUMENTS = "ContractDocuments"
 }
 export declare enum UpdateTicketEnum {
-    ADD_TASKS = "add-tasks",
-    ADD_DOCUMENTS = "add-documents",
-    ADD_COMMUNICATIONS = "add-communications",
-    ADD_FIELDENGINEERS = "add-fieldEngineers"
+    TASK_ADDITION = "tasks",
+    DOCUMENT_ADDITION = "documents",
+    COMMUNICATION_ADDITION = "communications",
+    ENGINEER_ADDITION = "fieldEngineers"
 }
 export declare enum UserStatusEnum {
     ACTIVE = "active",
     INACTIVE = "inactive",
+    SUSPENDED = "suspended",
     BLOCKED = "blocked"
 }
 export declare enum ExtensionStatusEnum {
     APPROVED = "approved",
     REJECTED = "rejected",
     PENDING = "pending",
-    CONSOLIDATED = "consolidated"
+    SCHEDULE_EXTENDED = "schedule-extended"
 }
 export declare enum BillingTypeEnum {
     HOURLY = "hourly",

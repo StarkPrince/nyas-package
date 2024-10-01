@@ -193,6 +193,7 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
     fieldEngineers: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
+    fieldEngineers: string[];
     status: ContractStatusEnum;
     pointOfContact: [string | {
         email: string;
@@ -221,11 +222,11 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    fieldEngineers: string[];
     clientContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
     vendorId?: string | undefined;
 }, {
+    fieldEngineers: string[];
     pointOfContact: [string | {
         email: string;
         name: string;
@@ -253,7 +254,6 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
-    fieldEngineers: string[];
     status?: ContractStatusEnum | undefined;
     clientContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;

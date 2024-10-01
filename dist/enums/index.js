@@ -48,7 +48,7 @@ var PunctualityEnum;
 (function (PunctualityEnum) {
     PunctualityEnum["EARLY"] = "early";
     PunctualityEnum["ON_TIME"] = "on-time";
-    PunctualityEnum["LATE"] = "late";
+    PunctualityEnum["DELAYED"] = "delayed";
     PunctualityEnum["AUTO"] = "auto";
 })(PunctualityEnum || (exports.PunctualityEnum = PunctualityEnum = {}));
 var SubTicketStatusEnum;
@@ -71,15 +71,16 @@ var S3FolderEnum;
 })(S3FolderEnum || (exports.S3FolderEnum = S3FolderEnum = {}));
 var UpdateTicketEnum;
 (function (UpdateTicketEnum) {
-    UpdateTicketEnum["ADD_TASKS"] = "add-tasks";
-    UpdateTicketEnum["ADD_DOCUMENTS"] = "add-documents";
-    UpdateTicketEnum["ADD_COMMUNICATIONS"] = "add-communications";
-    UpdateTicketEnum["ADD_FIELDENGINEERS"] = "add-fieldEngineers";
+    UpdateTicketEnum["TASK_ADDITION"] = "tasks";
+    UpdateTicketEnum["DOCUMENT_ADDITION"] = "documents";
+    UpdateTicketEnum["COMMUNICATION_ADDITION"] = "communications";
+    UpdateTicketEnum["ENGINEER_ADDITION"] = "fieldEngineers";
 })(UpdateTicketEnum || (exports.UpdateTicketEnum = UpdateTicketEnum = {}));
 var UserStatusEnum;
 (function (UserStatusEnum) {
     UserStatusEnum["ACTIVE"] = "active";
     UserStatusEnum["INACTIVE"] = "inactive";
+    UserStatusEnum["SUSPENDED"] = "suspended";
     UserStatusEnum["BLOCKED"] = "blocked";
 })(UserStatusEnum || (exports.UserStatusEnum = UserStatusEnum = {}));
 var ExtensionStatusEnum;
@@ -87,7 +88,7 @@ var ExtensionStatusEnum;
     ExtensionStatusEnum["APPROVED"] = "approved";
     ExtensionStatusEnum["REJECTED"] = "rejected";
     ExtensionStatusEnum["PENDING"] = "pending";
-    ExtensionStatusEnum["CONSOLIDATED"] = "consolidated";
+    ExtensionStatusEnum["SCHEDULE_EXTENDED"] = "schedule-extended";
 })(ExtensionStatusEnum || (exports.ExtensionStatusEnum = ExtensionStatusEnum = {}));
 var BillingTypeEnum;
 (function (BillingTypeEnum) {
