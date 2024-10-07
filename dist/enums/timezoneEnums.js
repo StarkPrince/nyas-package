@@ -350,4 +350,7 @@ exports.Timezones = [
     "Indian/Reunion",
     "Europe/Belgrade",
     "Europe/Simferopol",
+    "Europe/London",
+    "Africa/Lagos",
+    "Africa/Maputo",
 ];
