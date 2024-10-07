@@ -9,7 +9,7 @@ export const userZodSchema = z
     username: z.string().optional(),
     email: z.string().email().min(1, "Email cannot be blank"),
     password: z.string().refine((id) => passwordPattern.test(id), {
-      message: "Invalid vendor contract Id",
+      message: "Invalid password",
     }),
     role: z.nativeEnum(UserRolesEnum).default(UserRolesEnum.FIELD_ENGINEER),
     phoneNumber: z.string().optional(),
@@ -32,6 +32,7 @@ export const userUpdateZodSchema = z.object({
   name: z.string().optional(),
   about: z.string().optional(),
   image: z.string().optional(),
+  timezone: z.enum(Timezones).optional(),
 });
 
 export const userLoginZodSchema = z.object({

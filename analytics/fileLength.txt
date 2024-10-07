@@ -68,3 +68,78 @@
 475	services\fieldEngineer.service.ts
 
 Total length:  8,422
+
+
+007 config\cors.ts
+032 config\database.ts
+069 config\index.ts
+005 config\redis.ts
+313 controllers\auth.controller.ts
+033 controllers\billing.controller.ts
+187 controllers\chat.controller.ts
+244 controllers\client.controller.ts
+382 controllers\fieldEngineer.controller.ts
+255 controllers\s3.controller.ts
+080 controllers\site.controller.ts
+280 controllers\subticket.controller.ts
+437 controllers\ticket.controller.ts
+251 controllers\user.controller.ts
+271 controllers\vendor.controller.ts
+072 coordinateToTimezone.js
+140 errors\index.ts
+065 index.ts
+001 jobs\index.ts
+056 jobs\subticketStatusCron.ts
+068 middlewares\authAndPermissionMiddleware.ts
+033 middlewares\errorMiddleware.ts
+015 middlewares\index.ts
+012 middlewares\ipMiddleware.ts
+056 middlewares\rateLimit.ts
+150 middlewares\timezoneResponseMiddleware.ts
+038 middlewares\validateFileRequest.ts
+025 middlewares\validateRequest.ts
+117 models\chat.model.ts
+048 models\client.model.ts
+081 models\clientContract.model.ts
+317 models\common.model.ts
+083 models\fieldEngineer.model.ts
+355 models\index.ts
+126 models\subticket.model.ts
+153 models\ticket.model.ts
+059 models\user.model.ts
+054 models\vendor.model.ts
+104 models\vendorContract.model.ts
+068 routes\auth.routes.ts
+043 routes\chat.routes.ts
+071 routes\client.routes.ts
+182 routes\fieldEngineer.routes.ts
+022 routes\index.ts
+160 routes\static.routes.ts
+041 routes\subticket.routes.ts
+059 routes\ticket.routes.ts
+082 routes\vendor.routes.ts
+029 services\auth.service.ts
+041 services\billing.service.ts
+193 services\chat.service.ts
+299 services\client.service.ts
+198 services\common.service.ts
+514 services\fieldEngineer.service.ts
+024 services\index.ts
+131 services\otp.service.ts
+056 services\s3.service.ts
+094 services\site.service.ts
+543 services\subticket.service.ts
+438 services\ticket.service.ts
+186 services\user.service.ts
+440 services\vendor.service.ts
+112 socket.ts
+041 utils\functions.ts
+010 utils\index.ts
+022 utils\indexedFields.ts
+107 utils\logger.ts
+229 utils\processReferences.ts
+047 utils\referenceFields.ts
+052 utils\typeGuards.ts
+
+
+Total length:  9,608

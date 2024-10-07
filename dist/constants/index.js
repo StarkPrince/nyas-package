@@ -44,6 +44,11 @@ exports.ERROR_MESSAGES = {
     SUBTICKET_NOT_PENDING_FOR_APPROVAL: "Subticket is not pending for approval.",
     SUBTICKET_NOT_APPROVED: "Subticket is not approved.",
     SUBTICKET_COMPLETED: "Subticket is completed.",
+    USERNAME_ALREADY_TAKEN: "Username already taken.",
+    PHONE_NUMBER_ALREADY_TAKEN: "Phone number already in use.",
+    EMAIL_ALREADY_TAKEN: "Email already in use.",
+    ADDRESS_BELONG_TO_OTHER_FIELD_ENGINEER: "Address belongs to other field engineer.",
+    DUPLICATE_CLIENT_CONTRACT_NUMBER: "Duplicate Client Contract Number.",
 };
 exports.STATUS_CODES = {
     // 1xx Informational responses

@@ -9,7 +9,7 @@ exports.userZodSchema = zod_1.z
     username: zod_1.z.string().optional(),
     email: zod_1.z.string().email().min(1, "Email cannot be blank"),
     password: zod_1.z.string().refine((id) => passwordPattern.test(id), {
-        message: "Invalid vendor contract Id",
+        message: "Invalid password",
     }),
     role: zod_1.z.nativeEnum(enums_1.UserRolesEnum).default(enums_1.UserRolesEnum.FIELD_ENGINEER),
     phoneNumber: zod_1.z.string().optional(),
@@ -31,6 +31,7 @@ exports.userUpdateZodSchema = zod_1.z.object({
     name: zod_1.z.string().optional(),
     about: zod_1.z.string().optional(),
     image: zod_1.z.string().optional(),
+    timezone: zod_1.z.enum(enums_1.Timezones).optional(),
 });
 exports.userLoginZodSchema = zod_1.z.object({
     email: zod_1.z.string().email().min(1, "Email cannot be blank"),
