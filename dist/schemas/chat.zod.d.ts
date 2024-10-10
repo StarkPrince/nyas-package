@@ -1,17 +1,23 @@
 import { z } from "zod";
-import { ChatTypeEnum, ReadStatusEnum } from "../enums";
+import { ChatTypeEnum, NotificationTypeEnum, ReadStatusEnum } from "../enums";
 export declare const notificationZodSchema: z.ZodObject<{
     userId: z.ZodEffects<z.ZodString, string, string>;
     messageId: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodNativeEnum<typeof ReadStatusEnum>;
+    actionPath: z.ZodString;
+    notificationType: z.ZodNativeEnum<typeof NotificationTypeEnum>;
 }, "strip", z.ZodTypeAny, {
     status: ReadStatusEnum;
     userId: string;
     messageId: string;
+    actionPath: string;
+    notificationType: NotificationTypeEnum;
 }, {
     status: ReadStatusEnum;
     userId: string;
     messageId: string;
+    actionPath: string;
+    notificationType: NotificationTypeEnum;
 }>;
 export declare const messageZodSchema: z.ZodObject<{
     chatType: z.ZodNativeEnum<typeof ChatTypeEnum>;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ChatTypeEnum, ReadStatusEnum } from "../enums";
+import { ChatTypeEnum, NotificationTypeEnum, ReadStatusEnum } from "../enums";
 import { idPattern } from "./common.zod";
 
 export const notificationZodSchema = z.object({
@@ -10,6 +10,8 @@ export const notificationZodSchema = z.object({
     message: "Invalid message Id",
   }),
   status: z.nativeEnum(ReadStatusEnum),
+  actionPath: z.string(),
+  notificationType: z.nativeEnum(NotificationTypeEnum),
 });
 
 export const messageZodSchema = z.object({

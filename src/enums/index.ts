@@ -16,6 +16,12 @@ export enum ReadStatusEnum {
   UNREAD = "unread",
 }
 
+export enum NotificationTypeEnum {
+  ACTIONABLE = "ACTIONABLE",
+  READONLY = "READONLY",
+  ERROR = "ERROR",
+}
+
 export enum TicketStatusEnum {
   DRAFT = "draft",
   ASSIGN_PENDING = "assign-pending",

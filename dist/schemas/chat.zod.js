@@ -12,6 +12,8 @@ exports.notificationZodSchema = zod_1.z.object({
         message: "Invalid message Id",
     }),
     status: zod_1.z.nativeEnum(enums_1.ReadStatusEnum),
+    actionPath: zod_1.z.string(),
+    notificationType: zod_1.z.nativeEnum(enums_1.NotificationTypeEnum),
 });
 exports.messageZodSchema = zod_1.z.object({
     chatType: zod_1.z.nativeEnum(enums_1.ChatTypeEnum),

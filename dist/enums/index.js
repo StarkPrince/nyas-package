@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContractStatusEnum = exports.TaskStatusEnum = exports.LogisticsEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.S3FolderEnum = exports.SubTicketStatusEnum = exports.PunctualityEnum = exports.TicketStatusEnum = exports.ReadStatusEnum = exports.ChatTypeEnum = void 0;
+exports.ContractStatusEnum = exports.TaskStatusEnum = exports.LogisticsEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.UpdateTicketEnum = exports.S3FolderEnum = exports.SubTicketStatusEnum = exports.PunctualityEnum = exports.TicketStatusEnum = exports.NotificationTypeEnum = exports.ReadStatusEnum = exports.ChatTypeEnum = void 0;
 __exportStar(require("./cities"), exports);
 __exportStar(require("./countries"), exports);
 __exportStar(require("./currencies"), exports);
@@ -32,6 +32,12 @@ var ReadStatusEnum;
     ReadStatusEnum["READ"] = "read";
     ReadStatusEnum["UNREAD"] = "unread";
 })(ReadStatusEnum || (exports.ReadStatusEnum = ReadStatusEnum = {}));
+var NotificationTypeEnum;
+(function (NotificationTypeEnum) {
+    NotificationTypeEnum["ACTIONABLE"] = "ACTIONABLE";
+    NotificationTypeEnum["READONLY"] = "READONLY";
+    NotificationTypeEnum["ERROR"] = "ERROR";
+})(NotificationTypeEnum || (exports.NotificationTypeEnum = NotificationTypeEnum = {}));
 var TicketStatusEnum;
 (function (TicketStatusEnum) {
     TicketStatusEnum["DRAFT"] = "draft";

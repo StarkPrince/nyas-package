@@ -49,6 +49,9 @@ export const ERROR_MESSAGES = {
   ADDRESS_BELONG_TO_OTHER_FIELD_ENGINEER:
     "Address belongs to other field engineer.",
   DUPLICATE_CLIENT_CONTRACT_NUMBER: "Duplicate Client Contract Number.",
+  INSUFFICIENT_PERMISSION_FOR_TICKET_UPDATE:
+    "You dont have sufficient permission to update the above ticket",
+  TICKET_NOT_FOUND: "Ticket not found.",
 };
 
 export const STATUS_CODES = {

@@ -49,6 +49,8 @@ exports.ERROR_MESSAGES = {
     EMAIL_ALREADY_TAKEN: "Email already in use.",
     ADDRESS_BELONG_TO_OTHER_FIELD_ENGINEER: "Address belongs to other field engineer.",
     DUPLICATE_CLIENT_CONTRACT_NUMBER: "Duplicate Client Contract Number.",
+    INSUFFICIENT_PERMISSION_FOR_TICKET_UPDATE: "You dont have sufficient permission to update the above ticket",
+    TICKET_NOT_FOUND: "Ticket not found.",
 };
 exports.STATUS_CODES = {
     // 1xx Informational responses

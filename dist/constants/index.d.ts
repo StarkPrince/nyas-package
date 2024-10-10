@@ -46,6 +46,8 @@ export declare const ERROR_MESSAGES: {
     EMAIL_ALREADY_TAKEN: string;
     ADDRESS_BELONG_TO_OTHER_FIELD_ENGINEER: string;
     DUPLICATE_CLIENT_CONTRACT_NUMBER: string;
+    INSUFFICIENT_PERMISSION_FOR_TICKET_UPDATE: string;
+    TICKET_NOT_FOUND: string;
 };
 export declare const STATUS_CODES: {
     CONTINUE: number;
