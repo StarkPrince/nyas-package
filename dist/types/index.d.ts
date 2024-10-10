@@ -65,6 +65,23 @@ export interface IConfig {
     authKey: string;
     sender: string;
     no_of_devices: number;
+    clientId: string;
+    clientSecret: string;
+    redirectUri: string;
+    GOOGLE_TOKEN_ENDPOINT: string;
+    punctualityThreshold: number;
+    emergencyContract: {
+        role: string;
+        phoneNumber: string;
+        email: string;
+    };
+    ticketTTL: number;
+    subticketTTL: number;
+    clientTTL: number;
+    clientContractTTL: number;
+    vendorTTL: number;
+    vendorContractTTL: number;
+    fieldEngineerTTL: number;
 }
 export interface ICreatedUpdatedWithUser {
     createdAt: Date;
