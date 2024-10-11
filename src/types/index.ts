@@ -107,6 +107,11 @@ export interface IConfig {
   vendorTTL: number;
   vendorContractTTL: number;
   fieldEngineerTTL: number;
+  dbUser: string;
+  dbHost: string;
+  dbPassword: string;
+  dbPort: number;
+  dbSsl: any;
 }
 
 export interface ICreatedUpdatedWithUser {
