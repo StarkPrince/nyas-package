@@ -109,6 +109,7 @@ export interface IConfig {
   fieldEngineerTTL: number;
   dbUser: string;
   dbHost: string;
+  dbName: string;
   dbPassword: string;
   dbPort: number;
   dbSsl: any;
