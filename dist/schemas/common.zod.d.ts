@@ -294,6 +294,31 @@ export declare const taskTemplateZodSchema: z.ZodObject<{
     difficultyLevel: number;
     relatedMedia: string[];
 }>;
+export declare const mediaZodSchema: z.ZodObject<{
+    countries: z.ZodArray<z.ZodString, "many">;
+    categories: z.ZodArray<z.ZodString, "many">;
+    fileName: z.ZodString;
+    fileUrl: z.ZodString;
+    folder: z.ZodString;
+    size: z.ZodNumber;
+    uploadedAt: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    countries: string[];
+    categories: string[];
+    fileName: string;
+    fileUrl: string;
+    folder: string;
+    size: number;
+    uploadedAt: string;
+}, {
+    countries: string[];
+    categories: string[];
+    fileName: string;
+    fileUrl: string;
+    folder: string;
+    size: number;
+    uploadedAt: string;
+}>;
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;
 export type ScheduleType = z.infer<typeof scheduleZodSchema>;

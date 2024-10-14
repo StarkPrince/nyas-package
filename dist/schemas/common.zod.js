@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.taskTemplateZodSchema = exports.logisticsZodSchema = exports.extensionZodSchema = exports.siteAddressZodSchema = exports.scheduleZodSchema = exports.billingDetailZodSchema = exports.addressZodSchema = exports.contactDetailZodSchema = exports.idPattern = void 0;
+exports.mediaZodSchema = exports.taskTemplateZodSchema = exports.logisticsZodSchema = exports.extensionZodSchema = exports.siteAddressZodSchema = exports.scheduleZodSchema = exports.billingDetailZodSchema = exports.addressZodSchema = exports.contactDetailZodSchema = exports.idPattern = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums"); // The generated map
 const fieldEngineer_zod_1 = require("./fieldEngineer.zod");
@@ -110,4 +110,13 @@ exports.taskTemplateZodSchema = zod_1.z.object({
     logistics: zod_1.z.array(zod_1.z.string()),
     difficultyLevel: zod_1.z.number().min(1).max(5),
     relatedMedia: zod_1.z.array(zod_1.z.string()),
+});
+exports.mediaZodSchema = zod_1.z.object({
+    countries: zod_1.z.array(zod_1.z.string()),
+    categories: zod_1.z.array(zod_1.z.string()),
+    fileName: zod_1.z.string(),
+    fileUrl: zod_1.z.string(),
+    folder: zod_1.z.string(),
+    size: zod_1.z.number(),
+    uploadedAt: zod_1.z.string(),
 });

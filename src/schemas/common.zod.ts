@@ -142,6 +142,16 @@ export const taskTemplateZodSchema = z.object({
   relatedMedia: z.array(z.string()),
 });
 
+export const mediaZodSchema = z.object({
+  countries: z.array(z.string()),
+  categories: z.array(z.string()),
+  fileName: z.string(),
+  fileUrl: z.string(),
+  folder: z.string(),
+  size: z.number(),
+  uploadedAt: z.string(),
+});
+
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;
 export type ScheduleType = z.infer<typeof scheduleZodSchema>;

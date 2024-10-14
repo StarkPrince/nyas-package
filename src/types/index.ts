@@ -113,6 +113,8 @@ export interface IConfig {
   dbPassword: string;
   dbPort: number;
   dbSsl: any;
+  // NODE_ENV: string;
+  // ELASTIC_NODE: string;
 }
 
 export interface ICreatedUpdatedWithUser {
