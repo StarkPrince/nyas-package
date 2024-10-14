@@ -23,14 +23,20 @@ export declare const messageZodSchema: z.ZodObject<{
     chatType: z.ZodNativeEnum<typeof ChatTypeEnum>;
     data: z.ZodString;
     size: z.ZodNullable<z.ZodNumber>;
+    chatId: z.ZodString;
+    userId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     size: number | null;
+    userId: string;
     chatType: ChatTypeEnum;
     data: string;
+    chatId: string;
 }, {
     size: number | null;
+    userId: string;
     chatType: ChatTypeEnum;
     data: string;
+    chatId: string;
 }>;
 export declare const ticketChatZodSchema: z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;
