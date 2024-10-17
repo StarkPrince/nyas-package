@@ -108,25 +108,26 @@ export const ticketCreationZodSchema = z.object({
   schedules: z.array(scheduleZodSchema),
 });
 
+export const scheduleAssignmentZodSchema = z.object({
+  schedule: z.string().refine((id) => idPattern.test(id), {
+    message: "Invalid vendor contract Id",
+  }),
+  assignments: z.array(assignmentZodSchema),
+});
+
 export const ticketUpdateZodSchema = z.object({
   ticketId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid ticket Id",
   }),
-  scheduleAssignments: z
-    .array(
-      z.object({
-        schedule: z.string().refine((id) => idPattern.test(id), {
-          message: "Invalid vendor contract Id",
-        }),
-        assignments: z.array(assignmentZodSchema),
-      })
-    )
-    .optional(),
+  scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
   document: ticketDocumentZodSchema.optional(),
   tasks: z.array(taskZodSchema).optional(),
   communications: communicationZodSchema.optional(),
 });
 
+export type ScheduleAssignmentType = z.infer<
+  typeof scheduleAssignmentZodSchema
+>;
 export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
 export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;

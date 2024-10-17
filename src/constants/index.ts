@@ -52,6 +52,10 @@ export const ERROR_MESSAGES = {
   INSUFFICIENT_PERMISSION_FOR_TICKET_UPDATE:
     "You dont have sufficient permission to update the above ticket",
   TICKET_NOT_FOUND: "Ticket not found.",
+  SUBTICKET_CANNOT_BE_UNALLOCATED:
+    "Subticket cannot be unallocated as it is already in progress or in draft state",
+  SUBTICKET_NOT_PENDING_FOR_ASSIGNMENT:
+    "Subticket is not pending for assignment",
 };
 
 export const STATUS_CODES = {

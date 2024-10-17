@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ticketUpdateZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
+exports.ticketUpdateZodSchema = exports.scheduleAssignmentZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -90,18 +90,17 @@ exports.ticketCreationZodSchema = zod_1.z.object({
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
 });
+exports.scheduleAssignmentZodSchema = zod_1.z.object({
+    schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    }),
+    assignments: zod_1.z.array(exports.assignmentZodSchema),
+});
 exports.ticketUpdateZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid ticket Id",
     }),
-    scheduleAssignments: zod_1.z
-        .array(zod_1.z.object({
-        schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-            message: "Invalid vendor contract Id",
-        }),
-        assignments: zod_1.z.array(exports.assignmentZodSchema),
-    }))
-        .optional(),
+    scheduleAssignments: zod_1.z.array(exports.scheduleAssignmentZodSchema).optional(),
     document: exports.ticketDocumentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),
     communications: exports.communicationZodSchema.optional(),

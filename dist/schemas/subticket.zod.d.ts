@@ -153,8 +153,8 @@ export declare const subticketZodSchema: z.ZodObject<{
     number: string;
     SLA: number;
     tasks: string[];
-    ticketId: string;
     schedule: string;
+    ticketId: string;
     vendorContractId: string;
     statuses: {
         status: SubTicketStatusEnum;
@@ -190,8 +190,8 @@ export declare const subticketZodSchema: z.ZodObject<{
 }, {
     number: string;
     SLA: number;
-    ticketId: string;
     schedule: string;
+    ticketId: string;
     vendorContractId: string;
     statuses: {
         status: SubTicketStatusEnum;

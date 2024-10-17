@@ -388,6 +388,36 @@ export declare const ticketCreationZodSchema: z.ZodObject<{
         enddatetime: string;
     }[];
 }>;
+export declare const scheduleAssignmentZodSchema: z.ZodObject<{
+    schedule: z.ZodEffects<z.ZodString, string, string>;
+    assignments: z.ZodArray<z.ZodObject<{
+        fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
+        vendorContract: z.ZodEffects<z.ZodString, string, string>;
+        tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        fieldEngineer: string;
+        tasks: string[];
+        vendorContract: string;
+    }, {
+        fieldEngineer: string;
+        tasks: string[];
+        vendorContract: string;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    schedule: string;
+    assignments: {
+        fieldEngineer: string;
+        tasks: string[];
+        vendorContract: string;
+    }[];
+}, {
+    schedule: string;
+    assignments: {
+        fieldEngineer: string;
+        tasks: string[];
+        vendorContract: string;
+    }[];
+}>;
 export declare const ticketUpdateZodSchema: z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -563,6 +593,7 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         }[];
     }[] | undefined;
 }>;
+export type ScheduleAssignmentType = z.infer<typeof scheduleAssignmentZodSchema>;
 export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
 export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;
