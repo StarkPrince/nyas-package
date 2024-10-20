@@ -56,3 +56,13 @@ export const clientContractZodSchema = z.object({
 
 export type ClientType = z.infer<typeof clientZodSchema>;
 export type ClientContractType = z.infer<typeof clientContractZodSchema>;
+export type OverriddenClientType = Omit<ClientType, "pointOfContact"> & {
+  pointOfContact: string[];
+};
+export type OverriddenClientContractType = Omit<
+  ClientContractType,
+  "pointOfContact" | "billingDetails"
+> & {
+  pointOfContact: string[];
+  billingDetails: string[];
+};

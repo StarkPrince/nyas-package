@@ -4,7 +4,10 @@ import {
   NotificationType,
   TicketChatType,
 } from "../schemas/chat.zod";
-import { ClientContractType, ClientType } from "../schemas/client.zod";
+import {
+  OverriddenClientContractType,
+  OverriddenClientType,
+} from "../schemas/client.zod";
 import {
   AddressType,
   BillingDetailType,
@@ -30,7 +33,10 @@ import {
   TicketType,
 } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
-import { VendorContractType, VendorType } from "../schemas/vendor.zod";
+import {
+  OverriddenVendorContractType,
+  OverriddenVendorType,
+} from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
 export * from "../schemas/chat.zod";
 export * from "../schemas/client.zod";
@@ -137,12 +143,12 @@ export interface ITaskTemplate
 //client Interfaces
 export interface IClient
   extends Document,
-    ClientType,
+    OverriddenClientType,
     ICreatedUpdatedWithUser {}
 
 export interface IClientContract
   extends Document,
-    ClientContractType,
+    OverriddenClientContractType,
     ICreatedUpdatedWithUser {}
 
 //common Interfaces
@@ -240,11 +246,11 @@ export interface INotification
     ICreatedUpdated {}
 export interface IVendor
   extends Document,
-    VendorType,
+    OverriddenVendorType,
     ICreatedUpdatedWithUser {}
 export interface IVendorContract
   extends Document,
-    VendorContractType,
+    OverriddenVendorContractType,
     ICreatedUpdatedWithUser {}
 export interface IBillingDetail
   extends Document,

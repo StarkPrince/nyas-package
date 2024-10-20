@@ -1,12 +1,12 @@
 import { Document, Model, Schema } from "mongoose";
 import { MessageType, NotificationType, TicketChatType } from "../schemas/chat.zod";
-import { ClientContractType, ClientType } from "../schemas/client.zod";
+import { OverriddenClientContractType, OverriddenClientType } from "../schemas/client.zod";
 import { AddressType, BillingDetailType, ContactDetailType, ExtensionType, ScheduleType, SiteAddressType, TaskTemplateType } from "../schemas/common.zod";
 import { FieldEngineerStatusType, FieldEngineerType } from "../schemas/fieldEngineer.zod";
 import { RejectedSubticketType, SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
 import { CommunicationType, TaskType, TicketDocumentType, TicketType } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
-import { VendorContractType, VendorType } from "../schemas/vendor.zod";
+import { OverriddenVendorContractType, OverriddenVendorType } from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
 export * from "../schemas/chat.zod";
 export * from "../schemas/client.zod";
@@ -101,9 +101,9 @@ export interface ICreatedUpdated {
 }
 export interface ITaskTemplate extends Document, TaskTemplateType, ICreatedUpdatedWithUser {
 }
-export interface IClient extends Document, ClientType, ICreatedUpdatedWithUser {
+export interface IClient extends Document, OverriddenClientType, ICreatedUpdatedWithUser {
 }
-export interface IClientContract extends Document, ClientContractType, ICreatedUpdatedWithUser {
+export interface IClientContract extends Document, OverriddenClientContractType, ICreatedUpdatedWithUser {
 }
 export interface IAddress extends Document, AddressType, ICreatedUpdatedWithUser {
 }
@@ -165,9 +165,9 @@ export interface ITicketChat extends Document, TicketChatType, ICreatedUpdated {
 }
 export interface INotification extends Document, NotificationType, ICreatedUpdated {
 }
-export interface IVendor extends Document, VendorType, ICreatedUpdatedWithUser {
+export interface IVendor extends Document, OverriddenVendorType, ICreatedUpdatedWithUser {
 }
-export interface IVendorContract extends Document, VendorContractType, ICreatedUpdatedWithUser {
+export interface IVendorContract extends Document, OverriddenVendorContractType, ICreatedUpdatedWithUser {
 }
 export interface IBillingDetail extends Document, BillingDetailType, ICreatedUpdatedWithUser {
 }
