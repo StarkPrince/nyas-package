@@ -102,7 +102,7 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderValue: string;
 }>;
 export declare const clientContractZodSchema: z.ZodObject<{
-    billingDetails: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodEffects<z.ZodObject<{
+    billingDetails: z.ZodArray<z.ZodEffects<z.ZodObject<{
         type: z.ZodNativeEnum<typeof import("../enums").BillingTypeEnum>;
         additionalRates: z.ZodOptional<z.ZodArray<z.ZodObject<{
             hours: z.ZodNumber;
@@ -168,8 +168,8 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    }>]>, "many">;
-    pointOfContact: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodObject<{
+    }>, "atleastone">;
+    pointOfContact: z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         email: z.ZodString;
         phoneNumber: z.ZodString;
@@ -181,7 +181,7 @@ export declare const clientContractZodSchema: z.ZodObject<{
         email: string;
         name: string;
         phoneNumber: string;
-    }>]>, "atleastone">;
+    }>, "atleastone">;
     clientId: z.ZodEffects<z.ZodString, string, string>;
     contractNumber: z.ZodString;
     signedContractCopy: z.ZodString;
@@ -193,16 +193,16 @@ export declare const clientContractZodSchema: z.ZodObject<{
     onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
 }, "strip", z.ZodTypeAny, {
     status: ContractStatusEnum;
-    pointOfContact: [string | {
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;
-    }, ...(string | {
+    }, ...{
         email: string;
         name: string;
         phoneNumber: string;
-    })[]];
-    billingDetails: (string | {
+    }[]];
+    billingDetails: [{
         type: import("../enums").BillingTypeEnum;
         country: import("../enums").CountryEnum;
         currency: import("../enums").CurrencyEnum;
@@ -214,7 +214,19 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    })[];
+    }, ...{
+        type: import("../enums").BillingTypeEnum;
+        country: import("../enums").CountryEnum;
+        currency: import("../enums").CurrencyEnum;
+        outOfWorkingHoursRate: number;
+        nightRate: number;
+        applicableSites: string[];
+        additionalRates?: {
+            hours: number;
+            rate: number;
+        }[] | undefined;
+        dailyRate?: number | undefined;
+    }[]];
     clientId: string;
     contractNumber: string;
     signedContractCopy: string;
@@ -224,16 +236,16 @@ export declare const clientContractZodSchema: z.ZodObject<{
     vendorContracts?: string[] | undefined;
     uploadedFiles?: string[] | undefined;
 }, {
-    pointOfContact: [string | {
+    pointOfContact: [{
         email: string;
         name: string;
         phoneNumber: string;
-    }, ...(string | {
+    }, ...{
         email: string;
         name: string;
         phoneNumber: string;
-    })[]];
-    billingDetails: (string | {
+    }[]];
+    billingDetails: [{
         type: import("../enums").BillingTypeEnum;
         country: import("../enums").CountryEnum;
         currency: import("../enums").CurrencyEnum;
@@ -245,7 +257,19 @@ export declare const clientContractZodSchema: z.ZodObject<{
             rate: number;
         }[] | undefined;
         dailyRate?: number | undefined;
-    })[];
+    }, ...{
+        type: import("../enums").BillingTypeEnum;
+        country: import("../enums").CountryEnum;
+        currency: import("../enums").CurrencyEnum;
+        outOfWorkingHoursRate: number;
+        nightRate: number;
+        applicableSites: string[];
+        additionalRates?: {
+            hours: number;
+            rate: number;
+        }[] | undefined;
+        dailyRate?: number | undefined;
+    }[]];
     clientId: string;
     contractNumber: string;
     signedContractCopy: string;

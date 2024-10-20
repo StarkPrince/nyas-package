@@ -21,10 +21,8 @@ export const clientZodSchema = z.object({
 });
 
 export const clientContractZodSchema = z.object({
-  billingDetails: z.array(z.union([z.string(), billingDetailZodSchema])),
-  pointOfContact: z
-    .array(z.union([z.string(), contactDetailZodSchema]))
-    .nonempty(),
+  billingDetails: z.array(billingDetailZodSchema).nonempty(),
+  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
   clientId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid client Id",
   }),

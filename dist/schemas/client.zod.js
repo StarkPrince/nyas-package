@@ -15,10 +15,8 @@ exports.clientZodSchema = zod_1.z.object({
     purchaseOrderValue: zod_1.z.string(),
 });
 exports.clientContractZodSchema = zod_1.z.object({
-    billingDetails: zod_1.z.array(zod_1.z.union([zod_1.z.string(), common_zod_1.billingDetailZodSchema])),
-    pointOfContact: zod_1.z
-        .array(zod_1.z.union([zod_1.z.string(), common_zod_1.contactDetailZodSchema]))
-        .nonempty(),
+    billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).nonempty(),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
     clientId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid client Id",
     }),
