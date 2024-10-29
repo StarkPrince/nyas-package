@@ -1,3 +1,4 @@
+import { CurrencyEnum } from "@starkprince/nyas";
 import { z } from "zod";
 import { ContractStatusEnum } from "../enums";
 import {
@@ -18,6 +19,12 @@ export const clientZodSchema = z.object({
   ),
   purchaseOrderNumber: z.string(),
   purchaseOrderValue: z.string(),
+  purchaseOrderCurrency: z.nativeEnum(CurrencyEnum),
+  applicableSites: z.array(
+    z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid site Id",
+    })
+  ),
 });
 
 export const clientContractZodSchema = z.object({
