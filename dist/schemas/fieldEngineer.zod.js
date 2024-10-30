@@ -4,7 +4,6 @@ exports.fieldEngineerWorkStatusZodSchema = exports.fieldEngineerGetSubTicketsZod
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-const ticket_zod_1 = require("./ticket.zod");
 exports.locationZodSchema = zod_1.z.object({
     lat: zod_1.z.number(),
     long: zod_1.z.number(),
@@ -16,12 +15,6 @@ exports.fieldEngineerZodSchema = zod_1.z.object({
     vendorContracts: zod_1.z
         .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid vendor contact Id",
-    }))
-        .default([]),
-    tickets: zod_1.z.array(ticket_zod_1.ticketZodSchema).default([]),
-    subtickets: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid subticket Id",
     }))
         .default([]),
     address: common_zod_1.addressZodSchema,

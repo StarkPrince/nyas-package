@@ -6,7 +6,6 @@ import {
 } from "../enums";
 import { LoginZodSchema } from "./auth.zod";
 import { addressZodSchema, idPattern } from "./common.zod";
-import { ticketZodSchema } from "./ticket.zod";
 
 export const locationZodSchema = z.object({
   lat: z.number(),
@@ -21,14 +20,6 @@ export const fieldEngineerZodSchema = z.object({
     .array(
       z.string().refine((id) => idPattern.test(id), {
         message: "Invalid vendor contact Id",
-      })
-    )
-    .default([]),
-  tickets: z.array(ticketZodSchema).default([]),
-  subtickets: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "Invalid subticket Id",
       })
     )
     .default([]),
@@ -125,3 +116,7 @@ export type FieldEngineerUpdateLocationType = z.infer<
 export type FieldEngineerStatusType = z.infer<
   typeof fieldEngineerStatusZodSchema
 >;
+export type OverriddenFieldEngineerStatusType = FieldEngineerType & {
+  subtickets: string[];
+  tickets: string[];
+};

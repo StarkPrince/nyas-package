@@ -1,6 +1,6 @@
 import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
-import { TaskStatusEnum } from "../enums";
+import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 export declare const assignmentZodSchema: z.ZodObject<{
     fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
     vendorContract: z.ZodEffects<z.ZodString, string, string>;
@@ -71,18 +71,18 @@ export declare const taskZodSchema: z.ZodObject<{
     status: z.ZodNativeEnum<typeof TaskStatusEnum>;
 }, "strip", z.ZodTypeAny, {
     status: TaskStatusEnum;
-    taskName: string;
     startdatetime: string;
     enddatetime: string;
+    taskName: string;
     taskDescription: string;
     logistics: string[];
     difficultyLevel: number;
     relatedMedia: string[];
 }, {
     status: TaskStatusEnum;
-    taskName: string;
     startdatetime: string;
     enddatetime: string;
+    taskName: string;
     taskDescription: string;
     logistics: string[];
     difficultyLevel: number;
@@ -107,25 +107,25 @@ export declare const ticketZodSchema: z.ZodObject<{
     teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     SLA: number;
-    title: string;
-    clientContractId: string;
-    site: string;
-    numberOfEngineers: number;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    title: string;
+    clientContractId: string;
+    site: string;
+    numberOfEngineers: number;
     teamMembers: string[];
 }, {
     SLA: number;
-    title: string;
-    clientContractId: string;
-    site: string;
-    numberOfEngineers: number;
     schedules: {
         startdatetime: string;
         enddatetime: string;
     }[];
+    title: string;
+    clientContractId: string;
+    site: string;
+    numberOfEngineers: number;
     teamMembers: string[];
 }>;
 export declare const scheduleAssignmentZodSchema: z.ZodObject<{
@@ -217,18 +217,18 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         status: z.ZodNativeEnum<typeof TaskStatusEnum>;
     }, "strip", z.ZodTypeAny, {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
         relatedMedia: string[];
     }, {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -274,9 +274,9 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -308,9 +308,9 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -342,9 +342,9 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -376,9 +376,9 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     tasks?: {
         status: TaskStatusEnum;
-        taskName: string;
         startdatetime: string;
         enddatetime: string;
+        taskName: string;
         taskDescription: string;
         logistics: string[];
         difficultyLevel: number;
@@ -413,7 +413,7 @@ export type OverriddenTicketType = TicketType & {
     chat: string;
     site: SiteAddressType;
     schedules: string[];
-    status: string;
+    status: TicketStatusEnum;
     tasks: string[];
     document: TicketDocumentType;
     communications: CommunicationType;

@@ -1,6 +1,6 @@
 import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
-import { TaskStatusEnum } from "../enums";
+import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 import { idPattern, scheduleZodSchema } from "./common.zod";
 
 export const assignmentZodSchema = z.object({
@@ -108,7 +108,7 @@ export type OverriddenTicketType = TicketType & {
   chat: string;
   site: SiteAddressType;
   schedules: string[];
-  status: string;
+  status: TicketStatusEnum;
   tasks: string[];
   document: TicketDocumentType;
   communications: CommunicationType;

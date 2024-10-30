@@ -14,47 +14,6 @@ export declare const locationZodSchema: z.ZodObject<{
 export declare const fieldEngineerZodSchema: z.ZodObject<{
     user: z.ZodEffects<z.ZodString, string, string>;
     vendorContracts: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
-    tickets: z.ZodDefault<z.ZodArray<z.ZodObject<{
-        title: z.ZodString;
-        clientContractId: z.ZodString;
-        site: z.ZodString;
-        numberOfEngineers: z.ZodNumber;
-        SLA: z.ZodNumber;
-        schedules: z.ZodArray<z.ZodObject<{
-            startdatetime: z.ZodEffects<z.ZodString, string, string>;
-            enddatetime: z.ZodEffects<z.ZodString, string, string>;
-        }, "strip", z.ZodTypeAny, {
-            startdatetime: string;
-            enddatetime: string;
-        }, {
-            startdatetime: string;
-            enddatetime: string;
-        }>, "many">;
-        teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        SLA: number;
-        title: string;
-        clientContractId: string;
-        site: string;
-        numberOfEngineers: number;
-        schedules: {
-            startdatetime: string;
-            enddatetime: string;
-        }[];
-        teamMembers: string[];
-    }, {
-        SLA: number;
-        title: string;
-        clientContractId: string;
-        site: string;
-        numberOfEngineers: number;
-        schedules: {
-            startdatetime: string;
-            enddatetime: string;
-        }[];
-        teamMembers: string[];
-    }>, "many">>;
-    subtickets: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodOptional<z.ZodString>;
@@ -94,19 +53,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     user: string;
     vendorContracts: string[];
-    tickets: {
-        SLA: number;
-        title: string;
-        clientContractId: string;
-        site: string;
-        numberOfEngineers: number;
-        schedules: {
-            startdatetime: string;
-            enddatetime: string;
-        }[];
-        teamMembers: string[];
-    }[];
-    subtickets: string[];
     address: {
         line1: string;
         city: string;
@@ -132,19 +78,6 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     vendorContracts?: string[] | undefined;
-    tickets?: {
-        SLA: number;
-        title: string;
-        clientContractId: string;
-        site: string;
-        numberOfEngineers: number;
-        schedules: {
-            startdatetime: string;
-            enddatetime: string;
-        }[];
-        teamMembers: string[];
-    }[] | undefined;
-    subtickets?: string[] | undefined;
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
 }>;
@@ -347,3 +280,7 @@ export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
 export type FieldEngineerGetSubTicketsType = z.infer<typeof fieldEngineerGetSubTicketsZodSchema>;
 export type FieldEngineerUpdateLocationType = z.infer<typeof fieldEngineerWorkStatusZodSchema>;
 export type FieldEngineerStatusType = z.infer<typeof fieldEngineerStatusZodSchema>;
+export type OverriddenFieldEngineerStatusType = FieldEngineerType & {
+    subtickets: string[];
+    tickets: string[];
+};
