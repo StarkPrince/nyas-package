@@ -18,22 +18,22 @@ export declare const vendorZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }>;
     pointOfContact: z.ZodArray<z.ZodObject<{
@@ -54,13 +54,13 @@ export declare const vendorZodSchema: z.ZodObject<{
     clientsTheyWorkedFor: z.ZodArray<z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>, "many">;
 }, "strip", z.ZodTypeAny, {
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
     name: string;
@@ -78,13 +78,13 @@ export declare const vendorZodSchema: z.ZodObject<{
     vendorContracts?: string[] | undefined;
 }, {
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
     name: string;

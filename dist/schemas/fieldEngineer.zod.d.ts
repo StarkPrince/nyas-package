@@ -15,265 +15,44 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
     user: z.ZodEffects<z.ZodString, string, string>;
     vendorContracts: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     tickets: z.ZodDefault<z.ZodArray<z.ZodObject<{
-        number: z.ZodString;
-        chat: z.ZodEffects<z.ZodString, string, string>;
         title: z.ZodString;
-        clientContractId: z.ZodEffects<z.ZodString, string, string>;
-        site: z.ZodEffects<z.ZodEffects<z.ZodObject<{
-            siteDetails: z.ZodString;
-            cageNumber: z.ZodOptional<z.ZodString>;
-            coloDetails: z.ZodOptional<z.ZodString>;
-            country: z.ZodNativeEnum<typeof CountryEnum>;
-            city: z.ZodString;
-            location: z.ZodObject<{
-                lat: z.ZodNumber;
-                long: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                lat: number;
-                long: number;
-            }, {
-                lat: number;
-                long: number;
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }, {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }>, {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }, {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }>, {
-            city: string | undefined;
-            siteDetails: string;
-            country: CountryEnum;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }, {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        }>;
+        clientContractId: z.ZodString;
+        site: z.ZodString;
         numberOfEngineers: z.ZodNumber;
         SLA: z.ZodNumber;
-        schedules: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
-        status: z.ZodNativeEnum<typeof import("../enums").TicketStatusEnum>;
+        schedules: z.ZodArray<z.ZodObject<{
+            startdatetime: z.ZodEffects<z.ZodString, string, string>;
+            enddatetime: z.ZodEffects<z.ZodString, string, string>;
+        }, "strip", z.ZodTypeAny, {
+            startdatetime: string;
+            enddatetime: string;
+        }, {
+            startdatetime: string;
+            enddatetime: string;
+        }>, "many">;
         teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
-        tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodObject<{
-            taskName: z.ZodString;
-            startdatetime: z.ZodString;
-            enddatetime: z.ZodString;
-            taskDescription: z.ZodString;
-            logistics: z.ZodArray<z.ZodString, "many">;
-            difficultyLevel: z.ZodNumber;
-            relatedMedia: z.ZodArray<z.ZodString, "many">;
-            status: z.ZodNativeEnum<typeof import("../enums").TaskStatusEnum>;
-        }, "strip", z.ZodTypeAny, {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
-            startdatetime: string;
-            enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }, {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
-            startdatetime: string;
-            enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }>, "many">>>;
-        document: z.ZodOptional<z.ZodObject<{
-            projectDescription: z.ZodString;
-            mopDescription: z.ZodString;
-            MOP: z.ZodArray<z.ZodString, "many">;
-            SOW: z.ZodArray<z.ZodString, "many">;
-        }, "strip", z.ZodTypeAny, {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        }, {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        }>>;
-        communications: z.ZodOptional<z.ZodObject<{
-            consumerPortal: z.ZodObject<{
-                username: z.ZodString;
-                password: z.ZodString;
-                notes: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            }, {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            }>;
-            communication: z.ZodArray<z.ZodString, "many">;
-        }, "strip", z.ZodTypeAny, {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        }, {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        }>>;
-        subtickets: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
-        createdBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
-        updatedBy: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
     }, "strip", z.ZodTypeAny, {
-        number: string;
         SLA: number;
-        tasks: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
+        title: string;
+        clientContractId: string;
+        site: string;
+        numberOfEngineers: number;
+        schedules: {
             startdatetime: string;
             enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
         }[];
-        status: import("../enums").TicketStatusEnum;
-        chat: string;
-        title: string;
-        clientContractId: string;
-        site: {
-            city: string | undefined;
-            siteDetails: string;
-            country: CountryEnum;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        };
-        numberOfEngineers: number;
-        schedules: string[];
         teamMembers: string[];
-        subtickets: string[];
-        document?: {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        } | undefined;
-        communications?: {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        } | undefined;
-        createdBy?: string | undefined;
-        updatedBy?: string | undefined;
     }, {
-        number: string;
         SLA: number;
-        status: import("../enums").TicketStatusEnum;
-        chat: string;
         title: string;
         clientContractId: string;
-        site: {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        };
+        site: string;
         numberOfEngineers: number;
-        schedules: string[];
-        teamMembers: string[];
-        document?: {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        } | undefined;
-        tasks?: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
+        schedules: {
             startdatetime: string;
             enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }[] | undefined;
-        communications?: {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        } | undefined;
-        subtickets?: string[] | undefined;
-        createdBy?: string | undefined;
-        updatedBy?: string | undefined;
+        }[];
+        teamMembers: string[];
     }>, "many">>;
     subtickets: z.ZodDefault<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     address: z.ZodObject<{
@@ -292,87 +71,50 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }>;
     yearsOfExperience: z.ZodDefault<z.ZodNumber>;
     rating: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    subtickets: string[];
     user: string;
     vendorContracts: string[];
     tickets: {
-        number: string;
         SLA: number;
-        tasks: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
-            startdatetime: string;
-            enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }[];
-        status: import("../enums").TicketStatusEnum;
-        chat: string;
         title: string;
         clientContractId: string;
-        site: {
-            city: string | undefined;
-            siteDetails: string;
-            country: CountryEnum;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        };
+        site: string;
         numberOfEngineers: number;
-        schedules: string[];
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
         teamMembers: string[];
-        subtickets: string[];
-        document?: {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        } | undefined;
-        communications?: {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        } | undefined;
-        createdBy?: string | undefined;
-        updatedBy?: string | undefined;
     }[];
+    subtickets: string[];
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
     yearsOfExperience: number;
@@ -380,66 +122,29 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
 }, {
     user: string;
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
-    subtickets?: string[] | undefined;
     vendorContracts?: string[] | undefined;
     tickets?: {
-        number: string;
         SLA: number;
-        status: import("../enums").TicketStatusEnum;
-        chat: string;
         title: string;
         clientContractId: string;
-        site: {
-            siteDetails: string;
-            country: CountryEnum;
-            city: string;
-            location: {
-                lat: number;
-                long: number;
-            };
-            cageNumber?: string | undefined;
-            coloDetails?: string | undefined;
-        };
+        site: string;
         numberOfEngineers: number;
-        schedules: string[];
-        teamMembers: string[];
-        document?: {
-            MOP: string[];
-            projectDescription: string;
-            mopDescription: string;
-            SOW: string[];
-        } | undefined;
-        tasks?: {
-            status: import("../enums").TaskStatusEnum;
-            taskName: string;
+        schedules: {
             startdatetime: string;
             enddatetime: string;
-            taskDescription: string;
-            logistics: string[];
-            difficultyLevel: number;
-            relatedMedia: string[];
-        }[] | undefined;
-        communications?: {
-            consumerPortal: {
-                password: string;
-                username: string;
-                notes?: string | undefined;
-            };
-            communication: string[];
-        } | undefined;
-        subtickets?: string[] | undefined;
-        createdBy?: string | undefined;
-        updatedBy?: string | undefined;
+        }[];
+        teamMembers: string[];
     }[] | undefined;
+    subtickets?: string[] | undefined;
     yearsOfExperience?: number | undefined;
     rating?: number | undefined;
 }>;
@@ -476,22 +181,22 @@ export declare const fieldEngineerRegisterZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }, {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -502,13 +207,13 @@ export declare const fieldEngineerRegisterZodSchema: z.ZodObject<{
         password?: string | undefined;
     };
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
 }, {
@@ -519,13 +224,13 @@ export declare const fieldEngineerRegisterZodSchema: z.ZodObject<{
         password?: string | undefined;
     };
     address: {
-        country: CountryEnum;
+        line1: string;
         city: string;
+        country: CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
 }>;

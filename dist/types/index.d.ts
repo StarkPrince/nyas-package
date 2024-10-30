@@ -4,7 +4,7 @@ import { OverriddenClientContractType, OverriddenClientType } from "../schemas/c
 import { AddressType, BillingDetailType, ContactDetailType, ExtensionType, ScheduleType, SiteAddressType, TaskTemplateType } from "../schemas/common.zod";
 import { FieldEngineerStatusType, FieldEngineerType } from "../schemas/fieldEngineer.zod";
 import { RejectedSubticketType, SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
-import { CommunicationType, TaskType, TicketDocumentType, TicketType } from "../schemas/ticket.zod";
+import { CommunicationType, OverriddenTicketType, TaskType, TicketDocumentType } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import { OverriddenVendorContractType, OverriddenVendorType } from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
@@ -152,7 +152,7 @@ export interface IRejectedSubticket extends Document, RejectedSubticketType, ICr
 }
 export interface ITask extends Document, TaskType, ICreatedUpdated {
 }
-export interface ITicket extends Document, TicketType, ICreatedUpdatedWithUser {
+export interface ITicket extends Document, OverriddenTicketType, ICreatedUpdatedWithUser {
 }
 export interface IUser extends Document, UserType, ICreatedUpdated {
 }

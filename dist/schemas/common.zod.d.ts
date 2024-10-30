@@ -30,22 +30,22 @@ export declare const addressZodSchema: z.ZodObject<{
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
-    country: CountryEnum;
+    line1: string;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    line1: string;
     line2?: string | undefined;
 }, {
-    country: CountryEnum;
+    line1: string;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    line1: string;
     line2?: string | undefined;
 }>;
 export declare const billingDetailZodSchema: z.ZodEffects<z.ZodObject<{
@@ -142,63 +142,63 @@ export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
-    siteDetails: string;
-    country: CountryEnum;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
-    siteDetails: string;
-    country: CountryEnum;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>, {
-    siteDetails: string;
-    country: CountryEnum;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
-    siteDetails: string;
-    country: CountryEnum;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>, {
     city: string | undefined;
-    siteDetails: string;
     country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
-    siteDetails: string;
-    country: CountryEnum;
     city: string;
+    country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
+    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>;

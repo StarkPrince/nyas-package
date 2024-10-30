@@ -19,22 +19,22 @@ export declare const clientZodSchema: z.ZodObject<{
             long: number;
         }>;
     }, "strip", z.ZodTypeAny, {
-        country: import("../enums").CountryEnum;
+        line1: string;
         city: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }, {
-        country: import("../enums").CountryEnum;
+        line1: string;
         city: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     }>;
     pointOfContact: z.ZodArray<z.ZodObject<{
@@ -57,13 +57,13 @@ export declare const clientZodSchema: z.ZodObject<{
     applicableSites: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     address: {
-        country: import("../enums").CountryEnum;
+        line1: string;
         city: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
     name: string;
@@ -83,13 +83,13 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderCurrency: CurrencyEnum;
 }, {
     address: {
-        country: import("../enums").CountryEnum;
+        line1: string;
         city: string;
+        country: import("../enums").CountryEnum;
         location: {
             lat: number;
             long: number;
         };
-        line1: string;
         line2?: string | undefined;
     };
     name: string;

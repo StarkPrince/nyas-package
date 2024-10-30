@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ticketUpdateZodSchema = exports.scheduleAssignmentZodSchema = exports.ticketCreationZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
+exports.ticketUpdateZodSchema = exports.scheduleAssignmentZodSchema = exports.ticketZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -42,53 +42,15 @@ exports.taskZodSchema = zod_1.z.object({
     status: zod_1.z.nativeEnum(enums_1.TaskStatusEnum),
 });
 exports.ticketZodSchema = zod_1.z.object({
-    number: zod_1.z.string(),
-    chat: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid chat Id",
-    }),
-    title: zod_1.z.string(),
-    clientContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid client contract Id",
-    }),
-    site: common_zod_1.siteAddressZodSchema,
-    numberOfEngineers: zod_1.z.number(),
-    SLA: zod_1.z.number(),
-    schedules: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid schedule Id",
-    })),
-    status: zod_1.z.nativeEnum(enums_1.TicketStatusEnum),
-    teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid user Id",
-    })),
-    tasks: zod_1.z.array(exports.taskZodSchema).optional().default([]),
-    document: exports.ticketDocumentZodSchema.optional(),
-    communications: exports.communicationZodSchema.optional(),
-    subtickets: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid subticket Id",
-    }))
-        .default([]),
-    createdBy: zod_1.z
-        .string()
-        .refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid user Id",
-    })
-        .optional(),
-    updatedBy: zod_1.z
-        .string()
-        .refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid user Id",
-    })
-        .optional(),
-});
-exports.ticketCreationZodSchema = zod_1.z.object({
-    number: zod_1.z.string(),
     title: zod_1.z.string(),
     clientContractId: zod_1.z.string(),
     site: zod_1.z.string(),
     numberOfEngineers: zod_1.z.number(),
     SLA: zod_1.z.number(),
     schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
+    teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })),
 });
 exports.scheduleAssignmentZodSchema = zod_1.z.object({
     schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

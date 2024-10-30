@@ -1,10 +1,7 @@
+import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
-import { TaskStatusEnum, TicketStatusEnum } from "../enums";
-import {
-  idPattern,
-  scheduleZodSchema,
-  siteAddressZodSchema,
-} from "./common.zod";
+import { TaskStatusEnum } from "../enums";
+import { idPattern, scheduleZodSchema } from "./common.zod";
 
 export const assignmentZodSchema = z.object({
   fieldEngineer: z.string().refine((id) => idPattern.test(id), {
@@ -52,60 +49,17 @@ export const taskZodSchema = z.object({
 });
 
 export const ticketZodSchema = z.object({
-  number: z.string(),
-  chat: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid chat Id",
-  }),
-  title: z.string(),
-  clientContractId: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid client contract Id",
-  }),
-  site: siteAddressZodSchema,
-  numberOfEngineers: z.number(),
-  SLA: z.number(),
-  schedules: z.array(
-    z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid schedule Id",
-    })
-  ),
-  status: z.nativeEnum(TicketStatusEnum),
-  teamMembers: z.array(
-    z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid user Id",
-    })
-  ),
-  tasks: z.array(taskZodSchema).optional().default([]),
-  document: ticketDocumentZodSchema.optional(),
-  communications: communicationZodSchema.optional(),
-  subtickets: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "Invalid subticket Id",
-      })
-    )
-    .default([]),
-  createdBy: z
-    .string()
-    .refine((id) => idPattern.test(id), {
-      message: "Invalid user Id",
-    })
-    .optional(),
-  updatedBy: z
-    .string()
-    .refine((id) => idPattern.test(id), {
-      message: "Invalid user Id",
-    })
-    .optional(),
-});
-
-export const ticketCreationZodSchema = z.object({
-  number: z.string(),
   title: z.string(),
   clientContractId: z.string(),
   site: z.string(),
   numberOfEngineers: z.number(),
   SLA: z.number(),
   schedules: z.array(scheduleZodSchema),
+  teamMembers: z.array(
+    z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    })
+  ),
 });
 
 export const scheduleAssignmentZodSchema = z.object({
@@ -145,8 +99,18 @@ export type ScheduleAssignmentType = z.infer<
 >;
 export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
-export type TicketCreationType = z.infer<typeof ticketCreationZodSchema>;
 export type TicketUpdateType = z.infer<typeof ticketUpdateZodSchema>;
 export type TicketDocumentType = z.infer<typeof ticketDocumentZodSchema>;
 export type TaskType = z.infer<typeof taskZodSchema>;
 export type CommunicationType = z.infer<typeof communicationZodSchema>;
+export type OverriddenTicketType = TicketType & {
+  number: string;
+  chat: string;
+  site: SiteAddressType;
+  schedules: [string];
+  status: string;
+  tasks: [string];
+  document: TicketDocumentType;
+  communications: CommunicationType;
+  subtickets: [string];
+};

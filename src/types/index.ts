@@ -28,9 +28,9 @@ import {
 } from "../schemas/subticket.zod";
 import {
   CommunicationType,
+  OverriddenTicketType,
   TaskType,
   TicketDocumentType,
-  TicketType,
 } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import {
@@ -224,7 +224,7 @@ export interface IRejectedSubticket
 export interface ITask extends Document, TaskType, ICreatedUpdated {}
 export interface ITicket
   extends Document,
-    TicketType,
+    OverriddenTicketType,
     ICreatedUpdatedWithUser {}
 export interface IUser extends Document, UserType, ICreatedUpdated {}
 export interface IFieldEngineer
