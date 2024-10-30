@@ -96,7 +96,8 @@ exports.scheduleAssignmentZodSchema = zod_1.z.object({
     }),
     assignments: zod_1.z.array(exports.assignmentZodSchema),
 });
-exports.ticketUpdateZodSchema = zod_1.z.object({
+exports.ticketUpdateZodSchema = zod_1.z
+    .object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid ticket Id",
     }),
@@ -104,4 +105,12 @@ exports.ticketUpdateZodSchema = zod_1.z.object({
     document: exports.ticketDocumentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),
     communications: exports.communicationZodSchema.optional(),
+})
+    .refine((data) => {
+    // Check that at least one of the required fields is present
+    return (data.scheduleAssignments ||
+        data.tasks ||
+        (data.document && data.communications));
+}, {
+    message: "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
 });

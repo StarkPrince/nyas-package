@@ -115,15 +115,30 @@ export const scheduleAssignmentZodSchema = z.object({
   assignments: z.array(assignmentZodSchema),
 });
 
-export const ticketUpdateZodSchema = z.object({
-  ticketId: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid ticket Id",
-  }),
-  scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
-  document: ticketDocumentZodSchema.optional(),
-  tasks: z.array(taskZodSchema).optional(),
-  communications: communicationZodSchema.optional(),
-});
+export const ticketUpdateZodSchema = z
+  .object({
+    ticketId: z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid ticket Id",
+    }),
+    scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
+    document: ticketDocumentZodSchema.optional(),
+    tasks: z.array(taskZodSchema).optional(),
+    communications: communicationZodSchema.optional(),
+  })
+  .refine(
+    (data) => {
+      // Check that at least one of the required fields is present
+      return (
+        data.scheduleAssignments ||
+        data.tasks ||
+        (data.document && data.communications)
+      );
+    },
+    {
+      message:
+        "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
+    }
+  );
 
 export type ScheduleAssignmentType = z.infer<
   typeof scheduleAssignmentZodSchema

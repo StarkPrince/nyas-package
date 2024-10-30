@@ -418,7 +418,7 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
         vendorContract: string;
     }[];
 }>;
-export declare const ticketUpdateZodSchema: z.ZodObject<{
+export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
@@ -525,6 +525,74 @@ export declare const ticketUpdateZodSchema: z.ZodObject<{
         communication: string[];
     }>>;
 }, "strip", z.ZodTypeAny, {
+    ticketId: string;
+    document?: {
+        MOP: string[];
+        projectDescription: string;
+        mopDescription: string;
+        SOW: string[];
+    } | undefined;
+    tasks?: {
+        status: TaskStatusEnum;
+        taskName: string;
+        startdatetime: string;
+        enddatetime: string;
+        taskDescription: string;
+        logistics: string[];
+        difficultyLevel: number;
+        relatedMedia: string[];
+    }[] | undefined;
+    communications?: {
+        consumerPortal: {
+            password: string;
+            username: string;
+            notes?: string | undefined;
+        };
+        communication: string[];
+    } | undefined;
+    scheduleAssignments?: {
+        schedule: string;
+        assignments: {
+            fieldEngineer: string;
+            tasks: string[];
+            vendorContract: string;
+        }[];
+    }[] | undefined;
+}, {
+    ticketId: string;
+    document?: {
+        MOP: string[];
+        projectDescription: string;
+        mopDescription: string;
+        SOW: string[];
+    } | undefined;
+    tasks?: {
+        status: TaskStatusEnum;
+        taskName: string;
+        startdatetime: string;
+        enddatetime: string;
+        taskDescription: string;
+        logistics: string[];
+        difficultyLevel: number;
+        relatedMedia: string[];
+    }[] | undefined;
+    communications?: {
+        consumerPortal: {
+            password: string;
+            username: string;
+            notes?: string | undefined;
+        };
+        communication: string[];
+    } | undefined;
+    scheduleAssignments?: {
+        schedule: string;
+        assignments: {
+            fieldEngineer: string;
+            tasks: string[];
+            vendorContract: string;
+        }[];
+    }[] | undefined;
+}>, {
     ticketId: string;
     document?: {
         MOP: string[];
