@@ -160,6 +160,7 @@ export interface IFieldEngineer extends Document, OverriddenFieldEngineerType, I
 }
 export interface IPopulatedFieldEngineer extends Document, Omit<FieldEngineerType, "subtickets"> {
     subtickets: ISubTicket[];
+    tickets: ITicket[];
 }
 export interface ITicketChat extends Document, TicketChatType, ICreatedUpdated {
 }

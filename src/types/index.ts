@@ -236,6 +236,7 @@ export interface IPopulatedFieldEngineer
   extends Document,
     Omit<FieldEngineerType, "subtickets"> {
   subtickets: ISubTicket[];
+  tickets: ITicket[];
 }
 export interface ITicketChat
   extends Document,
