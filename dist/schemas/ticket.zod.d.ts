@@ -412,10 +412,10 @@ export type OverriddenTicketType = TicketType & {
     number: string;
     chat: string;
     site: SiteAddressType;
-    schedules: [string];
+    schedules: string[];
     status: string;
-    tasks: [string];
+    tasks: string[];
     document: TicketDocumentType;
     communications: CommunicationType;
-    subtickets: [string];
+    subtickets: string[];
 };
