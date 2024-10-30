@@ -68,6 +68,11 @@ export declare enum ExtensionStatusEnum {
     PENDING = "pending",
     SCHEDULE_EXTENDED = "schedule-extended"
 }
+export declare enum SubticketResponseEnum {
+    ACCEPTED = "accepted",
+    REJECTED = "rejected",
+    PENDING = "pending"
+}
 export declare enum BillingTypeEnum {
     HOURLY = "hourly",
     DAILY = "daily"
