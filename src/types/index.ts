@@ -20,6 +20,7 @@ import {
 import {
   FieldEngineerStatusType,
   FieldEngineerType,
+  OverriddenFieldEngineerType,
 } from "../schemas/fieldEngineer.zod";
 import {
   RejectedSubticketType,
@@ -229,7 +230,7 @@ export interface ITicket
 export interface IUser extends Document, UserType, ICreatedUpdated {}
 export interface IFieldEngineer
   extends Document,
-    FieldEngineerType,
+    OverriddenFieldEngineerType,
     ICreatedUpdatedWithUser {}
 export interface IPopulatedFieldEngineer
   extends Document,

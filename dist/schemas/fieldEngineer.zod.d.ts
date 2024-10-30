@@ -280,7 +280,7 @@ export type FieldEngineerLoginType = z.infer<typeof LoginZodSchema>;
 export type FieldEngineerGetSubTicketsType = z.infer<typeof fieldEngineerGetSubTicketsZodSchema>;
 export type FieldEngineerUpdateLocationType = z.infer<typeof fieldEngineerWorkStatusZodSchema>;
 export type FieldEngineerStatusType = z.infer<typeof fieldEngineerStatusZodSchema>;
-export type OverriddenFieldEngineerStatusType = FieldEngineerType & {
+export type OverriddenFieldEngineerType = FieldEngineerType & {
     subtickets: string[];
     tickets: string[];
 };

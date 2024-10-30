@@ -116,7 +116,7 @@ export type FieldEngineerUpdateLocationType = z.infer<
 export type FieldEngineerStatusType = z.infer<
   typeof fieldEngineerStatusZodSchema
 >;
-export type OverriddenFieldEngineerStatusType = FieldEngineerType & {
+export type OverriddenFieldEngineerType = FieldEngineerType & {
   subtickets: string[];
   tickets: string[];
 };
