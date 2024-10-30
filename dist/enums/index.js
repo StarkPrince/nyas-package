@@ -78,8 +78,7 @@ var S3FolderEnum;
 var UpdateTicketEnum;
 (function (UpdateTicketEnum) {
     UpdateTicketEnum["TASK_ADDITION"] = "tasks";
-    UpdateTicketEnum["DOCUMENT_ADDITION"] = "documents";
-    UpdateTicketEnum["COMMUNICATION_ADDITION"] = "communications";
+    UpdateTicketEnum["DOCUMENT_COMMUNICATION_ADDITION"] = "documents_communications";
     UpdateTicketEnum["ENGINEER_ADDITION"] = "fieldEngineers";
 })(UpdateTicketEnum || (exports.UpdateTicketEnum = UpdateTicketEnum = {}));
 var UserStatusEnum;

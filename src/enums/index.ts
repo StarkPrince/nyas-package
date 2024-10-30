@@ -61,8 +61,7 @@ export enum S3FolderEnum {
 
 export enum UpdateTicketEnum {
   TASK_ADDITION = "tasks",
-  DOCUMENT_ADDITION = "documents",
-  COMMUNICATION_ADDITION = "communications",
+  DOCUMENT_COMMUNICATION_ADDITION = "documents_communications",
   ENGINEER_ADDITION = "fieldEngineers",
 }
 
