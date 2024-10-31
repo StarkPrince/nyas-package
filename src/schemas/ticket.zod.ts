@@ -4,12 +4,16 @@ import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 import { idPattern, scheduleZodSchema } from "./common.zod";
 
 export const assignmentZodSchema = z.object({
-  fieldEngineer: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid field Engineer Id",
-  }),
-  vendorContract: z.string().refine((id) => idPattern.test(id), {
-    message: "Invalid vendor contract Id",
-  }),
+  assignments: z.array(
+    z.object({
+      fieldEngineer: z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid field Engineer Id",
+      }),
+      vendorContract: z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+      }),
+    })
+  ),
   tasks: z
     .array(
       z.string().refine((id) => idPattern.test(id), {
