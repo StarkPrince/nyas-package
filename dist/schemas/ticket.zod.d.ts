@@ -2,7 +2,7 @@ import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
 import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 export declare const assignmentZodSchema: z.ZodObject<{
-    assignments: z.ZodArray<z.ZodObject<{
+    fieldEngineerOptions: z.ZodArray<z.ZodObject<{
         fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
         vendorContract: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
@@ -15,13 +15,13 @@ export declare const assignmentZodSchema: z.ZodObject<{
     tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
 }, "strip", z.ZodTypeAny, {
     tasks: string[];
-    assignments: {
+    fieldEngineerOptions: {
         fieldEngineer: string;
         vendorContract: string;
     }[];
 }, {
     tasks: string[];
-    assignments: {
+    fieldEngineerOptions: {
         fieldEngineer: string;
         vendorContract: string;
     }[];
@@ -143,7 +143,7 @@ export declare const ticketZodSchema: z.ZodObject<{
 export declare const scheduleAssignmentZodSchema: z.ZodObject<{
     schedule: z.ZodEffects<z.ZodString, string, string>;
     assignments: z.ZodArray<z.ZodObject<{
-        assignments: z.ZodArray<z.ZodObject<{
+        fieldEngineerOptions: z.ZodArray<z.ZodObject<{
             fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
             vendorContract: z.ZodEffects<z.ZodString, string, string>;
         }, "strip", z.ZodTypeAny, {
@@ -156,13 +156,13 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
         tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
     }, "strip", z.ZodTypeAny, {
         tasks: string[];
-        assignments: {
+        fieldEngineerOptions: {
             fieldEngineer: string;
             vendorContract: string;
         }[];
     }, {
         tasks: string[];
-        assignments: {
+        fieldEngineerOptions: {
             fieldEngineer: string;
             vendorContract: string;
         }[];
@@ -171,7 +171,7 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
     schedule: string;
     assignments: {
         tasks: string[];
-        assignments: {
+        fieldEngineerOptions: {
             fieldEngineer: string;
             vendorContract: string;
         }[];
@@ -180,7 +180,7 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
     schedule: string;
     assignments: {
         tasks: string[];
-        assignments: {
+        fieldEngineerOptions: {
             fieldEngineer: string;
             vendorContract: string;
         }[];
@@ -191,7 +191,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
         assignments: z.ZodArray<z.ZodObject<{
-            assignments: z.ZodArray<z.ZodObject<{
+            fieldEngineerOptions: z.ZodArray<z.ZodObject<{
                 fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
                 vendorContract: z.ZodEffects<z.ZodString, string, string>;
             }, "strip", z.ZodTypeAny, {
@@ -204,13 +204,13 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
             tasks: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
         }, "strip", z.ZodTypeAny, {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
         }, {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -219,7 +219,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -228,7 +228,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -330,7 +330,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -366,7 +366,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -402,7 +402,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
@@ -438,7 +438,7 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         schedule: string;
         assignments: {
             tasks: string[];
-            assignments: {
+            fieldEngineerOptions: {
                 fieldEngineer: string;
                 vendorContract: string;
             }[];

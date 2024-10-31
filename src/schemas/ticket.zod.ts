@@ -4,7 +4,7 @@ import { TaskStatusEnum, TicketStatusEnum } from "../enums";
 import { idPattern, scheduleZodSchema } from "./common.zod";
 
 export const assignmentZodSchema = z.object({
-  assignments: z.array(
+  fieldEngineerOptions: z.array(
     z.object({
       fieldEngineer: z.string().refine((id) => idPattern.test(id), {
         message: "Invalid field Engineer Id",

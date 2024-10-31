@@ -5,7 +5,7 @@ const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 exports.assignmentZodSchema = zod_1.z.object({
-    assignments: zod_1.z.array(zod_1.z.object({
+    fieldEngineerOptions: zod_1.z.array(zod_1.z.object({
         fieldEngineer: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
             message: "Invalid field Engineer Id",
         }),
