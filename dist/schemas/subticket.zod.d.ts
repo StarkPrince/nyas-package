@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SubTicketStatusEnum } from "../enums";
+import { SubticketResponseEnum, SubTicketStatusEnum } from "../enums";
 export declare const subticketStatusZodSchema: z.ZodObject<{
     status: z.ZodNativeEnum<typeof SubTicketStatusEnum>;
     reason: z.ZodOptional<z.ZodString>;
@@ -24,6 +24,22 @@ export declare const subticketStatusZodSchema: z.ZodObject<{
     updatedAt?: Date | undefined;
     createdBy?: string | undefined;
     updatedBy?: string | undefined;
+}>;
+export declare const fieldEngineerInvitationZodSchema: z.ZodObject<{
+    fieldEngineerId: z.ZodEffects<z.ZodString, string, string>;
+    vendorContractId: z.ZodEffects<z.ZodString, string, string>;
+    status: z.ZodDefault<z.ZodNativeEnum<typeof SubticketResponseEnum>>;
+    responseAt: z.ZodOptional<z.ZodDate>;
+}, "strip", z.ZodTypeAny, {
+    status: SubticketResponseEnum;
+    fieldEngineerId: string;
+    vendorContractId: string;
+    responseAt?: Date | undefined;
+}, {
+    fieldEngineerId: string;
+    vendorContractId: string;
+    status?: SubticketResponseEnum | undefined;
+    responseAt?: Date | undefined;
 }>;
 export declare const subticketZodSchema: z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;
@@ -149,6 +165,22 @@ export declare const subticketZodSchema: z.ZodObject<{
         checkType?: import("../enums").PunctualityEnum | undefined;
     }>, "many">>;
     tasks: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString, "many">>>;
+    fieldEngineerInvitations: z.ZodArray<z.ZodObject<{
+        fieldEngineerId: z.ZodEffects<z.ZodString, string, string>;
+        vendorContractId: z.ZodEffects<z.ZodString, string, string>;
+        status: z.ZodDefault<z.ZodNativeEnum<typeof SubticketResponseEnum>>;
+        responseAt: z.ZodOptional<z.ZodDate>;
+    }, "strip", z.ZodTypeAny, {
+        status: SubticketResponseEnum;
+        fieldEngineerId: string;
+        vendorContractId: string;
+        responseAt?: Date | undefined;
+    }, {
+        fieldEngineerId: string;
+        vendorContractId: string;
+        status?: SubticketResponseEnum | undefined;
+        responseAt?: Date | undefined;
+    }>, "many">;
 }, "strip", z.ZodTypeAny, {
     number: string;
     SLA: number;
@@ -164,6 +196,12 @@ export declare const subticketZodSchema: z.ZodObject<{
         updatedAt?: Date | undefined;
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
+    }[];
+    fieldEngineerInvitations: {
+        status: SubticketResponseEnum;
+        fieldEngineerId: string;
+        vendorContractId: string;
+        responseAt?: Date | undefined;
     }[];
     fieldEngineer?: string | undefined;
     extensions?: {
@@ -201,6 +239,12 @@ export declare const subticketZodSchema: z.ZodObject<{
         updatedAt?: Date | undefined;
         createdBy?: string | undefined;
         updatedBy?: string | undefined;
+    }[];
+    fieldEngineerInvitations: {
+        fieldEngineerId: string;
+        vendorContractId: string;
+        status?: SubticketResponseEnum | undefined;
+        responseAt?: Date | undefined;
     }[];
     fieldEngineer?: string | undefined;
     tasks?: string[] | undefined;
@@ -252,3 +296,5 @@ export declare const rejectedSubticketZodSchema: z.ZodObject<{
 export type SubTicketType = z.infer<typeof subticketZodSchema>;
 export type SubTicketStatusType = z.infer<typeof subticketStatusZodSchema>;
 export type RejectedSubticketType = z.infer<typeof rejectedSubticketZodSchema>;
+export type FieldEngineerInvitationType = z.infer<typeof fieldEngineerInvitationZodSchema>;
+export type SubticketUpdateType = z.infer<typeof subticketUpdateZodSchema>;

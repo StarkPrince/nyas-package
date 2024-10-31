@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.rejectedSubticketZodSchema = exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.subticketStatusZodSchema = void 0;
+exports.rejectedSubticketZodSchema = exports.subticketUpdateZodSchema = exports.subticketZodSchema = exports.fieldEngineerInvitationZodSchema = exports.subticketStatusZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -33,6 +33,18 @@ exports.subticketStatusZodSchema = zod_1.z.object({
     })
         .optional(),
 });
+exports.fieldEngineerInvitationZodSchema = zod_1.z.object({
+    fieldEngineerId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid fieldEngineer Id",
+    }),
+    vendorContractId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    }),
+    status: zod_1.z
+        .nativeEnum(enums_1.SubticketResponseEnum)
+        .default(enums_1.SubticketResponseEnum.PENDING),
+    responseAt: zod_1.z.date().optional(),
+});
 exports.subticketZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid ticket Id",
@@ -55,6 +67,7 @@ exports.subticketZodSchema = zod_1.z.object({
     extensions: zod_1.z.array(common_zod_1.extensionZodSchema).optional(),
     feUpdates: zod_1.z.array(fieldEngineer_zod_1.fieldEngineerStatusZodSchema).optional(),
     tasks: zod_1.z.array(zod_1.z.string()).optional().default([]),
+    fieldEngineerInvitations: zod_1.z.array(exports.fieldEngineerInvitationZodSchema),
 });
 exports.subticketUpdateZodSchema = zod_1.z.object({
     status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
