@@ -15,9 +15,12 @@ exports.clientZodSchema = zod_1.z.object({
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),
     purchaseOrderCurrency: zod_1.z.nativeEnum(nyas_1.CurrencyEnum),
-    applicableSites: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+    applicableSites: zod_1.z
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid site Id",
-    })),
+    }))
+        .optional()
+        .default([]),
 });
 exports.clientContractZodSchema = zod_1.z.object({
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).nonempty(),

@@ -54,7 +54,7 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderNumber: z.ZodString;
     purchaseOrderValue: z.ZodString;
     purchaseOrderCurrency: z.ZodNativeEnum<typeof CurrencyEnum>;
-    applicableSites: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+    applicableSites: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>>;
 }, "strip", z.ZodTypeAny, {
     address: {
         line1: string;
@@ -93,7 +93,6 @@ export declare const clientZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     name: string;
-    applicableSites: string[];
     pointOfContact: [{
         email: string;
         name: string;
@@ -107,6 +106,7 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderNumber: string;
     purchaseOrderValue: string;
     purchaseOrderCurrency: CurrencyEnum;
+    applicableSites?: string[] | undefined;
 }>;
 export declare const clientContractZodSchema: z.ZodObject<{
     billingDetails: z.ZodArray<z.ZodEffects<z.ZodObject<{

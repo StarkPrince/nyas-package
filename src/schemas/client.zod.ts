@@ -20,11 +20,14 @@ export const clientZodSchema = z.object({
   purchaseOrderNumber: z.string(),
   purchaseOrderValue: z.string(),
   purchaseOrderCurrency: z.nativeEnum(CurrencyEnum),
-  applicableSites: z.array(
-    z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid site Id",
-    })
-  ),
+  applicableSites: z
+    .array(
+      z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid site Id",
+      })
+    )
+    .optional()
+    .default([]),
 });
 
 export const clientContractZodSchema = z.object({
