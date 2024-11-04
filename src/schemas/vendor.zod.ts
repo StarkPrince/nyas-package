@@ -78,4 +78,5 @@ export type OverriddenVendorContractType = Omit<
 > & {
   pointOfContact: string[];
   billingDetails: string[];
+  contractNumber: string;
 };

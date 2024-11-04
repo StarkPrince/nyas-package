@@ -288,4 +288,5 @@ export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {
 export type OverriddenVendorContractType = Omit<VendorContractType, "pointOfContact" | "billingDetails"> & {
     pointOfContact: string[];
     billingDetails: string[];
+    contractNumber: string;
 };

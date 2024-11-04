@@ -292,4 +292,5 @@ export type OverriddenClientType = Omit<ClientType, "pointOfContact"> & {
 export type OverriddenClientContractType = Omit<ClientContractType, "pointOfContact" | "billingDetails"> & {
     pointOfContact: string[];
     billingDetails: string[];
+    contractNumber: string;
 };
