@@ -125,7 +125,7 @@ export declare const scheduleZodSchema: z.ZodObject<{
     startdatetime: string;
     enddatetime: string;
 }>;
-export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
+export declare const siteAddressZodSchema: z.ZodObject<{
     siteDetails: z.ZodString;
     cageNumber: z.ZodOptional<z.ZodString>;
     coloDetails: z.ZodOptional<z.ZodString>;
@@ -143,46 +143,6 @@ export declare const siteAddressZodSchema: z.ZodEffects<z.ZodEffects<z.ZodObject
     }>;
 }, "strip", z.ZodTypeAny, {
     city: string;
-    country: CountryEnum;
-    location: {
-        lat: number;
-        long: number;
-    };
-    siteDetails: string;
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}, {
-    city: string;
-    country: CountryEnum;
-    location: {
-        lat: number;
-        long: number;
-    };
-    siteDetails: string;
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}>, {
-    city: string;
-    country: CountryEnum;
-    location: {
-        lat: number;
-        long: number;
-    };
-    siteDetails: string;
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}, {
-    city: string;
-    country: CountryEnum;
-    location: {
-        lat: number;
-        long: number;
-    };
-    siteDetails: string;
-    cageNumber?: string | undefined;
-    coloDetails?: string | undefined;
-}>, {
-    city: string | undefined;
     country: CountryEnum;
     location: {
         lat: number;

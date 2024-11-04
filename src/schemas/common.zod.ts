@@ -1,7 +1,6 @@
 import { z } from "zod";
 import {
   BillingTypeEnum,
-  countryCityMap,
   CountryEnum,
   CurrencyEnum,
   ExtensionStatusEnum,
@@ -69,36 +68,17 @@ export const scheduleZodSchema = z.object({
     .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
 });
 
-export const siteAddressZodSchema = z
-  .object({
-    siteDetails: z.string().min(1, "Site details cannot be blank"),
-    cageNumber: z.string().optional(),
-    coloDetails: z.string().optional(),
-    country: z.nativeEnum(CountryEnum),
-    city: z.string().min(1, "City cannot be blank"),
-    location: z.object({
-      lat: z.number().min(-90).max(90),
-      long: z.number().min(-180).max(180),
-    }),
-  })
-  .refine(
-    (data) => {
-      const cityMap = countryCityMap[data.country];
-      return cityMap && Object.keys(cityMap).includes(data.city);
-    },
-    {
-      message: "Selected city does not belong to the selected country",
-      path: ["city"],
-    }
-  )
-  .transform((data) => {
-    // Convert city code to the full city name after validation
-    const cityName = countryCityMap[data.country]?.[data.city];
-    return {
-      ...data,
-      city: cityName, // Replace AITA code with the city name
-    };
-  });
+export const siteAddressZodSchema = z.object({
+  siteDetails: z.string().min(1, "Site details cannot be blank"),
+  cageNumber: z.string().optional(),
+  coloDetails: z.string().optional(),
+  country: z.nativeEnum(CountryEnum),
+  city: z.string().min(1, "City cannot be blank"),
+  location: z.object({
+    lat: z.number().min(-90).max(90),
+    long: z.number().min(-180).max(180),
+  }),
+});
 
 export const extensionZodSchema = z
   .object({

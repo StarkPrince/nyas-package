@@ -50,8 +50,7 @@ exports.scheduleZodSchema = zod_1.z.object({
         .min(1, "End time cannot be blank")
         .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
 });
-exports.siteAddressZodSchema = zod_1.z
-    .object({
+exports.siteAddressZodSchema = zod_1.z.object({
     siteDetails: zod_1.z.string().min(1, "Site details cannot be blank"),
     cageNumber: zod_1.z.string().optional(),
     coloDetails: zod_1.z.string().optional(),
@@ -61,19 +60,6 @@ exports.siteAddressZodSchema = zod_1.z
         lat: zod_1.z.number().min(-90).max(90),
         long: zod_1.z.number().min(-180).max(180),
     }),
-})
-    .refine((data) => {
-    const cityMap = enums_1.countryCityMap[data.country];
-    return cityMap && Object.keys(cityMap).includes(data.city);
-}, {
-    message: "Selected city does not belong to the selected country",
-    path: ["city"],
-})
-    .transform((data) => {
-    var _a;
-    // Convert city code to the full city name after validation
-    const cityName = (_a = enums_1.countryCityMap[data.country]) === null || _a === void 0 ? void 0 : _a[data.city];
-    return Object.assign(Object.assign({}, data), { city: cityName });
 });
 exports.extensionZodSchema = zod_1.z
     .object({

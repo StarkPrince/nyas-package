@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/starkprince/nyas-package"
   },
-  "version": "1.2.33",
+  "version": "1.2.34",
   "description": "A package including Zod schemas, enums, and interfaces for NYAS Application.",
   "main": "dist/index.js",
   "scripts": {
