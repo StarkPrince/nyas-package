@@ -190,7 +190,6 @@ export declare const clientContractZodSchema: z.ZodObject<{
         phoneNumber: string;
     }>, "atleastone">;
     clientId: z.ZodEffects<z.ZodString, string, string>;
-    contractNumber: z.ZodString;
     signedContractCopy: z.ZodString;
     uploadedFiles: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     expiryDate: z.ZodEffects<z.ZodString, string, string>;
@@ -235,7 +234,6 @@ export declare const clientContractZodSchema: z.ZodObject<{
         dailyRate?: number | undefined;
     }[]];
     clientId: string;
-    contractNumber: string;
     signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;
@@ -278,7 +276,6 @@ export declare const clientContractZodSchema: z.ZodObject<{
         dailyRate?: number | undefined;
     }[]];
     clientId: string;
-    contractNumber: string;
     signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;

@@ -37,7 +37,6 @@ export const vendorContractZodSchema = z.object({
       message: "Invalid vendor Id",
     })
     .optional(),
-  contractNumber: z.string().min(1, "Contract name cannot be blank"),
   uploadedFiles: z.array(z.string()).optional(),
   billingDetails: z.array(billingDetailZodSchema).nonempty(),
   pointOfContact: z.array(contactDetailZodSchema).nonempty(),

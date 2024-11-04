@@ -28,7 +28,6 @@ exports.clientContractZodSchema = zod_1.z.object({
     clientId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid client Id",
     }),
-    contractNumber: zod_1.z.string().min(1, "Contract name cannot be blank"),
     signedContractCopy: zod_1.z.string().min(1, "Signed contract copy cannot be blank"),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     expiryDate: zod_1.z

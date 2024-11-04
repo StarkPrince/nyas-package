@@ -36,7 +36,6 @@ export const clientContractZodSchema = z.object({
   clientId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid client Id",
   }),
-  contractNumber: z.string().min(1, "Contract name cannot be blank"),
   signedContractCopy: z.string().min(1, "Signed contract copy cannot be blank"),
   uploadedFiles: z.array(z.string()).optional(),
   expiryDate: z
