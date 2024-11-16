@@ -35,6 +35,11 @@ export const userUpdateZodSchema = z.object({
   timezone: z.enum(Timezones).optional(),
 });
 
+export const phoneNumberUpdateZodSchema = z.object({
+  phoneNumber: z.string().min(1, "Phone number cannot be blank"),
+  otp: z.string().min(1, "OTP cannot be blank"),
+});
+
 export const userLoginZodSchema = z.object({
   email: z.string().email().min(1, "Email cannot be blank"),
   password: z.string().min(1, "Password cannot be blank"),

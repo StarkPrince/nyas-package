@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userLoginZodSchema = exports.userUpdateZodSchema = exports.userZodSchema = void 0;
+exports.userLoginZodSchema = exports.phoneNumberUpdateZodSchema = exports.userUpdateZodSchema = exports.userZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/;
@@ -32,6 +32,10 @@ exports.userUpdateZodSchema = zod_1.z.object({
     about: zod_1.z.string().optional(),
     image: zod_1.z.string().optional(),
     timezone: zod_1.z.enum(enums_1.Timezones).optional(),
+});
+exports.phoneNumberUpdateZodSchema = zod_1.z.object({
+    phoneNumber: zod_1.z.string().min(1, "Phone number cannot be blank"),
+    otp: zod_1.z.string().min(1, "OTP cannot be blank"),
 });
 exports.userLoginZodSchema = zod_1.z.object({
     email: zod_1.z.string().email().min(1, "Email cannot be blank"),

@@ -50,6 +50,17 @@ export declare const ERROR_MESSAGES: {
     TICKET_NOT_FOUND: string;
     SUBTICKET_CANNOT_BE_UNALLOCATED: string;
     SUBTICKET_NOT_PENDING_FOR_ASSIGNMENT: string;
+    DUPLICATE_CONTRACT_NUMBER: string;
+    CLIENT_WITH_SAME_NAME_AND_ADDRESS: string;
+    VENDOR_NOT_FOUND: string;
+    SUBTICKET_UPDATE_STATUS_NOT_SUPPORTED: string;
+    SUBTICKET_CANNOT_BE_UPDATED: string;
+    LOGOUT_FAILED: string;
+    INSUFFICIENT_PERMISSIONS: string;
+    NO_TOKEN_PROVIDED: string;
+    TOKEN_EXPIRED: string;
+    BAD_AUTHORIZATION: string;
+    FAILED_TO_CHANGE: string;
 };
 export declare const STATUS_CODES: {
     CONTINUE: number;
@@ -114,9 +125,9 @@ export declare const redisKeys: {
     refreshToken: (userId: string) => string;
     otp: (key: string) => string;
     forgotPasswordOtp: (userId: string) => string;
-    verifyOtp: (email: string) => string;
     accessToken: (userId: string) => string;
     rateLimit: (userId: string, route: string) => string;
+    phoneNumberChangeOtp: (userId: string) => string;
 };
 export declare const messages: {
     getUserAlreadyExistsMessage: (username: string) => string;

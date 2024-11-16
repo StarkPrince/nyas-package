@@ -56,6 +56,19 @@ export const ERROR_MESSAGES = {
     "Subticket cannot be unallocated as it is already in progress or in draft state",
   SUBTICKET_NOT_PENDING_FOR_ASSIGNMENT:
     "Subticket is not pending for assignment",
+  DUPLICATE_CONTRACT_NUMBER: "Duplicate Contract Number.",
+  CLIENT_WITH_SAME_NAME_AND_ADDRESS:
+    "A Client with same Name and Address already exists.",
+  VENDOR_NOT_FOUND: "Vendor not found.",
+  SUBTICKET_UPDATE_STATUS_NOT_SUPPORTED:
+    "Subticket update status is not supported",
+  SUBTICKET_CANNOT_BE_UPDATED: "Subticket cannot be updated as it is ongoing",
+  LOGOUT_FAILED: "Failed to log out",
+  INSUFFICIENT_PERMISSIONS: "Insufficient permissions",
+  NO_TOKEN_PROVIDED: "No token provided",
+  TOKEN_EXPIRED: "Your token has expired, kindly login again.",
+  BAD_AUTHORIZATION: "Bad Authorization: User Not found",
+  FAILED_TO_CHANGE: "Failed to change",
 };
 
 export const STATUS_CODES = {
@@ -132,9 +145,9 @@ export const redisKeys = {
   refreshToken: (userId: string) => `refreshToken:${userId}`,
   otp: (key: string) => `otp:${key}`,
   forgotPasswordOtp: (userId: string) => `forgotPasswordOTP:${userId}`,
-  verifyOtp: (email: string) => `verifyOtp:${email}`,
   accessToken: (userId: string) => `accessToken:${userId}`,
   rateLimit: (userId: string, route: string) => `rateLimit:${userId}:${route}`,
+  phoneNumberChangeOtp: (userId: string) => `phoneNumberChangeOtp:${userId}`,
 };
 
 export const messages = {

@@ -53,6 +53,17 @@ exports.ERROR_MESSAGES = {
     TICKET_NOT_FOUND: "Ticket not found.",
     SUBTICKET_CANNOT_BE_UNALLOCATED: "Subticket cannot be unallocated as it is already in progress or in draft state",
     SUBTICKET_NOT_PENDING_FOR_ASSIGNMENT: "Subticket is not pending for assignment",
+    DUPLICATE_CONTRACT_NUMBER: "Duplicate Contract Number.",
+    CLIENT_WITH_SAME_NAME_AND_ADDRESS: "A Client with same Name and Address already exists.",
+    VENDOR_NOT_FOUND: "Vendor not found.",
+    SUBTICKET_UPDATE_STATUS_NOT_SUPPORTED: "Subticket update status is not supported",
+    SUBTICKET_CANNOT_BE_UPDATED: "Subticket cannot be updated as it is ongoing",
+    LOGOUT_FAILED: "Failed to log out",
+    INSUFFICIENT_PERMISSIONS: "Insufficient permissions",
+    NO_TOKEN_PROVIDED: "No token provided",
+    TOKEN_EXPIRED: "Your token has expired, kindly login again.",
+    BAD_AUTHORIZATION: "Bad Authorization: User Not found",
+    FAILED_TO_CHANGE: "Failed to change",
 };
 exports.STATUS_CODES = {
     // 1xx Informational responses
@@ -122,9 +133,9 @@ exports.redisKeys = {
     refreshToken: (userId) => `refreshToken:${userId}`,
     otp: (key) => `otp:${key}`,
     forgotPasswordOtp: (userId) => `forgotPasswordOTP:${userId}`,
-    verifyOtp: (email) => `verifyOtp:${email}`,
     accessToken: (userId) => `accessToken:${userId}`,
     rateLimit: (userId, route) => `rateLimit:${userId}:${route}`,
+    phoneNumberChangeOtp: (userId) => `phoneNumberChangeOtp:${userId}`,
 };
 exports.messages = {
     getUserAlreadyExistsMessage: (username) => `User having property ${username} already exists.`,
