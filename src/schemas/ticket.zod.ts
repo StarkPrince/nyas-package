@@ -70,7 +70,8 @@ export const scheduleAssignmentZodSchema = z.object({
   schedule: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid vendor contract Id",
   }),
-  assignments: z.array(assignmentZodSchema),
+  assignments: assignmentZodSchema,
+  noOfSubtickets: z.number().nonnegative(),
 });
 
 export const ticketUpdateZodSchema = z

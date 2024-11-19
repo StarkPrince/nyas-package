@@ -142,7 +142,7 @@ export declare const ticketZodSchema: z.ZodObject<{
 }>;
 export declare const scheduleAssignmentZodSchema: z.ZodObject<{
     schedule: z.ZodEffects<z.ZodString, string, string>;
-    assignments: z.ZodArray<z.ZodObject<{
+    assignments: z.ZodObject<{
         fieldEngineerOptions: z.ZodArray<z.ZodObject<{
             fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
             vendorContract: z.ZodEffects<z.ZodString, string, string>;
@@ -166,7 +166,8 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
             fieldEngineer: string;
             vendorContract: string;
         }[];
-    }>, "many">;
+    }>;
+    noOfSubtickets: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     schedule: string;
     assignments: {
@@ -175,7 +176,8 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
             fieldEngineer: string;
             vendorContract: string;
         }[];
-    }[];
+    };
+    noOfSubtickets: number;
 }, {
     schedule: string;
     assignments: {
@@ -184,13 +186,14 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
             fieldEngineer: string;
             vendorContract: string;
         }[];
-    }[];
+    };
+    noOfSubtickets: number;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     ticketId: z.ZodEffects<z.ZodString, string, string>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
-        assignments: z.ZodArray<z.ZodObject<{
+        assignments: z.ZodObject<{
             fieldEngineerOptions: z.ZodArray<z.ZodObject<{
                 fieldEngineer: z.ZodEffects<z.ZodString, string, string>;
                 vendorContract: z.ZodEffects<z.ZodString, string, string>;
@@ -214,7 +217,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }>, "many">;
+        }>;
+        noOfSubtickets: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         schedule: string;
         assignments: {
@@ -223,7 +227,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }, {
         schedule: string;
         assignments: {
@@ -232,7 +237,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }>, "many">>;
     document: z.ZodOptional<z.ZodObject<{
         projectDescription: z.ZodString;
@@ -334,7 +340,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }[] | undefined;
     communications?: {
         consumerPortal: {
@@ -370,7 +377,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }[] | undefined;
     communications?: {
         consumerPortal: {
@@ -406,7 +414,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }[] | undefined;
     communications?: {
         consumerPortal: {
@@ -442,7 +451,8 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
                 fieldEngineer: string;
                 vendorContract: string;
             }[];
-        }[];
+        };
+        noOfSubtickets: number;
     }[] | undefined;
     communications?: {
         consumerPortal: {

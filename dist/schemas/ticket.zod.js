@@ -58,7 +58,8 @@ exports.scheduleAssignmentZodSchema = zod_1.z.object({
     schedule: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid vendor contract Id",
     }),
-    assignments: zod_1.z.array(exports.assignmentZodSchema),
+    assignments: exports.assignmentZodSchema,
+    noOfSubtickets: zod_1.z.number().nonnegative(),
 });
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
