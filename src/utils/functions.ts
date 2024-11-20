@@ -75,6 +75,85 @@ export const createHtmlTemplate = (
   `;
 };
 
+export const createOnBoardingTemplate = (
+  user: {
+    name: string;
+    role: string;
+    password: string;
+  },
+  title: string,
+  linkText: string,
+  linkUrl: string
+) => {
+  const body = `
+    Welcome to the team! We're thrilled to have you as ${user.role} on board. 
+    You're now part of a team composed of smart, talented, and motivated individuals. 
+    We're excited to have you contribute your unique skills and abilities to the team. 
+    We hope you'll do some amazing work here.
+  `;
+
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <!--[if mso]>
+      <style type="text/css">
+        table, td, div, h1, p {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+      </style>
+      <![endif]-->
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f6f9fc;">
+      <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td align="center" style="padding: 40px 0;">
+            <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <tr>
+                <td style="padding: 40px 30px; text-align: center; background-color: #4f46e5; background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                  <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">${title}</h1>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 40px 30px;">
+                  <p style="margin: 0 0 20px; font-size: 20px; font-weight: 600; color: #4f46e5;">Dear ${user.name},</p>
+                  <p style="margin: 0 0 20px; color: #4b5563;">${body}</p>
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                    <tr>
+                      <td style="padding: 20px; background-color: #f3f4f6; border-radius: 8px; text-align: center;">
+                        <p style="margin: 0 0 10px; font-size: 18px; font-weight: 600; color: #4b5563;">Your login credentials</p>
+                        <p style="margin: 0; font-size: 16px; color: #6b7280;">Username: <strong>${user.name}</strong></p>
+                        <p style="margin: 10px 0 0; font-size: 16px; color: #6b7280;">Password: <strong style="color: #4f46e5; background-color: #e0e7ff; padding: 2px 6px; border-radius: 4px;">${user.password}</strong></p>
+                      </td>
+                    </tr>
+                  </table>
+                  <table role="presentation" style="width: 100%;">
+                    <tr>
+                      <td align="center">
+                        <a href="${linkUrl}" target="_blank" style="display: inline-block; padding: 14px 30px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; background-color: #4f46e5; border-radius: 6px; transition: background-color 0.3s ease;">
+                          ${linkText}
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                  <p style="margin: 30px 0 0; font-size: 14px; color: #6b7280; text-align: center;">If you have any questions, please don't hesitate to contact our support team.</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 30px; text-align: center; background-color: #f9fafb;">
+                  <p style="margin: 0; font-size: 14px; color: #6b7280;">&copy; 2023 Your Company Name. All rights reserved.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+};
+
 export const isSchemaTypeArray = (
   schemaType: any
 ): schemaType is Schema.Types.Array => {
