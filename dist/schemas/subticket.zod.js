@@ -72,7 +72,7 @@ exports.subticketZodSchema = zod_1.z.object({
 exports.subticketUpdateZodSchema = zod_1.z
     .object({
     update: zod_1.z.nativeEnum(enums_1.SubticketUpdateEnum),
-    status: zod_1.z.nativeEnum(enums_1.SubticketUpdateEnum).optional(),
+    status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum).optional(),
     schedule: common_zod_1.scheduleZodSchema.optional(),
     fieldEngineerId: zod_1.z
         .string()

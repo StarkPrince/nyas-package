@@ -272,7 +272,7 @@ export declare const subticketZodSchema: z.ZodObject<{
 }>;
 export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     update: z.ZodNativeEnum<typeof SubticketUpdateEnum>;
-    status: z.ZodOptional<z.ZodNativeEnum<typeof SubticketUpdateEnum>>;
+    status: z.ZodOptional<z.ZodNativeEnum<typeof SubTicketStatusEnum>>;
     schedule: z.ZodOptional<z.ZodObject<{
         startdatetime: z.ZodEffects<z.ZodString, string, string>;
         enddatetime: z.ZodEffects<z.ZodString, string, string>;
@@ -291,7 +291,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     } | undefined;
-    status?: SubticketUpdateEnum | undefined;
+    status?: SubTicketStatusEnum | undefined;
     fieldEngineerId?: string | undefined;
     vendorContractId?: string | undefined;
 }, {
@@ -300,7 +300,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     } | undefined;
-    status?: SubticketUpdateEnum | undefined;
+    status?: SubTicketStatusEnum | undefined;
     fieldEngineerId?: string | undefined;
     vendorContractId?: string | undefined;
 }>, {
@@ -309,7 +309,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     } | undefined;
-    status?: SubticketUpdateEnum | undefined;
+    status?: SubTicketStatusEnum | undefined;
     fieldEngineerId?: string | undefined;
     vendorContractId?: string | undefined;
 }, {
@@ -318,7 +318,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     } | undefined;
-    status?: SubticketUpdateEnum | undefined;
+    status?: SubTicketStatusEnum | undefined;
     fieldEngineerId?: string | undefined;
     vendorContractId?: string | undefined;
 }>;

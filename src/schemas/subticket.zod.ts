@@ -78,7 +78,7 @@ export const subticketZodSchema = z.object({
 export const subticketUpdateZodSchema = z
   .object({
     update: z.nativeEnum(SubticketUpdateEnum),
-    status: z.nativeEnum(SubticketUpdateEnum).optional(),
+    status: z.nativeEnum(SubTicketStatusEnum).optional(),
     schedule: scheduleZodSchema.optional(),
     fieldEngineerId: z
       .string()
