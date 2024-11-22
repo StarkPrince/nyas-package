@@ -69,8 +69,49 @@ exports.subticketZodSchema = zod_1.z.object({
     tasks: zod_1.z.array(zod_1.z.string()).optional().default([]),
     fieldEngineerInvitations: zod_1.z.array(exports.fieldEngineerInvitationZodSchema),
 });
-exports.subticketUpdateZodSchema = zod_1.z.object({
-    status: zod_1.z.nativeEnum(enums_1.SubTicketStatusEnum),
+exports.subticketUpdateZodSchema = zod_1.z
+    .object({
+    update: zod_1.z.nativeEnum(enums_1.SubticketUpdateEnum),
+    status: zod_1.z.nativeEnum(enums_1.SubticketUpdateEnum).optional(),
+    schedule: common_zod_1.scheduleZodSchema.optional(),
+    fieldEngineerId: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid fieldEngineer Id",
+    })
+        .optional(),
+    vendorContractId: zod_1.z
+        .string()
+        .refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+    })
+        .optional(),
+})
+    .superRefine((data, ctx) => {
+    if (data.update === enums_1.SubticketUpdateEnum.SCHEDULE && !data.schedule) {
+        ctx.addIssue({
+            code: zod_1.ZodIssueCode.custom,
+            path: ["schedule"],
+            message: "Schedule must be provided when updating schedule.",
+        });
+    }
+    if (data.update === enums_1.SubticketUpdateEnum.STATUS && !data.fieldEngineerId) {
+        ctx.addIssue({
+            code: zod_1.ZodIssueCode.custom,
+            path: ["fieldEngineerId"],
+            message: "FieldEngineerId must be provided when updating the status",
+        });
+    }
+    if (data.update === enums_1.SubticketUpdateEnum.FIELD_ENGINEER &&
+        (!data.fieldEngineerId || !data.vendorContractId)) {
+        if (!data.fieldEngineerId || !data.vendorContractId) {
+            ctx.addIssue({
+                code: zod_1.ZodIssueCode.custom,
+                path: ["fieldEngineerId", "vendorContractId"],
+                message: "FieldEngineerId and vendorContractId must be provided when updating the fieldEngineer.",
+            });
+        }
+    }
 });
 exports.rejectedSubticketZodSchema = zod_1.z.object({
     subticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

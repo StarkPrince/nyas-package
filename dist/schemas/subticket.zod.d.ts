@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { SubticketResponseEnum, SubTicketStatusEnum } from "../enums";
+import { SubticketResponseEnum, SubTicketStatusEnum, SubticketUpdateEnum } from "../enums";
 export declare const subticketStatusZodSchema: z.ZodObject<{
     status: z.ZodNativeEnum<typeof SubTicketStatusEnum>;
     reason: z.ZodOptional<z.ZodString>;
@@ -90,45 +90,45 @@ export declare const subticketZodSchema: z.ZodObject<{
             enddatetime: string;
         }>;
     }, "strip", z.ZodTypeAny, {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }, {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }>, {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }, {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }>, "many">>;
     feUpdates: z.ZodOptional<z.ZodArray<z.ZodObject<{
         workStatus: z.ZodNativeEnum<typeof import("../enums").FieldEngineerWorkStatusEnum>;
@@ -205,15 +205,15 @@ export declare const subticketZodSchema: z.ZodObject<{
     }[];
     fieldEngineer?: string | undefined;
     extensions?: {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }[] | undefined;
     feUpdates?: {
         approved: boolean;
@@ -249,15 +249,15 @@ export declare const subticketZodSchema: z.ZodObject<{
     fieldEngineer?: string | undefined;
     tasks?: string[] | undefined;
     extensions?: {
-        type: import("../enums").BillingTypeEnum;
-        status: import("../enums").ExtensionStatusEnum;
-        subticketId: string;
-        reason: string;
-        comments: string;
         schedule: {
             startdatetime: string;
             enddatetime: string;
         };
+        status: import("../enums").ExtensionStatusEnum;
+        type: import("../enums").BillingTypeEnum;
+        subticketId: string;
+        reason: string;
+        comments: string;
     }[] | undefined;
     feUpdates?: {
         location: {
@@ -270,12 +270,57 @@ export declare const subticketZodSchema: z.ZodObject<{
         checkType?: import("../enums").PunctualityEnum | undefined;
     }[] | undefined;
 }>;
-export declare const subticketUpdateZodSchema: z.ZodObject<{
-    status: z.ZodNativeEnum<typeof SubTicketStatusEnum>;
+export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
+    update: z.ZodNativeEnum<typeof SubticketUpdateEnum>;
+    status: z.ZodOptional<z.ZodNativeEnum<typeof SubticketUpdateEnum>>;
+    schedule: z.ZodOptional<z.ZodObject<{
+        startdatetime: z.ZodEffects<z.ZodString, string, string>;
+        enddatetime: z.ZodEffects<z.ZodString, string, string>;
+    }, "strip", z.ZodTypeAny, {
+        startdatetime: string;
+        enddatetime: string;
+    }, {
+        startdatetime: string;
+        enddatetime: string;
+    }>>;
+    fieldEngineerId: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    vendorContractId: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
 }, "strip", z.ZodTypeAny, {
-    status: SubTicketStatusEnum;
+    update: SubticketUpdateEnum;
+    schedule?: {
+        startdatetime: string;
+        enddatetime: string;
+    } | undefined;
+    status?: SubticketUpdateEnum | undefined;
+    fieldEngineerId?: string | undefined;
+    vendorContractId?: string | undefined;
 }, {
-    status: SubTicketStatusEnum;
+    update: SubticketUpdateEnum;
+    schedule?: {
+        startdatetime: string;
+        enddatetime: string;
+    } | undefined;
+    status?: SubticketUpdateEnum | undefined;
+    fieldEngineerId?: string | undefined;
+    vendorContractId?: string | undefined;
+}>, {
+    update: SubticketUpdateEnum;
+    schedule?: {
+        startdatetime: string;
+        enddatetime: string;
+    } | undefined;
+    status?: SubticketUpdateEnum | undefined;
+    fieldEngineerId?: string | undefined;
+    vendorContractId?: string | undefined;
+}, {
+    update: SubticketUpdateEnum;
+    schedule?: {
+        startdatetime: string;
+        enddatetime: string;
+    } | undefined;
+    status?: SubticketUpdateEnum | undefined;
+    fieldEngineerId?: string | undefined;
+    vendorContractId?: string | undefined;
 }>;
 export declare const rejectedSubticketZodSchema: z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;

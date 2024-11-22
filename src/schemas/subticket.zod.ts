@@ -1,6 +1,10 @@
-import { z } from "zod";
-import { SubticketResponseEnum, SubTicketStatusEnum } from "../enums";
-import { extensionZodSchema, idPattern } from "./common.zod";
+import { z, ZodIssueCode } from "zod";
+import {
+  SubticketResponseEnum,
+  SubTicketStatusEnum,
+  SubticketUpdateEnum,
+} from "../enums";
+import { extensionZodSchema, idPattern, scheduleZodSchema } from "./common.zod";
 import { fieldEngineerStatusZodSchema } from "./fieldEngineer.zod";
 
 const validStatusOrder = [
@@ -71,9 +75,53 @@ export const subticketZodSchema = z.object({
   fieldEngineerInvitations: z.array(fieldEngineerInvitationZodSchema),
 });
 
-export const subticketUpdateZodSchema = z.object({
-  status: z.nativeEnum(SubTicketStatusEnum),
-});
+export const subticketUpdateZodSchema = z
+  .object({
+    update: z.nativeEnum(SubticketUpdateEnum),
+    status: z.nativeEnum(SubticketUpdateEnum).optional(),
+    schedule: scheduleZodSchema.optional(),
+    fieldEngineerId: z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid fieldEngineer Id",
+      })
+      .optional(),
+    vendorContractId: z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid vendor contract Id",
+      })
+      .optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.update === SubticketUpdateEnum.SCHEDULE && !data.schedule) {
+      ctx.addIssue({
+        code: ZodIssueCode.custom,
+        path: ["schedule"],
+        message: "Schedule must be provided when updating schedule.",
+      });
+    }
+    if (data.update === SubticketUpdateEnum.STATUS && !data.fieldEngineerId) {
+      ctx.addIssue({
+        code: ZodIssueCode.custom,
+        path: ["fieldEngineerId"],
+        message: "FieldEngineerId must be provided when updating the status",
+      });
+    }
+    if (
+      data.update === SubticketUpdateEnum.FIELD_ENGINEER &&
+      (!data.fieldEngineerId || !data.vendorContractId)
+    ) {
+      if (!data.fieldEngineerId || !data.vendorContractId) {
+        ctx.addIssue({
+          code: ZodIssueCode.custom,
+          path: ["fieldEngineerId", "vendorContractId"],
+          message:
+            "FieldEngineerId and vendorContractId must be provided when updating the fieldEngineer.",
+        });
+      }
+    }
+  });
 
 export const rejectedSubticketZodSchema = z.object({
   subticketId: z.string().refine((id) => idPattern.test(id), {

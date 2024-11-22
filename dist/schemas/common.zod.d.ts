@@ -179,45 +179,45 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
         enddatetime: string;
     }>;
 }, "strip", z.ZodTypeAny, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    subticketId: string;
-    reason: string;
-    comments: string;
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
+    status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
+    subticketId: string;
+    reason: string;
+    comments: string;
 }, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    subticketId: string;
-    reason: string;
-    comments: string;
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
+    status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
+    subticketId: string;
+    reason: string;
+    comments: string;
 }>, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    subticketId: string;
-    reason: string;
-    comments: string;
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
+    status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
+    subticketId: string;
+    reason: string;
+    comments: string;
 }, {
-    type: BillingTypeEnum;
-    status: ExtensionStatusEnum;
-    subticketId: string;
-    reason: string;
-    comments: string;
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
+    status: ExtensionStatusEnum;
+    type: BillingTypeEnum;
+    subticketId: string;
+    reason: string;
+    comments: string;
 }>;
 export declare const logisticsZodSchema: z.ZodObject<{
     name: z.ZodString;

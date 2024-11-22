@@ -56,6 +56,11 @@ export declare enum UpdateTicketEnum {
     DOCUMENT_COMMUNICATION_ADDITION = "documents_communications",
     ENGINEER_ADDITION = "fieldEngineers"
 }
+export declare enum SubticketUpdateEnum {
+    SCHEDULE = "schedule",
+    STATUS = "status",
+    FIELD_ENGINEER = "fieldEngineer"
+}
 export declare enum UserStatusEnum {
     ACTIVE = "active",
     INACTIVE = "inactive",
