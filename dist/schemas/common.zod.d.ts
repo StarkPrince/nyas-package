@@ -164,7 +164,7 @@ export declare const siteAddressZodSchema: z.ZodObject<{
 }>;
 export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
-    status: z.ZodNativeEnum<typeof ExtensionStatusEnum>;
+    status: z.ZodOptional<z.ZodNativeEnum<typeof ExtensionStatusEnum>>;
     type: z.ZodNativeEnum<typeof BillingTypeEnum>;
     reason: z.ZodString;
     comments: z.ZodString;
@@ -183,41 +183,41 @@ export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     };
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
     subticketId: string;
     reason: string;
     comments: string;
+    status?: ExtensionStatusEnum | undefined;
 }, {
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
     subticketId: string;
     reason: string;
     comments: string;
+    status?: ExtensionStatusEnum | undefined;
 }>, {
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
     subticketId: string;
     reason: string;
     comments: string;
+    status?: ExtensionStatusEnum | undefined;
 }, {
     schedule: {
         startdatetime: string;
         enddatetime: string;
     };
-    status: ExtensionStatusEnum;
     type: BillingTypeEnum;
     subticketId: string;
     reason: string;
     comments: string;
+    status?: ExtensionStatusEnum | undefined;
 }>;
 export declare const logisticsZodSchema: z.ZodObject<{
     name: z.ZodString;

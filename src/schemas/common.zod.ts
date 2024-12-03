@@ -85,7 +85,7 @@ export const extensionZodSchema = z
     subticketId: z.string().refine((id) => idPattern.test(id), {
       message: "Invalid subticket Id",
     }),
-    status: z.nativeEnum(ExtensionStatusEnum),
+    status: z.nativeEnum(ExtensionStatusEnum).optional(),
     type: z.nativeEnum(BillingTypeEnum),
     reason: z.string().min(1, "Reason cannot be blank"),
     comments: z.string().min(1, "Comments cannot be blank"),

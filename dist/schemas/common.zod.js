@@ -66,7 +66,7 @@ exports.extensionZodSchema = zod_1.z
     subticketId: zod_1.z.string().refine((id) => exports.idPattern.test(id), {
         message: "Invalid subticket Id",
     }),
-    status: zod_1.z.nativeEnum(enums_1.ExtensionStatusEnum),
+    status: zod_1.z.nativeEnum(enums_1.ExtensionStatusEnum).optional(),
     type: zod_1.z.nativeEnum(enums_1.BillingTypeEnum),
     reason: zod_1.z.string().min(1, "Reason cannot be blank"),
     comments: zod_1.z.string().min(1, "Comments cannot be blank"),

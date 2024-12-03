@@ -1,6 +1,6 @@
-import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
 import { TaskStatusEnum, TicketStatusEnum } from "../enums";
+import { SiteAddressType } from "../schemas/common.zod";
 import { idPattern, scheduleZodSchema } from "./common.zod";
 
 export const assignmentZodSchema = z.object({

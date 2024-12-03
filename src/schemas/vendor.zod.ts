@@ -8,28 +8,6 @@ import {
 
 const idPattern = /^[a-f\d]{24}$/i;
 
-export const vendorZodSchema = z.object({
-  name: z.string().min(1, "Name cannot be blank"),
-  address: addressZodSchema,
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
-  vendorContracts: z
-    .array(
-      z.string().refine((id) => idPattern.test(id), {
-        message: "Invalid vendor contract Id",
-      })
-    )
-    .optional(),
-  countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
-  clientsTheyWorkedFor: z.array(
-    z
-      .string()
-      .refine((id) => idPattern.test(id), {
-        message: "Invalid client Id",
-      })
-      .optional()
-  ),
-});
-
 export const vendorContractZodSchema = z.object({
   vendorId: z
     .string()
@@ -67,6 +45,22 @@ export const vendorContractZodSchema = z.object({
   fieldEngineers: z.array(z.string()),
 });
 
+export const vendorZodSchema = z.object({
+  name: z.string().min(1, "Name cannot be blank"),
+  address: addressZodSchema,
+  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  vendorContracts: z.array(vendorContractZodSchema).optional(),
+  countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
+  clientsTheyWorkedFor: z.array(
+    z
+      .string()
+      .refine((id) => idPattern.test(id), {
+        message: "Invalid client Id",
+      })
+      .optional()
+  ),
+});
+
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
 export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {
@@ -79,4 +73,5 @@ export type OverriddenVendorContractType = Omit<
   pointOfContact: string[];
   billingDetails: string[];
   contractNumber: string;
+  vendorContracts: string[];
 };

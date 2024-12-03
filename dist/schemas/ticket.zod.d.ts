@@ -1,6 +1,6 @@
-import { SiteAddressType } from "@starkprince/nyas";
 import { z } from "zod";
 import { TaskStatusEnum, TicketStatusEnum } from "../enums";
+import { SiteAddressType } from "../schemas/common.zod";
 export declare const assignmentZodSchema: z.ZodObject<{
     fieldEngineerOptions: z.ZodArray<z.ZodObject<{
         fieldEngineer: z.ZodEffects<z.ZodString, string, string>;

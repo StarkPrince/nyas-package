@@ -5,6 +5,7 @@ import {
   TicketChatType,
 } from "../schemas/chat.zod";
 import {
+  ClientContractType,
   OverriddenClientContractType,
   OverriddenClientType,
 } from "../schemas/client.zod";
@@ -18,6 +19,7 @@ import {
   TaskTemplateType,
 } from "../schemas/common.zod";
 import {
+  FieldEngineerLoginType,
   FieldEngineerStatusType,
   FieldEngineerType,
   OverriddenFieldEngineerType,
@@ -26,17 +28,20 @@ import {
   RejectedSubticketType,
   SubTicketStatusType,
   SubTicketType,
+  SubticketUpdateType,
 } from "../schemas/subticket.zod";
 import {
   CommunicationType,
   OverriddenTicketType,
   TaskType,
   TicketDocumentType,
+  TicketType,
 } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import {
   OverriddenVendorContractType,
   OverriddenVendorType,
+  VendorContractType,
 } from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
 export * from "../schemas/chat.zod";
@@ -238,6 +243,59 @@ export interface IPopulatedFieldEngineer
   subtickets: ISubTicket[];
   tickets: ITicket[];
 }
+
+export interface PopulatedVendorContact
+  extends Document,
+    Omit<VendorContractType, "billingDetails"> {
+  billingDetails: IBillingDetail[];
+}
+
+export interface PopulatedClientContract
+  extends Document,
+    Omit<ClientContractType, "billingDetails"> {
+  billingDetails: IBillingDetail[];
+}
+
+export interface PopulatedSubticket
+  extends Document,
+    Omit<SubticketUpdateType, "schedule" | "vendorContractId"> {
+  schedule: ISchedule;
+  vendorContractId: PopulatedVendorContact;
+}
+
+export interface PopulatedTicket
+  extends Document,
+    Omit<TicketType, "clientContractId" | "site"> {
+  clientContractId: PopulatedClientContract;
+  site: ISiteAddress;
+}
+
+export interface PopulatedExtension
+  extends Document,
+    Omit<ExtensionType, "schedule" | "subticketId"> {
+  schedule: ISchedule;
+  subticketId: ISubTicket;
+}
+
+export interface PopulatedFieldEngineer
+  extends Document,
+    Omit<FieldEngineerLoginType, "user" | "address"> {
+  user: IUser;
+  address: IAddress;
+}
+
+export interface PopulatedSubticketById
+  extends Document,
+    Omit<
+      SubTicketType,
+      "ticketId" | "schedule" | "extensions" | "fieldEngineer"
+    > {
+  ticketId: ITicket;
+  schedule: ISchedule;
+  extensions: PopulatedExtension;
+  fieldEngineer: PopulatedFieldEngineer;
+}
+
 export interface ITicketChat
   extends Document,
     TicketChatType,

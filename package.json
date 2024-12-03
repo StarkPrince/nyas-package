@@ -16,7 +16,6 @@
   "author": "Prince Raj",
   "license": "ISC",
   "dependencies": {
-    "@starkprince/nyas": "^1.1.2",
     "@types/express": "^4.17.21",
     "csv-parser": "^3.0.0",
     "express": "^4.19.2",

@@ -1,27 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.clientContractZodSchema = exports.clientZodSchema = void 0;
-const nyas_1 = require("@starkprince/nyas");
+exports.clientZodSchema = exports.clientContractZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
-exports.clientZodSchema = zod_1.z.object({
-    name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
-    address: common_zod_1.addressZodSchema,
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
-    clientContracts: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid contract Id",
-    })),
-    purchaseOrderNumber: zod_1.z.string(),
-    purchaseOrderValue: zod_1.z.string(),
-    purchaseOrderCurrency: zod_1.z.nativeEnum(nyas_1.CurrencyEnum),
-    applicableSites: zod_1.z
-        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid site Id",
-    }))
-        .optional()
-        .default([]),
-});
 exports.clientContractZodSchema = zod_1.z.object({
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).nonempty(),
     pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
@@ -51,4 +33,19 @@ exports.clientContractZodSchema = zod_1.z.object({
         .string()
         .min(1, "Onboarding date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
+});
+exports.clientZodSchema = zod_1.z.object({
+    name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
+    address: common_zod_1.addressZodSchema,
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    clientContracts: zod_1.z.array(exports.clientContractZodSchema).optional(),
+    purchaseOrderNumber: zod_1.z.string(),
+    purchaseOrderValue: zod_1.z.string(),
+    purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),
+    applicableSites: zod_1.z
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid site Id",
+    }))
+        .optional()
+        .default([]),
 });
