@@ -141,3 +141,6 @@ export type FieldEngineerInvitationType = z.infer<
   typeof fieldEngineerInvitationZodSchema
 >;
 export type SubticketUpdateType = z.infer<typeof subticketUpdateZodSchema>;
+export type OverriddenSubticketType = SubTicketType & {
+  number?: string;
+};

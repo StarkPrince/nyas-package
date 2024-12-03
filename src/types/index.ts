@@ -25,17 +25,16 @@ import {
   OverriddenFieldEngineerType,
 } from "../schemas/fieldEngineer.zod";
 import {
+  OverriddenSubticketType,
   RejectedSubticketType,
   SubTicketStatusType,
   SubTicketType,
-  SubticketUpdateType,
 } from "../schemas/subticket.zod";
 import {
   CommunicationType,
   OverriddenTicketType,
   TaskType,
   TicketDocumentType,
-  TicketType,
 } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import {
@@ -258,14 +257,14 @@ export interface PopulatedClientContract
 
 export interface PopulatedSubticket
   extends Document,
-    Omit<SubticketUpdateType, "schedule" | "vendorContractId"> {
+    Omit<OverriddenSubticketType, "schedule" | "vendorContractId"> {
   schedule: ISchedule;
   vendorContractId: PopulatedVendorContact;
 }
 
 export interface PopulatedTicket
   extends Document,
-    Omit<TicketType, "clientContractId" | "site"> {
+    Omit<OverriddenTicketType, "clientContractId" | "site"> {
   clientContractId: PopulatedClientContract;
   site: ISiteAddress;
 }

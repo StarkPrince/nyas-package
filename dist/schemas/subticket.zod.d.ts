@@ -343,3 +343,6 @@ export type SubTicketStatusType = z.infer<typeof subticketStatusZodSchema>;
 export type RejectedSubticketType = z.infer<typeof rejectedSubticketZodSchema>;
 export type FieldEngineerInvitationType = z.infer<typeof fieldEngineerInvitationZodSchema>;
 export type SubticketUpdateType = z.infer<typeof subticketUpdateZodSchema>;
+export type OverriddenSubticketType = SubTicketType & {
+    number?: string;
+};

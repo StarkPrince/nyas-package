@@ -3,8 +3,8 @@ import { MessageType, NotificationType, TicketChatType } from "../schemas/chat.z
 import { ClientContractType, OverriddenClientContractType, OverriddenClientType } from "../schemas/client.zod";
 import { AddressType, BillingDetailType, ContactDetailType, ExtensionType, ScheduleType, SiteAddressType, TaskTemplateType } from "../schemas/common.zod";
 import { FieldEngineerLoginType, FieldEngineerStatusType, FieldEngineerType, OverriddenFieldEngineerType } from "../schemas/fieldEngineer.zod";
-import { RejectedSubticketType, SubTicketStatusType, SubTicketType, SubticketUpdateType } from "../schemas/subticket.zod";
-import { CommunicationType, OverriddenTicketType, TaskType, TicketDocumentType, TicketType } from "../schemas/ticket.zod";
+import { OverriddenSubticketType, RejectedSubticketType, SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
+import { CommunicationType, OverriddenTicketType, TaskType, TicketDocumentType } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
 import { OverriddenVendorContractType, OverriddenVendorType, VendorContractType } from "../schemas/vendor.zod";
 export * from "../schemas/auth.zod";
@@ -168,11 +168,11 @@ export interface PopulatedVendorContact extends Document, Omit<VendorContractTyp
 export interface PopulatedClientContract extends Document, Omit<ClientContractType, "billingDetails"> {
     billingDetails: IBillingDetail[];
 }
-export interface PopulatedSubticket extends Document, Omit<SubticketUpdateType, "schedule" | "vendorContractId"> {
+export interface PopulatedSubticket extends Document, Omit<OverriddenSubticketType, "schedule" | "vendorContractId"> {
     schedule: ISchedule;
     vendorContractId: PopulatedVendorContact;
 }
-export interface PopulatedTicket extends Document, Omit<TicketType, "clientContractId" | "site"> {
+export interface PopulatedTicket extends Document, Omit<OverriddenTicketType, "clientContractId" | "site"> {
     clientContractId: PopulatedClientContract;
     site: ISiteAddress;
 }
