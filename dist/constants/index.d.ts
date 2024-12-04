@@ -62,7 +62,6 @@ export declare const ERROR_MESSAGES: {
     BAD_AUTHORIZATION: string;
     FAILED_TO_CHANGE: string;
     BILLING_DETAILS_NOT_FOUND: string;
-    NO_TOKEN: string;
     INVALID_TOKEN: string;
     ERROR_CREATING_CHAT: string;
     ERROR_GETTING_MESSAGES_BY_CHAT_ID: string;

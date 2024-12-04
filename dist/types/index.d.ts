@@ -3,7 +3,7 @@ import { MessageType, NotificationType, TicketChatType } from "../schemas/chat.z
 import { ClientContractType, OverriddenClientContractType, OverriddenClientType } from "../schemas/client.zod";
 import { AddressType, BillingDetailType, ContactDetailType, ExtensionType, ScheduleType, SiteAddressType, TaskTemplateType } from "../schemas/common.zod";
 import { FieldEngineerLoginType, FieldEngineerStatusType, FieldEngineerType, OverriddenFieldEngineerType } from "../schemas/fieldEngineer.zod";
-import { InvoiceType, SubticketInvoiceType } from "../schemas/invoice.zod";
+import { InvoiceType, SubticketInvoiceType, TicketInvoiceType } from "../schemas/invoice.zod";
 import { OverriddenSubticketType, RejectedSubticketType, SubTicketStatusType, SubTicketType } from "../schemas/subticket.zod";
 import { CommunicationType, OverriddenTicketType, TaskType, TicketDocumentType } from "../schemas/ticket.zod";
 import { UserType } from "../schemas/user.zod";
@@ -106,6 +106,8 @@ export interface ITaskTemplate extends Document, TaskTemplateType, ICreatedUpdat
 export interface IInvoice extends Document, InvoiceType, ICreatedUpdated {
 }
 export interface ISubticketInvoice extends Document, SubticketInvoiceType, ICreatedUpdated {
+}
+export interface ITicketInvoice extends Document, TicketInvoiceType, ICreatedUpdated {
 }
 export interface IClient extends Document, OverriddenClientType, ICreatedUpdatedWithUser {
 }

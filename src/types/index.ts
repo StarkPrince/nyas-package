@@ -24,7 +24,11 @@ import {
   FieldEngineerType,
   OverriddenFieldEngineerType,
 } from "../schemas/fieldEngineer.zod";
-import { InvoiceType, SubticketInvoiceType } from "../schemas/invoice.zod";
+import {
+  InvoiceType,
+  SubticketInvoiceType,
+  TicketInvoiceType,
+} from "../schemas/invoice.zod";
 import {
   OverriddenSubticketType,
   RejectedSubticketType,
@@ -151,6 +155,10 @@ export interface IInvoice extends Document, InvoiceType, ICreatedUpdated {}
 export interface ISubticketInvoice
   extends Document,
     SubticketInvoiceType,
+    ICreatedUpdated {}
+export interface ITicketInvoice
+  extends Document,
+    TicketInvoiceType,
     ICreatedUpdated {}
 
 //client Interfaces

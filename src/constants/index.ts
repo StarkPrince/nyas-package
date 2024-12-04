@@ -70,7 +70,6 @@ export const ERROR_MESSAGES = {
   BAD_AUTHORIZATION: "Bad Authorization: User Not found",
   FAILED_TO_CHANGE: "Failed to change",
   BILLING_DETAILS_NOT_FOUND: "Billing details not found.",
-  NO_TOKEN: "You are not authorized, no token provided",
   INVALID_TOKEN: "You are not authorized, the token is invalid",
   ERROR_CREATING_CHAT: "Error creating chat",
   ERROR_GETTING_MESSAGES_BY_CHAT_ID: "Error getting messages by chat ID",
