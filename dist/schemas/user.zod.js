@@ -1,9 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userLoginZodSchema = exports.phoneNumberUpdateZodSchema = exports.userUpdateZodSchema = exports.userZodSchema = void 0;
+exports.userLoginZodSchema = exports.phoneNumberUpdateZodSchema = exports.userUpdateZodSchema = exports.userZodSchema = exports.unavailabilityZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/;
+exports.unavailabilityZodSchema = zod_1.z.object({
+    from: zod_1.z
+        .string()
+        .min(1, "Start time cannot be blank")
+        .refine((time) => !isNaN(Date.parse(time)), "Invalid start time format"),
+    to: zod_1.z
+        .string()
+        .min(1, "End time cannot be blank")
+        .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
+    reason: zod_1.z.string().min(1, "Reason cannot be blank"),
+});
 exports.userZodSchema = zod_1.z
     .object({
     username: zod_1.z.string().optional(),
@@ -22,6 +33,7 @@ exports.userZodSchema = zod_1.z
         .default([])
         .optional(),
     timezone: zod_1.z.enum(enums_1.Timezones).default("Etc/GMT"),
+    unavailability: zod_1.z.array(exports.unavailabilityZodSchema).optional(),
 })
     .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",

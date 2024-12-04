@@ -123,3 +123,29 @@ export enum ContractStatusEnum {
   ACTIVE = "active",
   EXPIRED = "expired",
 }
+
+export enum SubticketInvoiceStatusEnum {
+  PENDING = "pending",
+  PAID = "paid",
+  CANCELLED = "cancelled",
+  DELAYED = "delayed",
+}
+
+export enum WorkHourType {
+  WORKING_HOURS = "workingHours",
+  NIGHT_HOURS = "nightHours",
+  OUT_OF_WORKING_HOURS = "outOfWorkingHours",
+}
+
+export enum InvoiceStatusEnum {
+  PENDING = "pending",
+  PAID = "paid",
+}
+
+export enum InvoiceExtraExpenditureTypeEnum {
+  TRAVELING = "Traveling",
+  FOOD_STAY = "Food & Stay",
+  CONSUMABLES = "Consumables",
+  MATERIALS = "Materials",
+  OTHER = "Other",
+}

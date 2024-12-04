@@ -106,3 +106,25 @@ export declare enum ContractStatusEnum {
     ACTIVE = "active",
     EXPIRED = "expired"
 }
+export declare enum SubticketInvoiceStatusEnum {
+    PENDING = "pending",
+    PAID = "paid",
+    CANCELLED = "cancelled",
+    DELAYED = "delayed"
+}
+export declare enum WorkHourType {
+    WORKING_HOURS = "workingHours",
+    NIGHT_HOURS = "nightHours",
+    OUT_OF_WORKING_HOURS = "outOfWorkingHours"
+}
+export declare enum InvoiceStatusEnum {
+    PENDING = "pending",
+    PAID = "paid"
+}
+export declare enum InvoiceExtraExpenditureTypeEnum {
+    TRAVELING = "Traveling",
+    FOOD_STAY = "Food & Stay",
+    CONSUMABLES = "Consumables",
+    MATERIALS = "Materials",
+    OTHER = "Other"
+}

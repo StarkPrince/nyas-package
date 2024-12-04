@@ -24,6 +24,7 @@ import {
   FieldEngineerType,
   OverriddenFieldEngineerType,
 } from "../schemas/fieldEngineer.zod";
+import { InvoiceType, SubticketInvoiceType } from "../schemas/invoice.zod";
 import {
   OverriddenSubticketType,
   RejectedSubticketType,
@@ -47,6 +48,7 @@ export * from "../schemas/chat.zod";
 export * from "../schemas/client.zod";
 export * from "../schemas/common.zod";
 export * from "../schemas/fieldEngineer.zod";
+export * from "../schemas/invoice.zod";
 export * from "../schemas/subticket.zod";
 export * from "../schemas/ticket.zod";
 export * from "../schemas/user.zod";
@@ -144,6 +146,12 @@ export interface ITaskTemplate
   extends Document,
     TaskTemplateType,
     ICreatedUpdatedWithUser {}
+
+export interface IInvoice extends Document, InvoiceType, ICreatedUpdated {}
+export interface ISubticketInvoice
+  extends Document,
+    SubticketInvoiceType,
+    ICreatedUpdated {}
 
 //client Interfaces
 export interface IClient

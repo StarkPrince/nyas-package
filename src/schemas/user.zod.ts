@@ -4,6 +4,18 @@ import { Timezones, UserRolesEnum, UserStatusEnum } from "../enums";
 const passwordPattern =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&])[A-Za-z\d@#$!%*?&]{8,32}$/;
 
+export const unavailabilityZodSchema = z.object({
+  from: z
+    .string()
+    .min(1, "Start time cannot be blank")
+    .refine((time) => !isNaN(Date.parse(time)), "Invalid start time format"),
+  to: z
+    .string()
+    .min(1, "End time cannot be blank")
+    .refine((time) => !isNaN(Date.parse(time)), "Invalid end time format"),
+  reason: z.string().min(1, "Reason cannot be blank"),
+});
+
 export const userZodSchema = z
   .object({
     username: z.string().optional(),
@@ -22,6 +34,7 @@ export const userZodSchema = z
       .default([])
       .optional(),
     timezone: z.enum(Timezones).default("Etc/GMT"),
+    unavailability: z.array(unavailabilityZodSchema).optional(),
   })
   .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",

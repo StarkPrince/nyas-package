@@ -61,6 +61,21 @@ export declare const ERROR_MESSAGES: {
     TOKEN_EXPIRED: string;
     BAD_AUTHORIZATION: string;
     FAILED_TO_CHANGE: string;
+    BILLING_DETAILS_NOT_FOUND: string;
+    NO_TOKEN: string;
+    INVALID_TOKEN: string;
+    ERROR_CREATING_CHAT: string;
+    ERROR_GETTING_MESSAGES_BY_CHAT_ID: string;
+    ERROR_GETTING_CHAT_BY_ID: string;
+    CONTRACT_ID_REQUIRED: string;
+    REASON_AND_COMMENTS_REQUIRED: string;
+    ACTION_TAKEN: string;
+    YOU_ARE_NOT_ASSIGNED_TO_THIS_SUBTICKET: string;
+    EXTENSION_SENT: string;
+    FAILED_TO_ADD_EXTENSION: string;
+    INVOICE_NOT_FOUND: string;
+    SUBTICKET_INVOICE_NOT_FOUND: string;
+    NO_OTHER_SUBTICKETS_COMPLETED: string;
 };
 export declare const STATUS_CODES: {
     CONTINUE: number;

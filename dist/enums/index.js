@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ContractStatusEnum = exports.TaskStatusEnum = exports.LogisticsEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.SubticketResponseEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.SubticketUpdateEnum = exports.UpdateTicketEnum = exports.S3FolderEnum = exports.SubTicketStatusEnum = exports.PunctualityEnum = exports.TicketStatusEnum = exports.NotificationTypeEnum = exports.ReadStatusEnum = exports.ChatTypeEnum = void 0;
+exports.InvoiceExtraExpenditureTypeEnum = exports.InvoiceStatusEnum = exports.WorkHourType = exports.SubticketInvoiceStatusEnum = exports.ContractStatusEnum = exports.TaskStatusEnum = exports.LogisticsEnum = exports.FieldEngineerWorkStatusEnum = exports.BillingTypeEnum = exports.SubticketResponseEnum = exports.ExtensionStatusEnum = exports.UserStatusEnum = exports.SubticketUpdateEnum = exports.UpdateTicketEnum = exports.S3FolderEnum = exports.SubTicketStatusEnum = exports.PunctualityEnum = exports.TicketStatusEnum = exports.NotificationTypeEnum = exports.ReadStatusEnum = exports.ChatTypeEnum = void 0;
 __exportStar(require("./cities"), exports);
 __exportStar(require("./countries"), exports);
 __exportStar(require("./currencies"), exports);
@@ -140,3 +140,29 @@ var ContractStatusEnum;
     ContractStatusEnum["ACTIVE"] = "active";
     ContractStatusEnum["EXPIRED"] = "expired";
 })(ContractStatusEnum || (exports.ContractStatusEnum = ContractStatusEnum = {}));
+var SubticketInvoiceStatusEnum;
+(function (SubticketInvoiceStatusEnum) {
+    SubticketInvoiceStatusEnum["PENDING"] = "pending";
+    SubticketInvoiceStatusEnum["PAID"] = "paid";
+    SubticketInvoiceStatusEnum["CANCELLED"] = "cancelled";
+    SubticketInvoiceStatusEnum["DELAYED"] = "delayed";
+})(SubticketInvoiceStatusEnum || (exports.SubticketInvoiceStatusEnum = SubticketInvoiceStatusEnum = {}));
+var WorkHourType;
+(function (WorkHourType) {
+    WorkHourType["WORKING_HOURS"] = "workingHours";
+    WorkHourType["NIGHT_HOURS"] = "nightHours";
+    WorkHourType["OUT_OF_WORKING_HOURS"] = "outOfWorkingHours";
+})(WorkHourType || (exports.WorkHourType = WorkHourType = {}));
+var InvoiceStatusEnum;
+(function (InvoiceStatusEnum) {
+    InvoiceStatusEnum["PENDING"] = "pending";
+    InvoiceStatusEnum["PAID"] = "paid";
+})(InvoiceStatusEnum || (exports.InvoiceStatusEnum = InvoiceStatusEnum = {}));
+var InvoiceExtraExpenditureTypeEnum;
+(function (InvoiceExtraExpenditureTypeEnum) {
+    InvoiceExtraExpenditureTypeEnum["TRAVELING"] = "Traveling";
+    InvoiceExtraExpenditureTypeEnum["FOOD_STAY"] = "Food & Stay";
+    InvoiceExtraExpenditureTypeEnum["CONSUMABLES"] = "Consumables";
+    InvoiceExtraExpenditureTypeEnum["MATERIALS"] = "Materials";
+    InvoiceExtraExpenditureTypeEnum["OTHER"] = "Other";
+})(InvoiceExtraExpenditureTypeEnum || (exports.InvoiceExtraExpenditureTypeEnum = InvoiceExtraExpenditureTypeEnum = {}));

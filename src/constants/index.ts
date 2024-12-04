@@ -69,15 +69,28 @@ export const ERROR_MESSAGES = {
   TOKEN_EXPIRED: "Your token has expired, kindly login again.",
   BAD_AUTHORIZATION: "Bad Authorization: User Not found",
   FAILED_TO_CHANGE: "Failed to change",
+  BILLING_DETAILS_NOT_FOUND: "Billing details not found.",
+  NO_TOKEN: "You are not authorized, no token provided",
+  INVALID_TOKEN: "You are not authorized, the token is invalid",
+  ERROR_CREATING_CHAT: "Error creating chat",
+  ERROR_GETTING_MESSAGES_BY_CHAT_ID: "Error getting messages by chat ID",
+  ERROR_GETTING_CHAT_BY_ID: "Error getting chat by ID",
+  CONTRACT_ID_REQUIRED: "Contract Id required",
+  REASON_AND_COMMENTS_REQUIRED: "Reason and comments required",
+  ACTION_TAKEN: "Your action has been taken",
+  YOU_ARE_NOT_ASSIGNED_TO_THIS_SUBTICKET:
+    "You are not assigned to this subticket",
+  EXTENSION_SENT: "Extension sent. Wait for it to be approved",
+  FAILED_TO_ADD_EXTENSION: "Failed to add extension",
+  INVOICE_NOT_FOUND: "Invoice not found",
+  SUBTICKET_INVOICE_NOT_FOUND: "Subticket invoice not found",
+  NO_OTHER_SUBTICKETS_COMPLETED: "No other subtickets has been completed",
 };
 
 export const STATUS_CODES = {
-  // 1xx Informational responses
   CONTINUE: 100,
   SWITCHING_PROTOCOLS: 101,
   PROCESSING: 102,
-
-  // 2xx Success
   OK: 200,
   CREATED: 201,
   ACCEPTED: 202,
@@ -85,8 +98,6 @@ export const STATUS_CODES = {
   NO_CONTENT: 204,
   RESET_CONTENT: 205,
   PARTIAL_CONTENT: 206,
-
-  // 3xx Redirection
   MULTIPLE_CHOICES: 300,
   MOVED_PERMANENTLY: 301,
   FOUND: 302,
@@ -95,8 +106,6 @@ export const STATUS_CODES = {
   USE_PROXY: 305,
   TEMPORARY_REDIRECT: 307,
   PERMANENT_REDIRECT: 308,
-
-  // 4xClient errors
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
   PAYMENT_REQUIRED: 402,
@@ -115,9 +124,7 @@ export const STATUS_CODES = {
   UNSUPPORTED_MEDIA_TYPE: 415,
   RANGE_NOT_SATISFIABLE: 416,
   EXPECTATION_FAILED: 417,
-  IM_A_TEAPOT: 418, // Fun Easter egg HTTP status code
-
-  // 5xx Server errors
+  IM_A_TEAPOT: 418,
   INTERNAL_SERVER_ERROR: 500,
   NOT_IMPLEMENTED: 501,
   BAD_GATEWAY: 502,
@@ -129,7 +136,6 @@ export const STATUS_CODES = {
   LOOP_DETECTED: 508,
   NOT_EXTENDED: 510,
   NETWORK_AUTHENTICATION_REQUIRED: 511,
-
   NOT_ONGOING: 409,
   NOT_CHECKED_IN: 412,
   ALREADY_CHECKED_IN: 409,

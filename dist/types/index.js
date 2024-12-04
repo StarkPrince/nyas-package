@@ -19,6 +19,7 @@ __exportStar(require("../schemas/chat.zod"), exports);
 __exportStar(require("../schemas/client.zod"), exports);
 __exportStar(require("../schemas/common.zod"), exports);
 __exportStar(require("../schemas/fieldEngineer.zod"), exports);
+__exportStar(require("../schemas/invoice.zod"), exports);
 __exportStar(require("../schemas/subticket.zod"), exports);
 __exportStar(require("../schemas/ticket.zod"), exports);
 __exportStar(require("../schemas/user.zod"), exports);
