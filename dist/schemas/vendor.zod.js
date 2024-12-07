@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.vendorZodSchema = exports.vendorContractZodSchema = void 0;
+exports.vendorUpdateZodSchema = exports.vendorZodSchema = exports.vendorContractZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -50,4 +50,12 @@ exports.vendorZodSchema = zod_1.z.object({
         message: "Invalid client Id",
     })
         .optional()),
+});
+exports.vendorUpdateZodSchema = zod_1.z.object({
+    name: zod_1.z.string().optional(),
+    address: zod_1.z.string().optional(),
+    pointOfContact: zod_1.z.array(zod_1.z.string()).optional(),
+    countriesTheyServe: zod_1.z.array(zod_1.z.nativeEnum(enums_1.CountryEnum)).optional(),
+    clientsTheyWorkedFor: zod_1.z.array(zod_1.z.string()).optional(),
+    vendorContracts: zod_1.z.array(zod_1.z.string()).optional(),
 });

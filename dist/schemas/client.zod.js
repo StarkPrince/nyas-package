@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.clientZodSchema = exports.clientContractZodSchema = void 0;
+exports.clientUpdateZodSchema = exports.clientZodSchema = exports.clientContractZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -47,4 +47,14 @@ exports.clientZodSchema = zod_1.z.object({
     }))
         .optional()
         .default([]),
+});
+exports.clientUpdateZodSchema = zod_1.z.object({
+    name: zod_1.z.string().optional(),
+    address: zod_1.z.string().optional(),
+    pointOfContact: zod_1.z.array(zod_1.z.string()).optional(),
+    purchaseOrderNumber: zod_1.z.string().optional(),
+    purchaseOrderValue: zod_1.z.string().optional(),
+    purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum).optional(),
+    applicableSites: zod_1.z.array(zod_1.z.string()).optional(),
+    clientContracts: zod_1.z.array(zod_1.z.string()).optional(),
 });

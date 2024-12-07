@@ -57,10 +57,22 @@ export const clientZodSchema = z.object({
     .default([]),
 });
 
+export const clientUpdateZodSchema = z.object({
+  name: z.string().optional(),
+  address: z.string().optional(),
+  pointOfContact: z.array(z.string()).optional(),
+  purchaseOrderNumber: z.string().optional(),
+  purchaseOrderValue: z.string().optional(),
+  purchaseOrderCurrency: z.nativeEnum(CurrencyEnum).optional(),
+  applicableSites: z.array(z.string()).optional(),
+  clientContracts: z.array(z.string()).optional(),
+});
+
 export type ClientType = z.infer<typeof clientZodSchema>;
 export type ClientContractType = z.infer<typeof clientContractZodSchema>;
 export type OverriddenClientType = Omit<ClientType, "pointOfContact"> & {
   pointOfContact: string[];
+  clientContracts: string[];
 };
 export type OverriddenClientContractType = Omit<
   ClientContractType,
@@ -69,5 +81,4 @@ export type OverriddenClientContractType = Omit<
   pointOfContact: string[];
   billingDetails: string[];
   contractNumber: string;
-  clientContracts: string[];
 };

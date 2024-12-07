@@ -280,14 +280,42 @@ export declare const clientZodSchema: z.ZodObject<{
     purchaseOrderCurrency: CurrencyEnum;
     applicableSites?: string[] | undefined;
 }>;
+export declare const clientUpdateZodSchema: z.ZodObject<{
+    name: z.ZodOptional<z.ZodString>;
+    address: z.ZodOptional<z.ZodString>;
+    pointOfContact: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    purchaseOrderNumber: z.ZodOptional<z.ZodString>;
+    purchaseOrderValue: z.ZodOptional<z.ZodString>;
+    purchaseOrderCurrency: z.ZodOptional<z.ZodNativeEnum<typeof CurrencyEnum>>;
+    applicableSites: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    clientContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+}, "strip", z.ZodTypeAny, {
+    address?: string | undefined;
+    name?: string | undefined;
+    applicableSites?: string[] | undefined;
+    pointOfContact?: string[] | undefined;
+    purchaseOrderNumber?: string | undefined;
+    purchaseOrderValue?: string | undefined;
+    purchaseOrderCurrency?: CurrencyEnum | undefined;
+    clientContracts?: string[] | undefined;
+}, {
+    address?: string | undefined;
+    name?: string | undefined;
+    applicableSites?: string[] | undefined;
+    pointOfContact?: string[] | undefined;
+    purchaseOrderNumber?: string | undefined;
+    purchaseOrderValue?: string | undefined;
+    purchaseOrderCurrency?: CurrencyEnum | undefined;
+    clientContracts?: string[] | undefined;
+}>;
 export type ClientType = z.infer<typeof clientZodSchema>;
 export type ClientContractType = z.infer<typeof clientContractZodSchema>;
 export type OverriddenClientType = Omit<ClientType, "pointOfContact"> & {
     pointOfContact: string[];
+    clientContracts: string[];
 };
 export type OverriddenClientContractType = Omit<ClientContractType, "pointOfContact" | "billingDetails"> & {
     pointOfContact: string[];
     billingDetails: string[];
     contractNumber: string;
-    clientContracts: string[];
 };

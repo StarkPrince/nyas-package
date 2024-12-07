@@ -60,6 +60,15 @@ export const vendorZodSchema = z.object({
   ),
 });
 
+export const vendorUpdateZodSchema = z.object({
+  name: z.string().optional(),
+  address: z.string().optional(),
+  pointOfContact: z.array(z.string()).optional(),
+  countriesTheyServe: z.array(z.nativeEnum(CountryEnum)).optional(),
+  clientsTheyWorkedFor: z.array(z.string()).optional(),
+  vendorContracts: z.array(z.string()).optional(),
+});
+
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
 export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {

@@ -132,8 +132,8 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     contractStartDate: string;
     onBoardingDate: string;
     uploadedFiles?: string[] | undefined;
-    vendorId?: string | undefined;
     clientContracts?: string[] | undefined;
+    vendorId?: string | undefined;
 }, {
     fieldEngineers: string[];
     billingDetails: [{
@@ -176,8 +176,8 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     onBoardingDate: string;
     status?: ContractStatusEnum | undefined;
     uploadedFiles?: string[] | undefined;
-    vendorId?: string | undefined;
     clientContracts?: string[] | undefined;
+    vendorId?: string | undefined;
 }>;
 export declare const vendorZodSchema: z.ZodObject<{
     name: z.ZodString;
@@ -276,6 +276,28 @@ export declare const vendorZodSchema: z.ZodObject<{
     }[]];
     countriesTheyServe: CountryEnum[];
     clientsTheyWorkedFor: (string | undefined)[];
+}>;
+export declare const vendorUpdateZodSchema: z.ZodObject<{
+    name: z.ZodOptional<z.ZodString>;
+    address: z.ZodOptional<z.ZodString>;
+    pointOfContact: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    countriesTheyServe: z.ZodOptional<z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "many">>;
+    clientsTheyWorkedFor: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+}, "strip", z.ZodTypeAny, {
+    vendorContracts?: string[] | undefined;
+    address?: string | undefined;
+    name?: string | undefined;
+    pointOfContact?: string[] | undefined;
+    countriesTheyServe?: CountryEnum[] | undefined;
+    clientsTheyWorkedFor?: string[] | undefined;
+}, {
+    vendorContracts?: string[] | undefined;
+    address?: string | undefined;
+    name?: string | undefined;
+    pointOfContact?: string[] | undefined;
+    countriesTheyServe?: CountryEnum[] | undefined;
+    clientsTheyWorkedFor?: string[] | undefined;
 }>;
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
