@@ -44,7 +44,6 @@ export const clientZodSchema = z.object({
   name: z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
   address: addressZodSchema,
   pointOfContact: z.array(contactDetailZodSchema).nonempty(),
-  clientContracts: z.array(clientContractZodSchema).optional(),
   purchaseOrderNumber: z.string(),
   purchaseOrderValue: z.string(),
   purchaseOrderCurrency: z.nativeEnum(CurrencyEnum),

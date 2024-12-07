@@ -57,12 +57,14 @@ export const TicketInvoiceSchema = z.object({
 });
 
 export const InvoiceRequestSchema = z.object({
-  taxes: z.array(
-    z.object({
-      name: z.string(),
-      value: z.number(),
-    })
-  ),
+  taxes: z
+    .array(
+      z.object({
+        name: z.string(),
+        value: z.number(),
+      })
+    )
+    .optional(),
   otherExpenditures: z.array(
     z.object({
       subticket: z.string(),

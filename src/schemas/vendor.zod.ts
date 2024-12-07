@@ -49,7 +49,6 @@ export const vendorZodSchema = z.object({
   name: z.string().min(1, "Name cannot be blank"),
   address: addressZodSchema,
   pointOfContact: z.array(contactDetailZodSchema).nonempty(),
-  vendorContracts: z.array(vendorContractZodSchema).optional(),
   countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
   clientsTheyWorkedFor: z.array(
     z
