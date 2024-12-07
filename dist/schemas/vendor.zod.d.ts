@@ -303,10 +303,10 @@ export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
 export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {
     pointOfContact: string[];
+    vendorContracts: string[];
 };
 export type OverriddenVendorContractType = Omit<VendorContractType, "pointOfContact" | "billingDetails"> & {
     pointOfContact: string[];
     billingDetails: string[];
     contractNumber: string;
-    vendorContracts: string[];
 };
