@@ -59,13 +59,13 @@ export const clientZodSchema = z.object({
 
 export const clientUpdateZodSchema = z.object({
   name: z.string().optional(),
-  address: z.string().optional(),
-  pointOfContact: z.array(z.string()).optional(),
+  address: addressZodSchema,
+  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
   purchaseOrderNumber: z.string().optional(),
   purchaseOrderValue: z.string().optional(),
   purchaseOrderCurrency: z.nativeEnum(CurrencyEnum).optional(),
   applicableSites: z.array(z.string()).optional(),
-  clientContracts: z.array(z.string()).optional(),
+  clientContracts: z.array(z.string()).nullable(),
 });
 
 export type ClientType = z.infer<typeof clientZodSchema>;

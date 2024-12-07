@@ -279,23 +279,102 @@ export declare const vendorZodSchema: z.ZodObject<{
 }>;
 export declare const vendorUpdateZodSchema: z.ZodObject<{
     name: z.ZodOptional<z.ZodString>;
-    address: z.ZodOptional<z.ZodString>;
-    pointOfContact: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    address: z.ZodObject<{
+        line1: z.ZodString;
+        line2: z.ZodOptional<z.ZodString>;
+        city: z.ZodString;
+        country: z.ZodNativeEnum<typeof CountryEnum>;
+        location: z.ZodObject<{
+            lat: z.ZodNumber;
+            long: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            lat: number;
+            long: number;
+        }, {
+            lat: number;
+            long: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        line1: string;
+        city: string;
+        country: CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    }, {
+        line1: string;
+        city: string;
+        country: CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    }>;
+    pointOfContact: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        email: z.ZodString;
+        phoneNumber: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }>, "atleastone">;
     countriesTheyServe: z.ZodOptional<z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "many">>;
     clientsTheyWorkedFor: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    vendorContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    vendorContracts: z.ZodNullable<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
-    vendorContracts?: string[] | undefined;
-    address?: string | undefined;
+    vendorContracts: string[] | null;
+    address: {
+        line1: string;
+        city: string;
+        country: CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    };
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     name?: string | undefined;
-    pointOfContact?: string[] | undefined;
     countriesTheyServe?: CountryEnum[] | undefined;
     clientsTheyWorkedFor?: string[] | undefined;
 }, {
-    vendorContracts?: string[] | undefined;
-    address?: string | undefined;
+    vendorContracts: string[] | null;
+    address: {
+        line1: string;
+        city: string;
+        country: CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    };
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
     name?: string | undefined;
-    pointOfContact?: string[] | undefined;
     countriesTheyServe?: CountryEnum[] | undefined;
     clientsTheyWorkedFor?: string[] | undefined;
 }>;

@@ -50,11 +50,11 @@ exports.clientZodSchema = zod_1.z.object({
 });
 exports.clientUpdateZodSchema = zod_1.z.object({
     name: zod_1.z.string().optional(),
-    address: zod_1.z.string().optional(),
-    pointOfContact: zod_1.z.array(zod_1.z.string()).optional(),
+    address: common_zod_1.addressZodSchema,
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
     purchaseOrderNumber: zod_1.z.string().optional(),
     purchaseOrderValue: zod_1.z.string().optional(),
     purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum).optional(),
     applicableSites: zod_1.z.array(zod_1.z.string()).optional(),
-    clientContracts: zod_1.z.array(zod_1.z.string()).optional(),
+    clientContracts: zod_1.z.array(zod_1.z.string()).nullable(),
 });

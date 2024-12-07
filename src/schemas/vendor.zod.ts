@@ -62,11 +62,11 @@ export const vendorZodSchema = z.object({
 
 export const vendorUpdateZodSchema = z.object({
   name: z.string().optional(),
-  address: z.string().optional(),
-  pointOfContact: z.array(z.string()).optional(),
+  address: addressZodSchema,
+  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
   countriesTheyServe: z.array(z.nativeEnum(CountryEnum)).optional(),
   clientsTheyWorkedFor: z.array(z.string()).optional(),
-  vendorContracts: z.array(z.string()).optional(),
+  vendorContracts: z.array(z.string()).nullable(),
 });
 
 export type VendorType = z.infer<typeof vendorZodSchema>;

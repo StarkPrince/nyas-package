@@ -282,31 +282,110 @@ export declare const clientZodSchema: z.ZodObject<{
 }>;
 export declare const clientUpdateZodSchema: z.ZodObject<{
     name: z.ZodOptional<z.ZodString>;
-    address: z.ZodOptional<z.ZodString>;
-    pointOfContact: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    address: z.ZodObject<{
+        line1: z.ZodString;
+        line2: z.ZodOptional<z.ZodString>;
+        city: z.ZodString;
+        country: z.ZodNativeEnum<typeof import("../enums").CountryEnum>;
+        location: z.ZodObject<{
+            lat: z.ZodNumber;
+            long: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            lat: number;
+            long: number;
+        }, {
+            lat: number;
+            long: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        line1: string;
+        city: string;
+        country: import("../enums").CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    }, {
+        line1: string;
+        city: string;
+        country: import("../enums").CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    }>;
+    pointOfContact: z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        email: z.ZodString;
+        phoneNumber: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, {
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }>, "atleastone">;
     purchaseOrderNumber: z.ZodOptional<z.ZodString>;
     purchaseOrderValue: z.ZodOptional<z.ZodString>;
     purchaseOrderCurrency: z.ZodOptional<z.ZodNativeEnum<typeof CurrencyEnum>>;
     applicableSites: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    clientContracts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    clientContracts: z.ZodNullable<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
-    address?: string | undefined;
+    address: {
+        line1: string;
+        city: string;
+        country: import("../enums").CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    };
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
+    clientContracts: string[] | null;
     name?: string | undefined;
     applicableSites?: string[] | undefined;
-    pointOfContact?: string[] | undefined;
     purchaseOrderNumber?: string | undefined;
     purchaseOrderValue?: string | undefined;
     purchaseOrderCurrency?: CurrencyEnum | undefined;
-    clientContracts?: string[] | undefined;
 }, {
-    address?: string | undefined;
+    address: {
+        line1: string;
+        city: string;
+        country: import("../enums").CountryEnum;
+        location: {
+            lat: number;
+            long: number;
+        };
+        line2?: string | undefined;
+    };
+    pointOfContact: [{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }, ...{
+        email: string;
+        name: string;
+        phoneNumber: string;
+    }[]];
+    clientContracts: string[] | null;
     name?: string | undefined;
     applicableSites?: string[] | undefined;
-    pointOfContact?: string[] | undefined;
     purchaseOrderNumber?: string | undefined;
     purchaseOrderValue?: string | undefined;
     purchaseOrderCurrency?: CurrencyEnum | undefined;
-    clientContracts?: string[] | undefined;
 }>;
 export type ClientType = z.infer<typeof clientZodSchema>;
 export type ClientContractType = z.infer<typeof clientContractZodSchema>;
