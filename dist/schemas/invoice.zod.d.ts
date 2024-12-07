@@ -346,7 +346,7 @@ export declare const TicketInvoiceSchema: z.ZodObject<{
     }[];
 }>;
 export declare const InvoiceRequestSchema: z.ZodObject<{
-    taxes: z.ZodArray<z.ZodObject<{
+    taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         value: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
@@ -355,7 +355,7 @@ export declare const InvoiceRequestSchema: z.ZodObject<{
     }, {
         value: number;
         name: string;
-    }>, "many">;
+    }>, "many">>;
     otherExpenditures: z.ZodArray<z.ZodObject<{
         subticket: z.ZodString;
         extras: z.ZodArray<z.ZodObject<{
@@ -387,10 +387,6 @@ export declare const InvoiceRequestSchema: z.ZodObject<{
         }[];
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
-    taxes: {
-        value: number;
-        name: string;
-    }[];
     otherExpenditures: {
         subticket: string;
         extras: {
@@ -399,11 +395,11 @@ export declare const InvoiceRequestSchema: z.ZodObject<{
             name: string;
         }[];
     }[];
+    taxes?: {
+        value: number;
+        name: string;
+    }[] | undefined;
 }, {
-    taxes: {
-        value: number;
-        name: string;
-    }[];
     otherExpenditures: {
         subticket: string;
         extras: {
@@ -412,6 +408,10 @@ export declare const InvoiceRequestSchema: z.ZodObject<{
             name: string;
         }[];
     }[];
+    taxes?: {
+        value: number;
+        name: string;
+    }[] | undefined;
 }>;
 export type InvoiceRequestType = z.infer<typeof InvoiceRequestSchema>;
 export type SubticketInvoiceType = z.infer<typeof SubticketInvoiceSchema>;

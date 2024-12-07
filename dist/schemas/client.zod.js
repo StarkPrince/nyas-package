@@ -38,7 +38,6 @@ exports.clientZodSchema = zod_1.z.object({
     name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
     address: common_zod_1.addressZodSchema,
     pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
-    clientContracts: zod_1.z.array(exports.clientContractZodSchema).optional(),
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),
     purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),

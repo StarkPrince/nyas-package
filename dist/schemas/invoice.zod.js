@@ -46,10 +46,12 @@ exports.TicketInvoiceSchema = zod_1.z.object({
     })),
 });
 exports.InvoiceRequestSchema = zod_1.z.object({
-    taxes: zod_1.z.array(zod_1.z.object({
+    taxes: zod_1.z
+        .array(zod_1.z.object({
         name: zod_1.z.string(),
         value: zod_1.z.number(),
-    })),
+    }))
+        .optional(),
     otherExpenditures: zod_1.z.array(zod_1.z.object({
         subticket: zod_1.z.string(),
         extras: zod_1.z
