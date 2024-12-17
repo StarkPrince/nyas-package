@@ -49,31 +49,17 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line2?: string | undefined;
     }>;
     yearsOfExperience: z.ZodDefault<z.ZodNumber>;
-    ratings: z.ZodObject<{
-        ticketRatings: z.ZodArray<z.ZodObject<{
-            ticket: z.ZodEffects<z.ZodString, string, string>;
-            rating: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            ticket: string;
-            rating: number;
-        }, {
-            ticket: string;
-            rating: number;
-        }>, "many">;
-        averageRating: z.ZodNumber;
+    ticketRatings: z.ZodArray<z.ZodObject<{
+        ticket: z.ZodEffects<z.ZodString, string, string>;
+        rating: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        ticketRatings: {
-            ticket: string;
-            rating: number;
-        }[];
-        averageRating: number;
+        ticket: string;
+        rating: number;
     }, {
-        ticketRatings: {
-            ticket: string;
-            rating: number;
-        }[];
-        averageRating: number;
-    }>;
+        ticket: string;
+        rating: number;
+    }>, "many">;
+    rating: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     user: string;
     vendorContracts: string[];
@@ -88,13 +74,11 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     yearsOfExperience: number;
-    ratings: {
-        ticketRatings: {
-            ticket: string;
-            rating: number;
-        }[];
-        averageRating: number;
-    };
+    ticketRatings: {
+        ticket: string;
+        rating: number;
+    }[];
+    rating: number;
 }, {
     user: string;
     address: {
@@ -107,13 +91,11 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         };
         line2?: string | undefined;
     };
-    ratings: {
-        ticketRatings: {
-            ticket: string;
-            rating: number;
-        }[];
-        averageRating: number;
-    };
+    ticketRatings: {
+        ticket: string;
+        rating: number;
+    }[];
+    rating: number;
     vendorContracts?: string[] | undefined;
     yearsOfExperience?: number | undefined;
 }>;

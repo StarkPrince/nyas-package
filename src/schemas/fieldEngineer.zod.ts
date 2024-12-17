@@ -25,17 +25,15 @@ export const fieldEngineerZodSchema = z.object({
     .default([]),
   address: addressZodSchema,
   yearsOfExperience: z.number().default(0),
-  ratings: z.object({
-    ticketRatings: z.array(
-      z.object({
-        ticket: z.string().refine((id) => idPattern.test(id), {
-          message: "Invalid ticket Id",
-        }),
-        rating: z.number().min(0).max(5),
-      })
-    ),
-    averageRating: z.number().min(0).max(5),
-  }),
+  ticketRatings: z.array(
+    z.object({
+      ticket: z.string().refine((id) => idPattern.test(id), {
+        message: "Invalid ticket Id",
+      }),
+      rating: z.number().min(0).max(5),
+    })
+  ),
+  rating: z.number().min(0).max(5),
 });
 
 export const fieldEngineerRegisterZodSchema = z.object({
