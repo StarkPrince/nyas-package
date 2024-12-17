@@ -18,8 +18,6 @@ export const messageZodSchema = z.object({
   chatType: z.nativeEnum(ChatTypeEnum),
   data: z.string(),
   size: z.number().nullable(),
-  chatId: z.string(),
-  userId: z.string(),
 });
 
 export const ticketChatZodSchema = z.object({

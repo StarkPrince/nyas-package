@@ -80,6 +80,8 @@ export const siteAddressZodSchema = z.object({
   }),
 });
 
+export const siteAddressListZodSchema = z.array(siteAddressZodSchema);
+
 export const extensionZodSchema = z
   .object({
     subticketId: z.string().refine((id) => idPattern.test(id), {
@@ -114,6 +116,8 @@ export const logisticsZodSchema = z.object({
   type: z.nativeEnum(LogisticsEnum),
 });
 
+export const logisticsListZodSchema = z.array(logisticsZodSchema);
+
 export const taskTemplateZodSchema = z.object({
   taskName: z.string(),
   taskDescription: z.string(),
@@ -121,6 +125,8 @@ export const taskTemplateZodSchema = z.object({
   difficultyLevel: z.number().min(1).max(5),
   relatedMedia: z.array(z.string()),
 });
+
+export const taskTemplateListZodSchema = z.array(taskTemplateZodSchema);
 
 export const mediaZodSchema = z.object({
   countries: z.array(z.string()),
@@ -130,6 +136,12 @@ export const mediaZodSchema = z.object({
   folder: z.string(),
   size: z.number(),
   uploadedAt: z.string(),
+});
+
+export const fileUploadZodSchema = z.object({
+  files: z.array(z.instanceof(Buffer)).nonempty(),
+  countries: z.array(z.nativeEnum(CountryEnum)).nonempty(),
+  categories: z.array(z.string()).nonempty(),
 });
 
 export type AddressType = z.infer<typeof addressZodSchema>;

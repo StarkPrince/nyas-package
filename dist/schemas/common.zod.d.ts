@@ -162,6 +162,43 @@ export declare const siteAddressZodSchema: z.ZodObject<{
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>;
+export declare const siteAddressListZodSchema: z.ZodArray<z.ZodObject<{
+    siteDetails: z.ZodString;
+    cageNumber: z.ZodOptional<z.ZodString>;
+    coloDetails: z.ZodOptional<z.ZodString>;
+    country: z.ZodNativeEnum<typeof CountryEnum>;
+    city: z.ZodString;
+    location: z.ZodObject<{
+        lat: z.ZodNumber;
+        long: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        lat: number;
+        long: number;
+    }, {
+        lat: number;
+        long: number;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    city: string;
+    country: CountryEnum;
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}, {
+    city: string;
+    country: CountryEnum;
+    location: {
+        lat: number;
+        long: number;
+    };
+    siteDetails: string;
+    cageNumber?: string | undefined;
+    coloDetails?: string | undefined;
+}>, "many">;
 export declare const extensionZodSchema: z.ZodEffects<z.ZodObject<{
     subticketId: z.ZodEffects<z.ZodString, string, string>;
     status: z.ZodOptional<z.ZodNativeEnum<typeof ExtensionStatusEnum>>;
@@ -235,6 +272,22 @@ export declare const logisticsZodSchema: z.ZodObject<{
     description: string;
     imageUrl: string;
 }>;
+export declare const logisticsListZodSchema: z.ZodArray<z.ZodObject<{
+    name: z.ZodString;
+    description: z.ZodString;
+    imageUrl: z.ZodString;
+    type: z.ZodNativeEnum<typeof LogisticsEnum>;
+}, "strip", z.ZodTypeAny, {
+    type: LogisticsEnum;
+    name: string;
+    description: string;
+    imageUrl: string;
+}, {
+    type: LogisticsEnum;
+    name: string;
+    description: string;
+    imageUrl: string;
+}>, "many">;
 export declare const taskTemplateZodSchema: z.ZodObject<{
     taskName: z.ZodString;
     taskDescription: z.ZodString;
@@ -254,6 +307,25 @@ export declare const taskTemplateZodSchema: z.ZodObject<{
     difficultyLevel: number;
     relatedMedia: string[];
 }>;
+export declare const taskTemplateListZodSchema: z.ZodArray<z.ZodObject<{
+    taskName: z.ZodString;
+    taskDescription: z.ZodString;
+    logistics: z.ZodArray<z.ZodString, "many">;
+    difficultyLevel: z.ZodNumber;
+    relatedMedia: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    taskName: string;
+    taskDescription: string;
+    logistics: string[];
+    difficultyLevel: number;
+    relatedMedia: string[];
+}, {
+    taskName: string;
+    taskDescription: string;
+    logistics: string[];
+    difficultyLevel: number;
+    relatedMedia: string[];
+}>, "many">;
 export declare const mediaZodSchema: z.ZodObject<{
     countries: z.ZodArray<z.ZodString, "many">;
     categories: z.ZodArray<z.ZodString, "many">;
@@ -278,6 +350,19 @@ export declare const mediaZodSchema: z.ZodObject<{
     folder: string;
     size: number;
     uploadedAt: string;
+}>;
+export declare const fileUploadZodSchema: z.ZodObject<{
+    files: z.ZodArray<z.ZodType<Buffer, z.ZodTypeDef, Buffer>, "atleastone">;
+    countries: z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "atleastone">;
+    categories: z.ZodArray<z.ZodString, "atleastone">;
+}, "strip", z.ZodTypeAny, {
+    countries: [CountryEnum, ...CountryEnum[]];
+    categories: [string, ...string[]];
+    files: [Buffer, ...Buffer[]];
+}, {
+    countries: [CountryEnum, ...CountryEnum[]];
+    categories: [string, ...string[]];
+    files: [Buffer, ...Buffer[]];
 }>;
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mediaZodSchema = exports.taskTemplateZodSchema = exports.logisticsZodSchema = exports.extensionZodSchema = exports.siteAddressZodSchema = exports.scheduleZodSchema = exports.billingDetailZodSchema = exports.addressZodSchema = exports.contactDetailZodSchema = exports.idPattern = void 0;
+exports.fileUploadZodSchema = exports.mediaZodSchema = exports.taskTemplateListZodSchema = exports.taskTemplateZodSchema = exports.logisticsListZodSchema = exports.logisticsZodSchema = exports.extensionZodSchema = exports.siteAddressListZodSchema = exports.siteAddressZodSchema = exports.scheduleZodSchema = exports.billingDetailZodSchema = exports.addressZodSchema = exports.contactDetailZodSchema = exports.idPattern = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums"); // The generated map
 const fieldEngineer_zod_1 = require("./fieldEngineer.zod");
@@ -61,6 +61,7 @@ exports.siteAddressZodSchema = zod_1.z.object({
         long: zod_1.z.number().min(-180).max(180),
     }),
 });
+exports.siteAddressListZodSchema = zod_1.z.array(exports.siteAddressZodSchema);
 exports.extensionZodSchema = zod_1.z
     .object({
     subticketId: zod_1.z.string().refine((id) => exports.idPattern.test(id), {
@@ -90,6 +91,7 @@ exports.logisticsZodSchema = zod_1.z.object({
     imageUrl: zod_1.z.string().min(1, "Image URL cannot be blank"),
     type: zod_1.z.nativeEnum(enums_1.LogisticsEnum),
 });
+exports.logisticsListZodSchema = zod_1.z.array(exports.logisticsZodSchema);
 exports.taskTemplateZodSchema = zod_1.z.object({
     taskName: zod_1.z.string(),
     taskDescription: zod_1.z.string(),
@@ -97,6 +99,7 @@ exports.taskTemplateZodSchema = zod_1.z.object({
     difficultyLevel: zod_1.z.number().min(1).max(5),
     relatedMedia: zod_1.z.array(zod_1.z.string()),
 });
+exports.taskTemplateListZodSchema = zod_1.z.array(exports.taskTemplateZodSchema);
 exports.mediaZodSchema = zod_1.z.object({
     countries: zod_1.z.array(zod_1.z.string()),
     categories: zod_1.z.array(zod_1.z.string()),
@@ -105,4 +108,9 @@ exports.mediaZodSchema = zod_1.z.object({
     folder: zod_1.z.string(),
     size: zod_1.z.number(),
     uploadedAt: zod_1.z.string(),
+});
+exports.fileUploadZodSchema = zod_1.z.object({
+    files: zod_1.z.array(zod_1.z.instanceof(Buffer)).nonempty(),
+    countries: zod_1.z.array(zod_1.z.nativeEnum(enums_1.CountryEnum)).nonempty(),
+    categories: zod_1.z.array(zod_1.z.string()).nonempty(),
 });

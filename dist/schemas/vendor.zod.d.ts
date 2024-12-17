@@ -378,6 +378,16 @@ export declare const vendorUpdateZodSchema: z.ZodObject<{
     countriesTheyServe?: CountryEnum[] | undefined;
     clientsTheyWorkedFor?: string[] | undefined;
 }>;
+export declare const linkVendorContractToClientContractZodSchema: z.ZodObject<{
+    vendorContractId: z.ZodString;
+    clientContractId: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    vendorContractId: string;
+    clientContractId: string;
+}, {
+    vendorContractId: string;
+    clientContractId: string;
+}>;
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
 export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {

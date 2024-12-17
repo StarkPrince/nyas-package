@@ -16,6 +16,8 @@ export const unavailabilityZodSchema = z.object({
   reason: z.string().min(1, "Reason cannot be blank"),
 });
 
+export const unavailabilityArrayZodSchema = z.array(unavailabilityZodSchema);
+
 export const userZodSchema = z
   .object({
     username: z.string().optional(),
@@ -34,7 +36,7 @@ export const userZodSchema = z
       .default([])
       .optional(),
     timezone: z.enum(Timezones).default("Etc/GMT"),
-    unavailability: z.array(unavailabilityZodSchema).optional(),
+    unavailability: unavailabilityArrayZodSchema.optional(),
   })
   .refine((data) => data.email || data.phoneNumber, {
     message: "At least one of email or phoneNumber must be provided",
@@ -58,4 +60,5 @@ export const userLoginZodSchema = z.object({
   password: z.string().min(1, "Password cannot be blank"),
 });
 
+export type UnavailabilityType = z.infer<typeof unavailabilityZodSchema>;
 export type UserType = z.infer<typeof userZodSchema>;

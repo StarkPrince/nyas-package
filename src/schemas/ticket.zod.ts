@@ -52,6 +52,8 @@ export const taskZodSchema = z.object({
   status: z.nativeEnum(TaskStatusEnum),
 });
 
+export const taskListZodSchema = z.array(taskZodSchema);
+
 export const ticketZodSchema = z.object({
   title: z.string(),
   clientContractId: z.string(),
@@ -74,6 +76,10 @@ export const scheduleAssignmentZodSchema = z.object({
   noOfSubtickets: z.number().nonnegative(),
 });
 
+export const scheduleAssignmentListZodSchema = z.array(
+  scheduleAssignmentZodSchema
+);
+
 export const ticketUpdateZodSchema = z
   .object({
     scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
@@ -95,6 +101,29 @@ export const ticketUpdateZodSchema = z
         "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
     }
   );
+
+export const ticketCreationZodSchema = z.object({
+  number: z.string(),
+  title: z.string(),
+  clientContractId: z.string(),
+  site: z.string(),
+  numberOfEngineers: z.number(),
+  SLA: z.number(),
+  schedules: z.array(scheduleZodSchema),
+});
+
+export const fieldEngineerRatingZodSchema = z.object({
+  submittedRating: z.number().min(1).max(5),
+  fieldEngineer: z.string(),
+});
+
+export const fieldEngineerRatingArrayZodSchema = z.array(
+  fieldEngineerRatingZodSchema
+);
+
+export type FieldEngineerRatingType = z.infer<
+  typeof fieldEngineerRatingZodSchema
+>;
 
 export type ScheduleAssignmentType = z.infer<
   typeof scheduleAssignmentZodSchema

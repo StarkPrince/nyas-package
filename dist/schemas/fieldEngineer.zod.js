@@ -19,11 +19,15 @@ exports.fieldEngineerZodSchema = zod_1.z.object({
         .default([]),
     address: common_zod_1.addressZodSchema,
     yearsOfExperience: zod_1.z.number().default(0),
-    rating: zod_1.z
-        .number()
-        .min(1, "Rating cannot be less than 1")
-        .max(5, "Rating cannot be more than 5")
-        .default(5),
+    ratings: zod_1.z.object({
+        ticketRatings: zod_1.z.array(zod_1.z.object({
+            ticket: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+                message: "Invalid ticket Id",
+            }),
+            rating: zod_1.z.number().min(0).max(5),
+        })),
+        averageRating: zod_1.z.number().min(0).max(5),
+    }),
 });
 exports.fieldEngineerRegisterZodSchema = zod_1.z.object({
     user: zod_1.z.object({

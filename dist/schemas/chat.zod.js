@@ -19,8 +19,6 @@ exports.messageZodSchema = zod_1.z.object({
     chatType: zod_1.z.nativeEnum(enums_1.ChatTypeEnum),
     data: zod_1.z.string(),
     size: zod_1.z.number().nullable(),
-    chatId: zod_1.z.string(),
-    userId: zod_1.z.string(),
 });
 exports.ticketChatZodSchema = zod_1.z.object({
     ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {

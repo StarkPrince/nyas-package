@@ -13,6 +13,19 @@ export declare const unavailabilityZodSchema: z.ZodObject<{
     from: string;
     to: string;
 }>;
+export declare const unavailabilityArrayZodSchema: z.ZodArray<z.ZodObject<{
+    from: z.ZodEffects<z.ZodString, string, string>;
+    to: z.ZodEffects<z.ZodString, string, string>;
+    reason: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    reason: string;
+    from: string;
+    to: string;
+}, {
+    reason: string;
+    from: string;
+    to: string;
+}>, "many">;
 export declare const userZodSchema: z.ZodEffects<z.ZodObject<{
     username: z.ZodOptional<z.ZodString>;
     email: z.ZodString;
@@ -143,4 +156,5 @@ export declare const userLoginZodSchema: z.ZodObject<{
     email: string;
     password: string;
 }>;
+export type UnavailabilityType = z.infer<typeof unavailabilityZodSchema>;
 export type UserType = z.infer<typeof userZodSchema>;

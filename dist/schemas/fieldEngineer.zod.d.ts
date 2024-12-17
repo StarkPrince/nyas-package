@@ -49,7 +49,31 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line2?: string | undefined;
     }>;
     yearsOfExperience: z.ZodDefault<z.ZodNumber>;
-    rating: z.ZodDefault<z.ZodNumber>;
+    ratings: z.ZodObject<{
+        ticketRatings: z.ZodArray<z.ZodObject<{
+            ticket: z.ZodEffects<z.ZodString, string, string>;
+            rating: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            ticket: string;
+            rating: number;
+        }, {
+            ticket: string;
+            rating: number;
+        }>, "many">;
+        averageRating: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        ticketRatings: {
+            ticket: string;
+            rating: number;
+        }[];
+        averageRating: number;
+    }, {
+        ticketRatings: {
+            ticket: string;
+            rating: number;
+        }[];
+        averageRating: number;
+    }>;
 }, "strip", z.ZodTypeAny, {
     user: string;
     vendorContracts: string[];
@@ -64,7 +88,13 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         line2?: string | undefined;
     };
     yearsOfExperience: number;
-    rating: number;
+    ratings: {
+        ticketRatings: {
+            ticket: string;
+            rating: number;
+        }[];
+        averageRating: number;
+    };
 }, {
     user: string;
     address: {
@@ -77,9 +107,15 @@ export declare const fieldEngineerZodSchema: z.ZodObject<{
         };
         line2?: string | undefined;
     };
+    ratings: {
+        ticketRatings: {
+            ticket: string;
+            rating: number;
+        }[];
+        averageRating: number;
+    };
     vendorContracts?: string[] | undefined;
     yearsOfExperience?: number | undefined;
-    rating?: number | undefined;
 }>;
 export declare const fieldEngineerRegisterZodSchema: z.ZodObject<{
     user: z.ZodObject<{

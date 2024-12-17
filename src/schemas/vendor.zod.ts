@@ -69,6 +69,11 @@ export const vendorUpdateZodSchema = z.object({
   vendorContracts: z.array(z.string()).nullable(),
 });
 
+export const linkVendorContractToClientContractZodSchema = z.object({
+  vendorContractId: z.string(),
+  clientContractId: z.string(),
+});
+
 export type VendorType = z.infer<typeof vendorZodSchema>;
 export type VendorContractType = z.infer<typeof vendorContractZodSchema>;
 export type OverriddenVendorType = Omit<VendorType, "pointOfContact"> & {
