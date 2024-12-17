@@ -121,6 +121,9 @@ var FieldEngineerWorkStatusEnum;
     FieldEngineerWorkStatusEnum["HOURLY_UPDATE"] = "hourly-update";
     FieldEngineerWorkStatusEnum["HOURS_BEFORE_24"] = "24HoursBefore";
     FieldEngineerWorkStatusEnum["HOURS_BEFORE_4"] = "4HoursBefore";
+    FieldEngineerWorkStatusEnum["HOURS_BEFORE_3"] = "3HoursBefore";
+    FieldEngineerWorkStatusEnum["HOURS_BEFORE_2"] = "2HoursBefore";
+    FieldEngineerWorkStatusEnum["HOURS_BEFORE_1"] = "1HoursBefore";
 })(FieldEngineerWorkStatusEnum || (exports.FieldEngineerWorkStatusEnum = FieldEngineerWorkStatusEnum = {}));
 var LogisticsEnum;
 (function (LogisticsEnum) {
