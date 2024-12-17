@@ -596,6 +596,7 @@ export declare const fieldEngineerRatingArrayZodSchema: z.ZodArray<z.ZodObject<{
     submittedRating: number;
 }>, "many">;
 export type FieldEngineerRatingType = z.infer<typeof fieldEngineerRatingZodSchema>;
+export type TicketRatingsType = z.infer<typeof fieldEngineerRatingArrayZodSchema>;
 export type ScheduleAssignmentType = z.infer<typeof scheduleAssignmentZodSchema>;
 export type TicketType = z.infer<typeof ticketZodSchema>;
 export type AssignmentType = z.infer<typeof assignmentZodSchema>;
@@ -613,4 +614,5 @@ export type OverriddenTicketType = TicketType & {
     document: TicketDocumentType;
     communications: CommunicationType;
     subtickets: string[];
+    ratings: TicketRatingsType;
 };

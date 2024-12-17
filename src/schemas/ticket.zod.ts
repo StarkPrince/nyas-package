@@ -125,6 +125,9 @@ export type FieldEngineerRatingType = z.infer<
   typeof fieldEngineerRatingZodSchema
 >;
 
+export type TicketRatingsType = z.infer<
+  typeof fieldEngineerRatingArrayZodSchema
+>;
 export type ScheduleAssignmentType = z.infer<
   typeof scheduleAssignmentZodSchema
 >;
@@ -144,4 +147,5 @@ export type OverriddenTicketType = TicketType & {
   document: TicketDocumentType;
   communications: CommunicationType;
   subtickets: string[];
+  ratings: TicketRatingsType;
 };
