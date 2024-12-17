@@ -190,7 +190,6 @@ export declare const scheduleAssignmentZodSchema: z.ZodObject<{
     noOfSubtickets: number;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
-    ticketId: z.ZodEffects<z.ZodString, string, string>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
         assignments: z.ZodObject<{
@@ -315,7 +314,6 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     }>>;
 }, "strip", z.ZodTypeAny, {
-    ticketId: string;
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -352,7 +350,6 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }, {
-    ticketId: string;
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -389,7 +386,6 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }>, {
-    ticketId: string;
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -426,7 +422,6 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }, {
-    ticketId: string;
     document?: {
         MOP: string[];
         projectDescription: string;

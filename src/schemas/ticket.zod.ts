@@ -76,9 +76,6 @@ export const scheduleAssignmentZodSchema = z.object({
 
 export const ticketUpdateZodSchema = z
   .object({
-    ticketId: z.string().refine((id) => idPattern.test(id), {
-      message: "Invalid ticket Id",
-    }),
     scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
     document: ticketDocumentZodSchema.optional(),
     tasks: z.array(taskZodSchema).optional(),

@@ -63,9 +63,6 @@ exports.scheduleAssignmentZodSchema = zod_1.z.object({
 });
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
-    ticketId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-        message: "Invalid ticket Id",
-    }),
     scheduleAssignments: zod_1.z.array(exports.scheduleAssignmentZodSchema).optional(),
     document: exports.ticketDocumentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),

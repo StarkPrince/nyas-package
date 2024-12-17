@@ -299,13 +299,19 @@ export interface PopulatedFieldEngineer
   address: IAddress;
 }
 
+export interface TicketWithSiteIdPopulated
+  extends Document,
+    Omit<OverriddenTicketType, "site"> {
+  site: ISiteAddress;
+}
+
 export interface PopulatedSubticketById
   extends Document,
     Omit<
       SubTicketType,
       "ticketId" | "schedule" | "extensions" | "fieldEngineer"
     > {
-  ticketId: ITicket;
+  ticketId: TicketWithSiteIdPopulated;
   schedule: ISchedule;
   extensions: PopulatedExtension;
   fieldEngineer: PopulatedFieldEngineer;
