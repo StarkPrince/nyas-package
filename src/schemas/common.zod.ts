@@ -139,9 +139,9 @@ export const mediaZodSchema = z.object({
 });
 
 export const fileUploadZodSchema = z.object({
-  files: z.array(z.instanceof(Buffer)).nonempty(),
-  countries: z.array(z.nativeEnum(CountryEnum)).nonempty(),
-  categories: z.array(z.string()).nonempty(),
+  files: z.array(z.instanceof(Buffer)).min(1),
+  countries: z.array(z.nativeEnum(CountryEnum)).min(1),
+  categories: z.array(z.string()).min(1),
 });
 
 export type AddressType = z.infer<typeof addressZodSchema>;

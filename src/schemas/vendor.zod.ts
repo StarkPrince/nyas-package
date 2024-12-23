@@ -16,8 +16,8 @@ export const vendorContractZodSchema = z.object({
     })
     .optional(),
   uploadedFiles: z.array(z.string()).optional(),
-  billingDetails: z.array(billingDetailZodSchema).nonempty(),
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  billingDetails: z.array(billingDetailZodSchema).min(1),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   expiryDate: z
     .string()
     .min(1, "Expiry date cannot be blank")
@@ -48,7 +48,7 @@ export const vendorContractZodSchema = z.object({
 export const vendorZodSchema = z.object({
   name: z.string().min(1, "Name cannot be blank"),
   address: addressZodSchema,
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   countriesTheyServe: z.array(z.nativeEnum(CountryEnum)),
   clientsTheyWorkedFor: z.array(
     z
@@ -63,7 +63,7 @@ export const vendorZodSchema = z.object({
 export const vendorUpdateZodSchema = z.object({
   name: z.string().optional(),
   address: addressZodSchema,
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   countriesTheyServe: z.array(z.nativeEnum(CountryEnum)).optional(),
   clientsTheyWorkedFor: z.array(z.string()).optional(),
   vendorContracts: z.array(z.string()).nullable(),

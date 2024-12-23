@@ -8,8 +8,8 @@ import {
 } from "./common.zod";
 
 export const clientContractZodSchema = z.object({
-  billingDetails: z.array(billingDetailZodSchema).nonempty(),
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  billingDetails: z.array(billingDetailZodSchema).min(1),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   clientId: z.string().refine((id) => idPattern.test(id), {
     message: "Invalid client Id",
   }),
@@ -43,7 +43,7 @@ export const clientContractZodSchema = z.object({
 export const clientZodSchema = z.object({
   name: z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
   address: addressZodSchema,
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   purchaseOrderNumber: z.string(),
   purchaseOrderValue: z.string(),
   purchaseOrderCurrency: z.nativeEnum(CurrencyEnum),
@@ -60,7 +60,7 @@ export const clientZodSchema = z.object({
 export const clientUpdateZodSchema = z.object({
   name: z.string().optional(),
   address: addressZodSchema,
-  pointOfContact: z.array(contactDetailZodSchema).nonempty(),
+  pointOfContact: z.array(contactDetailZodSchema).min(1),
   purchaseOrderNumber: z.string().optional(),
   purchaseOrderValue: z.string().optional(),
   purchaseOrderCurrency: z.nativeEnum(CurrencyEnum).optional(),
