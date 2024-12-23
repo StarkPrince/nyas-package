@@ -283,7 +283,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         startdatetime: string;
         enddatetime: string;
     }>>;
-    fieldEngineerId: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
+    fieldEngineerId: z.ZodNullable<z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>>;
     vendorContractId: z.ZodOptional<z.ZodEffects<z.ZodString, string, string>>;
 }, "strip", z.ZodTypeAny, {
     update: SubticketUpdateEnum;
@@ -292,7 +292,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         enddatetime: string;
     } | undefined;
     status?: SubTicketStatusEnum | undefined;
-    fieldEngineerId?: string | undefined;
+    fieldEngineerId?: string | null | undefined;
     vendorContractId?: string | undefined;
 }, {
     update: SubticketUpdateEnum;
@@ -301,7 +301,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         enddatetime: string;
     } | undefined;
     status?: SubTicketStatusEnum | undefined;
-    fieldEngineerId?: string | undefined;
+    fieldEngineerId?: string | null | undefined;
     vendorContractId?: string | undefined;
 }>, {
     update: SubticketUpdateEnum;
@@ -310,7 +310,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         enddatetime: string;
     } | undefined;
     status?: SubTicketStatusEnum | undefined;
-    fieldEngineerId?: string | undefined;
+    fieldEngineerId?: string | null | undefined;
     vendorContractId?: string | undefined;
 }, {
     update: SubticketUpdateEnum;
@@ -319,7 +319,7 @@ export declare const subticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         enddatetime: string;
     } | undefined;
     status?: SubTicketStatusEnum | undefined;
-    fieldEngineerId?: string | undefined;
+    fieldEngineerId?: string | null | undefined;
     vendorContractId?: string | undefined;
 }>;
 export declare const rejectedSubticketZodSchema: z.ZodObject<{

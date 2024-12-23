@@ -352,17 +352,17 @@ export declare const mediaZodSchema: z.ZodObject<{
     uploadedAt: string;
 }>;
 export declare const fileUploadZodSchema: z.ZodObject<{
-    files: z.ZodArray<z.ZodType<Buffer, z.ZodTypeDef, Buffer>, "atleastone">;
-    countries: z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "atleastone">;
-    categories: z.ZodArray<z.ZodString, "atleastone">;
+    files: z.ZodArray<z.ZodType<Buffer, z.ZodTypeDef, Buffer>, "many">;
+    countries: z.ZodArray<z.ZodNativeEnum<typeof CountryEnum>, "many">;
+    categories: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
-    countries: [CountryEnum, ...CountryEnum[]];
-    categories: [string, ...string[]];
-    files: [Buffer, ...Buffer[]];
+    countries: CountryEnum[];
+    categories: string[];
+    files: Buffer[];
 }, {
-    countries: [CountryEnum, ...CountryEnum[]];
-    categories: [string, ...string[]];
-    files: [Buffer, ...Buffer[]];
+    countries: CountryEnum[];
+    categories: string[];
+    files: Buffer[];
 }>;
 export type AddressType = z.infer<typeof addressZodSchema>;
 export type ContactDetailType = z.infer<typeof contactDetailZodSchema>;

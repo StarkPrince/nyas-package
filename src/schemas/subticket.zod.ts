@@ -85,7 +85,8 @@ export const subticketUpdateZodSchema = z
       .refine((id) => idPattern.test(id), {
         message: "Invalid fieldEngineer Id",
       })
-      .optional(),
+      .optional()
+      .nullable(),
     vendorContractId: z
       .string()
       .refine((id) => idPattern.test(id), {
@@ -110,14 +111,15 @@ export const subticketUpdateZodSchema = z
     }
     if (
       data.update === SubticketUpdateEnum.FIELD_ENGINEER &&
-      (!data.fieldEngineerId || !data.vendorContractId)
+      ((data.fieldEngineerId && !data.vendorContractId) ||
+        (!data.fieldEngineerId && data.vendorContractId))
     ) {
       if (!data.fieldEngineerId || !data.vendorContractId) {
         ctx.addIssue({
           code: ZodIssueCode.custom,
           path: ["fieldEngineerId", "vendorContractId"],
           message:
-            "FieldEngineerId and vendorContractId must be provided when updating the fieldEngineer.",
+            "FieldEngineerId and vendorContractId must be provided together or not at all",
         });
       }
     }

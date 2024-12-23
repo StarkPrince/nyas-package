@@ -5,8 +5,8 @@ const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
 exports.clientContractZodSchema = zod_1.z.object({
-    billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).nonempty(),
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).min(1),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).min(1),
     clientId: zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid client Id",
     }),
@@ -35,9 +35,11 @@ exports.clientContractZodSchema = zod_1.z.object({
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
 });
 exports.clientZodSchema = zod_1.z.object({
-    name: zod_1.z.string().min(1, "Name cannot be blank"), // Ensures name is not empty
+    name: zod_1.z.string().min(1, "Name cannot be blank"),
     address: common_zod_1.addressZodSchema,
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    pointOfContact: zod_1.z
+        .tuple([common_zod_1.contactDetailZodSchema])
+        .rest(common_zod_1.contactDetailZodSchema),
     purchaseOrderNumber: zod_1.z.string(),
     purchaseOrderValue: zod_1.z.string(),
     purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),
@@ -51,7 +53,7 @@ exports.clientZodSchema = zod_1.z.object({
 exports.clientUpdateZodSchema = zod_1.z.object({
     name: zod_1.z.string().optional(),
     address: common_zod_1.addressZodSchema,
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).nonempty(),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).min(1),
     purchaseOrderNumber: zod_1.z.string().optional(),
     purchaseOrderValue: zod_1.z.string().optional(),
     purchaseOrderCurrency: zod_1.z.nativeEnum(enums_1.CurrencyEnum).optional(),

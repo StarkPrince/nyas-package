@@ -79,7 +79,8 @@ exports.subticketUpdateZodSchema = zod_1.z
         .refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid fieldEngineer Id",
     })
-        .optional(),
+        .optional()
+        .nullable(),
     vendorContractId: zod_1.z
         .string()
         .refine((id) => common_zod_1.idPattern.test(id), {
@@ -103,12 +104,13 @@ exports.subticketUpdateZodSchema = zod_1.z
         });
     }
     if (data.update === enums_1.SubticketUpdateEnum.FIELD_ENGINEER &&
-        (!data.fieldEngineerId || !data.vendorContractId)) {
+        ((data.fieldEngineerId && !data.vendorContractId) ||
+            (!data.fieldEngineerId && data.vendorContractId))) {
         if (!data.fieldEngineerId || !data.vendorContractId) {
             ctx.addIssue({
                 code: zod_1.ZodIssueCode.custom,
                 path: ["fieldEngineerId", "vendorContractId"],
-                message: "FieldEngineerId and vendorContractId must be provided when updating the fieldEngineer.",
+                message: "FieldEngineerId and vendorContractId must be provided together or not at all",
             });
         }
     }

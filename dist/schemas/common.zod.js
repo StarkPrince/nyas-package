@@ -110,7 +110,7 @@ exports.mediaZodSchema = zod_1.z.object({
     uploadedAt: zod_1.z.string(),
 });
 exports.fileUploadZodSchema = zod_1.z.object({
-    files: zod_1.z.array(zod_1.z.instanceof(Buffer)).nonempty(),
-    countries: zod_1.z.array(zod_1.z.nativeEnum(enums_1.CountryEnum)).nonempty(),
-    categories: zod_1.z.array(zod_1.z.string()).nonempty(),
+    files: zod_1.z.array(zod_1.z.instanceof(Buffer)).min(1),
+    countries: zod_1.z.array(zod_1.z.nativeEnum(enums_1.CountryEnum)).min(1),
+    categories: zod_1.z.array(zod_1.z.string()).min(1),
 });
