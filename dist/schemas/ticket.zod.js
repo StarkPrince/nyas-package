@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fieldEngineerRatingArrayZodSchema = exports.fieldEngineerRatingZodSchema = exports.ticketUpdateZodSchema = exports.scheduleAssignmentListZodSchema = exports.scheduleAssignmentZodSchema = exports.ticketZodSchema = exports.taskListZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
+exports.fieldEngineerRatingArrayZodSchema = exports.fieldEngineerRatingZodSchema = exports.ticketUpdateZodSchema = exports.siteDetailsZodSchema = exports.scheduleAssignmentListZodSchema = exports.scheduleAssignmentZodSchema = exports.ticketZodSchema = exports.taskListZodSchema = exports.taskZodSchema = exports.ticketDocumentZodSchema = exports.communicationZodSchema = exports.assignmentZodSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 const common_zod_1 = require("./common.zod");
@@ -63,18 +63,19 @@ exports.scheduleAssignmentZodSchema = zod_1.z.object({
     noOfSubtickets: zod_1.z.number().nonnegative(),
 });
 exports.scheduleAssignmentListZodSchema = zod_1.z.array(exports.scheduleAssignmentZodSchema);
+exports.siteDetailsZodSchema = zod_1.z.object({
+    title: zod_1.z.string(),
+    site: zod_1.z.string(),
+    numberOfEngineers: zod_1.z.number(),
+    SLA: zod_1.z.number(),
+    schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
+    teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+        message: "Invalid user Id",
+    })),
+});
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
-    siteDetails: zod_1.z.object({
-        title: zod_1.z.string(),
-        site: zod_1.z.string(),
-        numberOfEngineers: zod_1.z.number(),
-        SLA: zod_1.z.number(),
-        schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
-        teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
-            message: "Invalid user Id",
-        })),
-    }),
+    siteDetails: exports.siteDetailsZodSchema.optional(),
     scheduleAssignments: zod_1.z.array(exports.scheduleAssignmentZodSchema).optional(),
     document: exports.ticketDocumentZodSchema.optional(),
     tasks: zod_1.z.array(exports.taskZodSchema).optional(),

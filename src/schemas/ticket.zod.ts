@@ -80,20 +80,22 @@ export const scheduleAssignmentListZodSchema = z.array(
   scheduleAssignmentZodSchema
 );
 
+export const siteDetailsZodSchema = z.object({
+  title: z.string(),
+  site: z.string(),
+  numberOfEngineers: z.number(),
+  SLA: z.number(),
+  schedules: z.array(scheduleZodSchema),
+  teamMembers: z.array(
+    z.string().refine((id) => idPattern.test(id), {
+      message: "Invalid user Id",
+    })
+  ),
+});
+
 export const ticketUpdateZodSchema = z
   .object({
-    siteDetails: z.object({
-      title: z.string(),
-      site: z.string(),
-      numberOfEngineers: z.number(),
-      SLA: z.number(),
-      schedules: z.array(scheduleZodSchema),
-      teamMembers: z.array(
-        z.string().refine((id) => idPattern.test(id), {
-          message: "Invalid user Id",
-        })
-      ),
-    }),
+    siteDetails: siteDetailsZodSchema.optional(),
     scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
     document: ticketDocumentZodSchema.optional(),
     tasks: z.array(taskZodSchema).optional(),
