@@ -267,6 +267,43 @@ export declare const scheduleAssignmentListZodSchema: z.ZodArray<z.ZodObject<{
     noOfSubtickets: number;
 }>, "many">;
 export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
+    siteDetails: z.ZodObject<{
+        title: z.ZodString;
+        site: z.ZodString;
+        numberOfEngineers: z.ZodNumber;
+        SLA: z.ZodNumber;
+        schedules: z.ZodArray<z.ZodObject<{
+            startdatetime: z.ZodEffects<z.ZodString, string, string>;
+            enddatetime: z.ZodEffects<z.ZodString, string, string>;
+        }, "strip", z.ZodTypeAny, {
+            startdatetime: string;
+            enddatetime: string;
+        }, {
+            startdatetime: string;
+            enddatetime: string;
+        }>, "many">;
+        teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    }, {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    }>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
         assignments: z.ZodObject<{
@@ -391,6 +428,17 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     }>>;
 }, "strip", z.ZodTypeAny, {
+    siteDetails: {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    };
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -427,6 +475,17 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }, {
+    siteDetails: {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    };
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -463,6 +522,17 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }>, {
+    siteDetails: {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    };
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -499,6 +569,17 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         communication: string[];
     } | undefined;
 }, {
+    siteDetails: {
+        SLA: number;
+        schedules: {
+            startdatetime: string;
+            enddatetime: string;
+        }[];
+        title: string;
+        site: string;
+        numberOfEngineers: number;
+        teamMembers: string[];
+    };
     document?: {
         MOP: string[];
         projectDescription: string;
@@ -534,46 +615,6 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         };
         communication: string[];
     } | undefined;
-}>;
-export declare const ticketCreationZodSchema: z.ZodObject<{
-    number: z.ZodString;
-    title: z.ZodString;
-    clientContractId: z.ZodString;
-    site: z.ZodString;
-    numberOfEngineers: z.ZodNumber;
-    SLA: z.ZodNumber;
-    schedules: z.ZodArray<z.ZodObject<{
-        startdatetime: z.ZodEffects<z.ZodString, string, string>;
-        enddatetime: z.ZodEffects<z.ZodString, string, string>;
-    }, "strip", z.ZodTypeAny, {
-        startdatetime: string;
-        enddatetime: string;
-    }, {
-        startdatetime: string;
-        enddatetime: string;
-    }>, "many">;
-}, "strip", z.ZodTypeAny, {
-    number: string;
-    SLA: number;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
-    title: string;
-    clientContractId: string;
-    site: string;
-    numberOfEngineers: number;
-}, {
-    number: string;
-    SLA: number;
-    schedules: {
-        startdatetime: string;
-        enddatetime: string;
-    }[];
-    title: string;
-    clientContractId: string;
-    site: string;
-    numberOfEngineers: number;
 }>;
 export declare const fieldEngineerRatingZodSchema: z.ZodObject<{
     submittedRating: z.ZodNumber;

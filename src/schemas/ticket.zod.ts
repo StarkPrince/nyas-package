@@ -82,6 +82,18 @@ export const scheduleAssignmentListZodSchema = z.array(
 
 export const ticketUpdateZodSchema = z
   .object({
+    siteDetails: z.object({
+      title: z.string(),
+      site: z.string(),
+      numberOfEngineers: z.number(),
+      SLA: z.number(),
+      schedules: z.array(scheduleZodSchema),
+      teamMembers: z.array(
+        z.string().refine((id) => idPattern.test(id), {
+          message: "Invalid user Id",
+        })
+      ),
+    }),
     scheduleAssignments: z.array(scheduleAssignmentZodSchema).optional(),
     document: ticketDocumentZodSchema.optional(),
     tasks: z.array(taskZodSchema).optional(),
@@ -101,16 +113,6 @@ export const ticketUpdateZodSchema = z
         "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
     }
   );
-
-export const ticketCreationZodSchema = z.object({
-  number: z.string(),
-  title: z.string(),
-  clientContractId: z.string(),
-  site: z.string(),
-  numberOfEngineers: z.number(),
-  SLA: z.number(),
-  schedules: z.array(scheduleZodSchema),
-});
 
 export const fieldEngineerRatingZodSchema = z.object({
   submittedRating: z.number().min(1).max(5),
