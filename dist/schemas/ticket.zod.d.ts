@@ -267,11 +267,11 @@ export declare const scheduleAssignmentListZodSchema: z.ZodArray<z.ZodObject<{
     noOfSubtickets: number;
 }>, "many">;
 export declare const siteDetailsZodSchema: z.ZodObject<{
-    title: z.ZodString;
-    site: z.ZodString;
-    numberOfEngineers: z.ZodNumber;
-    SLA: z.ZodNumber;
-    schedules: z.ZodArray<z.ZodObject<{
+    title: z.ZodOptional<z.ZodString>;
+    site: z.ZodOptional<z.ZodString>;
+    numberOfEngineers: z.ZodOptional<z.ZodNumber>;
+    SLA: z.ZodOptional<z.ZodNumber>;
+    schedules: z.ZodOptional<z.ZodArray<z.ZodObject<{
         startdatetime: z.ZodEffects<z.ZodString, string, string>;
         enddatetime: z.ZodEffects<z.ZodString, string, string>;
     }, "strip", z.ZodTypeAny, {
@@ -280,36 +280,36 @@ export declare const siteDetailsZodSchema: z.ZodObject<{
     }, {
         startdatetime: string;
         enddatetime: string;
-    }>, "many">;
-    teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+    }>, "many">>;
+    teamMembers: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    SLA: number;
-    schedules: {
+    SLA?: number | undefined;
+    schedules?: {
         startdatetime: string;
         enddatetime: string;
-    }[];
-    title: string;
-    site: string;
-    numberOfEngineers: number;
-    teamMembers: string[];
+    }[] | undefined;
+    title?: string | undefined;
+    site?: string | undefined;
+    numberOfEngineers?: number | undefined;
+    teamMembers?: string[] | undefined;
 }, {
-    SLA: number;
-    schedules: {
+    SLA?: number | undefined;
+    schedules?: {
         startdatetime: string;
         enddatetime: string;
-    }[];
-    title: string;
-    site: string;
-    numberOfEngineers: number;
-    teamMembers: string[];
+    }[] | undefined;
+    title?: string | undefined;
+    site?: string | undefined;
+    numberOfEngineers?: number | undefined;
+    teamMembers?: string[] | undefined;
 }>;
 export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
     siteDetails: z.ZodOptional<z.ZodObject<{
-        title: z.ZodString;
-        site: z.ZodString;
-        numberOfEngineers: z.ZodNumber;
-        SLA: z.ZodNumber;
-        schedules: z.ZodArray<z.ZodObject<{
+        title: z.ZodOptional<z.ZodString>;
+        site: z.ZodOptional<z.ZodString>;
+        numberOfEngineers: z.ZodOptional<z.ZodNumber>;
+        SLA: z.ZodOptional<z.ZodNumber>;
+        schedules: z.ZodOptional<z.ZodArray<z.ZodObject<{
             startdatetime: z.ZodEffects<z.ZodString, string, string>;
             enddatetime: z.ZodEffects<z.ZodString, string, string>;
         }, "strip", z.ZodTypeAny, {
@@ -318,28 +318,28 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         }, {
             startdatetime: string;
             enddatetime: string;
-        }>, "many">;
-        teamMembers: z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">;
+        }>, "many">>;
+        teamMembers: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     }, {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     }>>;
     scheduleAssignments: z.ZodOptional<z.ZodArray<z.ZodObject<{
         schedule: z.ZodEffects<z.ZodString, string, string>;
@@ -482,15 +482,15 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         relatedMedia: string[];
     }[] | undefined;
     siteDetails?: {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     } | undefined;
     scheduleAssignments?: {
         schedule: string;
@@ -529,15 +529,15 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         relatedMedia: string[];
     }[] | undefined;
     siteDetails?: {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     } | undefined;
     scheduleAssignments?: {
         schedule: string;
@@ -576,15 +576,15 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         relatedMedia: string[];
     }[] | undefined;
     siteDetails?: {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     } | undefined;
     scheduleAssignments?: {
         schedule: string;
@@ -623,15 +623,15 @@ export declare const ticketUpdateZodSchema: z.ZodEffects<z.ZodObject<{
         relatedMedia: string[];
     }[] | undefined;
     siteDetails?: {
-        SLA: number;
-        schedules: {
+        SLA?: number | undefined;
+        schedules?: {
             startdatetime: string;
             enddatetime: string;
-        }[];
-        title: string;
-        site: string;
-        numberOfEngineers: number;
-        teamMembers: string[];
+        }[] | undefined;
+        title?: string | undefined;
+        site?: string | undefined;
+        numberOfEngineers?: number | undefined;
+        teamMembers?: string[] | undefined;
     } | undefined;
     scheduleAssignments?: {
         schedule: string;

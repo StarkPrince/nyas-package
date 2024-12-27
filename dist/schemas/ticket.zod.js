@@ -64,14 +64,16 @@ exports.scheduleAssignmentZodSchema = zod_1.z.object({
 });
 exports.scheduleAssignmentListZodSchema = zod_1.z.array(exports.scheduleAssignmentZodSchema);
 exports.siteDetailsZodSchema = zod_1.z.object({
-    title: zod_1.z.string(),
-    site: zod_1.z.string(),
-    numberOfEngineers: zod_1.z.number(),
-    SLA: zod_1.z.number(),
-    schedules: zod_1.z.array(common_zod_1.scheduleZodSchema),
-    teamMembers: zod_1.z.array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
+    title: zod_1.z.string().optional(),
+    site: zod_1.z.string().optional(),
+    numberOfEngineers: zod_1.z.number().optional(),
+    SLA: zod_1.z.number().optional(),
+    schedules: zod_1.z.array(common_zod_1.scheduleZodSchema).optional(),
+    teamMembers: zod_1.z
+        .array(zod_1.z.string().refine((id) => common_zod_1.idPattern.test(id), {
         message: "Invalid user Id",
-    })),
+    }))
+        .optional(),
 });
 exports.ticketUpdateZodSchema = zod_1.z
     .object({
