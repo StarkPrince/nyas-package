@@ -63,6 +63,7 @@ export enum UpdateTicketEnum {
   TASK_ADDITION = "tasks",
   DOCUMENT_COMMUNICATION_ADDITION = "documents_communications",
   ENGINEER_ADDITION = "fieldEngineers",
+  SITE_DETAILS_MODIFICATION = "siteDetails",
 }
 
 export enum SubticketUpdateEnum {

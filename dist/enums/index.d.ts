@@ -54,7 +54,8 @@ export declare enum S3FolderEnum {
 export declare enum UpdateTicketEnum {
     TASK_ADDITION = "tasks",
     DOCUMENT_COMMUNICATION_ADDITION = "documents_communications",
-    ENGINEER_ADDITION = "fieldEngineers"
+    ENGINEER_ADDITION = "fieldEngineers",
+    SITE_DETAILS_MODIFICATION = "siteDetails"
 }
 export declare enum SubticketUpdateEnum {
     SCHEDULE = "schedule",

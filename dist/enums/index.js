@@ -80,6 +80,7 @@ var UpdateTicketEnum;
     UpdateTicketEnum["TASK_ADDITION"] = "tasks";
     UpdateTicketEnum["DOCUMENT_COMMUNICATION_ADDITION"] = "documents_communications";
     UpdateTicketEnum["ENGINEER_ADDITION"] = "fieldEngineers";
+    UpdateTicketEnum["SITE_DETAILS_MODIFICATION"] = "siteDetails";
 })(UpdateTicketEnum || (exports.UpdateTicketEnum = UpdateTicketEnum = {}));
 var SubticketUpdateEnum;
 (function (SubticketUpdateEnum) {

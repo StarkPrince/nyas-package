@@ -142,23 +142,23 @@ export declare const siteAddressZodSchema: z.ZodObject<{
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
+    siteDetails: string;
     city: string;
     country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
+    siteDetails: string;
     city: string;
     country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>;
@@ -179,23 +179,23 @@ export declare const siteAddressListZodSchema: z.ZodArray<z.ZodObject<{
         long: number;
     }>;
 }, "strip", z.ZodTypeAny, {
+    siteDetails: string;
     city: string;
     country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }, {
+    siteDetails: string;
     city: string;
     country: CountryEnum;
     location: {
         lat: number;
         long: number;
     };
-    siteDetails: string;
     cageNumber?: string | undefined;
     coloDetails?: string | undefined;
 }>, "many">;
