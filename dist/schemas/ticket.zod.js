@@ -85,7 +85,8 @@ exports.ticketUpdateZodSchema = zod_1.z
 })
     .refine((data) => {
     // Check that at least one of the required fields is present
-    return (data.scheduleAssignments ||
+    return (data.siteDetails ||
+        data.scheduleAssignments ||
         data.tasks ||
         (data.document && data.communications));
 }, {

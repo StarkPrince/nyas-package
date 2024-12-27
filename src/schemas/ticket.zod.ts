@@ -107,6 +107,7 @@ export const ticketUpdateZodSchema = z
     (data) => {
       // Check that at least one of the required fields is present
       return (
+        data.siteDetails ||
         data.scheduleAssignments ||
         data.tasks ||
         (data.document && data.communications)
