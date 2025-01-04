@@ -105,7 +105,6 @@ export const ticketUpdateZodSchema = z
   })
   .refine(
     (data) => {
-      // Check that at least one of the required fields is present
       return (
         data.siteDetails ||
         data.scheduleAssignments ||
@@ -115,7 +114,7 @@ export const ticketUpdateZodSchema = z
     },
     {
       message:
-        "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
+        "At least one of siteDetails, scheduleAssignments, tasks, or (document and communications) is required.",
     }
   );
 

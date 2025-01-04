@@ -84,13 +84,12 @@ exports.ticketUpdateZodSchema = zod_1.z
     communications: exports.communicationZodSchema.optional(),
 })
     .refine((data) => {
-    // Check that at least one of the required fields is present
     return (data.siteDetails ||
         data.scheduleAssignments ||
         data.tasks ||
         (data.document && data.communications));
 }, {
-    message: "At least one of scheduleAssignments, tasks, or (document and communications) is required.",
+    message: "At least one of siteDetails, scheduleAssignments, tasks, or (document and communications) is required.",
 });
 exports.fieldEngineerRatingZodSchema = zod_1.z.object({
     submittedRating: zod_1.z.number().min(1).max(5),

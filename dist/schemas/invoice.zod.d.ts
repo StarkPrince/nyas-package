@@ -22,7 +22,7 @@ export declare const InvoiceBreakDownSchema: z.ZodObject<{
     end: Date;
     cost: number;
 }>;
-export declare const InvoiceSchema: z.ZodObject<{
+export declare const InvoiceZodSchema: z.ZodObject<{
     workingHoursCost: z.ZodDefault<z.ZodNumber>;
     nightHoursCost: z.ZodDefault<z.ZodNumber>;
     outOfWorkingHoursCost: z.ZodDefault<z.ZodNumber>;
@@ -51,6 +51,29 @@ export declare const InvoiceSchema: z.ZodObject<{
         cost: number;
     }>, "many">;
     currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+    extras: z.ZodArray<z.ZodObject<{
+        detail: z.ZodString;
+        value: z.ZodNumber;
+        type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
+    }, "strip", z.ZodTypeAny, {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }, {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }>, "many">;
+    taxes: z.ZodArray<z.ZodObject<{
+        tax: z.ZodString;
+        value: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        value: number;
+        tax: string;
+    }, {
+        value: number;
+        tax: string;
+    }>, "many">;
 }, "strip", z.ZodTypeAny, {
     currency: CurrencyEnum;
     workingHoursCost: number;
@@ -66,6 +89,15 @@ export declare const InvoiceSchema: z.ZodObject<{
         end: Date;
         cost: number;
     }[];
+    extras: {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }[];
+    taxes: {
+        value: number;
+        tax: string;
+    }[];
 }, {
     currency: CurrencyEnum;
     totalCost: number;
@@ -78,16 +110,23 @@ export declare const InvoiceSchema: z.ZodObject<{
         end: Date;
         cost: number;
     }[];
+    extras: {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }[];
+    taxes: {
+        value: number;
+        tax: string;
+    }[];
     workingHoursCost?: number | undefined;
     nightHoursCost?: number | undefined;
     outOfWorkingHoursCost?: number | undefined;
 }>;
-export declare const SubticketInvoiceSchema: z.ZodObject<{
+export declare const SubticketInvoiceZodSchema: z.ZodObject<{
     subticket: z.ZodString;
     number: z.ZodString;
     fieldEngineer: z.ZodOptional<z.ZodString>;
-    client: z.ZodOptional<z.ZodString>;
-    vendor: z.ZodOptional<z.ZodString>;
     ccinvoice: z.ZodObject<{
         workingHoursCost: z.ZodDefault<z.ZodNumber>;
         nightHoursCost: z.ZodDefault<z.ZodNumber>;
@@ -117,6 +156,29 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             cost: number;
         }>, "many">;
         currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+        extras: z.ZodArray<z.ZodObject<{
+            detail: z.ZodString;
+            value: z.ZodNumber;
+            type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
+        }, "strip", z.ZodTypeAny, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }>, "many">;
+        taxes: z.ZodArray<z.ZodObject<{
+            tax: z.ZodString;
+            value: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            tax: string;
+        }, {
+            value: number;
+            tax: string;
+        }>, "many">;
     }, "strip", z.ZodTypeAny, {
         currency: CurrencyEnum;
         workingHoursCost: number;
@@ -132,6 +194,15 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
     }, {
         currency: CurrencyEnum;
         totalCost: number;
@@ -143,6 +214,15 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             start: Date;
             end: Date;
             cost: number;
+        }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
         }[];
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
@@ -177,6 +257,29 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             cost: number;
         }>, "many">;
         currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+        extras: z.ZodArray<z.ZodObject<{
+            detail: z.ZodString;
+            value: z.ZodNumber;
+            type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
+        }, "strip", z.ZodTypeAny, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }>, "many">;
+        taxes: z.ZodArray<z.ZodObject<{
+            tax: z.ZodString;
+            value: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            tax: string;
+        }, {
+            value: number;
+            tax: string;
+        }>, "many">;
     }, "strip", z.ZodTypeAny, {
         currency: CurrencyEnum;
         workingHoursCost: number;
@@ -192,6 +295,15 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
     }, {
         currency: CurrencyEnum;
         totalCost: number;
@@ -204,25 +316,20 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
     }>;
     status: z.ZodDefault<z.ZodNativeEnum<typeof InvoiceStatusEnum>>;
-    extras: z.ZodArray<z.ZodObject<{
-        name: z.ZodString;
-        value: z.ZodNumber;
-        type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
-    }, "strip", z.ZodTypeAny, {
-        type: InvoiceExtraExpenditureTypeEnum;
-        value: number;
-        name: string;
-    }, {
-        type: InvoiceExtraExpenditureTypeEnum;
-        value: number;
-        name: string;
-    }>, "many">;
-    paidAt: z.ZodOptional<z.ZodDate>;
 }, "strip", z.ZodTypeAny, {
     number: string;
     status: InvoiceStatusEnum;
@@ -242,6 +349,15 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
     };
     vcinvoice: {
         currency: CurrencyEnum;
@@ -258,16 +374,17 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
     };
-    extras: {
-        type: InvoiceExtraExpenditureTypeEnum;
-        value: number;
-        name: string;
-    }[];
     fieldEngineer?: string | undefined;
-    client?: string | undefined;
-    vendor?: string | undefined;
-    paidAt?: Date | undefined;
 }, {
     number: string;
     subticket: string;
@@ -282,6 +399,15 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             start: Date;
             end: Date;
             cost: number;
+        }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
         }[];
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
@@ -299,65 +425,38 @@ export declare const SubticketInvoiceSchema: z.ZodObject<{
             end: Date;
             cost: number;
         }[];
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            detail: string;
+        }[];
+        taxes: {
+            value: number;
+            tax: string;
+        }[];
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
     };
-    extras: {
-        type: InvoiceExtraExpenditureTypeEnum;
-        value: number;
-        name: string;
-    }[];
     fieldEngineer?: string | undefined;
     status?: InvoiceStatusEnum | undefined;
-    client?: string | undefined;
-    vendor?: string | undefined;
-    paidAt?: Date | undefined;
 }>;
 export declare const TicketInvoiceSchema: z.ZodObject<{
     ticket: z.ZodString;
     number: z.ZodString;
     subticketInvoices: z.ZodArray<z.ZodString, "many">;
-    taxes: z.ZodArray<z.ZodObject<{
-        name: z.ZodString;
-        value: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        value: number;
-        name: string;
-    }, {
-        value: number;
-        name: string;
-    }>, "many">;
 }, "strip", z.ZodTypeAny, {
     number: string;
     ticket: string;
     subticketInvoices: string[];
-    taxes: {
-        value: number;
-        name: string;
-    }[];
 }, {
     number: string;
     ticket: string;
     subticketInvoices: string[];
-    taxes: {
-        value: number;
-        name: string;
-    }[];
 }>;
-export declare const InvoiceRequestSchema: z.ZodObject<{
-    taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        name: z.ZodString;
-        value: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        value: number;
-        name: string;
-    }, {
-        value: number;
-        name: string;
-    }>, "many">>;
-    otherExpenditures: z.ZodArray<z.ZodObject<{
-        subticket: z.ZodString;
+export declare const InvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
+    subticket: z.ZodString;
+    client: z.ZodObject<{
         extras: z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             value: z.ZodNumber;
@@ -371,50 +470,133 @@ export declare const InvoiceRequestSchema: z.ZodObject<{
             value: number;
             name: string;
         }>, "many">;
+        taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            value: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            name: string;
+        }, {
+            value: number;
+            name: string;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        subticket: string;
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
             name: string;
         }[];
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
     }, {
-        subticket: string;
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
             name: string;
         }[];
-    }>, "many">;
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    }>;
+    vendor: z.ZodObject<{
+        extras: z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            value: z.ZodNumber;
+            type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
+        }, "strip", z.ZodTypeAny, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }, {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }>, "many">;
+        taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            value: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            name: string;
+        }, {
+            value: number;
+            name: string;
+        }>, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }[];
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    }, {
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }[];
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    }>;
 }, "strip", z.ZodTypeAny, {
-    otherExpenditures: {
-        subticket: string;
+    subticket: string;
+    client: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
             name: string;
         }[];
-    }[];
-    taxes?: {
-        value: number;
-        name: string;
-    }[] | undefined;
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    };
+    vendor: {
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }[];
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    };
 }, {
-    otherExpenditures: {
-        subticket: string;
+    subticket: string;
+    client: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
             name: string;
         }[];
-    }[];
-    taxes?: {
-        value: number;
-        name: string;
-    }[] | undefined;
-}>;
-export type InvoiceRequestType = z.infer<typeof InvoiceRequestSchema>;
-export type SubticketInvoiceType = z.infer<typeof SubticketInvoiceSchema>;
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    };
+    vendor: {
+        extras: {
+            type: InvoiceExtraExpenditureTypeEnum;
+            value: number;
+            name: string;
+        }[];
+        taxes?: {
+            value: number;
+            name: string;
+        }[] | undefined;
+    };
+}>, "many">;
+export type InvoiceRequestType = z.infer<typeof InvoiceRequestZodSchema>;
+export type SubticketInvoiceType = z.infer<typeof SubticketInvoiceZodSchema>;
 export type TicketInvoiceType = z.infer<typeof TicketInvoiceSchema>;
 export type InvoiceBreakDownType = z.infer<typeof InvoiceBreakDownSchema>;
-export type InvoiceType = z.infer<typeof InvoiceSchema>;
+export type InvoiceType = z.infer<typeof InvoiceZodSchema>;
