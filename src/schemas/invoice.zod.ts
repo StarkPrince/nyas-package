@@ -76,8 +76,8 @@ export const InvoiceRequestZodSchema = z.object({
 export const SubticketInvoiceRequestZodSchema = z.array(
   z.object({
     subticket: z.string(),
-    client: InvoiceRequestZodSchema,
-    vendor: InvoiceRequestZodSchema,
+    clientInvoiceDetail: InvoiceRequestZodSchema,
+    vendorInvoiceDetail: InvoiceRequestZodSchema,
   })
 );
 

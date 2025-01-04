@@ -501,7 +501,7 @@ export declare const InvoiceRequestZodSchema: z.ZodObject<{
 }>;
 export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
     subticket: z.ZodString;
-    client: z.ZodObject<{
+    clientInvoiceDetail: z.ZodObject<{
         extras: z.ZodArray<z.ZodObject<{
             detail: z.ZodString;
             value: z.ZodNumber;
@@ -546,7 +546,7 @@ export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
             tax: string;
         }[] | undefined;
     }>;
-    vendor: z.ZodObject<{
+    vendorInvoiceDetail: z.ZodObject<{
         extras: z.ZodArray<z.ZodObject<{
             detail: z.ZodString;
             value: z.ZodNumber;
@@ -593,7 +593,7 @@ export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     subticket: string;
-    client: {
+    clientInvoiceDetail: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
@@ -604,7 +604,7 @@ export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
             tax: string;
         }[] | undefined;
     };
-    vendor: {
+    vendorInvoiceDetail: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
@@ -617,7 +617,7 @@ export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
     };
 }, {
     subticket: string;
-    client: {
+    clientInvoiceDetail: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
@@ -628,7 +628,7 @@ export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
             tax: string;
         }[] | undefined;
     };
-    vendor: {
+    vendorInvoiceDetail: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;

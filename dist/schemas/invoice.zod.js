@@ -59,6 +59,6 @@ exports.InvoiceRequestZodSchema = zod_1.z.object({
 });
 exports.SubticketInvoiceRequestZodSchema = zod_1.z.array(zod_1.z.object({
     subticket: zod_1.z.string(),
-    client: exports.InvoiceRequestZodSchema,
-    vendor: exports.InvoiceRequestZodSchema,
+    clientInvoiceDetail: exports.InvoiceRequestZodSchema,
+    vendorInvoiceDetail: exports.InvoiceRequestZodSchema,
 }));
