@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processNestedReferences = exports.processReferences = exports.getIndexedFields = exports.getReferenceFields = exports.isRefField = exports.isSchemaTypeObjectId = exports.isSchemaTypeArray = exports.createOnBoardingTemplate = exports.createHtmlTemplate = exports.capitalizeWords = exports.getScheduleDuration = exports.getFieldEngineerSuffix = exports.detectScheduleConflict = void 0;
+exports.createPhoneNumberChangeTemplate = exports.createPasswordChangedTemplate = exports.createForgotPasswordTemplate = exports.processNestedReferences = exports.processReferences = exports.getIndexedFields = exports.getReferenceFields = exports.isRefField = exports.isSchemaTypeObjectId = exports.isSchemaTypeArray = exports.createOnBoardingTemplate = exports.createHtmlTemplate = exports.capitalizeWords = exports.getScheduleDuration = exports.getFieldEngineerSuffix = exports.detectScheduleConflict = void 0;
 const mongoose_1 = require("mongoose");
 const detectScheduleConflict = (schedules) => {
     const conflicts = [];
@@ -336,3 +336,205 @@ const processNestedReferences = (data, schema, models, userId) => __awaiter(void
     }
 });
 exports.processNestedReferences = processNestedReferences;
+const createForgotPasswordTemplate = (user, otp, title = "Password Reset Request", linkText = "Reset Password", linkUrl) => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <!--[if mso]>
+      <style type="text/css">
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+      <![endif]-->
+    </head>
+    <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f6f9fc;">
+      <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td align="center" style="padding: 40px 0;">
+            <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <tr>
+                <td style="padding: 40px 30px; text-align: center; background-color: #4f46e5; background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                  <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">${title}</h1>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 40px 30px;">
+                  <p style="margin: 0 0 20px; font-size: 20px; font-weight: 600; color: #4f46e5;">Dear ${user.name},</p>
+                  <p style="margin: 0 0 20px; color: #4b5563;">You have requested to reset your password. Please use the following One-Time Password (OTP) to complete the process:</p>
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                    <tr>
+                      <td style="padding: 20px; background-color: #f3f4f6; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 36px; font-weight: 700; color: #4f46e5; letter-spacing: 5px;">${otp}</h2>
+                        <p style="margin: 10px 0 0; font-size: 14px; color: #6b7280;">This OTP is valid for the next 15 minutes.</p>
+                      </td>
+                    </tr>
+                  </table>
+                  <p style="margin: 0 0 20px; color: #4b5563;">If you didn't request a password reset, please ignore this email or contact our support team if you have any concerns.</p>
+                  <table role="presentation" style="width: 100%;">
+                    <tr>
+                      <td align="center">
+                        <a href="${linkUrl}" target="_blank" style="display: inline-block; padding: 14px 30px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; background-color: #4f46e5; border-radius: 6px; transition: background-color 0.3s ease;">
+                          ${linkText}
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 30px; text-align: center; background-color: #f9fafb;">
+                  <p style="margin: 0; font-size: 14px; color: #6b7280;">&copy; ${new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+};
+exports.createForgotPasswordTemplate = createForgotPasswordTemplate;
+const createPasswordChangedTemplate = (user, title = "Password Changed Successfully", linkText = "Go to Login", linkUrl) => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <!--[if mso]>
+      <style type="text/css">
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+      <![endif]-->
+    </head>
+    <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f6f9fc;">
+      <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td align="center" style="padding: 40px 0;">
+            <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <tr>
+                <td style="padding: 40px 30px; text-align: center; background-color: #4f46e5; background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                  <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">${title}</h1>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 40px 30px;">
+                  <p style="margin: 0 0 20px; font-size: 20px; font-weight: 600; color: #4f46e5;">Dear ${user.name},</p>
+                  <p style="margin: 0 0 20px; color: #4b5563;">Your password has been successfully changed.</p>
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                    <tr>
+                      <td style="padding: 20px; background-color: #f3f4f6; border-radius: 8px; text-align: left;">
+                        <h3 style="margin: 0 0 10px; font-size: 18px; font-weight: 600; color: #4f46e5;">Important Security Information:</h3>
+                        <ul style="margin: 0; padding: 0 0 0 20px; color: #4b5563;">
+                          <li style="margin-bottom: 10px;">If you did not initiate this password change, please contact our support team immediately.</li>
+                          <li style="margin-bottom: 10px;">For security reasons, you may be logged out of all devices. Please log in again with your new password.</li>
+                          <li>Remember to use a strong, unique password for your account.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                  <p style="margin: 0 0 20px; color: #4b5563;">If you have any questions or concerns, please don't hesitate to reach out to our support team.</p>
+                  <table role="presentation" style="width: 100%;">
+                    <tr>
+                      <td align="center">
+                        <a href="${linkUrl}" target="_blank" style="display: inline-block; padding: 14px 30px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; background-color: #4f46e5; border-radius: 6px; transition: background-color 0.3s ease;">
+                          ${linkText}
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 30px; text-align: center; background-color: #f9fafb;">
+                  <p style="margin: 0; font-size: 14px; color: #6b7280;">&copy; ${new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+};
+exports.createPasswordChangedTemplate = createPasswordChangedTemplate;
+const createPhoneNumberChangeTemplate = (user, otp, title = "Phone Number Change Request", linkText = "Confirm Change", linkUrl) => {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${title}</title>
+      <!--[if mso]>
+      <style type="text/css">
+        table, td, div, h1, p {font-family: Arial, sans-serif;}
+      </style>
+      <![endif]-->
+    </head>
+    <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #333333; background-color: #f6f9fc;">
+      <table role="presentation" style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td align="center" style="padding: 40px 0;">
+            <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <tr>
+                <td style="padding: 40px 30px; text-align: center; background-color: #4f46e5; background-image: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                  <h1 style="margin: 0; font-size: 28px; font-weight: 700; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">${title}</h1>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 40px 30px;">
+                  <p style="margin: 0 0 20px; font-size: 20px; font-weight: 600; color: #4f46e5;">Dear ${user.name},</p>
+                  <p style="margin: 0 0 20px; color: #4b5563;">You have requested to change your phone number. Please use the following One-Time Password (OTP) to confirm this change:</p>
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                    <tr>
+                      <td style="padding: 20px; background-color: #f3f4f6; border-radius: 8px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 36px; font-weight: 700; color: #4f46e5; letter-spacing: 5px;">${otp}</h2>
+                        <p style="margin: 10px 0 0; font-size: 14px; color: #6b7280;">This OTP is valid for the next 15 minutes.</p>
+                      </td>
+                    </tr>
+                  </table>
+                  <p style="margin: 0 0 20px; color: #4b5563;">If you didn't request to change your phone number, please ignore this email or contact our support team immediately if you have any concerns.</p>
+                  <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 30px 0;">
+                    <tr>
+                      <td style="padding: 20px; background-color: #f3f4f6; border-radius: 8px; text-align: left;">
+                        <h3 style="margin: 0 0 10px; font-size: 18px; font-weight: 600; color: #4f46e5;">Important Information:</h3>
+                        <ul style="margin: 0; padding: 0 0 0 20px; color: #4b5563;">
+                          <li style="margin-bottom: 10px;">Changing your phone number may affect two-factor authentication if it's enabled on your account.</li>
+                          <li style="margin-bottom: 10px;">After changing your phone number, you may need to reverify your account in certain areas.</li>
+                          <li>If you have any issues, please contact our support team for assistance.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                  <table role="presentation" style="width: 100%;">
+                    <tr>
+                      <td align="center">
+                        <a href="${linkUrl}" target="_blank" style="display: inline-block; padding: 14px 30px; font-size: 16px; font-weight: 600; color: #ffffff; text-decoration: none; background-color: #4f46e5; border-radius: 6px; transition: background-color 0.3s ease;">
+                          ${linkText}
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 20px 30px; text-align: center; background-color: #f9fafb;">
+                  <p style="margin: 0; font-size: 14px; color: #6b7280;">&copy; ${new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+};
+exports.createPhoneNumberChangeTemplate = createPhoneNumberChangeTemplate;

@@ -29,3 +29,12 @@ export declare const processReferences: (data: any, schema: Schema, models: {
 export declare const processNestedReferences: (data: any, schema: Schema, models: {
     [key: string]: ModelSchemaEntry;
 }, userId?: string) => Promise<void>;
+export declare const createForgotPasswordTemplate: (user: {
+    name: string;
+}, otp: string, title: string | undefined, linkText: string | undefined, linkUrl: string) => string;
+export declare const createPasswordChangedTemplate: (user: {
+    name: string;
+}, title: string | undefined, linkText: string | undefined, linkUrl: string) => string;
+export declare const createPhoneNumberChangeTemplate: (user: {
+    name: string;
+}, otp: string, title: string | undefined, linkText: string | undefined, linkUrl: string) => string;
