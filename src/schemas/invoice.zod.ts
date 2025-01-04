@@ -53,51 +53,38 @@ export const TicketInvoiceSchema = z.object({
   subticketInvoices: z.array(z.string()),
 });
 
-export const InvoiceRequestZodSchema = z.array(
+export const InvoiceRequestZodSchema = z.object({
+  extras: z
+    .array(
+      z.object({
+        detail: z.string(),
+        value: z.number(),
+        type: z.nativeEnum(InvoiceExtraExpenditureTypeEnum),
+      })
+    )
+    .min(1),
+  taxes: z
+    .array(
+      z.object({
+        tax: z.string(),
+        value: z.number(),
+      })
+    )
+    .optional(),
+});
+
+export const SubticketInvoiceRequestZodSchema = z.array(
   z.object({
     subticket: z.string(),
-    client: z.object({
-      extras: z
-        .array(
-          z.object({
-            name: z.string(),
-            value: z.number(),
-            type: z.nativeEnum(InvoiceExtraExpenditureTypeEnum),
-          })
-        )
-        .min(1),
-      taxes: z
-        .array(
-          z.object({
-            name: z.string(),
-            value: z.number(),
-          })
-        )
-        .optional(),
-    }),
-    vendor: z.object({
-      extras: z
-        .array(
-          z.object({
-            name: z.string(),
-            value: z.number(),
-            type: z.nativeEnum(InvoiceExtraExpenditureTypeEnum),
-          })
-        )
-        .min(1),
-      taxes: z
-        .array(
-          z.object({
-            name: z.string(),
-            value: z.number(),
-          })
-        )
-        .optional(),
-    }),
+    client: InvoiceRequestZodSchema,
+    vendor: InvoiceRequestZodSchema,
   })
 );
 
 export type InvoiceRequestType = z.infer<typeof InvoiceRequestZodSchema>;
+export type SubticketInvoiceRequestType = z.infer<
+  typeof SubticketInvoiceRequestZodSchema
+>;
 export type SubticketInvoiceType = z.infer<typeof SubticketInvoiceZodSchema>;
 export type TicketInvoiceType = z.infer<typeof TicketInvoiceSchema>;
 export type InvoiceBreakDownType = z.infer<typeof InvoiceBreakDownSchema>;

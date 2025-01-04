@@ -454,96 +454,141 @@ export declare const TicketInvoiceSchema: z.ZodObject<{
     ticket: string;
     subticketInvoices: string[];
 }>;
-export declare const InvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
+export declare const InvoiceRequestZodSchema: z.ZodObject<{
+    extras: z.ZodArray<z.ZodObject<{
+        detail: z.ZodString;
+        value: z.ZodNumber;
+        type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
+    }, "strip", z.ZodTypeAny, {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }, {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }>, "many">;
+    taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        tax: z.ZodString;
+        value: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        value: number;
+        tax: string;
+    }, {
+        value: number;
+        tax: string;
+    }>, "many">>;
+}, "strip", z.ZodTypeAny, {
+    extras: {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }[];
+    taxes?: {
+        value: number;
+        tax: string;
+    }[] | undefined;
+}, {
+    extras: {
+        type: InvoiceExtraExpenditureTypeEnum;
+        value: number;
+        detail: string;
+    }[];
+    taxes?: {
+        value: number;
+        tax: string;
+    }[] | undefined;
+}>;
+export declare const SubticketInvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
     subticket: z.ZodString;
     client: z.ZodObject<{
         extras: z.ZodArray<z.ZodObject<{
-            name: z.ZodString;
+            detail: z.ZodString;
             value: z.ZodNumber;
             type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
         }, "strip", z.ZodTypeAny, {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }, {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }>, "many">;
         taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            name: z.ZodString;
+            tax: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             value: number;
-            name: string;
+            tax: string;
         }, {
             value: number;
-            name: string;
+            tax: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     }, {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     }>;
     vendor: z.ZodObject<{
         extras: z.ZodArray<z.ZodObject<{
-            name: z.ZodString;
+            detail: z.ZodString;
             value: z.ZodNumber;
             type: z.ZodNativeEnum<typeof InvoiceExtraExpenditureTypeEnum>;
         }, "strip", z.ZodTypeAny, {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }, {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }>, "many">;
         taxes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            name: z.ZodString;
+            tax: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             value: number;
-            name: string;
+            tax: string;
         }, {
             value: number;
-            name: string;
+            tax: string;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     }, {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -552,22 +597,22 @@ export declare const InvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     };
     vendor: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     };
 }, {
@@ -576,26 +621,27 @@ export declare const InvoiceRequestZodSchema: z.ZodArray<z.ZodObject<{
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     };
     vendor: {
         extras: {
             type: InvoiceExtraExpenditureTypeEnum;
             value: number;
-            name: string;
+            detail: string;
         }[];
         taxes?: {
             value: number;
-            name: string;
+            tax: string;
         }[] | undefined;
     };
 }>, "many">;
 export type InvoiceRequestType = z.infer<typeof InvoiceRequestZodSchema>;
+export type SubticketInvoiceRequestType = z.infer<typeof SubticketInvoiceRequestZodSchema>;
 export type SubticketInvoiceType = z.infer<typeof SubticketInvoiceZodSchema>;
 export type TicketInvoiceType = z.infer<typeof TicketInvoiceSchema>;
 export type InvoiceBreakDownType = z.infer<typeof InvoiceBreakDownSchema>;

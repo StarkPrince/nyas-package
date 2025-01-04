@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InvoiceRequestZodSchema = exports.TicketInvoiceSchema = exports.SubticketInvoiceZodSchema = exports.InvoiceZodSchema = exports.InvoiceBreakDownSchema = void 0;
+exports.SubticketInvoiceRequestZodSchema = exports.InvoiceRequestZodSchema = exports.TicketInvoiceSchema = exports.SubticketInvoiceZodSchema = exports.InvoiceZodSchema = exports.InvoiceBreakDownSchema = void 0;
 const zod_1 = require("zod");
 const enums_1 = require("../enums");
 exports.InvoiceBreakDownSchema = zod_1.z.object({
@@ -42,36 +42,23 @@ exports.TicketInvoiceSchema = zod_1.z.object({
     number: zod_1.z.string(),
     subticketInvoices: zod_1.z.array(zod_1.z.string()),
 });
-exports.InvoiceRequestZodSchema = zod_1.z.array(zod_1.z.object({
+exports.InvoiceRequestZodSchema = zod_1.z.object({
+    extras: zod_1.z
+        .array(zod_1.z.object({
+        detail: zod_1.z.string(),
+        value: zod_1.z.number(),
+        type: zod_1.z.nativeEnum(enums_1.InvoiceExtraExpenditureTypeEnum),
+    }))
+        .min(1),
+    taxes: zod_1.z
+        .array(zod_1.z.object({
+        tax: zod_1.z.string(),
+        value: zod_1.z.number(),
+    }))
+        .optional(),
+});
+exports.SubticketInvoiceRequestZodSchema = zod_1.z.array(zod_1.z.object({
     subticket: zod_1.z.string(),
-    client: zod_1.z.object({
-        extras: zod_1.z
-            .array(zod_1.z.object({
-            name: zod_1.z.string(),
-            value: zod_1.z.number(),
-            type: zod_1.z.nativeEnum(enums_1.InvoiceExtraExpenditureTypeEnum),
-        }))
-            .min(1),
-        taxes: zod_1.z
-            .array(zod_1.z.object({
-            name: zod_1.z.string(),
-            value: zod_1.z.number(),
-        }))
-            .optional(),
-    }),
-    vendor: zod_1.z.object({
-        extras: zod_1.z
-            .array(zod_1.z.object({
-            name: zod_1.z.string(),
-            value: zod_1.z.number(),
-            type: zod_1.z.nativeEnum(enums_1.InvoiceExtraExpenditureTypeEnum),
-        }))
-            .min(1),
-        taxes: zod_1.z
-            .array(zod_1.z.object({
-            name: zod_1.z.string(),
-            value: zod_1.z.number(),
-        }))
-            .optional(),
-    }),
+    client: exports.InvoiceRequestZodSchema,
+    vendor: exports.InvoiceRequestZodSchema,
 }));
