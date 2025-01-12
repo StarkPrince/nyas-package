@@ -51,6 +51,7 @@ export declare const InvoiceZodSchema: z.ZodObject<{
         cost: number;
     }>, "many">;
     currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+    status: z.ZodDefault<z.ZodNativeEnum<typeof InvoiceStatusEnum>>;
     extras: z.ZodArray<z.ZodObject<{
         detail: z.ZodString;
         value: z.ZodNumber;
@@ -75,6 +76,7 @@ export declare const InvoiceZodSchema: z.ZodObject<{
         tax: string;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
+    status: InvoiceStatusEnum;
     currency: CurrencyEnum;
     workingHoursCost: number;
     nightHoursCost: number;
@@ -119,6 +121,7 @@ export declare const InvoiceZodSchema: z.ZodObject<{
         value: number;
         tax: string;
     }[];
+    status?: InvoiceStatusEnum | undefined;
     workingHoursCost?: number | undefined;
     nightHoursCost?: number | undefined;
     outOfWorkingHoursCost?: number | undefined;
@@ -156,6 +159,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             cost: number;
         }>, "many">;
         currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+        status: z.ZodDefault<z.ZodNativeEnum<typeof InvoiceStatusEnum>>;
         extras: z.ZodArray<z.ZodObject<{
             detail: z.ZodString;
             value: z.ZodNumber;
@@ -180,6 +184,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             tax: string;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
+        status: InvoiceStatusEnum;
         currency: CurrencyEnum;
         workingHoursCost: number;
         nightHoursCost: number;
@@ -224,6 +229,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             value: number;
             tax: string;
         }[];
+        status?: InvoiceStatusEnum | undefined;
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
@@ -257,6 +263,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             cost: number;
         }>, "many">;
         currency: z.ZodNativeEnum<typeof CurrencyEnum>;
+        status: z.ZodDefault<z.ZodNativeEnum<typeof InvoiceStatusEnum>>;
         extras: z.ZodArray<z.ZodObject<{
             detail: z.ZodString;
             value: z.ZodNumber;
@@ -281,6 +288,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             tax: string;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
+        status: InvoiceStatusEnum;
         currency: CurrencyEnum;
         workingHoursCost: number;
         nightHoursCost: number;
@@ -325,16 +333,16 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             value: number;
             tax: string;
         }[];
+        status?: InvoiceStatusEnum | undefined;
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
     }>;
-    status: z.ZodDefault<z.ZodNativeEnum<typeof InvoiceStatusEnum>>;
 }, "strip", z.ZodTypeAny, {
     number: string;
-    status: InvoiceStatusEnum;
     subticket: string;
     ccinvoice: {
+        status: InvoiceStatusEnum;
         currency: CurrencyEnum;
         workingHoursCost: number;
         nightHoursCost: number;
@@ -360,6 +368,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
         }[];
     };
     vcinvoice: {
+        status: InvoiceStatusEnum;
         currency: CurrencyEnum;
         workingHoursCost: number;
         nightHoursCost: number;
@@ -409,6 +418,7 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             value: number;
             tax: string;
         }[];
+        status?: InvoiceStatusEnum | undefined;
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
@@ -434,12 +444,12 @@ export declare const SubticketInvoiceZodSchema: z.ZodObject<{
             value: number;
             tax: string;
         }[];
+        status?: InvoiceStatusEnum | undefined;
         workingHoursCost?: number | undefined;
         nightHoursCost?: number | undefined;
         outOfWorkingHoursCost?: number | undefined;
     };
     fieldEngineer?: string | undefined;
-    status?: InvoiceStatusEnum | undefined;
 }>;
 export declare const TicketInvoiceSchema: z.ZodObject<{
     ticket: z.ZodString;

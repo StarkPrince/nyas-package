@@ -19,6 +19,7 @@ exports.InvoiceZodSchema = zod_1.z.object({
     dailyCost: zod_1.z.number(),
     details: zod_1.z.array(exports.InvoiceBreakDownSchema),
     currency: zod_1.z.nativeEnum(enums_1.CurrencyEnum),
+    status: zod_1.z.nativeEnum(enums_1.InvoiceStatusEnum).default(enums_1.InvoiceStatusEnum.PENDING),
     extras: zod_1.z.array(zod_1.z.object({
         detail: zod_1.z.string(),
         value: zod_1.z.number(),
@@ -35,7 +36,6 @@ exports.SubticketInvoiceZodSchema = zod_1.z.object({
     fieldEngineer: zod_1.z.string().optional(),
     ccinvoice: exports.InvoiceZodSchema,
     vcinvoice: exports.InvoiceZodSchema,
-    status: zod_1.z.nativeEnum(enums_1.InvoiceStatusEnum).default(enums_1.InvoiceStatusEnum.PENDING),
 });
 exports.TicketInvoiceSchema = zod_1.z.object({
     ticket: zod_1.z.string(),

@@ -23,6 +23,7 @@ export const InvoiceZodSchema = z.object({
   dailyCost: z.number(),
   details: z.array(InvoiceBreakDownSchema),
   currency: z.nativeEnum(CurrencyEnum),
+  status: z.nativeEnum(InvoiceStatusEnum).default(InvoiceStatusEnum.PENDING),
   extras: z.array(
     z.object({
       detail: z.string(),
@@ -44,7 +45,6 @@ export const SubticketInvoiceZodSchema = z.object({
   fieldEngineer: z.string().optional(),
   ccinvoice: InvoiceZodSchema,
   vcinvoice: InvoiceZodSchema,
-  status: z.nativeEnum(InvoiceStatusEnum).default(InvoiceStatusEnum.PENDING),
 });
 
 export const TicketInvoiceSchema = z.object({
