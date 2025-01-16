@@ -14,7 +14,7 @@ exports.vendorContractZodSchema = zod_1.z.object({
         .optional(),
     uploadedFiles: zod_1.z.array(zod_1.z.string()).optional(),
     billingDetails: zod_1.z.array(common_zod_1.billingDetailZodSchema).min(1),
-    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).min(1),
+    pointOfContact: zod_1.z.array(common_zod_1.contactDetailZodSchema).min(0),
     expiryDate: zod_1.z
         .string()
         .min(1, "Expiry date cannot be blank")
@@ -27,7 +27,10 @@ exports.vendorContractZodSchema = zod_1.z.object({
         .string()
         .min(1, "Onboarding date cannot be blank")
         .refine((date) => !isNaN(Date.parse(date)), "Invalid date format"),
-    signedContractCopy: zod_1.z.string().min(1, "Signed contract copy cannot be blank"),
+    signedContractCopy: zod_1.z
+        .string()
+        .min(1, "Signed contract copy cannot be blank")
+        .optional(),
     clientContracts: zod_1.z
         .array(zod_1.z.string().refine((id) => idPattern.test(id), {
         message: "Invalid client contract Id",

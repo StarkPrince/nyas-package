@@ -86,7 +86,7 @@ export declare const vendorContractZodSchema: z.ZodObject<{
     expiryDate: z.ZodEffects<z.ZodString, string, string>;
     contractStartDate: z.ZodEffects<z.ZodString, string, string>;
     onBoardingDate: z.ZodEffects<z.ZodString, string, string>;
-    signedContractCopy: z.ZodString;
+    signedContractCopy: z.ZodOptional<z.ZodString>;
     clientContracts: z.ZodOptional<z.ZodArray<z.ZodEffects<z.ZodString, string, string>, "many">>;
     status: z.ZodDefault<z.ZodOptional<z.ZodNativeEnum<typeof ContractStatusEnum>>>;
     fieldEngineers: z.ZodArray<z.ZodString, "many">;
@@ -111,10 +111,10 @@ export declare const vendorContractZodSchema: z.ZodObject<{
         name: string;
         phoneNumber: string;
     }[];
-    signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
+    signedContractCopy?: string | undefined;
     uploadedFiles?: string[] | undefined;
     clientContracts?: string[] | undefined;
     vendorId?: string | undefined;
@@ -138,11 +138,11 @@ export declare const vendorContractZodSchema: z.ZodObject<{
         name: string;
         phoneNumber: string;
     }[];
-    signedContractCopy: string;
     expiryDate: string;
     contractStartDate: string;
     onBoardingDate: string;
     status?: ContractStatusEnum | undefined;
+    signedContractCopy?: string | undefined;
     uploadedFiles?: string[] | undefined;
     clientContracts?: string[] | undefined;
     vendorId?: string | undefined;
